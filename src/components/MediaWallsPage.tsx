@@ -89,7 +89,7 @@ const faqs: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Do the prices include GST?",
-    a: <>We're not registered for GST, so no GST is added to our prices.</>,
+    a: <>Prices are final, no GST added.</>,
   },
   {
     q: "Can I re-use the frame with a new print?",

@@ -48,7 +48,7 @@ export default function MediaWallQuoteForm({ choice, setChoice }: Props) {
   }, []);
 
   const estimateText = est.ok
-    ? `${aud(est.total)} (${est.qty} × ${aud(est.each + est.led)}${est.led ? ` incl. LED lights ${aud(est.led)}` : ""}). Estimate only, excludes delivery. No GST added.`
+    ? `${aud(est.total)} (${est.qty} × ${aud(est.each + est.led)}${est.led ? ` incl. LED lights ${aud(est.led)}` : ""}). Estimate only, excludes delivery. Prices are final, no GST added.`
     : "";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -247,8 +247,8 @@ export default function MediaWallQuoteForm({ choice, setChoice }: Props) {
             <p className="mt-1 text-sm">
               {est.qty} × {aud(est.each)}
               {est.led ? ` + LED lights ${aud(est.led)}` : ""} each. Estimate
-              only: excludes delivery, no GST added (we're not GST registered).
-              We'll confirm the price in your quote.
+              only: excludes delivery. Prices are final, no GST added. We'll
+              confirm the price in your quote.
             </p>
           </>
         ) : (

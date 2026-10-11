@@ -1,6 +1,6 @@
 // Media wall prices, sizes, downloads and the quote estimate. Straight stretch fabric walls only.
 // Prices come from the customer Price List tab of the Media Walls spreadsheet (+30%, rounded up to
-// the next $5). We're not GST registered, so no GST is added. Delivery is quoted separately.
+// the next $5). Prices are final, no GST added. Delivery is quoted separately.
 
 export const QUOTE_EMAIL = "infothesignageshed@gmail.com";
 // FormSubmit (https://formsubmit.co). The first submission makes FormSubmit email an activation
@@ -10,7 +10,7 @@ export const FORMSUBMIT_ACTION = `https://formsubmit.co/${FORMSUBMIT_ID}`;
 export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
-  "No GST added (we're not GST registered)",
+  "Prices are final, no GST added",
   "Delivery quoted separately",
 ] as const;
 export const TURNAROUND =
