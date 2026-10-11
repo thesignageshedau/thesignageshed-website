@@ -2,6 +2,7 @@ import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
 import {
   MEDIA_WALLS_HREF,
   TABLE_COVERS_HREF,
+  PULL_UP_BANNERS_HREF,
   homeSection,
 } from "../lib/routes";
 
@@ -32,6 +33,9 @@ export default function QuoteThanks() {
           </a>
           <a href={TABLE_COVERS_HREF} className="btn-outline">
             Table covers
+          </a>
+          <a href={PULL_UP_BANNERS_HREF} className="btn-outline">
+            Pull up banners
           </a>
           <a href={homeSection("top")} className="btn-rust">
             Home

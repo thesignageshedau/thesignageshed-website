@@ -106,7 +106,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <p>
             The Signage Shed is an Australian online seller of digital downloads (spreadsheets and templates) for sign
-            shops and small businesses. We also supply printed media walls and table covers, quoted on request. You can contact us
+            shops and small businesses. We also supply printed media walls, table covers and pull up banners, quoted on request. You can contact us
             about privacy at <Email />.
           </p>
         ),
@@ -133,9 +133,9 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <>
             <p>
-              If you use the quote form on our Media Walls or Table Covers page, the details you enter are sent to us by email through
+              If you use the quote form on our Media Walls, Table Covers or Pull Up Banners page, the details you enter are sent to us by email through
               FormSubmit (formsubmit.co), a form-to-email service. That's your name and email address, your phone
-              number and business name if you give them, the product you're after (such as size, print or drop, LED lights and quantity),
+              number and business name if you give them, the product you're after (such as size, print or drop, stand type, base colour, LED lights and quantity),
               your delivery postcode, the date you need it by, whether you'd like design help, any artwork link and
               your notes.
             </p>
