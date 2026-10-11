@@ -1,0 +1,36 @@
+import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
+import { MEDIA_WALLS_HREF, homeSection } from "../lib/routes";
+
+export default function QuoteThanks() {
+  return (
+    <section className="py-16 sm:py-24">
+      <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
+        <div className="rule mx-auto mb-4" />
+        <h1 className="text-4xl sm:text-5xl">Thanks, we've got your request</h1>
+        <p className="mt-5 text-lg leading-relaxed">
+          We'll email you a quote with delivery included, usually within one
+          business day. Nothing is printed until you've approved a proof, and
+          you pay by invoice once the order is confirmed. {TURNAROUND}
+        </p>
+        <p className="mt-4">
+          Need to add something? Email{" "}
+          <a
+            className="font-semibold text-rust-dark underline underline-offset-2"
+            href={`mailto:${QUOTE_EMAIL}`}
+          >
+            {QUOTE_EMAIL}
+          </a>
+          .
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={MEDIA_WALLS_HREF} className="btn-outline">
+            Back to media walls
+          </a>
+          <a href={homeSection("top")} className="btn-rust">
+            Home
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}

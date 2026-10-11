@@ -4,6 +4,7 @@
 //
 // Page views are sent on every route change. Clicks on any element with a data-track="name"
 // attribute (the Gumroad and Etsy buttons) are sent as GoatCounter events named "name".
+// trackEvent() sends other events, such as a media wall quote request being sent.
 import { useEffect } from "react";
 import { GOATCOUNTER_CODE } from "../data/products";
 
@@ -58,4 +59,11 @@ export function usePageview(path: string) {
     start();
     send({ path, title: document.title });
   }, [path]);
+}
+
+/** Send a GoatCounter event (e.g. "media-wall-quote-sent"). Does nothing while analytics is off. */
+export function trackEvent(name: string, title?: string) {
+  if (!analyticsEnabled) return;
+  start();
+  send({ path: name, title: title ?? name, event: true });
 }

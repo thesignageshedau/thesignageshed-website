@@ -9,21 +9,34 @@ import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import LegalPage from "./components/LegalPage";
+import MediaWallsPage from "./components/MediaWallsPage";
+import MediaWallsTeaser from "./components/MediaWallsTeaser";
+import QuoteThanks from "./components/QuoteThanks";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
 
-// GitHub Pages only serves files, so the legal pages use hash routes: /#/refund-policy etc.
+// GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
+// /#/media-walls, /#/quote-thanks.
 // (public/404.html also sends clean links like /refund-policy to the hash route.)
 // Section links such as #products keep working as normal in-page anchors.
-const slugs = LEGAL_PAGES.map((p) => p.slug) as readonly string[];
-function routeFromHash(): LegalSlug | null {
+type Route = LegalSlug | "media-walls" | "quote-thanks";
+const slugs = [
+  ...LEGAL_PAGES.map((p) => p.slug),
+  "media-walls",
+  "quote-thanks",
+] as readonly string[];
+function routeFromHash(): Route | null {
   const m = window.location.hash.match(/^#\/([a-z-]+)\/?$/);
-  return m && slugs.includes(m[1]) ? (m[1] as LegalSlug) : null;
+  return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
+const PAGE_TITLES: Partial<Record<Route, string>> = {
+  "media-walls": "Media Walls: Prices and Quotes | The Signage Shed",
+  "quote-thanks": "Quote request sent | The Signage Shed",
+};
 
 export default function App() {
-  const [route, setRoute] = useState<LegalSlug | null>(routeFromHash);
+  const [route, setRoute] = useState<Route | null>(routeFromHash);
 
   useEffect(() => {
     const onHash = () => setRoute(routeFromHash());
@@ -31,40 +44,51 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  const doc = route ? legalDocs[route] : null;
+  const doc =
+    route && route in legalDocs ? legalDocs[route as LegalSlug] : null;
 
   useEffect(() => {
-    document.title = doc ? `${doc.title} | The Signage Shed` : SITE_COPY.title;
-  }, [doc]);
+    document.title = doc
+      ? `${doc.title} | The Signage Shed`
+      : (route && PAGE_TITLES[route]) || SITE_COPY.title;
+  }, [doc, route]);
 
-  // After switching page: legal pages start at the top; on the home page, scroll to the
+  // After switching page: other pages start at the top; on the home page, scroll to the
   // section in the hash (e.g. #products) once it has rendered.
   useLayoutEffect(() => {
-    if (doc) {
+    if (route) {
       window.scrollTo({ top: 0, behavior: "instant" });
       return;
     }
     const id = window.location.hash.slice(1);
     const el = id && !id.startsWith("/") ? document.getElementById(id) : null;
     if (el) el.scrollIntoView({ behavior: "instant" });
-  }, [doc]);
+  }, [route]);
 
   usePageview(route ? `/${route}` : "/");
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 btn-cream">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 btn-cream"
+      >
         Skip to content
       </a>
       <Header />
       <main id="main">
         {doc ? (
           <LegalPage doc={doc} />
+        ) : route === "media-walls" ? (
+          <MediaWallsPage />
+        ) : route === "quote-thanks" ? (
+          <QuoteThanks />
         ) : (
           <>
             <Hero />
             <Products />
             <FreeSample />
+            <MediaWallsTeaser />
             <EtsyShop />
             <WhyUs />
             <Faq />

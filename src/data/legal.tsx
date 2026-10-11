@@ -93,7 +93,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
   "privacy-policy": {
     slug: "privacy-policy",
     title: "Privacy Policy",
-    description: "How The Signage Shed handles your personal information: purchases, emails, and cookieless website analytics.",
+    description: "How The Signage Shed handles your personal information: purchases, quote requests, emails, and cookieless website analytics.",
     intro: (
       <>
         We keep this simple: we collect as little as we need, we don't sell your information, and our website doesn't
@@ -106,7 +106,8 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <p>
             The Signage Shed is an Australian online seller of digital downloads (spreadsheets and templates) for sign
-            shops and small businesses. You can contact us about privacy at <Email />.
+            shops and small businesses. We also supply printed media walls, quoted on request. You can contact us
+            about privacy at <Email />.
           </p>
         ),
       },
@@ -123,6 +124,25 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
               Gumroad and Etsy also collect information under their own privacy policies, which you'll find on their
               websites: <Ext href="https://gumroad.com/privacy">Gumroad privacy policy</Ext> and{" "}
               <Ext href="https://www.etsy.com/legal/privacy">Etsy privacy policy</Ext>.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "When you ask for a media wall quote",
+        body: (
+          <>
+            <p>
+              If you use the quote form on our Media Walls page, the details you enter are sent to us by email through
+              FormSubmit (formsubmit.co), a form-to-email service. That's your name and email address, your phone
+              number and business name if you give them, the wall you're after (size, print, LED lights, quantity),
+              your delivery postcode, the date you need it by, whether you'd like design help, any artwork link and
+              your notes.
+            </p>
+            <p>
+              We use these details only to prepare your quote and follow it up, and if you go ahead, to make and
+              deliver your order. We don't add you to a mailing list. FormSubmit handles the form under its own{" "}
+              <Ext href="https://formsubmit.co/privacy.pdf">privacy policy</Ext>.
             </p>
           </>
         ),
@@ -160,8 +180,8 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
               We use GoatCounter, a privacy-friendly analytics service, to count visits to this website. It doesn't use
               cookies, doesn't store your IP address and doesn't follow you across other websites. It tells us things
               like which pages are visited, which site you came from, your browser type, screen size and country.
-              We also count clicks on our Gumroad and Etsy buttons, so we know which products people are interested
-              in. None of this identifies you personally.
+              We also count clicks on our Gumroad and Etsy buttons, and when a quote request is sent, so we know which
+              products people are interested in. None of this identifies you personally.
             </p>
             <p>
               Our website host and the services that deliver fonts and scripts to your browser receive your IP address
@@ -184,7 +204,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <ul>
             <li>to deliver your products and help with any problems or refunds</li>
-            <li>to answer your emails</li>
+            <li>to answer your emails and quote requests</li>
             <li>to send occasional product emails, if you got a product from us on Gumroad (unsubscribe any time)</li>
             <li>to understand which pages and products are popular, so we can improve them</li>
             <li>to keep records we're required to keep, such as sales records for tax</li>
@@ -196,7 +216,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <p>
             We don't sell, rent or trade your personal information. It's only handled by the services we use to run
-            the shop: Gumroad, Etsy, Google (Gmail) and GoatCounter. Some of these services store information
+            the shop: Gumroad, Etsy, FormSubmit, Google (Gmail) and GoatCounter. Some of these services store information
             overseas, including in the United States.
           </p>
         ),
