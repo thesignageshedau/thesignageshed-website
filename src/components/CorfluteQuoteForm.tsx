@@ -5,12 +5,14 @@ import {
   EYELET_EACH,
   SIDES,
   SIZES,
+  THICKNESSES,
   estimate,
   money,
   normalise,
   type Eyelets,
   type QuoteChoice,
   type Sides,
+  type Thickness,
 } from "../data/corfluteSigns";
 import {
   DeliveryArtworkFields,
@@ -34,10 +36,13 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
     ? `${size.label} (${size.orientation.toLowerCase()})`
     : "";
   const sidesLabel = SIDES.find((s) => s.id === choice.sides)?.label ?? "";
+  const thickLabel =
+    THICKNESSES.find((t) => t.id === choice.thickness)?.label ?? "";
   const eyeletLabel = EYELETS.find((e) => e.id === choice.eyelets)?.label ?? "";
   const { status, error, onSubmit } = useQuoteSubmit(
     "corflute",
-    () => `Corflute quote: ${sizeLabel} ${sidesLabel} × ${choice.qty}`,
+    () =>
+      `Corflute quote: ${sizeLabel} ${choice.thickness} ${sidesLabel} × ${choice.qty}`,
   );
 
   const estimateText = est.ok
@@ -52,7 +57,12 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
       className="space-y-6"
     >
       <FormSubmitHidden subject={SUBJECT} />
-      <input type="hidden" name="Product" value="Premium corflute signs, 5mm" />
+      <input
+        type="hidden"
+        name="Product"
+        value={`Premium corflute signs, ${choice.thickness}`}
+      />
+      <input type="hidden" name="Thickness" value={thickLabel} />
       <input type="hidden" name="Size" value={sizeLabel} />
       <input type="hidden" name="Printing" value={sidesLabel} />
       <input type="hidden" name="Eyelets" value={eyeletLabel} />
@@ -85,6 +95,20 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
           </select>
         </label>
         <label className={label}>
+          Thickness
+          <select
+            className={input}
+            value={choice.thickness}
+            onChange={(e) => update({ thickness: e.target.value as Thickness })}
+          >
+            {THICKNESSES.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={label}>
           Printing
           <select
             className={input}
@@ -98,7 +122,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
             ))}
           </select>
         </label>
-        <label className={`${label} sm:col-span-2`}>
+        <label className={label}>
           Eyelets{" "}
           <span className="font-normal text-charcoal/70">
             ({money(EYELET_EACH)} per eyelet, per sign)

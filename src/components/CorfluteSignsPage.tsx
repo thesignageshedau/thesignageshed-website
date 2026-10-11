@@ -10,10 +10,12 @@ import {
   PRICE_NOTES,
   SIDES,
   SIZES,
+  THICKNESSES,
   money,
   normalise,
   type QuoteChoice,
   type Sides,
+  type Thickness,
 } from "../data/corfluteSigns";
 import { homeSection } from "../lib/routes";
 import CorfluteArt from "./CorfluteArt";
@@ -30,8 +32,8 @@ import {
 
 const types = [
   {
-    title: "Premium corflute",
-    text: "Australian-made 5mm corrugated plastic: light, waterproof and stiff enough to stand up to wind and rain. Printed in full colour.",
+    title: "Premium corflute, 5mm or 3mm",
+    text: "Australian-made corrugated plastic: light and waterproof. 5mm is our standard, stiff enough for wind and rain. 3mm is lighter and costs less on most sizes, for short-term signs. Printed in full colour.",
   },
   {
     title: "Single or double sided",
@@ -45,7 +47,7 @@ const types = [
 
 // Worked example for the flat bundle explanation (uses the smallest size).
 const ex = SIZES[0];
-const exBundle = ex.price.single.upTo5;
+const exBundle = ex.price["5mm"].single.upTo5;
 
 const faqs: { q: string; a: ReactNode }[] = [
   {
@@ -58,6 +60,18 @@ const faqs: { q: string; a: ReactNode }[] = [
         signs the price is per sign, and it gets cheaper at 20, 50 and 100
         signs. Each design in a bundle can be the same or different (see extra
         designs below).
+      </>
+    ),
+  },
+  {
+    q: "5mm or 3mm?",
+    a: (
+      <>
+        5mm is our standard: it's noticeably stiffer, so it stays flat in the
+        wind and lasts longer outdoors. Choose it for signs on stakes, fences
+        and building sites, or anything that needs to last. 3mm is lighter and a
+        little cheaper on bigger runs, and suits short-term and indoor signs,
+        like events, open homes, sales and directions.
       </>
     ),
   },
@@ -164,14 +178,17 @@ const faqs: { q: string; a: ReactNode }[] = [
 export default function CorfluteSignsPage() {
   const [choice, setChoice] = useState<QuoteChoice>({
     size: "",
+    thickness: "5mm",
     sides: "single",
     eyelets: "none",
     designs: "1",
     qty: "5",
   });
 
+  const [thick, setThick] = useState<Thickness>("5mm");
+
   function quoteFor(sides: Sides, size: string) {
-    setChoice(normalise({ ...choice, sides, size }));
+    setChoice(normalise({ ...choice, thickness: thick, sides, size }));
     scrollToId("quote");
   }
 
@@ -243,8 +260,8 @@ export default function CorfluteSignsPage() {
             ))}
           </div>
           <p className="mt-5 text-sm">
-            Prices include printing your artwork on 5mm corflute. Stakes and
-            frames aren't included. Eyelets and extra designs are optional
+            Prices include printing your artwork on 5mm or 3mm corflute. Stakes
+            and frames aren't included. Eyelets and extra designs are optional
             extras.
           </p>
         </div>
@@ -262,7 +279,8 @@ export default function CorfluteSignsPage() {
             Prices
           </h2>
           <p className="mt-2 max-w-3xl text-lg">
-            In Australian dollars, for printed 5mm corflute signs.{" "}
+            In Australian dollars, for printed corflute signs. Choose a
+            thickness to see its prices.{" "}
             <strong>{PRICE_NOTES.join(". ")}.</strong>
           </p>
           <div className="mt-6 max-w-3xl rounded-xl border-2 border-rust bg-cream px-5 py-4">
@@ -277,13 +295,37 @@ export default function CorfluteSignsPage() {
               signs you pay the price shown <strong>per sign</strong>.
             </p>
           </div>
+          <div
+            role="radiogroup"
+            aria-label="Corflute thickness"
+            className="mt-8 inline-flex rounded-lg border-2 border-charcoal bg-white p-1"
+          >
+            {THICKNESSES.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                role="radio"
+                aria-checked={thick === t.id}
+                onClick={() => setThick(t.id)}
+                className={`rounded-md px-3 py-2 font-slab font-bold sm:px-5 ${
+                  thick === t.id
+                    ? "bg-charcoal text-cream"
+                    : "text-charcoal hover:bg-cream"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
           {SIDES.map((side) => (
             <div key={side.id} className="mt-8">
-              <h3 className="font-slab text-2xl font-bold">{side.label}</h3>
+              <h3 className="font-slab text-2xl font-bold">
+                {side.label}, {thick} corflute
+              </h3>
               <div className="relative mt-3 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
                 <table className="w-full text-left">
                   <caption className="sr-only">
-                    {side.label} corflute sign prices
+                    {side.label} {thick} corflute sign prices
                   </caption>
                   <thead className="bg-charcoal text-cream">
                     <tr>
@@ -317,12 +359,12 @@ export default function CorfluteSignsPage() {
                         </th>
                         {COLUMNS.map((c) => (
                           <td key={c.key} className={priceTd}>
-                            {money(s.price[side.id][c.key])}
+                            {money(s.price[thick][side.id][c.key])}
                           </td>
                         ))}
                         <td className={td}>
                           <QuoteButton
-                            label={`${side.label} ${s.label}`}
+                            label={`${side.label} ${thick} ${s.label}`}
                             onClick={() => quoteFor(side.id, s.id)}
                           />
                         </td>

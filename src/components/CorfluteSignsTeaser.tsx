@@ -25,9 +25,9 @@ export default function CorfluteSignsTeaser() {
                 Corflute signs, printed your way
               </h2>
               <p className="mt-3 text-lg leading-relaxed">
-                Premium 5mm corflute in 5 standard sizes, single or double
-                sided. Up to 5 signs is one flat price, and the price per sign
-                drops on bigger runs.
+                Premium corflute in 5 standard sizes, 5mm or 3mm, single or
+                double sided. Up to 5 signs is one flat price, and the price per
+                sign drops on bigger runs.
               </p>
               <p className="mt-4 font-slab text-2xl font-bold">
                 From {money(FROM_PRICE)} for up to 5 signs{" "}

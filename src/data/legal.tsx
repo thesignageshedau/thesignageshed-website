@@ -135,7 +135,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
             <p>
               If you use the quote form on our Media Walls, Table Covers, Pull Up Banners, Corflute Signs or A-Frames page, the details you enter are sent to us by email through
               FormSubmit (formsubmit.co), a form-to-email service. That's your name and email address, your phone
-              number and business name if you give them, the product you're after (such as size, print or drop, stand type, base colour, LED lights, single or double sided printing, eyelets, number of designs, frame colour, carry handle and quantity),
+              number and business name if you give them, the product you're after (such as size, print or drop, stand type, base colour, LED lights, corflute thickness, single or double sided printing, eyelets, number of designs, frame colour, carry handle and quantity),
               your delivery postcode, the date you need it by, whether you'd like design help, any artwork link and
               your notes.
             </p>

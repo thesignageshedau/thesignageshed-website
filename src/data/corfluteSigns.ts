@@ -1,4 +1,4 @@
-// Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) 5mm corflute only.
+// Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
 // Prices come from the customer Price List tab of the Corflute Sign spreadsheet (+30%). Bundle prices (up to 5 signs,
 // 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are rounded up per sign
 // (under $20 to the next 50c, then to the next $1). Prices are final, no GST added. Delivery is quoted separately.
@@ -8,7 +8,13 @@ export const PRICE_NOTES = [
   "Delivery quoted separately",
 ] as const;
 export const MATERIAL =
-  "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";
+  "Printed in full colour on premium Australian-made corflute, 5mm or 3mm thick, built for outdoor use.";
+
+export type Thickness = "5mm" | "3mm";
+export const THICKNESSES: { id: Thickness; label: string; short: string }[] = [
+  { id: "5mm", label: "5mm (standard)", short: "5mm" },
+  { id: "3mm", label: "3mm (lightweight)", short: "3mm" },
+];
 
 export type Sides = "single" | "double";
 export const SIDES: { id: Sides; label: string }[] = [
@@ -29,7 +35,7 @@ export type CorfluteSize = {
   id: string;
   label: string; // "600 × 900mm"
   orientation: "Portrait" | "Landscape";
-  price: Record<Sides, Prices>;
+  price: Record<Thickness, Record<Sides, Prices>>;
 };
 
 const p = (
@@ -47,8 +53,14 @@ export const SIZES: CorfluteSize[] = [
     label: "600 × 450mm",
     orientation: "Landscape",
     price: {
-      single: p(180, 180, 18, 12, 8.5, 7.5),
-      double: p(180, 220, 22, 17, 13, 11.5),
+      "5mm": {
+        single: p(180, 180, 18, 12, 8.5, 7.5),
+        double: p(180, 220, 22, 17, 13, 11.5),
+      },
+      "3mm": {
+        single: p(180, 180, 18, 10, 7.5, 6.5),
+        double: p(180, 190, 19, 14.5, 11.5, 10),
+      },
     },
   },
   {
@@ -56,8 +68,14 @@ export const SIZES: CorfluteSize[] = [
     label: "600 × 900mm",
     orientation: "Portrait",
     price: {
-      single: p(180, 235, 24, 18, 14.5, 12.5),
-      double: p(230, 340, 34, 27, 23, 20),
+      "5mm": {
+        single: p(180, 235, 24, 18, 14.5, 12.5),
+        double: p(230, 340, 34, 27, 23, 20),
+      },
+      "3mm": {
+        single: p(180, 200, 20, 15.5, 12, 10.5),
+        double: p(195, 290, 29, 24, 19.5, 17),
+      },
     },
   },
   {
@@ -65,8 +83,14 @@ export const SIZES: CorfluteSize[] = [
     label: "900 × 600mm",
     orientation: "Landscape",
     price: {
-      single: p(180, 235, 24, 18, 14.5, 12.5),
-      double: p(230, 340, 34, 27, 23, 20),
+      "5mm": {
+        single: p(180, 235, 24, 18, 14.5, 12.5),
+        double: p(230, 340, 34, 27, 23, 20),
+      },
+      "3mm": {
+        single: p(180, 200, 20, 15.5, 12, 10.5),
+        double: p(195, 290, 29, 24, 19.5, 17),
+      },
     },
   },
   {
@@ -74,8 +98,14 @@ export const SIZES: CorfluteSize[] = [
     label: "900 × 1200mm",
     orientation: "Portrait",
     price: {
-      single: p(235, 355, 36, 30, 25, 22),
-      double: p(340, 540, 54, 47, 40, 36),
+      "5mm": {
+        single: p(235, 355, 36, 30, 25, 22),
+        double: p(340, 540, 54, 47, 40, 36),
+      },
+      "3mm": {
+        single: p(200, 305, 31, 26, 21, 18.5),
+        double: p(290, 465, 47, 40, 34, 31),
+      },
     },
   },
   {
@@ -83,8 +113,14 @@ export const SIZES: CorfluteSize[] = [
     label: "1200 × 900mm",
     orientation: "Landscape",
     price: {
-      single: p(235, 355, 36, 30, 25, 22),
-      double: p(340, 540, 54, 47, 40, 36),
+      "5mm": {
+        single: p(235, 355, 36, 30, 25, 22),
+        double: p(340, 540, 54, 47, 40, 36),
+      },
+      "3mm": {
+        single: p(200, 305, 31, 26, 21, 18.5),
+        double: p(290, 465, 47, 40, 34, 31),
+      },
     },
   },
 ];
@@ -105,7 +141,12 @@ export const COLUMNS: {
 
 /** Smallest order price (a flat bundle of up to 5 signs). */
 export const FROM_PRICE = Math.min(
-  ...SIZES.flatMap((s) => [s.price.single.upTo5, s.price.double.upTo5]),
+  ...SIZES.flatMap((s) =>
+    THICKNESSES.flatMap((t) => [
+      s.price[t.id].single.upTo5,
+      s.price[t.id].double.upTo5,
+    ]),
+  ),
 );
 
 // ---- extras
@@ -123,6 +164,7 @@ export const EYELETS: { id: Eyelets; label: string; count: number }[] = [
 // ---- quote form choices and the live estimate
 export type QuoteChoice = {
   size: string; // a SIZES id
+  thickness: Thickness;
   sides: Sides;
   eyelets: Eyelets;
   designs: string;
@@ -167,7 +209,7 @@ export function estimate(c: QuoteChoice): Estimate {
       reason: "Enter a number of designs from 1 up to the number of signs",
     };
   const col = bandFor(qty);
-  const price = s.price[c.sides][col.key];
+  const price = s.price[c.thickness][c.sides][col.key];
   const signs = col.flat ? price : price * qty;
   const count = EYELETS.find((e) => e.id === c.eyelets)?.count ?? 0;
   const eyelets = round2(count * EYELET_EACH * qty);
