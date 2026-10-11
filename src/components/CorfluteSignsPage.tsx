@@ -18,7 +18,9 @@ import {
   type Thickness,
 } from "../data/corfluteSigns";
 import { homeSection } from "../lib/routes";
-import CorfluteArt from "./CorfluteArt";
+import MockupImage from "./MockupImage";
+import MockupGallery from "./MockupGallery";
+import { MOCKUPS } from "../data/mockups";
 import CorfluteQuoteForm from "./CorfluteQuoteForm";
 import {
   DownloadGroup,
@@ -234,9 +236,21 @@ export default function CorfluteSignsPage() {
               {PRICE_NOTES.join(" · ")}
             </p>
           </div>
-          <CorfluteArt className="mx-auto w-full max-w-md drop-shadow-xl" />
+          <MockupImage
+            mockup={MOCKUPS.corfluteShopfront}
+            square
+            eager
+            sizes="(min-width: 768px) 448px, 100vw"
+            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+          />
         </div>
       </section>
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        items={[MOCKUPS.corfluteShopfront, MOCKUPS.corfluteFence]}
+      />
 
       {/* Types */}
       <section

@@ -12,7 +12,9 @@ import {
   type QuoteChoice,
 } from "../data/aFrames";
 import { homeSection } from "../lib/routes";
-import AFrameArt from "./AFrameArt";
+import MockupImage from "./MockupImage";
+import MockupGallery from "./MockupGallery";
+import { MOCKUPS } from "../data/mockups";
 import AFrameQuoteForm from "./AFrameQuoteForm";
 import {
   DownloadGroup,
@@ -189,9 +191,21 @@ export default function AFramesPage() {
               From {money(FROM_PRICE)} · {PRICE_NOTES.join(" · ")}
             </p>
           </div>
-          <AFrameArt className="mx-auto w-full max-w-md drop-shadow-xl" />
+          <MockupImage
+            mockup={MOCKUPS.aframeAluminium}
+            square
+            eager
+            sizes="(min-width: 768px) 448px, 100vw"
+            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+          />
         </div>
       </section>
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
+      />
 
       {/* Types */}
       <section

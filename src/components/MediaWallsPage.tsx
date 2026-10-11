@@ -11,7 +11,9 @@ import {
 } from "../data/mediaWalls";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
-import MediaWallArt from "./MediaWallArt";
+import MockupImage from "./MockupImage";
+import MockupGallery from "./MockupGallery";
+import { MOCKUPS } from "../data/mockups";
 import MediaWallQuoteForm from "./MediaWallQuoteForm";
 
 const included = [
@@ -174,9 +176,22 @@ export default function MediaWallsPage() {
               From {aud(SIZES[0]!.kit.single)} · {PRICE_NOTES.join(" · ")}
             </p>
           </div>
-          <MediaWallArt className="mx-auto w-full max-w-md drop-shadow-xl" />
+          <MockupImage
+            mockup={MOCKUPS.mediaWallSingle}
+            square
+            eager
+            sizes="(min-width: 768px) 448px, 100vw"
+            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+          />
         </div>
       </section>
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        heading="Single sided, double sided or LED backlit"
+        items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
+      />
 
       {/* Prices */}
       <section

@@ -1,7 +1,8 @@
 import { FROM_PRICE, PRICE_NOTES } from "../data/tableCovers";
 import { aud } from "../data/mediaWalls";
 import { TABLE_COVERS_HREF } from "../lib/routes";
-import TableCoverArt from "./TableCoverArt";
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 
 // Home page card linking to the Table Covers page.
 export default function TableCoversTeaser() {
@@ -18,7 +19,12 @@ export default function TableCoversTeaser() {
             className="pointer-events-none absolute inset-2 rounded-xl border-2 border-rust/70"
           />
           <div className="relative grid items-center gap-8 p-6 sm:p-10 md:grid-cols-[1fr_1.1fr] md:gap-10">
-            <TableCoverArt className="order-last mx-auto w-full max-w-xs md:order-first md:max-w-sm" />
+            <MockupImage
+              mockup={MOCKUPS.tableCoverLoose}
+              square
+              sizes="(min-width: 768px) 384px, 320px"
+              className="order-last mx-auto w-full max-w-xs md:order-first md:max-w-sm rounded-xl ring-2 ring-rust/70"
+            />
             <div>
               <span className="inline-block rounded bg-rust-dark px-3 py-1 text-sm font-bold uppercase tracking-[0.14em] text-white">
                 New: printed table covers

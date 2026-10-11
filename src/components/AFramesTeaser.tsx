@@ -1,6 +1,7 @@
 import { FROM_PRICE, PRICE_NOTES, money } from "../data/aFrames";
 import { A_FRAMES_HREF } from "../lib/routes";
-import AFrameArt from "./AFrameArt";
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 
 // Home page card linking to the A-frame signs for your shopfront page.
 export default function AFramesTeaser() {
@@ -45,7 +46,12 @@ export default function AFramesTeaser() {
                 </a>
               </div>
             </div>
-            <AFrameArt className="mx-auto w-full max-w-xs md:max-w-sm" />
+            <MockupImage
+              mockup={MOCKUPS.aframeInsert}
+              square
+              sizes="(min-width: 768px) 384px, 320px"
+              className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"
+            />
           </div>
         </div>
       </div>

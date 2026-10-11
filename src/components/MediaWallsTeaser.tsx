@@ -1,6 +1,7 @@
 import { FROM_PRICE, PRICE_NOTES, aud } from "../data/mediaWalls";
 import { MEDIA_WALLS_HREF } from "../lib/routes";
-import MediaWallArt from "./MediaWallArt";
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 
 // Home page card linking to the Media Walls page.
 export default function MediaWallsTeaser() {
@@ -45,7 +46,12 @@ export default function MediaWallsTeaser() {
                 </a>
               </div>
             </div>
-            <MediaWallArt className="mx-auto w-full max-w-xs md:max-w-sm" />
+            <MockupImage
+              mockup={MOCKUPS.mediaWallDouble}
+              square
+              sizes="(min-width: 768px) 384px, 320px"
+              className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"
+            />
           </div>
         </div>
       </div>

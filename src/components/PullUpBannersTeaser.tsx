@@ -1,7 +1,8 @@
 import { FROM_PRICE, PRICE_NOTES } from "../data/pullUpBanners";
 import { aud } from "../data/mediaWalls";
 import { PULL_UP_BANNERS_HREF } from "../lib/routes";
-import PullUpBannerArt from "./PullUpBannerArt";
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 
 // Home page card linking to the Pull Up Banners page.
 export default function PullUpBannersTeaser() {
@@ -46,7 +47,12 @@ export default function PullUpBannersTeaser() {
                 </a>
               </div>
             </div>
-            <PullUpBannerArt className="mx-auto w-full max-w-xs md:max-w-sm" />
+            <MockupImage
+              mockup={MOCKUPS.pullUpDouble}
+              square
+              sizes="(min-width: 768px) 384px, 320px"
+              className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"
+            />
           </div>
         </div>
       </div>

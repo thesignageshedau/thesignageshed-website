@@ -15,7 +15,9 @@ import {
 } from "../data/tableCovers";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
-import TableCoverArt from "./TableCoverArt";
+import MockupImage from "./MockupImage";
+import MockupGallery from "./MockupGallery";
+import { MOCKUPS } from "../data/mockups";
 import TableCoverQuoteForm from "./TableCoverQuoteForm";
 
 const types = [
@@ -296,9 +298,21 @@ export default function TableCoversPage() {
               From {aud(FROM_PRICE)} · {PRICE_NOTES.join(" · ")}
             </p>
           </div>
-          <TableCoverArt className="mx-auto w-full max-w-md drop-shadow-xl" />
+          <MockupImage
+            mockup={MOCKUPS.tableCoverFitted}
+            square
+            eager
+            sizes="(min-width: 768px) 448px, 100vw"
+            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+          />
         </div>
       </section>
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
+      />
 
       {/* Types */}
       <section

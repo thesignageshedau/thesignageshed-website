@@ -12,7 +12,9 @@ import {
 } from "../data/pullUpBanners";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
-import PullUpBannerArt from "./PullUpBannerArt";
+import MockupImage from "./MockupImage";
+import MockupGallery from "./MockupGallery";
+import { MOCKUPS } from "../data/mockups";
 import PullUpBannerQuoteForm from "./PullUpBannerQuoteForm";
 
 const types = [
@@ -197,9 +199,21 @@ export default function PullUpBannersPage() {
               From {aud(FROM_PRICE)} · {PRICE_NOTES.join(" · ")}
             </p>
           </div>
-          <PullUpBannerArt className="mx-auto w-full max-w-md drop-shadow-xl" />
+          <MockupImage
+            mockup={MOCKUPS.pullUpLuxury}
+            square
+            eager
+            sizes="(min-width: 768px) 448px, 100vw"
+            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+          />
         </div>
       </section>
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        items={[MOCKUPS.pullUpLuxury, MOCKUPS.pullUpDouble]}
+      />
 
       {/* Types */}
       <section
