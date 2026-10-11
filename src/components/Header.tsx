@@ -1,25 +1,113 @@
+import { useEffect, useRef, useState } from "react";
 import { asset } from "../lib/asset";
 import {
+  A_FRAMES_HREF,
+  CORFLUTE_SIGNS_HREF,
   MEDIA_WALLS_HREF,
   PULL_UP_BANNERS_HREF,
   TABLE_COVERS_HREF,
 } from "../lib/routes";
 
-// short: label below 1024px wide, where the full set of links has to fit on one line.
-const links: { href: string; label: string; short?: string; show: string }[] = [
-  { href: "#products", label: "Products", show: "max-[369px]:hidden" },
-  { href: MEDIA_WALLS_HREF, label: "Media walls", show: "" },
-  { href: TABLE_COVERS_HREF, label: "Table covers", show: "" },
-  {
-    href: PULL_UP_BANNERS_HREF,
-    label: "Pull up banners",
-    short: "Banners",
-    show: "",
-  },
-  { href: "#why", label: "Why us", show: "hidden xl:block" },
-  { href: "#faq", label: "FAQ", show: "hidden xl:block" },
-  { href: "#contact", label: "Contact", show: "hidden lg:block" },
+// Printed products sit in a Products dropdown so the bar fits from 320px up; the digital downloads
+// (#products section on the home page) are the last item in it.
+const products: { href: string; label: string }[] = [
+  { href: MEDIA_WALLS_HREF, label: "Media walls" },
+  { href: TABLE_COVERS_HREF, label: "Table covers" },
+  { href: PULL_UP_BANNERS_HREF, label: "Pull up banners" },
+  { href: CORFLUTE_SIGNS_HREF, label: "Corflute signs" },
+  { href: A_FRAMES_HREF, label: "A-frames" },
 ];
+const links: { href: string; label: string; show: string }[] = [
+  { href: "#why", label: "Why us", show: "hidden md:block" },
+  { href: "#faq", label: "FAQ", show: "hidden lg:block" },
+  { href: "#contact", label: "Contact", show: "" },
+];
+const linkClass =
+  "whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
+
+function ProductsMenu() {
+  const [open, setOpen] = useState(false);
+  const wrap = useRef<HTMLLIElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent | TouchEvent) => {
+      if (wrap.current && !wrap.current.contains(e.target as Node))
+        setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        button.current?.focus();
+      }
+    };
+    const onHash = () => setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("touchstart", onDown);
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("hashchange", onHash);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("touchstart", onDown);
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("hashchange", onHash);
+    };
+  }, [open]);
+
+  return (
+    <li ref={wrap} className="relative">
+      <button
+        ref={button}
+        type="button"
+        aria-expanded={open}
+        aria-controls="products-menu"
+        onClick={() => setOpen((o) => !o)}
+        className={`${linkClass} flex items-center gap-1 font-semibold`}
+      >
+        Products
+        <svg
+          aria-hidden
+          viewBox="0 0 12 12"
+          className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`}
+        >
+          <path
+            d="M2 4l4 4 4-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
+      </button>
+      <ul
+        id="products-menu"
+        hidden={!open}
+        className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-lg border-2 border-rust bg-charcoal py-1 shadow-xl"
+      >
+        {products.map((p) => (
+          <li key={p.href}>
+            <a
+              href={p.href}
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+            >
+              {p.label}
+            </a>
+          </li>
+        ))}
+        <li className="mt-1 border-t border-cream/20 pt-1">
+          <a
+            href="#products"
+            onClick={() => setOpen(false)}
+            className="block px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+          >
+            Pricing spreadsheets
+          </a>
+        </li>
+      </ul>
+    </li>
+  );
+}
 
 export default function Header() {
   return (
@@ -38,26 +126,17 @@ export default function Header() {
             alt=""
             className="h-11 w-11"
           />
-          <span className="font-display text-lg leading-none tracking-wide max-[459px]:sr-only whitespace-nowrap sm:text-xl">
+          <span className="whitespace-nowrap font-display text-lg leading-none tracking-wide max-[459px]:sr-only sm:text-xl">
             The Signage Shed
           </span>
         </a>
         <nav aria-label="Main">
           <ul className="flex items-center gap-1 text-sm font-semibold md:gap-2 md:text-base">
+            <ProductsMenu />
             {links.map((l) => (
               <li key={l.href} className={l.show}>
-                <a
-                  href={l.href}
-                  className="whitespace-nowrap rounded px-1 py-2 text-[13px] min-[360px]:px-1.5 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base"
-                >
-                  {l.short ? (
-                    <>
-                      <span className="lg:hidden">{l.short}</span>
-                      <span className="hidden lg:inline">{l.label}</span>
-                    </>
-                  ) : (
-                    l.label
-                  )}
+                <a href={l.href} className={linkClass}>
+                  {l.label}
                 </a>
               </li>
             ))}

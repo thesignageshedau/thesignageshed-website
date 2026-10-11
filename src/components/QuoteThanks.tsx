@@ -3,6 +3,8 @@ import {
   MEDIA_WALLS_HREF,
   TABLE_COVERS_HREF,
   PULL_UP_BANNERS_HREF,
+  CORFLUTE_SIGNS_HREF,
+  A_FRAMES_HREF,
   homeSection,
 } from "../lib/routes";
 
@@ -36,6 +38,12 @@ export default function QuoteThanks() {
           </a>
           <a href={PULL_UP_BANNERS_HREF} className="btn-outline">
             Pull up banners
+          </a>
+          <a href={CORFLUTE_SIGNS_HREF} className="btn-outline">
+            Corflute signs
+          </a>
+          <a href={A_FRAMES_HREF} className="btn-outline">
+            A-frames
           </a>
           <a href={homeSection("top")} className="btn-rust">
             Home

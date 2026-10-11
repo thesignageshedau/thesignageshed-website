@@ -13,6 +13,10 @@ import MediaWallsPage from "./components/MediaWallsPage";
 import MediaWallsTeaser from "./components/MediaWallsTeaser";
 import PullUpBannersPage from "./components/PullUpBannersPage";
 import PullUpBannersTeaser from "./components/PullUpBannersTeaser";
+import CorfluteSignsPage from "./components/CorfluteSignsPage";
+import CorfluteSignsTeaser from "./components/CorfluteSignsTeaser";
+import AFramesPage from "./components/AFramesPage";
+import AFramesTeaser from "./components/AFramesTeaser";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
@@ -21,7 +25,7 @@ import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
-// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/quote-thanks.
+// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/quote-thanks.
 // (public/404.html also sends clean links like /refund-policy to the hash route.)
 // Section links such as #products keep working as normal in-page anchors.
 type Route =
@@ -29,12 +33,16 @@ type Route =
   | "media-walls"
   | "table-covers"
   | "pull-up-banners"
+  | "corflute-signs"
+  | "a-frames"
   | "quote-thanks";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
   "table-covers",
   "pull-up-banners",
+  "corflute-signs",
+  "a-frames",
   "quote-thanks",
 ] as readonly string[];
 function routeFromHash(): Route | null {
@@ -45,6 +53,8 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "media-walls": "Media Walls: Prices and Quotes | The Signage Shed",
   "table-covers": "Table Covers: Prices and Quotes | The Signage Shed",
   "pull-up-banners": "Pull Up Banners: Prices and Quotes | The Signage Shed",
+  "corflute-signs": "Corflute Signs: Prices and Quotes | The Signage Shed",
+  "a-frames": "A-Frame Signs: Prices and Quotes | The Signage Shed",
   "quote-thanks": "Quote request sent | The Signage Shed",
 };
 
@@ -98,6 +108,10 @@ export default function App() {
           <TableCoversPage />
         ) : route === "pull-up-banners" ? (
           <PullUpBannersPage />
+        ) : route === "corflute-signs" ? (
+          <CorfluteSignsPage />
+        ) : route === "a-frames" ? (
+          <AFramesPage />
         ) : route === "quote-thanks" ? (
           <QuoteThanks />
         ) : (
@@ -108,6 +122,8 @@ export default function App() {
             <MediaWallsTeaser />
             <TableCoversTeaser />
             <PullUpBannersTeaser />
+            <CorfluteSignsTeaser />
+            <AFramesTeaser />
             <EtsyShop />
             <WhyUs />
             <Faq />
