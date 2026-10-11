@@ -12,18 +12,21 @@ import LegalPage from "./components/LegalPage";
 import MediaWallsPage from "./components/MediaWallsPage";
 import MediaWallsTeaser from "./components/MediaWallsTeaser";
 import QuoteThanks from "./components/QuoteThanks";
+import TableCoversPage from "./components/TableCoversPage";
+import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
-// /#/media-walls, /#/quote-thanks.
+// /#/media-walls, /#/table-covers, /#/quote-thanks.
 // (public/404.html also sends clean links like /refund-policy to the hash route.)
 // Section links such as #products keep working as normal in-page anchors.
-type Route = LegalSlug | "media-walls" | "quote-thanks";
+type Route = LegalSlug | "media-walls" | "table-covers" | "quote-thanks";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
+  "table-covers",
   "quote-thanks",
 ] as readonly string[];
 function routeFromHash(): Route | null {
@@ -32,6 +35,7 @@ function routeFromHash(): Route | null {
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
   "media-walls": "Media Walls: Prices and Quotes | The Signage Shed",
+  "table-covers": "Table Covers: Prices and Quotes | The Signage Shed",
   "quote-thanks": "Quote request sent | The Signage Shed",
 };
 
@@ -81,6 +85,8 @@ export default function App() {
           <LegalPage doc={doc} />
         ) : route === "media-walls" ? (
           <MediaWallsPage />
+        ) : route === "table-covers" ? (
+          <TableCoversPage />
         ) : route === "quote-thanks" ? (
           <QuoteThanks />
         ) : (
@@ -89,6 +95,7 @@ export default function App() {
             <Products />
             <FreeSample />
             <MediaWallsTeaser />
+            <TableCoversTeaser />
             <EtsyShop />
             <WhyUs />
             <Faq />

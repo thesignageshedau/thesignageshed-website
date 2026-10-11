@@ -1,5 +1,9 @@
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
-import { MEDIA_WALLS_HREF, homeSection } from "../lib/routes";
+import {
+  MEDIA_WALLS_HREF,
+  TABLE_COVERS_HREF,
+  homeSection,
+} from "../lib/routes";
 
 export default function QuoteThanks() {
   return (
@@ -24,7 +28,10 @@ export default function QuoteThanks() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={MEDIA_WALLS_HREF} className="btn-outline">
-            Back to media walls
+            Media walls
+          </a>
+          <a href={TABLE_COVERS_HREF} className="btn-outline">
+            Table covers
           </a>
           <a href={homeSection("top")} className="btn-rust">
             Home

@@ -1,12 +1,13 @@
 import { asset } from "../lib/asset";
-import { MEDIA_WALLS_HREF } from "../lib/routes";
+import { MEDIA_WALLS_HREF, TABLE_COVERS_HREF } from "../lib/routes";
 
 const links = [
-  { href: "#products", label: "Products" },
-  { href: MEDIA_WALLS_HREF, label: "Media walls" },
-  { href: "#why", label: "Why us" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "#products", label: "Products", show: "" },
+  { href: MEDIA_WALLS_HREF, label: "Media walls", show: "" },
+  { href: TABLE_COVERS_HREF, label: "Table covers", show: "" },
+  { href: "#why", label: "Why us", show: "hidden xl:block" },
+  { href: "#faq", label: "FAQ", show: "hidden xl:block" },
+  { href: "#contact", label: "Contact", show: "hidden lg:block" },
 ];
 
 export default function Header() {
@@ -26,26 +27,17 @@ export default function Header() {
             alt=""
             className="h-11 w-11"
           />
-          <span className="font-display text-lg leading-none tracking-wide sm:text-xl">
+          <span className="font-display text-lg leading-none tracking-wide max-[459px]:sr-only sm:text-xl">
             The Signage Shed
           </span>
         </a>
         <nav aria-label="Main">
           <ul className="flex items-center gap-1 text-sm font-semibold sm:gap-2 sm:text-base">
-            {links.map((l, i) => (
-              <li
-                key={l.href}
-                className={
-                  i === 2 || i === 3
-                    ? "hidden md:block"
-                    : i === 4
-                      ? "hidden sm:block"
-                      : ""
-                }
-              >
+            {links.map((l) => (
+              <li key={l.href} className={l.show}>
                 <a
                   href={l.href}
-                  className="whitespace-nowrap rounded px-2 py-2 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 sm:px-3"
+                  className="whitespace-nowrap rounded px-1.5 py-2 text-[13px] hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 sm:px-3 sm:text-base"
                 >
                   {l.label}
                 </a>

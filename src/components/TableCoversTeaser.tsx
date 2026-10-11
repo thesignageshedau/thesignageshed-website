@@ -1,0 +1,55 @@
+import { FROM_PRICE, PRICE_NOTES } from "../data/tableCovers";
+import { aud } from "../data/mediaWalls";
+import { TABLE_COVERS_HREF } from "../lib/routes";
+import TableCoverArt from "./TableCoverArt";
+
+// Home page card linking to the Table Covers page.
+export default function TableCoversTeaser() {
+  return (
+    <section
+      id="table-covers"
+      aria-labelledby="tc-teaser-heading"
+      className="scroll-mt-20 bg-cream-light pb-16 sm:pb-20"
+    >
+      <div className="mx-auto max-w-site px-4 sm:px-6">
+        <div className="relative overflow-hidden rounded-2xl border-4 border-charcoal bg-cream shadow-md">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-2 rounded-xl border-2 border-rust/70"
+          />
+          <div className="relative grid items-center gap-8 p-6 sm:p-10 md:grid-cols-[1fr_1.1fr] md:gap-10">
+            <TableCoverArt className="order-last mx-auto w-full max-w-xs md:order-first md:max-w-sm" />
+            <div>
+              <span className="inline-block rounded bg-rust-dark px-3 py-1 text-sm font-bold uppercase tracking-[0.14em] text-white">
+                New: printed table covers
+              </span>
+              <h2 id="tc-teaser-heading" className="mt-4 text-3xl sm:text-4xl">
+                Table covers, printed with your brand
+              </h2>
+              <p className="mt-3 text-lg leading-relaxed">
+                Fitted and loose table throws for 4ft, 6ft and 8ft tables, round
+                throws and table runners. Printed polyester fabric, machine
+                washable.
+              </p>
+              <p className="mt-4 font-slab text-2xl font-bold">
+                From {aud(FROM_PRICE)}{" "}
+                <span className="text-base font-normal text-charcoal/80">
+                  · {PRICE_NOTES.join(" · ")}
+                </span>
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={TABLE_COVERS_HREF}
+                  className="btn-rust"
+                  data-track="table-covers-teaser"
+                >
+                  See sizes and prices
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
