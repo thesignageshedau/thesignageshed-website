@@ -223,6 +223,7 @@ export function estimate(p: GearProduct, c: GearChoice): Estimate {
     return { ok: false, reason: "Enter a quantity from 1 to 99" };
   const prices = c.addon && it.priceWithAddon ? it.priceWithAddon : it.price;
   const each = prices[bandIndex(p, qty)];
+  if (each === undefined) return { ok: false, reason: "No price for that quantity" };
   return { ok: true, each, qty, total: each * qty };
 }
 
