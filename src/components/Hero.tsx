@@ -1,23 +1,34 @@
 import { asset } from "../lib/asset";
-import { SHOP, SITE_COPY } from "../data/products";
 
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-charcoal text-cream">
       <div className="mx-auto grid max-w-site items-center gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.1fr_1fr] md:py-20">
         <div>
-          <p className="eyebrow mb-4">Spreadsheets &amp; templates for the sign trade</p>
+          <p className="eyebrow mb-4">Printed signage &amp; event gear, Australia-wide</p>
           <h1 className="text-4xl leading-tight sm:text-5xl lg:text-6xl">
-            Price it right.<br />Quote it fast.
+            Signs that get
+            <br />
+            you seen.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90 sm:text-xl">
-            We make {SITE_COPY.heroProducts} for sign shops,
-            signwriters and small businesses in Australia. Set up for AU GST, ready to download straight away.
+            Media walls, pull up banners, flags, corflute signs, A-frames and gazebos, printed with
+            your artwork. Prices online, quoted fast and delivered Australia-wide.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#products" className="btn-rust">See the products</a>
-            <a href={SHOP.etsy} className="btn-ghost-light" target="_blank" rel="noopener" data-track="etsy-shop-hero">Visit our Etsy shop</a>
+            <a href="#/quote" className="btn-rust" data-track="quote-hero">
+              Get a quote
+            </a>
+            <a href="#signage" className="btn-ghost-light" data-track="signage-hero">
+              See our signage
+            </a>
           </div>
+          <p className="mt-6 text-sm text-cream/75">
+            Run a sign shop?{" "}
+            <a href="#products" className="font-semibold text-cream underline underline-offset-4 hover:text-white">
+              See our pricing spreadsheets
+            </a>
+          </p>
         </div>
         <div className="flex justify-center md:justify-end">
           <img
