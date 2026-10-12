@@ -53,11 +53,11 @@ export const SITE_COPY = SHOW_ETSY_PACKS
       heroProducts: "pricing calculators, job costing sheets and print-ready sign templates",
     }
   : {
-      title: "The Signage Shed | Pricing spreadsheets and calculators for sign shops",
+      title: "The Signage Shed | Printed signs, banners & event gear + pricing tools for sign shops",
       description:
-        "Pricing, job costing and quoting spreadsheets for Australian sign shops, signwriters and small businesses. AU GST built in, works in Excel and Google Sheets, instant download.",
+        "Printed media walls, pull up banners, corflute signs, A-frames, flags, gazebos and table covers with prices online, delivered Australia-wide. Plus pricing and job costing spreadsheets for sign shops.",
       ogDescription:
-        "Pricing, job costing and quoting spreadsheets for Australian sign shops and small businesses.",
+        "Printed signs, banners and event gear with prices online, delivered Australia-wide. Plus pricing tools for sign shops.",
       heroProducts: "pricing calculators and job costing sheets",
     };
 
@@ -96,6 +96,7 @@ export const featured: Product[] = [
       label: "Demo: 20 double-sided corflute signs typed into the Pricing Kit quote calculator, with the sell price and margin updating",
     },
     gumroad: "https://thesignageshedau.gumroad.com/l/wzpldn",
+    etsy: "https://www.etsy.com/shop/TheSignageShedAU",
     promo: {
       code: "LAUNCH20",
       label: "20% off with LAUNCH20 until 31 Oct",

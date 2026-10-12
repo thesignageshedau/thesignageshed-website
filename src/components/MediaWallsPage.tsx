@@ -95,7 +95,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     a: <>Prices are final, no GST added.</>,
   },
   {
-    q: "Can I re-use the frame with a new print?",
+    q: "Can I reuse the frame with a new print?",
     a: (
       <>
         Yes. Order a replacement printed fabric for your size and use it on the
@@ -232,6 +232,7 @@ export default function MediaWallsPage() {
             </div>
           </div>
 
+          <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-6 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
             <table className="w-full text-left">
               <caption className="sr-only">

@@ -21,6 +21,8 @@ import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
 import QuotePage from "./components/QuotePage";
+import NotFound from "./components/NotFound";
+import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
@@ -57,6 +59,10 @@ const slugs = [
   "quote-thanks",
   "quote",
 ] as readonly string[];
+/** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
+function isUnknownRoute(): boolean {
+  return window.location.hash.startsWith("#/") && routeFromHash() === null;
+}
 function routeFromHash(): Route | null {
   const m = window.location.hash.match(/^#\/([a-z-]+)\/?(?:\?.*)?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
@@ -76,9 +82,13 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
 
 export default function App() {
   const [route, setRoute] = useState<Route | null>(routeFromHash);
+  const [missing, setMissing] = useState(isUnknownRoute);
 
   useEffect(() => {
-    const onHash = () => setRoute(routeFromHash());
+    const onHash = () => {
+      setRoute(routeFromHash());
+      setMissing(isUnknownRoute());
+    };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
@@ -89,8 +99,17 @@ export default function App() {
   useEffect(() => {
     document.title = doc
       ? `${doc.title} | The Signage Shed`
-      : (route && PAGE_TITLES[route]) || SITE_COPY.title;
-  }, [doc, route]);
+      : missing
+        ? "Page not found | The Signage Shed"
+        : (route && PAGE_TITLES[route]) || SITE_COPY.title;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        (route && PAGE_DESCRIPTIONS[route]) || SITE_COPY.description,
+      );
+    }
+  }, [doc, route, missing]);
 
   // After switching page: other pages start at the top; on the home page, scroll to the
   // section in the hash (e.g. #products) once it has rendered.
@@ -138,17 +157,20 @@ export default function App() {
           <QuotePage />
         ) : route === "quote-thanks" ? (
           <QuoteThanks />
+        ) : missing ? (
+          <NotFound />
         ) : (
           <>
             <Hero />
-            <Products />
-            <FreeSample />
+            <div id="signage" className="scroll-mt-20" />
             <MediaWallsTeaser />
             <TableCoversTeaser />
             <PullUpBannersTeaser />
             <CorfluteSignsTeaser />
             <AFramesTeaser />
             <EventGearTeaser />
+            <Products />
+            <FreeSample />
             <EtsyShop />
             <WhyUs />
             <Faq />

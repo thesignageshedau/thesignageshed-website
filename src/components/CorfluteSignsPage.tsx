@@ -337,6 +337,7 @@ export default function CorfluteSignsPage() {
               <h3 className="font-slab text-2xl font-bold">
                 {side.label}, {thick} corflute
               </h3>
+              <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
               <div className="relative mt-3 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
                 <table className="w-full text-left">
                   <caption className="sr-only">

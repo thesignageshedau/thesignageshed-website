@@ -252,6 +252,7 @@ export default function AFramesPage() {
             Price each, in Australian dollars, by how many of the same item you
             order. <strong>{PRICE_NOTES.join(". ")}.</strong>
           </p>
+          <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-8 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
             <table className="w-full text-left">
               <caption className="sr-only">A-frame prices</caption>
