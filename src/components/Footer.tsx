@@ -42,7 +42,7 @@ export default function Footer() {
             © {new Date().getFullYear()} The Signage Shed. Digital products for sign shops and small businesses.
             General information only, not tax or financial advice. Excel and Google Sheets are trademarks of their owners.
           </p>
-          <p className="mt-2 text-sm text-cream/70">ABN 51 879 534 008 · Prices in AUD. Not registered for GST.</p>
+          <p className="mt-2 text-sm text-cream/70">The Signage Shed Co · ABN 51 879 534 008 · Prices in AUD. Not registered for GST.</p>
         </div>
       </div>
     </footer>
