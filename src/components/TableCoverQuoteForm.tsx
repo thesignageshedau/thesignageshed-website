@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
+import { quotePayload } from "./QuoteFormParts";
 import {
   FORMSUBMIT_ACTION,
   FORMSUBMIT_AJAX,
@@ -74,7 +75,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
     if (!form.reportValidity()) return;
     setStatus("sending");
     setError("");
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = quotePayload(form);
     try {
       const res = await fetch(FORMSUBMIT_AJAX, {
         method: "POST",
@@ -116,6 +117,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
     >
       <input type="hidden" name="_subject" value={SUBJECT} />
       <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={next} />
       <input type="hidden" name="Product" value={productLabel} />
       <input type="hidden" name="Size" value={sizeLabel} />

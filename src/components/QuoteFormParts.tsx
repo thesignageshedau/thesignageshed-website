@@ -25,7 +25,7 @@ export function useQuoteSubmit(eventName: string, describe: () => string) {
     if (!form.reportValidity()) return;
     setStatus("sending");
     setError("");
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = quotePayload(form);
     try {
       const res = await fetch(FORMSUBMIT_AJAX, {
         method: "POST",
@@ -65,6 +65,7 @@ export function FormSubmitHidden({ subject }: { subject: string }) {
     <>
       <input type="hidden" name="_subject" value={subject} />
       <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={next} />
       {/* Honeypot: people never see or fill this, spam bots do. */}
       <div
@@ -231,4 +232,39 @@ export function SubmitArea({
       </p>
     </>
   );
+}
+
+// Order the fields appear in the quote email (FormSubmit's table follows the order we send).
+const EMAIL_ORDER = [
+  "Name", "email", "Phone", "Business",
+  "Product", "Includes", "Size", "Size or option", "Custom size", "Thickness",
+  "Printing", "Eyelets", "Frame colour", "Carry handle", "Base colour",
+  "Sides or drop", "What you need", "Print", "LED lights",
+  "Quantity", "Number of designs", "Estimate shown",
+  "Artwork ready", "Artwork link", "Design help needed",
+  "Needed by", "Delivery suburb", "Delivery state", "Delivery postcode",
+  "Message", "Notes",
+];
+
+/** Builds a tidy FormSubmit payload: logical field order, blanks dropped, subject with name and product, reply-to the customer. */
+export function quotePayload(form: HTMLFormElement): Record<string, string> {
+  const raw: Record<string, string> = {};
+  new FormData(form).forEach((v, k) => {
+    if (typeof v === "string") raw[k] = v.trim();
+  });
+  const out: Record<string, string> = {};
+  const name = raw["Name"] || "Customer";
+  const product = raw["Product"] || "General enquiry";
+  out._subject = `New quote request – ${name} – ${product}`;
+  out._template = "table";
+  out._captcha = "false";
+  if (raw.email) out._replyto = raw.email;
+  if (raw._next) out._next = raw._next;
+  out._honey = raw._honey ?? "";
+  const keys = [
+    ...EMAIL_ORDER.filter((k) => k in raw),
+    ...Object.keys(raw).filter((k) => !k.startsWith("_") && !EMAIL_ORDER.includes(k)),
+  ];
+  for (const k of keys) if (raw[k]) out[k] = raw[k];
+  return out;
 }
