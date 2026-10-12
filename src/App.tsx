@@ -20,6 +20,7 @@ import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
+import QuotePage from "./components/QuotePage";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
@@ -41,7 +42,8 @@ type Route =
   | "gazebos"
   | "flags"
   | "market-umbrellas"
-  | "quote-thanks";
+  | "quote-thanks"
+  | "quote";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -53,9 +55,10 @@ const slugs = [
   "flags",
   "market-umbrellas",
   "quote-thanks",
+  "quote",
 ] as readonly string[];
 function routeFromHash(): Route | null {
-  const m = window.location.hash.match(/^#\/([a-z-]+)\/?$/);
+  const m = window.location.hash.match(/^#\/([a-z-]+)\/?(?:\?.*)?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
@@ -68,6 +71,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
+  quote: "Request a Quote | The Signage Shed",
 };
 
 export default function App() {
@@ -130,6 +134,8 @@ export default function App() {
           <GearPage key="flags" product={FLAGS} />
         ) : route === "market-umbrellas" ? (
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
+        ) : route === "quote" ? (
+          <QuotePage />
         ) : route === "quote-thanks" ? (
           <QuoteThanks />
         ) : (

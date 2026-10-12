@@ -1,3 +1,4 @@
+import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import {
   DOWNLOADS,
@@ -423,6 +424,7 @@ export default function MediaWallsPage() {
             Tell us what you need and we'll email you a quote with delivery
             included, usually within one business day.
           </p>
+          <QuoteLink slug="media-walls" />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
             <MediaWallQuoteForm choice={choice} setChoice={setChoice} />
           </div>

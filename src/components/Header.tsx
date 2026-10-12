@@ -26,7 +26,8 @@ const products: { href: string; label: string }[] = [
 const links: { href: string; label: string; show: string }[] = [
   { href: "#why", label: "Why us", show: "hidden md:block" },
   { href: "#faq", label: "FAQ", show: "hidden lg:block" },
-  { href: "#contact", label: "Contact", show: "" },
+  { href: "#contact", label: "Contact", show: "hidden sm:block" },
+  { href: "#/quote", label: "Get a quote", show: "" },
 ];
 const linkClass =
   "whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
