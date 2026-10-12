@@ -237,7 +237,7 @@ export function SubmitArea({
 // Order the fields appear in the quote email (FormSubmit's table follows the order we send).
 const EMAIL_ORDER = [
   "Name", "email", "Phone", "Business",
-  "Product", "Includes", "Size", "Size or option", "Custom size", "Thickness",
+  "Product", "Includes", "Size", "Options", "Size details", "Price shown", "Size or option", "Custom size", "Thickness",
   "Printing", "Eyelets", "Frame colour", "Carry handle", "Base colour",
   "Sides or drop", "What you need", "Print", "LED lights",
   "Quantity", "Number of designs", "Estimate shown",

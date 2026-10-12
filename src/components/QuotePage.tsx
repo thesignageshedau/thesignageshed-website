@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FORMSUBMIT_ACTION, QUOTE_EMAIL } from "../data/mediaWalls";
 import { QUOTE_PRODUCTS } from "../data/quoteProducts";
+import { OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
 import {
   FormSubmitHidden,
   SubmitArea,
@@ -12,17 +13,33 @@ import {
 const SUBJECT = "Quote request (website)";
 const STATES = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
 
+function hashParams() {
+  return new URLSearchParams(window.location.hash.split("?")[1] ?? "");
+}
 function productFromHash() {
-  const q = window.location.hash.split("?")[1] ?? "";
-  const slug = new URLSearchParams(q).get("product") ?? "";
+  const slug = hashParams().get("product") ?? "";
   return QUOTE_PRODUCTS.some((p) => p.slug === slug) ? slug : "";
+}
+function sizeFromHash(product: string) {
+  const size = hashParams().get("size") ?? "";
+  return QUOTE_SPECS[product]?.sizes.some((s) => s.id === size) ? size : "";
 }
 
 export default function QuotePage() {
-  const [product, setProduct] = useState(productFromHash);
+  const [product, setProductState] = useState(productFromHash);
+  const [size, setSize] = useState(() => sizeFromHash(productFromHash()));
+  const [option, setOption] = useState("");
+  const setProduct = (slug: string, presetSize = "") => {
+    setProductState(slug);
+    setSize(presetSize);
+    setOption("");
+  };
   const [today, setToday] = useState("");
   useEffect(() => {
-    const onHash = () => setProduct(productFromHash());
+    const onHash = () => {
+      const slug = productFromHash();
+      setProduct(slug, sizeFromHash(slug));
+    };
     window.addEventListener("hashchange", onHash);
     const d = new Date();
     setToday(
@@ -31,6 +48,21 @@ export default function QuotePage() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
   const chosen = QUOTE_PRODUCTS.find((p) => p.slug === product);
+  const spec = QUOTE_SPECS[product];
+  const options = spec && size && size !== OTHER ? spec.options(size) : [];
+  const sizeChoice = spec?.sizes.find((s) => s.id === size);
+  const optionChoice = options.find((o) => o.id === option);
+  const groups: [string, SizeChoice[]][] = [];
+  for (const s of spec?.sizes ?? []) {
+    const last = groups[groups.length - 1];
+    if (last && last[0] === (s.group ?? "")) last[1].push(s);
+    else groups.push([s.group ?? "", [s]]);
+  }
+  const priceText = optionChoice?.price != null
+    ? `${money(optionChoice.price)} ${spec!.priceNote}.`
+    : sizeChoice?.from != null
+      ? `From ${money(sizeChoice.from)} ${spec!.priceNote}.`
+      : "";
   const { status, error, onSubmit } = useQuoteSubmit(
     "general",
     () => `General quote: ${chosen?.label ?? "none"}`,
@@ -53,6 +85,11 @@ export default function QuotePage() {
             className="space-y-6"
           >
             <FormSubmitHidden subject={SUBJECT} />
+            {spec && <input type="hidden" name="Size" value={size === OTHER ? OTHER_LABEL : (sizeChoice?.label ?? "")} />}
+            {options.length > 0 && (
+              <input type="hidden" name="Options" value={option === OTHER ? OTHER_LABEL : (optionChoice?.label ?? "")} />
+            )}
+            {priceText && <input type="hidden" name="Price shown" value={priceText} />}
             <fieldset className="grid gap-4 sm:grid-cols-2">
               <legend className="mb-3 font-display text-xl tracking-wide">
                 Your details
@@ -109,16 +146,85 @@ export default function QuotePage() {
                   ))}
                 </select>
               </label>
-              <label className={label}>
-                Size or option
-                <input
-                  name="Size or option"
-                  required
-                  maxLength={200}
-                  placeholder={chosen?.optionHint ?? "e.g. size, style, single or double sided"}
-                  className={input}
-                />
-              </label>
+              {spec ? (
+                <>
+                  <label className={label}>
+                    {spec.sizeLabel}
+                    <select
+                      required
+                      className={input}
+                      value={size}
+                      onChange={(e) => {
+                        setSize(e.target.value);
+                        setOption("");
+                      }}
+                    >
+                      <option value="" disabled>
+                        Choose {spec.sizeLabel.toLowerCase()}
+                      </option>
+                      {groups.map(([g, list]) =>
+                        g ? (
+                          <optgroup key={g} label={g}>
+                            {list.map((o) => (
+                              <option key={o.id} value={o.id}>
+                                {o.label}
+                              </option>
+                            ))}
+                          </optgroup>
+                        ) : (
+                          list.map((o) => (
+                            <option key={o.id} value={o.id}>
+                              {o.label}
+                            </option>
+                          ))
+                        ),
+                      )}
+                      <option value={OTHER}>{OTHER_LABEL}</option>
+                    </select>
+                  </label>
+                  {options.length > 0 && (
+                    <label className={label}>
+                      {spec.optionLabel}
+                      <select
+                        required
+                        className={input}
+                        value={option}
+                        onChange={(e) => setOption(e.target.value)}
+                      >
+                        <option value="" disabled>
+                          Choose an option
+                        </option>
+                        {options.map((o) => (
+                          <option key={o.id} value={o.id}>
+                            {o.label}
+                          </option>
+                        ))}
+                        <option value={OTHER}>{OTHER_LABEL}</option>
+                      </select>
+                    </label>
+                  )}
+                  {priceText && (
+                    <p className="text-sm font-semibold text-rust-dark sm:col-span-2" aria-live="polite">
+                      {priceText}{" "}
+                      <span className="font-normal text-charcoal/70">
+                        Prices are final, no GST added. Delivery quoted separately.
+                      </span>
+                    </p>
+                  )}
+                </>
+              ) : null}
+              {(!spec || size === OTHER || option === OTHER) && (
+                <label className={label}>
+                  {spec ? "Tell us the size or option" : "Size or option"}
+                  <input
+                    name="Size details"
+                    required
+                    maxLength={200}
+                    placeholder={chosen?.optionHint ?? "e.g. size, style, single or double sided"}
+                    className={input}
+                  />
+                </label>
+              )}
               <label className={label}>
                 Quantity
                 <input
