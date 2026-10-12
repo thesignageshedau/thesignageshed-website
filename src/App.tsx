@@ -17,6 +17,9 @@ import CorfluteSignsPage from "./components/CorfluteSignsPage";
 import CorfluteSignsTeaser from "./components/CorfluteSignsTeaser";
 import AFramesPage from "./components/AFramesPage";
 import AFramesTeaser from "./components/AFramesTeaser";
+import GearPage from "./components/GearPage";
+import EventGearTeaser from "./components/EventGearTeaser";
+import { FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
@@ -25,7 +28,7 @@ import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
-// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/quote-thanks.
+// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/gazebos, /#/flags, /#/market-umbrellas, /#/quote-thanks.
 // (public/404.html also sends clean links like /refund-policy to the hash route.)
 // Section links such as #products keep working as normal in-page anchors.
 type Route =
@@ -35,6 +38,9 @@ type Route =
   | "pull-up-banners"
   | "corflute-signs"
   | "a-frames"
+  | "gazebos"
+  | "flags"
+  | "market-umbrellas"
   | "quote-thanks";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
@@ -43,6 +49,9 @@ const slugs = [
   "pull-up-banners",
   "corflute-signs",
   "a-frames",
+  "gazebos",
+  "flags",
+  "market-umbrellas",
   "quote-thanks",
 ] as readonly string[];
 function routeFromHash(): Route | null {
@@ -55,6 +64,9 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "pull-up-banners": "Pull Up Banners: Prices and Quotes | The Signage Shed",
   "corflute-signs": "Corflute Signs: Prices and Quotes | The Signage Shed",
   "a-frames": "A-Frame Signs: Prices and Quotes | The Signage Shed",
+  gazebos: GAZEBOS.pageTitle,
+  flags: FLAGS.pageTitle,
+  "market-umbrellas": UMBRELLAS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
 };
 
@@ -112,6 +124,12 @@ export default function App() {
           <CorfluteSignsPage />
         ) : route === "a-frames" ? (
           <AFramesPage />
+        ) : route === "gazebos" ? (
+          <GearPage key="gazebos" product={GAZEBOS} />
+        ) : route === "flags" ? (
+          <GearPage key="flags" product={FLAGS} />
+        ) : route === "market-umbrellas" ? (
+          <GearPage key="market-umbrellas" product={UMBRELLAS} />
         ) : route === "quote-thanks" ? (
           <QuoteThanks />
         ) : (
@@ -124,6 +142,7 @@ export default function App() {
             <PullUpBannersTeaser />
             <CorfluteSignsTeaser />
             <AFramesTeaser />
+            <EventGearTeaser />
             <EtsyShop />
             <WhyUs />
             <Faq />

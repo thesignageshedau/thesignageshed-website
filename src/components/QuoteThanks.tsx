@@ -5,6 +5,9 @@ import {
   PULL_UP_BANNERS_HREF,
   CORFLUTE_SIGNS_HREF,
   A_FRAMES_HREF,
+  GAZEBOS_HREF,
+  FLAGS_HREF,
+  MARKET_UMBRELLAS_HREF,
   homeSection,
 } from "../lib/routes";
 
@@ -44,6 +47,15 @@ export default function QuoteThanks() {
           </a>
           <a href={A_FRAMES_HREF} className="btn-outline">
             A-frames
+          </a>
+          <a href={GAZEBOS_HREF} className="btn-outline">
+            Gazebos
+          </a>
+          <a href={FLAGS_HREF} className="btn-outline">
+            Flags
+          </a>
+          <a href={MARKET_UMBRELLAS_HREF} className="btn-outline">
+            Market umbrellas
           </a>
           <a href={homeSection("top")} className="btn-rust">
             Home

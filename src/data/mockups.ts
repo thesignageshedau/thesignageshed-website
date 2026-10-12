@@ -68,4 +68,24 @@ export const MOCKUPS = {
     title: "Folding corflute A-frame",
     alt: "Rust folding corflute A-frame sign on the lawn beside a lawn bowls green",
   },
+  gazebo3x3: {
+    slug: "gazebo-3x3",
+    title: "3 × 3m gazebo with printed back wall",
+    alt: "Black 3 by 3 metre pop up gazebo with The Signage Shed logo on the canopy and a printed cream back wall, on a park lawn",
+  },
+  gazebo6x3: {
+    slug: "gazebo-6x3",
+    title: "6 × 3m gazebo with printed back wall",
+    alt: "Black 6 by 3 metre pop up gazebo with The Signage Shed logo on the canopy, valance and back wall, on a park lawn",
+  },
+  flags: {
+    slug: "flags",
+    title: "Teardrop and feather flags",
+    alt: "A rust teardrop flag and a charcoal feather flag with The Signage Shed logo on square black bases, beside a lake",
+  },
+  umbrella: {
+    slug: "umbrella",
+    title: "Printed market umbrella",
+    alt: "Square market umbrella with a charcoal canopy and cream valance printed with The Signage Shed logo, on a garden path",
+  },
 } satisfies Record<string, Mockup>;

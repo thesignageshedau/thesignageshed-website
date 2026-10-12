@@ -23,6 +23,10 @@ export const MOCKUPS = {
   "aframe-insert": "A-Frame Mockup - Insert Frame - Park Path",
   "aframe-real-estate": "A-Frame Mockup - Real Estate 600x450 - Brick House Driveway",
   "aframe-folding": "A-Frame Mockup - Folding Corflute - Bowls Club Path",
+  "gazebo-3x3": "Gazebo Mockup - 3x3 with Back Wall - Park Rotunda Lawn",
+  "gazebo-6x3": "Gazebo Mockup - 6x3 with Back Wall - Park Pavilion Lawn",
+  "flags": "Flag Mockup - Teardrop and Feather - Lakeside Park",
+  "umbrella": "Market Umbrella Mockup - Printed Canopy - Garden Path",
 };
 
 for (const [slug, name] of Object.entries(MOCKUPS)) {

@@ -1,0 +1,229 @@
+// Event gear: pop-up gazebos, teardrop and feather flags, and printed market umbrellas.
+// Prices come from the Price List tab of each product's spreadsheet in Google Drive (01 Products):
+// supplier cost inc GST x 1.3, rounded UP to the next $5 (quantity bands use the supplier price at the
+// smallest quantity in the band). Generated from /workspace/es/np/wb/prices.json by /workspace/es/np/gen_ts.py.
+// Prices are final, no GST added. Delivery is quoted separately.
+import type { Mockup } from "./mockups";
+import { MOCKUPS } from "./mockups";
+
+export const PRICE_NOTES = [
+  "Prices are final, no GST added",
+  "Delivery quoted separately",
+] as const;
+
+export type GearItem = {
+  id: string;
+  group: string;
+  label: string; // full name, used in the quote form and email
+  short: string; // row name inside its group in the price table
+  includes: string;
+  price: number[]; // price each per quantity band
+  priceWithAddon?: number[]; // price each with the add-on, per band
+};
+
+export type GearFaq = { q: string; a: string };
+
+export type GearProduct = {
+  slug: string;
+  eventName: string; // analytics prefix
+  subject: string; // FormSubmit email subject
+  noun: string; // "gazebo", "flag", "umbrella"
+  pageTitle: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  teaserTitle: string;
+  teaserText: string;
+  groups: { id: string; title: string; text: string }[];
+  bands: { label: string; min: number }[];
+  items: GearItem[];
+  addon?: { label: string; note: string };
+  notes: string[];
+  artwork: string;
+  faqs: GearFaq[];
+  hero: Mockup;
+  gallery: Mockup[];
+  notesHint: string;
+};
+
+const BANDS_2 = [
+  { label: "1 to 4", min: 1 },
+  { label: "5+", min: 5 },
+];
+const BANDS_3 = [
+  { label: "1 to 4", min: 1 },
+  { label: "5 to 9", min: 5 },
+  { label: "10+", min: 10 },
+];
+
+const COMMON_FAQS: GearFaq[] = [
+  { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
+  { q: "How long does it take?", a: "Usually dispatched within a few business days of artwork approval. Tell us your needed-by date in the quote form and we'll let you know if it's tight." },
+  { q: "How much is delivery?", a: "Delivery is quoted separately, based on your postcode. We'll include it in your quote." },
+  { q: "Do your prices include GST?", a: "Prices are final, no GST added. The price you see is the price you pay, plus delivery." },
+  { q: "How do I pay?", a: "There's nothing to pay online. Once you're happy with the quote and the order is confirmed, we email you an invoice to pay by bank transfer." },
+];
+
+export const GAZEBOS: GearProduct = {
+  slug: "gazebos",
+  eventName: "gazebo",
+  subject: "Pop up gazebo quote",
+  noun: "gazebo",
+  pageTitle: "Pop Up Gazebos: Prices and Quotes | The Signage Shed",
+  description: "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus an optional printed back wall. Full price list and a quick quote form.",
+  eyebrow: "Printed pop up gazebos",
+  heading: "Branded gazebos for markets, sport and events",
+  intro: "A black aluminium pop up frame with your artwork printed on the canopy and all four valances. Add a printed back wall to turn it into an instant branded stand.",
+  teaserTitle: "Printed pop up gazebos",
+  teaserText: "3 × 3m and 6 × 3m gazebos printed with your logo, with an optional printed back wall. Standard or luxury frame.",
+  groups: [
+    { id: "standard", title: "Standard frame", text: "45mm hexagonal aluminium legs, 3 year frame warranty. Light enough for one or two people to put up in about five minutes." },
+    { id: "luxury", title: "Luxury frame", text: "Heavier 50mm hexagonal aluminium legs, 5 year frame warranty. Stiffer in a breeze and built for weekly use." },
+  ],
+  bands: BANDS_2,
+  items: [
+    { id: "standard-3x3-none", group: "standard", label: "Standard 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [860, 820], priceWithAddon: [925, 880] },
+    { id: "standard-3x3-single", group: "standard", label: "Standard 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1090, 1035], priceWithAddon: [1150, 1100] },
+    { id: "standard-3x3-double", group: "standard", label: "Standard 3 × 3m gazebo, with double sided back wall", short: "3 × 3m · Double sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1315, 1255], priceWithAddon: [1380, 1315] },
+    { id: "standard-6x3-none", group: "standard", label: "Standard 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [1500, 1430], priceWithAddon: [1600, 1525] },
+    { id: "standard-6x3-single", group: "standard", label: "Standard 6 × 3m gazebo, with single sided back wall", short: "6 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1930, 1840], priceWithAddon: [2030, 1935] },
+    { id: "standard-6x3-double", group: "standard", label: "Standard 6 × 3m gazebo, with double sided back wall", short: "6 × 3m · Double sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [2390, 2275], priceWithAddon: [2485, 2370] },
+    { id: "luxury-3x3-none", group: "luxury", label: "Luxury 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [1270, 1210], priceWithAddon: [1335, 1270] },
+    { id: "luxury-3x3-single", group: "luxury", label: "Luxury 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1500, 1430], priceWithAddon: [1565, 1490] },
+    { id: "luxury-3x3-double", group: "luxury", label: "Luxury 3 × 3m gazebo, with double sided back wall", short: "3 × 3m · Double sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1725, 1645], priceWithAddon: [1790, 1710] },
+    { id: "luxury-6x3-none", group: "luxury", label: "Luxury 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [2035, 1940], priceWithAddon: [2135, 2035] },
+    { id: "luxury-6x3-single", group: "luxury", label: "Luxury 6 × 3m gazebo, with single sided back wall", short: "6 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [2465, 2350], priceWithAddon: [2560, 2445] },
+    { id: "luxury-6x3-double", group: "luxury", label: "Luxury 6 × 3m gazebo, with double sided back wall", short: "6 × 3m · Double sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [2920, 2785], priceWithAddon: [3020, 2880] },
+  ],
+  addon: { label: "Heavy duty wheeled carry bag", note: "Heavy duty wheeled carry bag: $60 to $65 extra on a 3 × 3m, $95 to $100 extra on a 6 × 3m. Tick it in the quote form to see the price." },
+  notes: [
+    "Black frame (silver available, same price).",
+    "Back wall: single sided is printed on one face, double sided is printed on both faces.",
+    "Sandbags, water bags, side walls and awnings available on request.",
+  ],
+  artwork: "Gazebo canopies are printed from a full-size template for the roof and valances. Ask for the template with your quote, or send us your logo and colours and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "What's included?", a: "The pop up frame, the printed canopy (roof and all four valances) and, if you choose one, the printed back wall. The wheeled carry bag is an optional extra." },
+    { q: "Standard or luxury frame?", a: "Both are aluminium and pop up the same way. The luxury frame has thicker 50mm legs and a 5 year warranty, so it's the pick for weekly markets, sporting clubs and windy sites." },
+    { q: "Single or double sided back wall?", a: "A single sided wall shows your artwork on one face (facing into the gazebo, or out, your choice). A double sided wall has artwork on both faces, so it looks good from the front and from behind." },
+    { q: "Will it blow away?", a: "Always weigh down every leg with sandbags or water bags outdoors, and take the gazebo down in strong wind. We can add sandbags or water bags to your quote." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.gazebo3x3,
+  gallery: [MOCKUPS.gazebo3x3, MOCKUPS.gazebo6x3],
+  notesHint: "Event date, frame colour, side walls or weights, or design ideas",
+};
+
+export const FLAGS: GearProduct = {
+  slug: "flags",
+  eventName: "flag",
+  subject: "Teardrop or feather flag quote",
+  noun: "flag",
+  pageTitle: "Teardrop and Feather Flags: Prices and Quotes | The Signage Shed",
+  description: "Medium teardrop (2.7m) and feather (3.0m) flags printed with your artwork, with a 10kg heavy duty square base. Full price list and a quick quote form.",
+  eyebrow: "Printed teardrop and feather flags",
+  heading: "Flags that get you seen from the road",
+  intro: "Tall printed flags for shopfronts, open homes, sport and events. Each one comes with its pole set and a 10kg heavy duty square base, so it works on paving, grass or indoors with no ground spikes.",
+  teaserTitle: "Teardrop and feather flags",
+  teaserText: "Medium teardrop and feather flags printed with your artwork, with a 10kg heavy duty base.",
+  groups: [
+    { id: "teardrop", title: "Teardrop flag, medium (2.7m tall)", text: "The rounded teardrop shape holds its form even with no wind, so your logo is always readable." },
+    { id: "feather", title: "Feather flag, medium (3.0m tall)", text: "Taller and slimmer, with a long straight edge for a logo or a word that reads from a distance." },
+  ],
+  bands: BANDS_3,
+  items: [
+    { id: "teardrop-double", group: "teardrop", label: "Teardrop flag 2.7m, double sided", short: "2.7m · Double sided", includes: "Printed flag, pole set and 10kg square base", price: [275, 250, 235], priceWithAddon: [295, 270, 255] },
+    { id: "teardrop-single", group: "teardrop", label: "Teardrop flag 2.7m, single sided", short: "2.7m · Single sided", includes: "Printed flag, pole set and 10kg square base", price: [215, 200, 185], priceWithAddon: [235, 220, 205] },
+    { id: "feather-double", group: "feather", label: "Feather flag 3.0m, double sided", short: "3.0m · Double sided", includes: "Printed flag, pole set and 10kg square base", price: [295, 270, 250], priceWithAddon: [315, 290, 270] },
+    { id: "feather-single", group: "feather", label: "Feather flag 3.0m, single sided", short: "3.0m · Single sided", includes: "Printed flag, pole set and 10kg square base", price: [230, 210, 200], priceWithAddon: [250, 230, 220] },
+  ],
+  addon: { label: "Carry bag", note: "Carry bag: $20 extra per flag." },
+  notes: [
+    "Double sided: two printed fabrics sewn back to back, so it reads correctly from both sides.",
+    "Single sided: printed once, and your artwork shows mirrored on the back.",
+    "Every flag includes a black pole set and a 10kg heavy duty square base.",
+  ],
+  artwork: "Flags are printed from the full-size template for that flag shape. Ask for the template with your quote, or send us your logo and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "Teardrop or feather?", a: "The teardrop keeps its shape in still air and suits a logo. The feather is taller and slimmer, which suits a word or short message that reads from the road." },
+    { q: "Single or double sided?", a: "A single sided flag is printed once and shows a mirror image on the back. Double sided flags have two prints sewn back to back, so the text reads the right way from both sides." },
+    { q: "What base comes with it?", a: "A 10kg heavy duty square base, so it stands on paving, concrete, grass or indoors. No ground spikes needed." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.flags,
+  gallery: [MOCKUPS.flags],
+  notesHint: "Where the flags will stand, colours or design ideas, anything we should know",
+};
+
+export const UMBRELLAS: GearProduct = {
+  slug: "market-umbrellas",
+  eventName: "umbrella",
+  subject: "Printed market umbrella quote",
+  noun: "umbrella",
+  pageTitle: "Printed Market Umbrellas: Prices and Quotes | The Signage Shed",
+  description: "2m × 2m square market umbrellas with your logo printed on all four panels and the valance. With a 10kg heavy duty base. Full price list and a quick quote form.",
+  eyebrow: "Printed market umbrellas",
+  heading: "Shade with your logo on it",
+  intro: "A 2m × 2m square umbrella printed on all four panels and the valance, on a heavy duty 45mm aluminium pole with an easy slider (no ropes or pulleys). Great for cafes, markets, fetes and real estate open homes.",
+  teaserTitle: "Printed market umbrellas",
+  teaserText: "2m × 2m square umbrellas printed on every panel, with a 10kg heavy duty base.",
+  groups: [
+    { id: "umbrella", title: "Printed market umbrella 2m × 2m", text: "Full colour canopy (270gsm polyester) on a 45mm aluminium pole with four height settings and a 12 month warranty on the frame and base." },
+    { id: "canopy", title: "Replacement canopy", text: "A new printed canopy for one of our umbrella frames, for a rebrand or a worn canopy." },
+  ],
+  bands: BANDS_3,
+  items: [
+    { id: "umbrella-10kg", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base", short: "With 10kg base", includes: "Umbrella, printed canopy and 10kg heavy duty base", price: [490, 465, 450] },
+    { id: "umbrella-10kg-water", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base + 20L water bag", short: "With 10kg base + 20L water bag", includes: "As above, plus a 20L water bag for windy days", price: [535, 505, 485] },
+    { id: "umbrella-no-base", group: "umbrella", label: "Printed market umbrella 2m × 2m, no base", short: "No base", includes: "Umbrella and printed canopy, use your own base", price: [360, 345, 330] },
+    { id: "canopy-only", group: "canopy", label: "Replacement printed canopy (2m × 2m)", short: "Replacement canopy", includes: "Printed canopy only, fits our umbrella frame", price: [245, 235, 225] },
+  ],
+  notes: [
+    "Printed on all four canopy panels and the valance.",
+    "Add the 20L water bag for windy spots.",
+  ],
+  artwork: "Umbrella canopies are printed from a full-size template for the panels and valance. Ask for the template with your quote, or send us your logo and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "What size is it?", a: "2m × 2m square, with a 220mm valance around the edge. The pole has four height settings." },
+    { q: "Which base should I choose?", a: "The 10kg heavy duty base suits most sites. Add the 20L water bag for extra weight on windy days, or choose no base if it goes into a table or an existing base." },
+    { q: "Can it stay up in wind?", a: "Close the umbrella in strong wind. Like any market umbrella it can tip or be damaged in gusts." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.umbrella,
+  gallery: [MOCKUPS.umbrella],
+  notesHint: "Where it will be used, colours or design ideas, anything we should know",
+};
+
+export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS] as const;
+
+/** Lowest single-item price on a product (used for "From $..." text). */
+export const fromPrice = (p: GearProduct) =>
+  Math.min(...p.items.map((i) => i.price[0]));
+
+export type GearChoice = { item: string; addon: boolean; qty: string };
+
+export function bandIndex(p: GearProduct, qty: number): number {
+  let idx = 0;
+  p.bands.forEach((b, n) => {
+    if (qty >= b.min) idx = n;
+  });
+  return idx;
+}
+
+export type Estimate =
+  | { ok: true; each: number; qty: number; total: number }
+  | { ok: false; reason: string };
+
+export function estimate(p: GearProduct, c: GearChoice): Estimate {
+  const it = p.items.find((x) => x.id === c.item);
+  if (!it) return { ok: false, reason: `Pick a ${p.noun}` };
+  const qty = Math.floor(Number(c.qty));
+  if (!Number.isFinite(qty) || qty < 1 || qty > 99)
+    return { ok: false, reason: "Enter a quantity from 1 to 99" };
+  const prices = c.addon && it.priceWithAddon ? it.priceWithAddon : it.price;
+  const each = prices[bandIndex(p, qty)];
+  return { ok: true, each, qty, total: each * qty };
+}
+
+export { money } from "./corfluteSigns";

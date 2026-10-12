@@ -3,6 +3,9 @@ import { asset } from "../lib/asset";
 import {
   A_FRAMES_HREF,
   CORFLUTE_SIGNS_HREF,
+  FLAGS_HREF,
+  GAZEBOS_HREF,
+  MARKET_UMBRELLAS_HREF,
   MEDIA_WALLS_HREF,
   PULL_UP_BANNERS_HREF,
   TABLE_COVERS_HREF,
@@ -16,6 +19,9 @@ const products: { href: string; label: string }[] = [
   { href: PULL_UP_BANNERS_HREF, label: "Pull up banners" },
   { href: CORFLUTE_SIGNS_HREF, label: "Corflute signs" },
   { href: A_FRAMES_HREF, label: "A-frames" },
+  { href: GAZEBOS_HREF, label: "Gazebos" },
+  { href: FLAGS_HREF, label: "Teardrop and feather flags" },
+  { href: MARKET_UMBRELLAS_HREF, label: "Market umbrellas" },
 ];
 const links: { href: string; label: string; show: string }[] = [
   { href: "#why", label: "Why us", show: "hidden md:block" },

@@ -4,6 +4,14 @@ export const TABLE_COVERS_HREF = "#/table-covers";
 export const PULL_UP_BANNERS_HREF = "#/pull-up-banners";
 export const CORFLUTE_SIGNS_HREF = "#/corflute-signs";
 export const A_FRAMES_HREF = "#/a-frames";
+export const GAZEBOS_HREF = "#/gazebos";
+export const FLAGS_HREF = "#/flags";
+export const MARKET_UMBRELLAS_HREF = "#/market-umbrellas";
+export const GEAR_HREFS = {
+  gazebos: GAZEBOS_HREF,
+  flags: FLAGS_HREF,
+  "market-umbrellas": MARKET_UMBRELLAS_HREF,
+} as const;
 export const QUOTE_THANKS_HREF = "#/quote-thanks";
 export const homeSection = (id: string) => `#${id}`;
 export function goTo(href: string) {
