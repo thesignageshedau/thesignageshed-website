@@ -81,7 +81,7 @@ export const MOCKUPS = {
   flags: {
     slug: "flags",
     title: "Teardrop and feather flags",
-    alt: "A teardrop flag and a feather flag in charcoal with The Signage Shed logo, beside a lake with gum trees",
+    alt: "A charcoal teardrop flag and an orange feather flag printed with The Signage Shed logo running up each flag, beside a lake with gum trees",
   },
   umbrella: {
     slug: "umbrella",
