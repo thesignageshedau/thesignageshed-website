@@ -49,7 +49,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
   );
 
   const estimateText = est.ok
-    ? `${money(est.total)} for ${est.qty} signs (${est.band}: ${money(est.signs)}${est.eyelets ? `, eyelets ${money(est.eyelets)}` : ""}${est.designs ? `, extra designs ${money(est.designs)}` : ""}). Estimate only, excludes delivery. Prices are final, no GST added.`
+    ? `${money(est.total)} for ${est.qty} signs (${est.band}: ${money(est.signs)}${est.eyelets ? `, eyelets ${money(est.eyelets)}` : ""}${est.designs ? `, extra designs ${money(est.designs)}` : ""}). Estimate only, excludes delivery.`
     : "";
 
   return (
@@ -219,7 +219,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
               {est.designs > 0 && <li>Extra designs: {money(est.designs)}</li>}
             </ul>
             <p className="mt-1 text-sm">
-              Estimate only: excludes delivery. Prices are final, no GST added.
+              Estimate only: excludes delivery.
               We'll confirm the price in your quote.
             </p>
           </>

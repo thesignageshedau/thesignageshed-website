@@ -1,11 +1,10 @@
 // Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
 // Prices come from the customer Price List tab of the Corflute Sign spreadsheet (+30%). Bundle prices (up to 5 signs,
 // 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are rounded up per sign
-// (under $20 to the next 50c, then to the next $1). Prices are final, no GST added. Delivery is quoted separately.
+// (under $20 to the next 50c, then to the next $1). Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 export const MATERIAL =
   "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";

@@ -151,7 +151,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "Do your prices include GST?",
     a: (
       <>
-        Prices are final, no GST added. The price you see is the price you pay,
+        The price you see is the price you pay,
         plus delivery.
       </>
     ),
@@ -217,8 +217,7 @@ export default function CorfluteSignsPage() {
               </button>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {money(FROM_PRICE)} for up to 5 signs ·{" "}
-              {PRICE_NOTES.join(" · ")}
+              From {money(FROM_PRICE)} for up to 5 signs ·
             </p>
           </div>
           <MockupImage
@@ -282,7 +281,6 @@ export default function CorfluteSignsPage() {
           <p className="mt-2 max-w-3xl text-lg">
             In Australian dollars, for printed corflute signs. Choose a
             thickness to see its prices.{" "}
-            <strong>{PRICE_NOTES.join(". ")}.</strong>
           </p>
           <div className="mt-6 max-w-3xl rounded-xl border-2 border-rust bg-cream px-5 py-4">
             <p className="font-slab text-lg font-bold">

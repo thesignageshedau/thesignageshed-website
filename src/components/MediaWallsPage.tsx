@@ -94,7 +94,7 @@ const faqs: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Do the prices include GST?",
-    a: <>Prices are final, no GST added.</>,
+    a: <>Prices include everything except delivery. We're not registered for GST, so there's no GST to add.</>,
   },
   {
     q: "Can I reuse the frame with a new print?",
@@ -172,7 +172,7 @@ export default function MediaWallsPage() {
               </button>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {aud(SIZES[0]!.kit.single)} · {PRICE_NOTES.join(" · ")}
+              From {aud(SIZES[0]!.kit.single)}
             </p>
           </div>
           <MockupImage

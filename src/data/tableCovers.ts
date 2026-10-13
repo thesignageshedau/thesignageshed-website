@@ -1,11 +1,10 @@
 // Table cover prices, sizes, downloads and the quote estimate.
 // Prices come from the customer Price List tab of the Table Covers spreadsheet (+30%, rounded up to the
-// next $5). Prices are final, no GST added. Delivery is quoted separately.
+// next $5). Prices include everything except delivery (not registered for GST).
 // Generated price data: /workspace/es/tc/build/tc_site_data.py (re-run if the spreadsheet changes).
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 export const MATERIAL =
   "Full colour print on polyester fabric. Machine washable and reusable.";

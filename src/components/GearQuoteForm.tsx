@@ -34,7 +34,7 @@ export default function GearQuoteForm({ product: p, choice, setChoice }: Props) 
     () => `${p.subject}: ${item?.label ?? ""} × ${choice.qty}`,
   );
   const estimateText = est.ok
-    ? `${money(est.total)} (${est.qty} × ${money(est.each)}). Estimate only, excludes delivery. Prices are final, no GST added.`
+    ? `${money(est.total)} (${est.qty} × ${money(est.each)}). Estimate only, excludes delivery.`
     : "";
 
   return (
@@ -137,7 +137,7 @@ export default function GearQuoteForm({ product: p, choice, setChoice }: Props) 
             <p className="mt-1 text-sm">
               {est.qty} × {money(est.each)} each
               {addon ? ` (with ${p.addon!.label.toLowerCase()})` : ""}.
-              Estimate only: excludes delivery. Prices are final, no GST added.
+              Estimate only: excludes delivery.
               We'll confirm the price in your quote.
             </p>
           </>

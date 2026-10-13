@@ -287,7 +287,7 @@ export default function TableCoversPage() {
               </button>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {aud(FROM_PRICE)} · {PRICE_NOTES.join(" · ")}
+              From {aud(FROM_PRICE)}
             </p>
           </div>
           <MockupImage
@@ -349,7 +349,7 @@ export default function TableCoversPage() {
           </h2>
           <p className="mt-2 max-w-2xl text-lg">
             Every size and option, per item in Australian dollars, including
-            printing your artwork. <strong>{PRICE_NOTES.join(". ")}.</strong>
+            printing your artwork.
           </p>
           <div className="mt-8 grid gap-10 lg:grid-cols-2">
             {throwTable("fitted")}

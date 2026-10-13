@@ -33,7 +33,7 @@ export default function AFrameQuoteForm({ choice, setChoice }: Props) {
   );
 
   const estimateText = est.ok
-    ? `${money(est.total)} (${est.qty} × ${money(est.each)}). Estimate only, excludes delivery. Prices are final, no GST added.`
+    ? `${money(est.total)} (${est.qty} × ${money(est.each)}). Estimate only, excludes delivery.`
     : "";
 
   return (
@@ -151,7 +151,7 @@ export default function AFrameQuoteForm({ choice, setChoice }: Props) {
             </p>
             <p className="mt-1 text-sm">
               {est.qty} × {money(est.each)} each. Estimate only: excludes
-              delivery. Prices are final, no GST added. We'll confirm the price
+              delivery. We'll confirm the price
               in your quote.
             </p>
           </>

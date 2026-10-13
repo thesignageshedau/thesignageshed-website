@@ -167,6 +167,9 @@ export function ArtworkFields({ notesHint, checkHref = "/check-artwork/" }: { no
             </label>
           ))}
         </div>
+        <span className="mt-1 block text-xs font-normal text-charcoal/70">
+          Print-ready means a finished file at the right size, with bleed, that we can print as is. Not there yet? We can set it up for you.
+        </span>
       </div>
       <label className={label}>
         Artwork link <span className="font-normal text-charcoal/70">(optional)</span>
@@ -440,7 +443,7 @@ export function DesignsField() {
         className={input}
       />
       <span className="mt-1 block text-xs font-normal text-charcoal/70">
-        Different artworks across your order.
+        Same design on every item? Enter 1.
       </span>
     </label>
   );

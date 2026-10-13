@@ -60,7 +60,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               </button>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {money(fromPrice(p))} · {PRICE_NOTES.join(" · ")}
+              From {money(fromPrice(p))}
             </p>
           </div>
           <MockupImage
@@ -111,7 +111,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           </h2>
           <p className="mt-2 max-w-3xl text-lg">
             Price each, in Australian dollars, by how many of the same item you
-            order. <strong>{PRICE_NOTES.join(". ")}.</strong>
+            order.
           </p>
           <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-8 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">

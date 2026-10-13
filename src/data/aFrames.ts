@@ -1,11 +1,10 @@
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium, Insert and Real Estate A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
 // A-Frame spreadsheet (+30% on the regular supplier price). Single prices are rounded up to the next $5; quantity
-// prices are rounded up per item. Prices are final, no GST added. Delivery is quoted separately.
+// prices are rounded up per item. Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 
 /** Price each: 1, 2 to 4, 5 to 9, 10 to 19, 20+. */

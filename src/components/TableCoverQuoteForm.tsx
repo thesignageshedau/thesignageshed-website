@@ -66,7 +66,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
   }, []);
 
   const estimateText = est.ok
-    ? `${aud(est.total)} (${est.qty} × ${aud(est.each)}). Estimate only, excludes delivery. Prices are final, no GST added.`
+    ? `${aud(est.total)} (${est.qty} × ${aud(est.each)}). Estimate only, excludes delivery.`
     : "";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -257,7 +257,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
             </p>
             <p className="mt-1 text-sm">
               {est.qty} × {aud(est.each)} each. Estimate only: excludes
-              delivery. Prices are final, no GST added. We'll confirm the price
+              delivery. We'll confirm the price
               in your quote.
             </p>
           </>

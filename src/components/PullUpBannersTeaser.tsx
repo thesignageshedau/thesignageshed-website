@@ -1,4 +1,4 @@
-import { FROM_PRICE, PRICE_NOTES } from "../data/pullUpBanners";
+import { FROM_PRICE } from "../data/pullUpBanners";
 import { aud } from "../data/mediaWalls";
 import { PULL_UP_BANNERS_HREF } from "../lib/routes";
 import MockupImage from "./MockupImage";
@@ -34,7 +34,6 @@ export default function PullUpBannersTeaser() {
               <p className="mt-4 font-slab text-2xl font-bold">
                 From {aud(FROM_PRICE)}{" "}
                 <span className="text-base font-normal text-charcoal/80">
-                  · {PRICE_NOTES.join(" · ")}
                 </span>
               </p>
               <div className="mt-6 flex flex-wrap gap-3">

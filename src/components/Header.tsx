@@ -42,8 +42,12 @@ const products: { href: string; label: string }[] = [
   { href: FLAGS_HREF, label: "Teardrop and feather flags" },
   { href: MARKET_UMBRELLAS_HREF, label: "Market umbrellas" },
 ];
+const howItWorks = [
+  { href: "/check-artwork/", label: "Check your artwork" },
+  { href: "/artwork-help/", label: "Artwork help" },
+  { href: "/delivery/", label: "Delivery" },
+];
 const links: { href: string; label: string; show: string }[] = [
-  { href: "/check-artwork/", label: "Check artwork", show: "hidden md:block" },
   { href: "/#faq", label: "FAQ", show: "hidden lg:block" },
   { href: "/#contact", label: "Contact", show: "hidden sm:block" },
 ];
@@ -120,15 +124,20 @@ function ProductsMenu() {
             </a>
           </li>
         ))}
-        <li className="mt-1 border-t border-cream/20 pt-1">
-          <a
-            href="/check-artwork/"
-            onClick={() => setOpen(false)}
-            className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
-          >
-            Check your artwork
-          </a>
+        <li className="mt-1 border-t border-cream/20 pt-1" role="presentation">
+          <span className="block px-4 pb-1 pt-2 text-xs font-bold uppercase tracking-widest text-rust-light">How it works</span>
         </li>
+        {howItWorks.map((p) => (
+          <li key={p.href}>
+            <a
+              href={p.href}
+              onClick={() => setOpen(false)}
+              className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+            >
+              {p.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </li>
   );

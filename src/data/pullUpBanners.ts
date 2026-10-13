@@ -1,10 +1,9 @@
 // Pull up banner prices, sizes, downloads and the quote estimate. Luxury and Double Sided stands only.
 // Prices come from the customer Price List tab of the Pull Up Banners spreadsheet (+30%, rounded up to
-// the next $5). Prices are final, no GST added. Delivery is quoted separately.
+// the next $5). Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 export const MATERIAL =
   "Full colour print on tear-resistant, low-curl blockout PVC. Carry bag included.";

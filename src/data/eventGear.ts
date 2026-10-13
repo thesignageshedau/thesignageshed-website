@@ -2,13 +2,12 @@
 // Prices come from the Price List tab of each product's spreadsheet in Google Drive (01 Products):
 // supplier cost inc GST x 1.3, rounded UP to the next $5 (quantity bands use the supplier price at the
 // smallest quantity in the band). Generated from /workspace/es/np/wb/prices.json by /workspace/es/np/gen_ts.py.
-// Prices are final, no GST added. Delivery is quoted separately.
+// Prices include everything except delivery (not registered for GST).
 import type { Mockup } from "./mockups";
 import { MOCKUPS } from "./mockups";
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 
 export type GearItem = {
@@ -61,7 +60,7 @@ const COMMON_FAQS: GearFaq[] = [
   { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
   { q: "How long does it take?", a: "Usually dispatched within a few business days of artwork approval. Tell us your needed-by date in the quote form and we'll let you know if it's tight." },
   { q: "How much is delivery?", a: "Delivery is quoted separately, based on your postcode. We'll include it in your quote. See our Delivery page for how it works." },
-  { q: "Do your prices include GST?", a: "Prices are final, no GST added. The price you see is the price you pay, plus delivery." },
+  { q: "Do your prices include GST?", a: "Prices include everything except delivery. We're not registered for GST, so there's no GST to add." },
   { q: "How do I pay?", a: "Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card." },
 ];
 

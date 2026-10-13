@@ -1,4 +1,4 @@
-import { FROM_PRICE, PRICE_NOTES, money } from "../data/corfluteSigns";
+import { FROM_PRICE, money } from "../data/corfluteSigns";
 import { CORFLUTE_SIGNS_HREF } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import { MOCKUPS } from "../data/mockups";
@@ -33,7 +33,6 @@ export default function CorfluteSignsTeaser() {
               <p className="mt-4 font-slab text-2xl font-bold">
                 From {money(FROM_PRICE)} for up to 5 signs{" "}
                 <span className="text-base font-normal text-charcoal/80">
-                  · {PRICE_NOTES.join(" · ")}
                 </span>
               </p>
               <div className="mt-6 flex flex-wrap gap-3">

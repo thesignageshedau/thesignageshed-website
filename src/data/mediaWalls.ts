@@ -1,6 +1,6 @@
 // Media wall prices, sizes, downloads and the quote estimate. Fabric sock and frame walls only.
 // Prices come from the customer Price List tab of the Media Walls spreadsheet (+30%, rounded up to
-// the next $5). Prices are final, no GST added. Delivery is quoted separately.
+// the next $5). Prices include everything except delivery (not registered for GST).
 
 export const QUOTE_EMAIL = "infothesignageshed@gmail.com";
 // FormSubmit (https://formsubmit.co), activated for https://thesignageshed.au/. The random alias
@@ -10,8 +10,7 @@ export const FORMSUBMIT_ACTION = `https://formsubmit.co/${FORMSUBMIT_ID}`;
 export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
-  "Prices are final, no GST added",
-  "Delivery quoted separately",
+  "Prices include everything except delivery (we're not registered for GST)",
 ] as const;
 export const TURNAROUND =
   "Usually dispatched within a few business days of artwork approval.";

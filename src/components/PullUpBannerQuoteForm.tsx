@@ -60,7 +60,7 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
   }, []);
 
   const estimateText = est.ok
-    ? `${aud(est.total)} (${est.qty} × ${aud(est.each)}). Estimate only, excludes delivery. Prices are final, no GST added.`
+    ? `${aud(est.total)} (${est.qty} × ${aud(est.each)}). Estimate only, excludes delivery.`
     : "";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -183,11 +183,9 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
               </option>
             ))}
           </select>
-          {bases.length < 2 && choice.size && (
-            <span className="mt-1 block text-xs font-normal text-charcoal/70">
-              Black is only made for 850mm Luxury stands.
-            </span>
-          )}
+          <span className="mt-1 block text-xs font-normal text-charcoal/70">
+            The colour of the metal stand at the bottom. {bases.length < 2 && choice.size ? "Black is only made for 850mm Luxury stands." : "Same price either way."}
+          </span>
         </label>
         <label className={label}>
           Quantity
@@ -224,7 +222,7 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
             </p>
             <p className="mt-1 text-sm">
               {est.qty} × {aud(est.each)} each. Estimate only: excludes
-              delivery. Prices are final, no GST added. We'll confirm the price
+              delivery. We'll confirm the price
               in your quote.
             </p>
           </>

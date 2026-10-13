@@ -1,4 +1,4 @@
-import { FROM_PRICE, PRICE_NOTES, aud } from "../data/mediaWalls";
+import { FROM_PRICE, aud } from "../data/mediaWalls";
 import { MEDIA_WALLS_HREF } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import { MOCKUPS } from "../data/mockups";
@@ -33,7 +33,6 @@ export default function MediaWallsTeaser() {
               <p className="mt-4 font-slab text-2xl font-bold">
                 From {aud(FROM_PRICE)}{" "}
                 <span className="text-base font-normal text-cream/80">
-                  · {PRICE_NOTES.join(" · ")}
                 </span>
               </p>
               <div className="mt-6 flex flex-wrap gap-3">

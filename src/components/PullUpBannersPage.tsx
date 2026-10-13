@@ -108,7 +108,7 @@ const faqs: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Do the prices include GST?",
-    a: <>Prices are final, no GST added.</>,
+    a: <>Prices include everything except delivery. We're not registered for GST, so there's no GST to add.</>,
   },
 ];
 
@@ -184,7 +184,7 @@ export default function PullUpBannersPage() {
               </button>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {aud(FROM_PRICE)} · {PRICE_NOTES.join(" · ")}
+              From {aud(FROM_PRICE)}
             </p>
           </div>
           <MockupImage
@@ -248,7 +248,6 @@ export default function PullUpBannersPage() {
           <p className="mt-2 max-w-2xl text-lg">
             Every size, per stand in Australian dollars, including the stand,
             printing your artwork and a carry bag.{" "}
-            <strong>{PRICE_NOTES.join(". ")}.</strong>
           </p>
           <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-8 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">

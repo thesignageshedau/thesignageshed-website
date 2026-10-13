@@ -1,4 +1,4 @@
-import { GEAR_PRODUCTS, PRICE_NOTES, fromPrice, money } from "../data/eventGear";
+import { GEAR_PRODUCTS, fromPrice, money } from "../data/eventGear";
 import { GEAR_HREFS } from "../lib/routes";
 import MockupImage from "./MockupImage";
 
@@ -23,9 +23,6 @@ export default function EventGearTeaser() {
             <h2 id="eg-teaser-heading" className="mt-4 text-3xl sm:text-4xl">
               Gazebos, flags, umbrellas and banners
             </h2>
-            <p className="mt-2 text-base text-charcoal/80">
-              {PRICE_NOTES.join(" · ")}
-            </p>
             <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {GEAR_PRODUCTS.map((p) => (
                 <a
