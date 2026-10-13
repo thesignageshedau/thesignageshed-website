@@ -6,17 +6,17 @@ export const MOCKUPS = {
   bannerPvc: {
     slug: "banner-pvc",
     title: "PVC vinyl banner",
-    alt: "Illustration of a cream PVC vinyl banner with charcoal and orange stripes and The Signage Shed logo, tied between two posts",
+    alt: "Cream PVC vinyl banner with The Signage Shed logo and charcoal and orange stripes, fixed to a timber rail fence",
   },
   bannerMesh: {
     slug: "banner-mesh",
     title: "Mesh vinyl banner",
-    alt: "Illustration of a mesh vinyl banner with The Signage Shed logo and eyelets along the edges, fixed between two posts",
+    alt: "Mesh vinyl banner with The Signage Shed logo fixed to a construction site fence",
   },
   bannerFabricMesh: {
     slug: "banner-fabric-mesh",
     title: "Fabric mesh banner",
-    alt: "Illustration of a fabric mesh banner with The Signage Shed logo and stainless eyelets, fixed between two posts",
+    alt: "Fabric mesh banner with The Signage Shed logo on a temporary event fence",
   },
   mediaWallSingle: {
     slug: "media-wall-single",
