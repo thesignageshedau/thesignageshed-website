@@ -18,6 +18,7 @@ import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
+import ProductGrid from "./components/ProductGrid";
 import QuoteBar from "./components/QuoteBar";
 import TrustStrip from "./components/TrustStrip";
 import FaqSchema from "./components/FaqSchema";
@@ -234,12 +235,15 @@ export default function App() {
             <Hero />
             <TrustStrip tone="dark" />
             <div id="signage" className="scroll-mt-20" />
-            <MediaWallsTeaser />
-            <TableCoversTeaser />
-            <PullUpBannersTeaser />
-            <CorfluteSignsTeaser />
-            <AFramesTeaser />
-            <EventGearTeaser />
+            <ProductGrid />
+            <div className="hidden md:block">
+              <MediaWallsTeaser />
+              <TableCoversTeaser />
+              <PullUpBannersTeaser />
+              <CorfluteSignsTeaser />
+              <AFramesTeaser />
+              <EventGearTeaser />
+            </div>
             <Faq />
             <Contact />
           </>

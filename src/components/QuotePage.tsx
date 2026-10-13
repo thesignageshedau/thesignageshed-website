@@ -22,6 +22,11 @@ export default function QuotePage() {
   // Stable keys so removing an item doesn't reset the others; numbering follows position.
   const [items, setItems] = useState<number[]>([1]);
   const [nextKey, setNextKey] = useState(2);
+  const [estimates, setEstimates] = useState<Record<number, number | null>>({});
+  const live = items.map((k) => estimates[k]);
+  const priced = live.filter((x): x is number => typeof x === "number");
+  const unpriced = live.length - priced.length;
+  const total = Math.round(priced.reduce((a, b) => a + b, 0) * 100) / 100;
   const product = first.product;
   const size = first.size;
   const chosen = QUOTE_PRODUCTS.find((p) => p.slug === product);
@@ -71,6 +76,7 @@ export default function QuotePage() {
                   fromUrl={i === 0}
                   onChange={i === 0 ? (product, size) => setFirst({ product, size }) : undefined}
                   onRemove={i > 0 ? () => setItems((xs) => xs.filter((x) => x !== k)) : undefined}
+                  onEstimate={(v) => setEstimates((e) => (e[k] === v ? e : { ...e, [k]: v }))}
                 />
               ))}
               {items.length < MAX_ITEMS && (
@@ -84,6 +90,20 @@ export default function QuotePage() {
                 >
                   + Add another product
                 </button>
+              )}
+              {priced.length > 0 && (
+                <div className="rounded-lg bg-cream px-4 py-3" aria-live="polite" data-estimate>
+                  <p>
+                    <span className="font-bold">Estimated total:</span>{" "}
+                    <span className="font-slab text-2xl font-bold text-rust-dark">${total.toLocaleString("en-AU", { minimumFractionDigits: total % 1 ? 2 : 0, maximumFractionDigits: 2 })}</span>{" "}
+                    <span className="text-sm">excl. delivery</span>
+                  </p>
+                  <p className="mt-1 text-xs text-charcoal/75">
+                    From the prices on our product pages.
+                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} Extras like
+                    eyelets or extra designs, and any quantity price breaks, are worked out in your quote.
+                  </p>
+                </div>
               )}
               <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything.</p>
             </div>

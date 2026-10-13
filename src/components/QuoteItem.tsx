@@ -82,11 +82,13 @@ export default function QuoteItem({
   fromUrl = false,
   onRemove,
   onChange,
+  onEstimate,
 }: {
   n: number;
   fromUrl?: boolean;
   onRemove?: () => void;
   onChange?: (product: string, size: string) => void;
+  onEstimate?: (total: number | null) => void;
 }) {
   const p = itemPrefix(n);
   const [product, setProductState] = useState(() => (fromUrl ? productFromUrl() : ""));
@@ -152,6 +154,12 @@ export default function QuoteItem({
         : sizeChoice?.from != null && !custom
           ? `From ${money(sizeChoice.from)} ${spec!.priceNote}.`
           : "";
+
+  // Estimate for the running total: only prices shown on the site, quantity included. null = we price it in the quote.
+  const unitPrice = optionChoice?.price ?? (options.length === 0 && !custom && spec && size ? (sizeChoice?.from ?? null) : null);
+  const estimateTotal =
+    cfPrice != null ? cfPrice.total : unitPrice != null && qty >= 1 ? Math.round(unitPrice * qty * 100) / 100 : null;
+  useEffect(() => onEstimate?.(product ? estimateTotal : null), [estimateTotal, product]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="rounded-xl border-2 border-charcoal/10 p-4 sm:p-5" data-item={n}>
