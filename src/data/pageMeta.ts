@@ -9,6 +9,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "flags": "Custom printed teardrop and feather flags with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
   "banners": "Custom printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
+  "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free quick pricing sheet. GST built in, works in Excel and Google Sheets, instant download.",
   "check-artwork": "Check your print file before you order. Pick your product and size, choose a PDF, JPG or PNG, and see size, bleed, resolution and colour checks with guides on a preview. Your file stays on your device.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
 };

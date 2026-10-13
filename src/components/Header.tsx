@@ -44,7 +44,6 @@ const products: { href: string; label: string }[] = [
 ];
 const links: { href: string; label: string; show: string }[] = [
   { href: "#/check-artwork", label: "Check artwork", show: "hidden md:block" },
-  { href: "#why", label: "Why us", show: "hidden lg:block" },
   { href: "#faq", label: "FAQ", show: "hidden lg:block" },
   { href: "#contact", label: "Contact", show: "hidden sm:block" },
 ];
@@ -128,15 +127,6 @@ function ProductsMenu() {
             className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
           >
             Check your artwork
-          </a>
-        </li>
-        <li className="border-t border-cream/20 pt-1">
-          <a
-            href="#products"
-            onClick={() => setOpen(false)}
-            className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
-          >
-            Pricing spreadsheets
           </a>
         </li>
       </ul>

@@ -3,10 +3,6 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
 const ArtworkCheckPage = lazy(() => import("./components/ArtworkCheckPage"));
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Products from "./components/Products";
-import FreeSample from "./components/FreeSample";
-import EtsyShop from "./components/EtsyShop";
-import WhyUs from "./components/WhyUs";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -26,6 +22,7 @@ import QuoteBar from "./components/QuoteBar";
 import TrustStrip from "./components/TrustStrip";
 import FaqSchema from "./components/FaqSchema";
 import { QUOTE_PRODUCTS } from "./data/quoteProducts";
+import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
 import NotFound from "./components/NotFound";
 import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
@@ -35,6 +32,7 @@ import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
+import { useReveal } from "./lib/reveal";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
 // /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/gazebos, /#/flags, /#/market-umbrellas, /#/banners, /#/quote-thanks.
@@ -53,7 +51,8 @@ type Route =
   | "banners"
   | "quote-thanks"
   | "quote"
-  | "check-artwork";
+  | "check-artwork"
+  | "for-sign-shops";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -68,12 +67,16 @@ const slugs = [
   "quote-thanks",
   "quote",
   "check-artwork",
+  "for-sign-shops",
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
   return window.location.hash.startsWith("#/") && routeFromHash() === null;
 }
+/** Old home page anchors for the sign shop content now live on #/for-sign-shops. */
+const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
 function routeFromHash(): Route | null {
+  if (SIGN_SHOP_SECTIONS.includes(window.location.hash.slice(1))) return "for-sign-shops";
   const m = window.location.hash.match(/^#\/([a-z-]+)\/?(?:\?.*)?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
@@ -88,6 +91,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "market-umbrellas": UMBRELLAS.pageTitle,
   banners: BANNERS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
+  "for-sign-shops": "Pricing Spreadsheets for Sign Shops (Australia) | The Signage Shed",
   "check-artwork": "Check Your Artwork: Free Print File Checker | The Signage Shed",
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
@@ -126,6 +130,11 @@ export default function App() {
   // After switching page: other pages start at the top; on the home page, scroll to the
   // section in the hash (e.g. #products) once it has rendered.
   useLayoutEffect(() => {
+    const anchor = route === "for-sign-shops" ? document.getElementById(window.location.hash.slice(1)) : null;
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "instant" });
+      return;
+    }
     if (route) {
       window.scrollTo({ top: 0, behavior: "instant" });
       return;
@@ -137,6 +146,7 @@ export default function App() {
 
   const barProduct = QUOTE_PRODUCTS.find((p) => p.slug === route);
 
+  useReveal(route ?? (missing ? "missing" : "home"));
   usePageview(route ? `/${route}` : "/");
 
   return (
@@ -169,6 +179,8 @@ export default function App() {
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
         ) : route === "banners" ? (
           <GearPage key="banners" product={BANNERS} />
+        ) : route === "for-sign-shops" ? (
+          <ForSignShopsPage />
         ) : route === "check-artwork" ? (
           <Suspense fallback={<p className="mx-auto max-w-site px-4 py-20 text-lg sm:px-6">Loading the artwork checker…</p>}>
             <ArtworkCheckPage />
@@ -190,10 +202,6 @@ export default function App() {
             <CorfluteSignsTeaser />
             <AFramesTeaser />
             <EventGearTeaser />
-            <Products />
-            <FreeSample />
-            <EtsyShop />
-            <WhyUs />
             <Faq />
             <Contact />
           </>

@@ -23,12 +23,6 @@ export default function Hero() {
               See our signage
             </a>
           </div>
-          <p className="mt-6 text-sm text-cream/75">
-            Run a sign shop?{" "}
-            <a href="#products" className="font-semibold text-cream underline underline-offset-4 hover:text-white">
-              See our pricing spreadsheets
-            </a>
-          </p>
         </div>
         <div className="flex justify-center md:justify-end">
           <img

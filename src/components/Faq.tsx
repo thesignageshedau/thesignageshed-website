@@ -2,10 +2,10 @@ import { SHOP } from "../data/products";
 
 const link = "font-semibold text-rust-dark underline underline-offset-2";
 
-const faqs: { q: string; a: React.ReactNode }[] = [
+const allFaqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "What do you make?",
-    a: <>Printed signage and event gear, delivered Australia-wide: A-frames, corflute signs, pull up banners, media walls, table covers, flags, gazebos, market umbrellas and vinyl and mesh banners. We also sell a few spreadsheets and digital kits for sign makers on the side.</>,
+    a: <>Printed signage and event gear, delivered Australia-wide: A-frames, corflute signs, pull up banners, media walls, table covers, flags, gazebos, market umbrellas and vinyl and mesh banners.</>,
   },
   {
     q: "How do I get a quote?",
@@ -53,7 +53,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
 ];
 
-export default function Faq() {
+/** Signage FAQs on the home page; digital = the spreadsheet FAQs on the sign shop page. */
+export default function Faq({ digital = false }: { digital?: boolean }) {
+  const faqs = allFaqs.filter((f) =>
+    digital ? f.q.startsWith("Digital products") || f.q.startsWith("I have a question") : !f.q.startsWith("Digital products"),
+  );
   return (
     <section id="faq" className="scroll-mt-20 py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
