@@ -77,7 +77,7 @@ function SafeDiagram() {
 const faqs = [
   { q: "What file type should I send?", a: <>A print-ready PDF is best. High resolution JPG and PNG files are fine too.</> },
   { q: "What resolution does my artwork need?", a: <>At least 130 ppi at the full printed size, and 150 ppi or more for a crisp print. Logos and text are best as vectors.</> },
-  { q: "Should my artwork be CMYK or RGB?", a: <>CMYK. We print in CMYK, so RGB files are converted and some bright colours can come out duller.</> },
+  { q: "Should my artwork be CMYK or RGB?", a: <>Supply CMYK for the most accurate colour. RGB files are converted for print, and some bright colours can come out duller.</> },
   { q: "Do I need to add bleed?", a: <>Yes. Run your background past the finished edge by the bleed shown in your product's artwork guide.</> },
   { q: "How do I send my files?", a: <>Paste a link (Google Drive, WeTransfer or Dropbox) in the quote form, or reply to our quote email with your files attached.</> },
   { q: "Can you check my artwork?", a: <>Yes. Run it through our free <a className={helpLink} href={CHECK_ARTWORK_HREF}>artwork checker</a> first, and we also check every file and send a digital proof before anything is printed.</> },
@@ -115,7 +115,7 @@ export default function ArtworkHelpPage() {
       </HelpSection>
 
       <HelpSection id="colour" title="CMYK vs RGB">
-        <p>Screens show colour in <strong>RGB</strong> (light). Printers use <strong>CMYK</strong> (ink). We print in CMYK, so set your file up in CMYK.</p>
+        <p>Screens show colour in <strong>RGB</strong> (light). Printers use <strong>CMYK</strong> (ink). Supply CMYK for the most accurate colour.</p>
         <p>RGB files get converted, and very bright greens, blues and oranges can come out duller than on screen.</p>
       </HelpSection>
 
