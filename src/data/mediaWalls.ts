@@ -28,14 +28,14 @@ export const SIZES: WallSize[] = [
   {
     id: "2.4x2.2",
     label: "2.4m × 2.2m",
-    kit: { single: 505, double: 605 },
+    kit: { single: 520, double: 605 },
     fabric: { single: 285, double: 375 },
     frameOnly: 245,
   },
   {
     id: "3x2.2",
     label: "3m × 2.2m",
-    kit: { single: 635, double: 760 },
+    kit: { single: 575, double: 760 },
     fabric: { single: 370, double: 485 },
     frameOnly: 285,
   },

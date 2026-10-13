@@ -76,7 +76,7 @@ export const ITEMS: AFrameItem[] = [
     label: "Insert A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame plus 2 printed corflute inserts (one each side)",
-    price: [175, 175, 160, 150, 140],
+    price: [175, 172.5, 160, 150, 140],
   },
   {
     id: "insert-600x900-inserts",
