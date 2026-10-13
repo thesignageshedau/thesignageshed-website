@@ -89,7 +89,7 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
         Up to 5 signs is one price, and so is 6 to 10, so ordering 5 or 10 gets you the best price per sign. From 11 signs
         the price per sign drops as you order more.
       </p>
-      <a href={quoteHref("corflute-signs", size)} className="btn-rust mt-5 inline-block">
+      <a href={quoteHref("corflute-signs", size, { sides, qty })} className="btn-rust mt-5 inline-block">
         Get a quote for {label} signs
       </a>
     </div>

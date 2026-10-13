@@ -41,3 +41,7 @@
   main tbody tr { transition: background-color .2s ease; }
 }
 main tbody tr:hover { background-color: rgb(196 98 45 / .08); }
+
+/* Quote form errors: red border on the field, message under its label or group. */
+[aria-invalid="true"] { border-color: #b91c1c !important; }
+[data-error]::after { content: attr(data-error); display: block; margin-top: 0.25rem; font-size: 0.875rem; font-weight: 600; color: #b91c1c; }

@@ -91,13 +91,20 @@ export default function QuoteItem({
   const p = itemPrefix(n);
   const [product, setProductState] = useState(() => (fromUrl ? productFromUrl() : ""));
   const [size, setSize] = useState(() => (fromUrl ? sizeFromUrl(productFromUrl()) : ""));
-  const [option, setOption] = useState("");
+  const urlParam = (k: string) => (fromUrl ? (searchParams().get(k) ?? "") : "");
+  const [option, setOption] = useState(() => urlParam("option").replace(/[^a-z0-9-]/g, ""));
   const [thickness, setThickness] = useState<CF.Thickness>("5mm");
-  const [sides, setSides] = useState<CF.Sides | "">("");
+  const [sides, setSides] = useState<CF.Sides | "">(() => {
+    const v = urlParam("sides");
+    return v === "single" || v === "double" ? v : "";
+  });
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [unit, setUnit] = useState<Unit>("mm");
-  const [qtyText, setQtyText] = useState("1");
+  const [qtyText, setQtyText] = useState(() => {
+    const v = Math.floor(Number(urlParam("qty")));
+    return v >= 1 && v <= 9999 ? String(v) : "1";
+  });
   const setProduct = (slug: string, presetSize = "") => {
     setProductState(slug);
     setSize(presetSize);
@@ -225,6 +232,11 @@ export default function QuoteItem({
                     )}
                     {spec.allowOther && <option value={OTHER}>Custom size</option>}
                   </select>
+                  <span className="mt-1 block text-xs font-normal text-charcoal/70">
+                    {spec.allowOther
+                      ? "Need a different size? Choose Custom size at the bottom of the list."
+                      : "Need a different size? Choose “Something else or a mix” as the product and tell us the size."}
+                  </span>
                 </label>
               )}
 

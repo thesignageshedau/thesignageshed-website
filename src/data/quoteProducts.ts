@@ -12,7 +12,11 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "market-umbrellas", label: "Market umbrellas", optionHint: "e.g. 2.4m, printed on all panels" },
   { slug: "other", label: "Something else or a mix", optionHint: "Tell us the size or option you're after" },
 ];
-export const quoteHref = (slug?: string, size?: string) =>
-  slug
-    ? `/quote/?product=${encodeURIComponent(slug)}${size ? `&size=${encodeURIComponent(size)}` : ""}`
-    : "/quote/";
+/** Quote form link, pre-filling product and size, plus extras like option, sides and qty. */
+export const quoteHref = (slug?: string, size?: string, extra: Record<string, string | number> = {}) => {
+  if (!slug) return "/quote/";
+  const q = new URLSearchParams({ product: slug });
+  if (size) q.set("size", size);
+  for (const [k, v] of Object.entries(extra)) q.set(k, String(v));
+  return `/quote/?${q.toString()}`;
+};

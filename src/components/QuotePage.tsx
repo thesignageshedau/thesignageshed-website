@@ -6,6 +6,7 @@ import QuoteItem, { MAX_ITEMS } from "./QuoteItem";
 import {
   ArtworkFields,
   DeliveryFields,
+  ErrorSummary,
   FormSubmitHidden,
   SubmitArea,
   input,
@@ -24,7 +25,7 @@ export default function QuotePage() {
   const product = first.product;
   const size = first.size;
   const chosen = QUOTE_PRODUCTS.find((p) => p.slug === product);
-  const { status, error, onSubmit } = useQuoteSubmit("general", () => `General quote: ${chosen?.label ?? "none"}${items.length > 1 ? ` + ${items.length - 1} more` : ""}`);
+  const { status, error, onSubmit, onInput, fieldErrors } = useQuoteSubmit("general", () => `General quote: ${chosen?.label ?? "none"}${items.length > 1 ? ` + ${items.length - 1} more` : ""}`);
   const checkHref = `/check-artwork/${product ? `?product=${product}${size ? `&size=${encodeURIComponent(size)}` : ""}` : ""}`;
 
   return (
@@ -44,11 +45,15 @@ export default function QuotePage() {
             action={FORMSUBMIT_ACTION}
             method="POST"
             onSubmit={onSubmit}
+            onInput={onInput}
+            onChange={onInput}
+            noValidate
             data-form="general"
             data-product-code={product || "other"}
             className="space-y-6"
           >
             <FormSubmitHidden subject={SUBJECT} />
+            <ErrorSummary errors={fieldErrors} />
             {artworkNote && <input type="hidden" name="Artwork check" value={artworkNote} />}
             {artworkNote && (
               <p className="rounded-md border-2 border-charcoal/15 bg-cream px-4 py-3 text-sm">

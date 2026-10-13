@@ -15,14 +15,103 @@ export const label = "block text-sm font-bold";
 export const input =
   "mt-1 block w-full rounded-md border-2 border-charcoal/25 bg-white px-3 py-2.5 text-base text-charcoal focus:border-rust-dark focus:outline-none disabled:bg-cream-light disabled:text-charcoal/60";
 
+export type FieldError = { id: string; message: string };
+type Field = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+/** Plain-English name of a field: its label text (without "(optional)"/hints) or its group's aria-label. */
+function fieldName(el: Field): string {
+  const group = el.type === "radio" ? el.closest("[role=radiogroup]") : null;
+  if (group) return group.getAttribute("aria-label") ?? "this";
+  const lab = el.closest("label") ?? (el.id ? document.querySelector(`label[for="${el.id}"]`) : null);
+  const text = lab ? [...lab.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(" ") : "";
+  return text.replace(/\s+/g, " ").trim() || el.name;
+}
+
+function messageFor(el: Field): string {
+  const name = fieldName(el);
+  const v = el.validity;
+  if (v.valueMissing) return el.tagName === "SELECT" || el.type === "radio" ? `Choose ${name.toLowerCase()}` : `Enter ${name.toLowerCase()}`;
+  if (v.typeMismatch && el.type === "email") return "Enter a valid email address, like name@example.com";
+  if (v.patternMismatch && el.name.endsWith("postcode")) return "Enter a 4 digit postcode";
+  if (v.patternMismatch && el.type === "tel") return "Enter a phone number, like 0412 345 678";
+  if (v.rangeUnderflow || v.rangeOverflow || v.stepMismatch || v.badInput) return `Enter a whole number for ${name.toLowerCase()}`;
+  return el.validationMessage || `Check ${name.toLowerCase()}`;
+}
+
+/** Marks invalid fields (red border plus a message under them) and returns the list for the summary. */
+export function validateForm(form: HTMLFormElement): FieldError[] {
+  form.querySelectorAll("[data-error]").forEach((n) => n.removeAttribute("data-error"));
+  form.querySelectorAll("[aria-invalid]").forEach((n) => n.removeAttribute("aria-invalid"));
+  const errors: FieldError[] = [];
+  const seen = new Set<string>();
+  let i = 0;
+  for (const el of [...form.elements] as Field[]) {
+    if (!("validity" in el) || !el.willValidate || el.validity.valid || seen.has(el.name)) continue;
+    seen.add(el.name);
+    if (!el.id) el.id = `qf-${(i++).toString(36)}-${el.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+    const message = messageFor(el);
+    const box = el.type === "radio" ? el.closest("[role=radiogroup]") : el.closest("label");
+    (box ?? el).setAttribute("data-error", message);
+    el.setAttribute("aria-invalid", "true");
+    errors.push({ id: el.id, message });
+  }
+  return errors;
+}
+
+/** Error summary shown above the form after a failed submit; each item jumps to its field. */
+export function ErrorSummary({ errors }: { errors: FieldError[] }) {
+  if (!errors.length) return null;
+  return (
+    <div role="alert" tabIndex={-1} id="form-errors" className="rounded-lg border-2 border-red-700 bg-red-50 p-4 text-red-900">
+      <p className="font-bold">
+        {errors.length === 1 ? "1 thing to fix" : `${errors.length} things to fix`} before we can send your request:
+      </p>
+      <ul className="mt-2 list-disc space-y-1 pl-5">
+        {errors.map((e) => (
+          <li key={e.id}>
+            <a
+              href={`#${e.id}`}
+              className="font-semibold underline underline-offset-2"
+              onClick={(ev) => {
+                ev.preventDefault();
+                document.getElementById(e.id)?.focus();
+              }}
+            >
+              {e.message}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /** Sends the form in the background and goes to the thank-you page on success. */
 export function useQuoteSubmit(eventName: string, describe: () => string) {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
+  function onInput(e: FormEvent<HTMLFormElement>) {
+    // Clear a field's error as soon as it's fixed.
+    const el = e.target as Field;
+    if (!el.getAttribute?.("aria-invalid") || !el.validity?.valid) return;
+    el.removeAttribute("aria-invalid");
+    (el.type === "radio" ? el.closest("[role=radiogroup]") : el.closest("label"))?.removeAttribute("data-error");
+    setFieldErrors((xs) => xs.filter((x) => x.id !== el.id && !(el.type === "radio" && x.message.startsWith("Choose"))));
+  }
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    if (!form.reportValidity()) return;
+    const errs = validateForm(form);
+    setFieldErrors(errs);
+    if (errs.length) {
+      requestAnimationFrame(() => {
+        const box = document.getElementById("form-errors");
+        box?.scrollIntoView({ block: "center" });
+        box?.focus();
+      });
+      return;
+    }
     setStatus("sending");
     setError("");
     const data = quotePayload(form);
@@ -54,7 +143,7 @@ export function useQuoteSubmit(eventName: string, describe: () => string) {
       setStatus("error");
     }
   }
-  return { status, error, onSubmit };
+  return { status, error, onSubmit, onInput, fieldErrors };
 }
 
 /** Hidden FormSubmit settings plus the spam honeypot. */
@@ -110,8 +199,8 @@ export function DeliveryFields() {
         <a className="font-semibold text-rust-dark underline" href="/delivery/">How delivery works</a>
       </p>
       <label className={label}>
-        Delivery suburb
-        <input name="Delivery suburb" required autoComplete="address-level2" placeholder="e.g. Parramatta" maxLength={80} className={input} />
+        Delivery suburb <span className="font-normal text-charcoal/70">(optional)</span>
+        <input name="Delivery suburb" autoComplete="address-level2" placeholder="e.g. Parramatta" maxLength={80} className={input} />
       </label>
       <label className={label}>
         State

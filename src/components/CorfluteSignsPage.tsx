@@ -196,6 +196,10 @@ export default function CorfluteSignsPage() {
                 Get a quote
               </a>
             </div>
+            <p className="mt-4 text-sm text-cream/85">
+              No artwork? Send your logo and wording and we'll set it up.{" "}
+              <a href="/artwork-help/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Artwork help</a>
+            </p>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {money(FROM_PRICE)} for up to 5 signs ·
             </p>
