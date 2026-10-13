@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="md:justify-self-end">
           <ul className="flex flex-wrap gap-x-6 gap-y-1 font-semibold">
             <li>
-              <a href="#/delivery" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Delivery</a>
+              <a href="/delivery/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Delivery</a>
             </li>
             <li>
-              <a href="#/artwork-help" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Artwork help</a>
+              <a href="/artwork-help/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Artwork help</a>
             </li>
             <li>
               <a href={`mailto:${SHOP.email}`} className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Email us</a>
@@ -26,7 +26,7 @@ export default function Footer() {
             <ul className="flex flex-wrap gap-x-5 gap-y-0 text-sm font-semibold">
               {LEGAL_PAGES.map((p) => (
                 <li key={p.slug}>
-                  <a href={`#/${p.slug}`} className="inline-flex min-h-11 items-center text-cream/85 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">
+                  <a href={`/${p.slug}/`} className="inline-flex min-h-11 items-center text-cream/85 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">
                     {p.label}
                   </a>
                 </li>
@@ -35,7 +35,7 @@ export default function Footer() {
           </nav>
           <p className="mt-3 text-sm text-cream/70">
             © {new Date().getFullYear()} The Signage Shed.{" "}
-            <a href="#/for-sign-shops" className="underline underline-offset-4 hover:text-white">Digital products for sign shops</a>.
+            <a href="/for-sign-shops/" className="underline underline-offset-4 hover:text-white">Digital products for sign shops</a>.
             General information only, not tax or financial advice. Excel and Google Sheets are trademarks of their owners.
           </p>
           <p className="mt-2 text-sm text-cream/70">The Signage Shed Co · ABN 51 879 534 008 · Prices in AUD. Not registered for GST.</p>

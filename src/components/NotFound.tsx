@@ -11,9 +11,9 @@ export default function NotFound() {
           Sorry, that page doesn't exist. It may have moved, or the link has a typo.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="#top" className="btn-rust">Home page</a>
+          <a href="/" className="btn-rust">Home page</a>
           <a href={homeSection("signage")} className="btn-outline">See our signage</a>
-          <a href="#/quote" className="btn-outline">Request a quote</a>
+          <a href="/quote/" className="btn-outline">Request a quote</a>
         </div>
       </div>
     </section>

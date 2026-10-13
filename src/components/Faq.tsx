@@ -9,11 +9,11 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How do I get a quote?",
-    a: <>Fill in our <a className={link} href="#/quote">quote form</a>, or use the Quote button next to any price on a product page. Tell us the product, size, quantity and when you need it. We reply by email, usually within one business day.</>,
+    a: <>Fill in our <a className={link} href="/quote/">quote form</a>, or use the Quote button next to any price on a product page. Tell us the product, size, quantity and when you need it. We reply by email, usually within one business day.</>,
   },
   {
     q: "What about artwork and templates?",
-    a: <>Send print-ready artwork at the finished size, or send us your logo and wording and we'll set it up for you. If you'd like to design it yourself, download the guide and template for your product from our <a className={link} href="#/artwork-help">artwork help page</a>.</>,
+    a: <>Send print-ready artwork at the finished size, or send us your logo and wording and we'll set it up for you. If you'd like to design it yourself, download the guide and template for your product from our <a className={link} href="/artwork-help/">artwork help page</a>.</>,
   },
   {
     q: "Will I see a proof before it's printed?",
@@ -25,7 +25,7 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Do you deliver?",
-    a: <>Yes, Australia-wide. Delivery is quoted separately, based on your postcode, and included in your quote. See <a className={link} href="#/delivery">how delivery works</a>.</>,
+    a: <>Yes, Australia-wide. Delivery is quoted separately, based on your postcode, and included in your quote. See <a className={link} href="/delivery/">how delivery works</a>.</>,
   },
   {
     q: "How do I pay?",

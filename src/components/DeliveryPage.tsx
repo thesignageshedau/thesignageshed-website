@@ -56,8 +56,8 @@ export default function DeliveryPage() {
       <FaqSchema page="delivery" />
 
       <HelpCta title="Get a delivered price">
-        <a href="#/quote" className="btn-rust" data-track="delivery-quote">Get a quote</a>
-        <a href="#/artwork-help" className="btn-ghost-light">Artwork help</a>
+        <a href="/quote/" className="btn-rust" data-track="delivery-quote">Get a quote</a>
+        <a href="/artwork-help/" className="btn-ghost-light">Artwork help</a>
       </HelpCta>
     </>
   );

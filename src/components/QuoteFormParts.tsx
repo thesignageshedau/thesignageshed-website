@@ -107,7 +107,7 @@ export function DeliveryFields() {
       <legend className="mb-3 font-display text-xl tracking-wide">Delivery</legend>
       <p className="-mt-1 text-sm text-charcoal/80 sm:col-span-2">
         We deliver Australia-wide and quote freight from your postcode.{" "}
-        <a className="font-semibold text-rust-dark underline" href="#/delivery">How delivery works</a>
+        <a className="font-semibold text-rust-dark underline" href="/delivery/">How delivery works</a>
       </p>
       <label className={label}>
         Delivery suburb
@@ -149,13 +149,13 @@ export function DeliveryFields() {
 }
 
 /** Artwork status, link and notes (all forms). Files can't go through the form, so we ask for a link or a reply. */
-export function ArtworkFields({ notesHint, checkHref = "#/check-artwork" }: { notesHint: string; checkHref?: string }) {
+export function ArtworkFields({ notesHint, checkHref = "/check-artwork/" }: { notesHint: string; checkHref?: string }) {
   return (
     <fieldset className="grid gap-4">
       <legend className="mb-3 font-display text-xl tracking-wide">Artwork</legend>
       <p className="-mt-1 text-sm text-charcoal/80">
         Not sure about bleed, resolution or file types?{" "}
-        <a className="font-semibold text-rust-dark underline" href="#/artwork-help">Read our artwork help</a>
+        <a className="font-semibold text-rust-dark underline" href="/artwork-help/">Read our artwork help</a>
       </p>
       <div role="radiogroup" aria-label="Artwork status" className={label}>
         Artwork status

@@ -144,7 +144,7 @@ export default function ArtworkHelpPage() {
       <HelpSection id="send" title="How to send your files">
         <p>Files can't be attached to our quote form, so either:</p>
         <ul>
-          <li>paste a <strong>link</strong> (Google Drive, WeTransfer or Dropbox) into the Artwork link field on the <a className={helpLink} href="#/quote">quote form</a>, or</li>
+          <li>paste a <strong>link</strong> (Google Drive, WeTransfer or Dropbox) into the Artwork link field on the <a className={helpLink} href="/quote/">quote form</a>, or</li>
           <li><strong>reply to our quote email</strong> with your files attached, or email <a className={helpLink} href={`mailto:${QUOTE_EMAIL}`}>{QUOTE_EMAIL}</a>.</li>
         </ul>
         <p>No artwork yet? Send your logo and wording and we'll set it up for you. You'll always see a digital proof before we print.</p>
@@ -180,7 +180,7 @@ export default function ArtworkHelpPage() {
 
       <HelpCta title="Ready to check your file?">
         <a href={CHECK_ARTWORK_HREF} className="btn-rust">Check your artwork</a>
-        <a href="#/quote" className="btn-ghost-light" data-track="artwork-help-quote">Get a quote</a>
+        <a href="/quote/" className="btn-ghost-light" data-track="artwork-help-quote">Get a quote</a>
       </HelpCta>
     </>
   );

@@ -16,7 +16,7 @@ export default function Hero() {
             your artwork. Prices online, quoted fast and delivered Australia-wide.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#/quote" className="btn-rust" data-track="quote-hero">
+            <a href="/quote/" className="btn-rust" data-track="quote-hero">
               Get a quote
             </a>
             <a href="#signage" className="btn-ghost-light" data-track="signage-hero">

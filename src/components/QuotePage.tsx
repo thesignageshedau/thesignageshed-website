@@ -28,7 +28,7 @@ const isCustomSize = (product: string, size: string) =>
 const tidy = (n: number) => String(Math.round(n * 100) / 100);
 
 function hashParams() {
-  return new URLSearchParams(window.location.hash.split("?")[1] ?? "");
+  return new URLSearchParams(window.location.search);
 }
 function productFromHash() {
   const slug = hashParams().get("product") ?? "";
@@ -132,7 +132,7 @@ export default function QuotePage() {
           ? `From ${money(sizeChoice.from)} ${spec!.priceNote}.`
           : "";
   const { status, error, onSubmit } = useQuoteSubmit("general", () => `General quote: ${chosen?.label ?? "none"}`);
-  const checkHref = `#/check-artwork${product ? `?product=${product}${size ? `&size=${encodeURIComponent(size)}` : ""}` : ""}`;
+  const checkHref = `/check-artwork/${product ? `?product=${product}${size ? `&size=${encodeURIComponent(size)}` : ""}` : ""}`;
 
   return (
     <section className="bg-cream py-14 sm:py-16">

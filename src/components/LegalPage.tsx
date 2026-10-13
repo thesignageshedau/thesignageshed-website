@@ -4,7 +4,7 @@ export default function LegalPage({ doc }: { doc: LegalDoc }) {
   return (
     <section className="py-12 sm:py-16">
       <article className="mx-auto max-w-3xl px-4 sm:px-6">
-        <a href="#top" className="text-sm font-semibold text-rust-dark underline underline-offset-4 hover:text-rust-deeper">
+        <a href="/" className="text-sm font-semibold text-rust-dark underline underline-offset-4 hover:text-rust-deeper">
           ← Back to The Signage Shed
         </a>
         <div className="rule mb-4 mt-8" />

@@ -14,5 +14,5 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
 ];
 export const quoteHref = (slug?: string, size?: string) =>
   slug
-    ? `#/quote?product=${encodeURIComponent(slug)}${size ? `&size=${encodeURIComponent(size)}` : ""}`
-    : "#/quote";
+    ? `/quote/?product=${encodeURIComponent(slug)}${size ? `&size=${encodeURIComponent(size)}` : ""}`
+    : "/quote/";

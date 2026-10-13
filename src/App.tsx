@@ -77,13 +77,12 @@ const slugs = [
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
-  return window.location.hash.startsWith("#/") && routeFromHash() === null;
+  return window.location.pathname !== "/" && routeFromHash() === null;
 }
 /** Old home page anchors for the sign shop content now live on #/for-sign-shops. */
-const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
+export const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
 function routeFromHash(): Route | null {
-  if (SIGN_SHOP_SECTIONS.includes(window.location.hash.slice(1))) return "for-sign-shops";
-  const m = window.location.hash.match(/^#\/([a-z-]+)\/?(?:\?.*)?$/);
+  const m = window.location.pathname.match(/^\/([a-z-]+)\/?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
@@ -103,6 +102,8 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "artwork-help": "Artwork Help: Bleed, Safe Area, Resolution and File Setup | The Signage Shed",
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
+
+const SITE_URL = "https://thesignageshed.au/";
 
 export default function App() {
   const [route, setRoute] = useState<Route | null>(routeFromHash);
@@ -126,13 +127,24 @@ export default function App() {
       : missing
         ? "Page not found | The Signage Shed"
         : (route && PAGE_TITLES[route]) || SITE_COPY.title;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        (route && PAGE_DESCRIPTIONS[route]) || SITE_COPY.description,
-      );
-    }
+    const desc = doc?.description ?? ((route && PAGE_DESCRIPTIONS[route]) || SITE_COPY.description);
+    const url = `${SITE_URL}${route ? `${route}/` : ""}`;
+    const set = (sel: string, attr: string, val: string) => document.querySelector(sel)?.setAttribute(attr, val);
+    set('meta[name="description"]', "content", desc);
+    for (const s of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) set(s, "content", document.title);
+    for (const s of ['meta[property="og:description"]', 'meta[name="twitter:description"]']) set(s, "content", desc);
+    if (missing) document.querySelector('link[rel="canonical"]')?.remove();
+    else set('link[rel="canonical"]', "href", url);
+    set('meta[property="og:url"]', "content", url);
+    let robots = document.querySelector('meta[name="robots"]');
+    if (missing || route === "quote-thanks") {
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.setAttribute("name", "robots");
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute("content", "noindex");
+    } else robots?.remove();
   }, [doc, route, missing]);
 
   // After switching page: other pages start at the top; on the home page, scroll to the

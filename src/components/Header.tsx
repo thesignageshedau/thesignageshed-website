@@ -5,7 +5,7 @@ import { quoteHref, QUOTE_PRODUCTS } from "../data/quoteProducts";
 /** Product slug of the page we're on (#/pull-up-banners), so the quote button pre-selects it. */
 function useProductSlug() {
   const read = () => {
-    const m = window.location.hash.match(/^#\/([a-z-]+)/);
+    const m = window.location.pathname.match(/^\/([a-z-]+)/);
     const slug = m?.[1] ?? "";
     return QUOTE_PRODUCTS.some((p) => p.slug === slug && slug !== "other") ? slug : undefined;
   };
@@ -43,9 +43,9 @@ const products: { href: string; label: string }[] = [
   { href: MARKET_UMBRELLAS_HREF, label: "Market umbrellas" },
 ];
 const links: { href: string; label: string; show: string }[] = [
-  { href: "#/check-artwork", label: "Check artwork", show: "hidden md:block" },
-  { href: "#faq", label: "FAQ", show: "hidden lg:block" },
-  { href: "#contact", label: "Contact", show: "hidden sm:block" },
+  { href: "/check-artwork/", label: "Check artwork", show: "hidden md:block" },
+  { href: "/#faq", label: "FAQ", show: "hidden lg:block" },
+  { href: "/#contact", label: "Contact", show: "hidden sm:block" },
 ];
 const linkClass =
   "inline-flex min-h-11 items-center whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
@@ -122,7 +122,7 @@ function ProductsMenu() {
         ))}
         <li className="mt-1 border-t border-cream/20 pt-1">
           <a
-            href="#/check-artwork"
+            href="/check-artwork/"
             onClick={() => setOpen(false)}
             className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
           >
@@ -140,7 +140,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b-4 border-rust bg-charcoal text-cream">
       <div className="mx-auto flex max-w-site items-center justify-between gap-2 px-4 py-3 min-[400px]:gap-4 sm:px-6">
         <a
-          href="#top"
+          href="/"
           className="flex shrink-0 items-center gap-3"
           aria-label="The Signage Shed, back to top"
         >

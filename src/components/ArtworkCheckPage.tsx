@@ -8,7 +8,7 @@ import { trackEvent } from "../lib/analytics";
 import { input, label } from "./QuoteFormParts";
 
 function params() {
-  return new URLSearchParams(window.location.hash.split("?")[1] ?? "");
+  return new URLSearchParams(window.location.search);
 }
 
 const BADGE: Record<Status, { text: string; cls: string; icon: string }> = {
@@ -114,7 +114,7 @@ export default function ArtworkCheckPage() {
     ? `${quoteHref(spec.product, spec.quoteSize)}&artwork=${encodeURIComponent(
         result && verdict ? `${result.fileName} (${spec.label}): ${SUMMARY[verdict].title.toLowerCase()} in the online check` : "",
       )}`
-    : "#/quote";
+    : "/quote/";
 
   return (
     <div>

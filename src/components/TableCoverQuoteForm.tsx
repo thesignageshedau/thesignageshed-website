@@ -266,7 +266,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
         )}
       </div>
 
-      <DeliveryArtworkFields notesHint="Event, colours, table measurements, anything we should know" checkHref="#/check-artwork?product=table-covers" />
+      <DeliveryArtworkFields notesHint="Event, colours, table measurements, anything we should know" checkHref="/check-artwork/?product=table-covers" />
 
       <fieldset className="grid gap-4 sm:grid-cols-2">
         <legend className="mb-3 font-display text-xl tracking-wide">

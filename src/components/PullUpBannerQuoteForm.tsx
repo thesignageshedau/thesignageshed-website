@@ -233,7 +233,7 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
         )}
       </div>
 
-      <DeliveryArtworkFields notesHint="Event, venue, colours, anything we should know" checkHref="#/check-artwork?product=pull-up-banners" />
+      <DeliveryArtworkFields notesHint="Event, venue, colours, anything we should know" checkHref="/check-artwork/?product=pull-up-banners" />
 
       <fieldset className="grid gap-4 sm:grid-cols-2">
         <legend className="mb-3 font-display text-xl tracking-wide">

@@ -260,7 +260,7 @@ export default function MediaWallQuoteForm({ choice, setChoice }: Props) {
         )}
       </div>
 
-      <DeliveryArtworkFields notesHint="Event, colours, anything we should know" checkHref="#/check-artwork?product=media-walls" />
+      <DeliveryArtworkFields notesHint="Event, colours, anything we should know" checkHref="/check-artwork/?product=media-walls" />
 
       <fieldset className="grid gap-4 sm:grid-cols-2">
         <legend className="mb-3 font-display text-xl tracking-wide">
