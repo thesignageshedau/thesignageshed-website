@@ -179,7 +179,7 @@ export default function QuotePage() {
                           ))
                         ),
                       )}
-                      <option value={OTHER}>{OTHER_LABEL}</option>
+                      {spec.allowOther && <option value={OTHER}>{OTHER_LABEL}</option>}
                     </select>
                   </label>
                   {options.length > 0 && (
@@ -199,7 +199,7 @@ export default function QuotePage() {
                             {o.label}
                           </option>
                         ))}
-                        <option value={OTHER}>{OTHER_LABEL}</option>
+                        {spec.allowOther && <option value={OTHER}>{OTHER_LABEL}</option>}
                       </select>
                     </label>
                   )}

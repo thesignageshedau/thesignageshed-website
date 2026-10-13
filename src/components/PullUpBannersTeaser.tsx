@@ -27,8 +27,8 @@ export default function PullUpBannersTeaser() {
                 Pull up banners, printed with your brand
               </h2>
               <p className="mt-3 text-lg leading-relaxed">
-                Luxury and double sided pull up banners, 850mm or 1200mm wide,
-                plus a Shopping Centre size. Your banner printed and fitted, with
+                Luxury and double sided pull up banners, 850mm or 1200mm wide.
+                Your banner printed and fitted, with
                 a carry bag.
               </p>
               <p className="mt-4 font-slab text-2xl font-bold">

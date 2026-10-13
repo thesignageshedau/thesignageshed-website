@@ -71,14 +71,6 @@ export const ITEMS: AFrameItem[] = [
     price: [255, 255, 235, 220, 220],
   },
   {
-    id: "printed-900x1200",
-    type: "printed",
-    label: "Printed aluminium A-frame 900 × 1200mm",
-    size: "900 × 1200mm",
-    includes: "Frame with 2 printed faces, gloss laminated",
-    price: [430, 430, 400, 375, 375],
-  },
-  {
     id: "insert-600x900",
     type: "insert",
     label: "Insert A-frame 600 × 900mm",
@@ -94,23 +86,6 @@ export const ITEMS: AFrameItem[] = [
     includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
     replacement: true,
     price: [115, 60, 30, 20, 15],
-  },
-  {
-    id: "insert-900x1200",
-    type: "insert",
-    label: "Insert A-frame 900 × 1200mm",
-    size: "900 × 1200mm",
-    includes: "Frame plus 2 printed corflute inserts (one each side)",
-    price: [320, 305, 280, 260, 250],
-  },
-  {
-    id: "insert-900x1200-inserts",
-    type: "insert",
-    label: "Replacement inserts for 900 × 1200mm Insert A-frame (pair)",
-    size: "900 × 1200mm",
-    includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
-    replacement: true,
-    price: [115, 60, 40, 30, 25],
   },
   {
     id: "real-estate-600x450",
@@ -136,14 +111,6 @@ export const ITEMS: AFrameItem[] = [
     size: "600 × 950mm",
     includes: "Printed front and back, with legs, no metal frame",
     price: [105, 105, 65, 45, 35],
-  },
-  {
-    id: "folding-700x1100",
-    type: "folding",
-    label: "Folding corflute A-frame 700 × 1100mm",
-    size: "700 × 1100mm",
-    includes: "Printed front and back, with legs, no metal frame",
-    price: [155, 155, 95, 65, 50],
   },
 ];
 
@@ -197,14 +164,12 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
     title: "Printed aluminium A-frames",
     items: [
       dl("600 × 900mm", "printed-a-frame-600x900mm"),
-      dl("900 × 1200mm", "printed-a-frame-900x1200mm"),
     ],
   },
   {
     title: "Insert A-frames and replacement inserts",
     items: [
       dl("600 × 900mm insert", "insert-a-frame-600x900mm"),
-      dl("900 × 1200mm insert", "insert-a-frame-900x1200mm"),
     ],
   },
   {
@@ -215,7 +180,6 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
     title: "Folding corflute A-frames",
     items: [
       dl("600 × 950mm", "folding-corflute-a-frame-600x950mm"),
-      dl("700 × 1100mm", "folding-corflute-a-frame-700x1100mm"),
     ],
   },
 ];

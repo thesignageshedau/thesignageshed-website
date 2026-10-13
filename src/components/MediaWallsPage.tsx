@@ -75,8 +75,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        There's nothing to pay online. Once you're happy with the quote and the
-        order is confirmed, we email you an invoice to pay by bank transfer.
+        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
       </>
     ),
   },
@@ -153,7 +152,7 @@ export default function MediaWallsPage() {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
               Fabric sock and frame media walls, printed with your artwork.
-              Six sizes from 1.5m to 6m wide, all 2.2m tall, single or
+              Three sizes from 2.4m to 4m wide, all 2.2m tall, single or
               double-sided, with optional LED lights. Quick to set up, light to
               carry.
             </p>
@@ -269,15 +268,6 @@ export default function MediaWallsPage() {
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3 sm:px-4 font-slab text-sm font-bold sm:text-base"
-                  >
-                    Frame only
-                    <span className="hidden text-xs font-normal text-cream/75 sm:block">
-                      with bag, no print
-                    </span>
-                  </th>
-                  <th
-                    scope="col"
                     className="hidden px-2 py-3 sm:table-cell sm:px-4"
                   >
                     <span className="sr-only">Quote</span>
@@ -299,7 +289,6 @@ export default function MediaWallsPage() {
                     <td className="px-2 py-3 sm:px-4">
                       {aud(s.fabric[sides])}
                     </td>
-                    <td className="px-2 py-3 sm:px-4">{aud(s.frameOnly)}</td>
                     <td className="hidden px-2 py-3 text-right sm:table-cell sm:px-4">
                       <button
                         type="button"

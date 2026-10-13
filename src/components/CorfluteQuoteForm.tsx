@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { FORMSUBMIT_ACTION } from "../data/mediaWalls";
 import {
   EXTRA_DESIGN,
   EYELETS,
   EYELET_EACH,
   SIDES,
+  ORIENTATIONS,
   SIZES,
   THICKNESSES,
   estimate,
@@ -31,9 +33,10 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
   const est = estimate(choice);
   const update = (patch: Partial<QuoteChoice>) =>
     setChoice(normalise({ ...choice, ...patch }));
+  const [orientation, setOrientation] = useState<string>("Portrait");
   const size = SIZES.find((s) => s.id === choice.size);
   const sizeLabel = size
-    ? `${size.label} (${size.orientation.toLowerCase()})`
+    ? `${size.label} (${orientation.toLowerCase()})`
     : "";
   const sidesLabel = SIDES.find((s) => s.id === choice.sides)?.label ?? "";
   const thickLabel =
@@ -64,6 +67,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
       />
       <input type="hidden" name="Thickness" value={thickLabel} />
       <input type="hidden" name="Size" value={sizeLabel} />
+      <input type="hidden" name="Orientation" value={orientation} />
       <input type="hidden" name="Printing" value={sidesLabel} />
       <input type="hidden" name="Eyelets" value={eyeletLabel} />
       <input
@@ -89,12 +93,26 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
             </option>
             {SIZES.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.label} ({s.orientation.toLowerCase()})
+                {s.label}
               </option>
             ))}
           </select>
         </label>
         <label className={label}>
+          Orientation
+          <select
+            className={input}
+            value={orientation}
+            onChange={(e) => setOrientation(e.target.value)}
+          >
+            {ORIENTATIONS.map((o) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={THICKNESSES.length > 1 ? label : "hidden"}>
           Thickness
           <select
             className={input}

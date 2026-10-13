@@ -35,8 +35,8 @@ import {
 
 const types = [
   {
-    title: "Premium corflute, 5mm or 3mm",
-    text: "Australian-made corrugated plastic: light and waterproof. 5mm is our standard, stiff enough for wind and rain. 3mm is lighter and costs less on most sizes, for short-term signs. Printed in full colour.",
+    title: "Premium 5mm corflute",
+    text: "Australian-made corrugated plastic: light, waterproof and stiff enough for wind and rain. Printed in full colour, portrait or landscape.",
   },
   {
     title: "Single or double sided",
@@ -63,18 +63,6 @@ const faqs: { q: string; a: ReactNode }[] = [
         signs the price is per sign, and it gets cheaper at 20, 50 and 100
         signs. Each design in a bundle can be the same or different (see extra
         designs below).
-      </>
-    ),
-  },
-  {
-    q: "5mm or 3mm?",
-    a: (
-      <>
-        5mm is our standard: it's noticeably stiffer, so it stays flat in the
-        wind and lasts longer outdoors. Choose it for signs on stakes, fences
-        and building sites, or anything that needs to last. 3mm is lighter and a
-        little cheaper on bigger runs, and suits short-term and indoor signs,
-        like events, open homes, sales and directions.
       </>
     ),
   },
@@ -171,8 +159,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        There's nothing to pay online. Once you're happy with the quote and the
-        order is confirmed, we email you an invoice to pay by bank transfer.
+        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
       </>
     ),
   },
@@ -275,7 +262,7 @@ export default function CorfluteSignsPage() {
             ))}
           </div>
           <p className="mt-5 text-sm">
-            Prices include printing your artwork on 5mm or 3mm corflute. Stakes
+            Prices include printing your artwork on 5mm corflute. Stakes
             and frames aren't included. Eyelets and extra designs are optional
             extras.
           </p>
@@ -313,7 +300,7 @@ export default function CorfluteSignsPage() {
           <div
             role="radiogroup"
             aria-label="Corflute thickness"
-            className="mt-8 inline-flex rounded-lg border-2 border-charcoal bg-white p-1"
+            className={`mt-8 rounded-lg border-2 border-charcoal bg-white p-1 ${THICKNESSES.length > 1 ? "inline-flex" : "hidden"}`}
           >
             {THICKNESSES.map((t) => (
               <button
@@ -370,7 +357,7 @@ export default function CorfluteSignsPage() {
                         >
                           {s.label}
                           <span className="block text-xs font-normal text-charcoal/70">
-                            {s.orientation}
+                            portrait or landscape
                           </span>
                         </th>
                         {COLUMNS.map((c) => (

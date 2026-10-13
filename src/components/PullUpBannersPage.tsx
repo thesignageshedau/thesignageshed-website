@@ -27,10 +27,6 @@ const types = [
     title: "Double sided pull up banner",
     text: "Two printed banners, one rolling out of each side of the base, so it works in the middle of a room or a walkway. Silver base, 3 year warranty.",
   },
-  {
-    title: "Shopping Centre size",
-    text: "Both stands come in a Shopping Centre size that stands no more than 1400mm tall including the base, to suit centres with height limits.",
-  },
 ];
 
 const faqs: { q: string; a: ReactNode }[] = [
@@ -50,10 +46,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     a: (
       <>
         850 × 2000mm is the standard size and fits most spaces. 1200mm wide gives
-        you more room for your message. 1500mm tall stands suit tabletops,
-        counters and low ceilings. If your venue has a height limit, choose the
-        Shopping Centre size, which stands no more than 1400mm tall including
-        the base.
+        you more room for your message. Both are 2000mm tall.
       </>
     ),
   },
@@ -99,8 +92,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        There's nothing to pay online. Once you're happy with the quote and the
-        order is confirmed, we email you an invoice to pay by bank transfer.
+        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
       </>
     ),
   },
@@ -177,8 +169,7 @@ export default function PullUpBannersPage() {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
               Luxury and double sided pull up banners, printed with your
-              artwork. 850mm or 1200mm wide, 2000mm or 1500mm tall, plus a
-              Shopping Centre size. Quick to set up, light to carry. {MATERIAL}
+              artwork. 850mm or 1200mm wide, 2000mm tall. Quick to set up, light to carry. {MATERIAL}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button

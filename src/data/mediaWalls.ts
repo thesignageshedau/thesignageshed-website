@@ -26,20 +26,6 @@ export type WallSize = {
 
 export const SIZES: WallSize[] = [
   {
-    id: "1.5x2.2",
-    label: "1.5m × 2.2m",
-    kit: { single: 405, double: 485 },
-    fabric: { single: 210, double: 280 },
-    frameOnly: 220,
-  },
-  {
-    id: "2x2.2",
-    label: "2m × 2.2m",
-    kit: { single: 450, double: 540 },
-    fabric: { single: 235, double: 310 },
-    frameOnly: 240,
-  },
-  {
     id: "2.4x2.2",
     label: "2.4m × 2.2m",
     kit: { single: 505, double: 605 },
@@ -60,13 +46,6 @@ export const SIZES: WallSize[] = [
     fabric: { single: 475, double: 620 },
     frameOnly: 345,
   },
-  {
-    id: "6x2.2",
-    label: "6m × 2.2m",
-    kit: { single: 1110, double: 1305 },
-    fabric: { single: 640, double: 825 },
-    frameOnly: 490,
-  },
 ];
 export const LED_PACK = 95; // clamp-on LED lights, pack of 2, fits any size
 export const FROM_PRICE = Math.min(...SIZES.map((s) => s.kit.single));
@@ -76,7 +55,6 @@ export type Item = "kit" | "fabric" | "frame";
 export const ITEMS: { id: Item; label: string }[] = [
   { id: "kit", label: "Complete kit (frame, printed fabric, carry bag)" },
   { id: "fabric", label: "Replacement printed fabric only" },
-  { id: "frame", label: "Frame only (no print)" },
 ];
 
 export type QuoteChoice = {

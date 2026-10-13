@@ -18,6 +18,8 @@ export type QuoteSpec = {
   sizes: SizeChoice[];
   /** Options for a chosen size. An empty list hides the options dropdown. */
   options: (size: string) => OptionChoice[];
+  /** Show "Other / not sure" in the dropdowns: only for products we can make to a custom size. */
+  allowOther?: boolean;
   /** How the price reads, e.g. "each" or "for up to 5 signs". */
   priceNote: string;
 };
@@ -31,7 +33,7 @@ const mediaWalls: QuoteSpec = {
   sizeLabel: "Size",
   optionLabel: "What you need",
   priceNote: "each",
-  sizes: MW.SIZES.map((s) => ({ id: s.id, label: s.label, from: minOf([s.kit.single, s.fabric.single, s.frameOnly]) })),
+  sizes: MW.SIZES.map((s) => ({ id: s.id, label: s.label, from: minOf([s.kit.single, s.fabric.single]) })),
   options: (size) => {
     const s = MW.SIZES.find((x) => x.id === size);
     return [
@@ -39,7 +41,6 @@ const mediaWalls: QuoteSpec = {
       { id: "kit-double", label: "Complete kit, double sided print", price: s?.kit.double ?? null },
       { id: "fabric-single", label: "Replacement fabric only, single sided", price: s?.fabric.single ?? null },
       { id: "fabric-double", label: "Replacement fabric only, double sided", price: s?.fabric.double ?? null },
-      { id: "frame", label: "Frame only (no print)", price: s?.frameOnly ?? null },
     ];
   },
 };
@@ -86,20 +87,21 @@ const pullUpBanners: QuoteSpec = {
 
 const corfluteSigns: QuoteSpec = {
   sizeLabel: "Size",
-  optionLabel: "Thickness and printing",
+  optionLabel: "Orientation and sides",
+  allowOther: true,
   priceNote: "for up to 5 signs",
   sizes: CF.SIZES.map((s) => ({
     id: s.id,
-    label: `${s.label} (${s.orientation.toLowerCase()})`,
+    label: s.label,
     from: minOf(CF.THICKNESSES.flatMap((t) => CF.SIDES.map((sd) => s.price[t.id][sd.id].upTo5))),
   })),
   options: (size) => {
     const s = CF.SIZES.find((x) => x.id === size);
-    return CF.THICKNESSES.flatMap((t) =>
+    return CF.ORIENTATIONS.flatMap((o) =>
       CF.SIDES.map((sd) => ({
-        id: `${t.id}-${sd.id}`,
-        label: `${t.short}, ${sd.label.toLowerCase()}`,
-        price: s?.price[t.id][sd.id].upTo5 ?? null,
+        id: `${o.toLowerCase()}-${sd.id}`,
+        label: `${o}, 5mm, ${sd.label.toLowerCase()}`,
+        price: s?.price["5mm"][sd.id].upTo5 ?? null,
       })),
     );
   },
@@ -122,8 +124,9 @@ const aFrames: QuoteSpec = {
   },
 };
 
-function gear(p: GearProduct, sizeLabel: string): QuoteSpec {
+function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec {
   return {
+    allowOther,
     sizeLabel,
     optionLabel: p.addon?.label ?? "Options",
     priceNote: "each",
@@ -153,7 +156,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   gazebos: gear(GAZEBOS, "Gazebo"),
   flags: gear(FLAGS, "Flag"),
   "market-umbrellas": gear(UMBRELLAS, "Umbrella"),
-  banners: gear(BANNERS, "Banner type and size"),
+  banners: gear(BANNERS, "Banner type and size", true),
 };
 
 export const money = (n: number) =>

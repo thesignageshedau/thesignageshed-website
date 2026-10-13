@@ -131,8 +131,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        There's nothing to pay online. Once you're happy with the quote and the
-        order is confirmed, we email you an invoice to pay by bank transfer.
+        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
       </>
     ),
   },

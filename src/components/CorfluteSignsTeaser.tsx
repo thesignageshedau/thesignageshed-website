@@ -26,7 +26,7 @@ export default function CorfluteSignsTeaser() {
                 Corflute signs, printed your way
               </h2>
               <p className="mt-3 text-lg leading-relaxed">
-                Premium corflute in 5 standard sizes, 5mm or 3mm, single or
+                Premium 5mm corflute in 3 standard sizes, portrait or landscape, single or
                 double sided. Up to 5 signs is one flat price, and the price per
                 sign drops on bigger runs.
               </p>

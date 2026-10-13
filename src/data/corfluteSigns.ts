@@ -8,12 +8,11 @@ export const PRICE_NOTES = [
   "Delivery quoted separately",
 ] as const;
 export const MATERIAL =
-  "Printed in full colour on premium Australian-made corflute, 5mm or 3mm thick, built for outdoor use.";
+  "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";
 
 export type Thickness = "5mm" | "3mm";
 export const THICKNESSES: { id: Thickness; label: string; short: string }[] = [
-  { id: "5mm", label: "5mm (standard)", short: "5mm" },
-  { id: "3mm", label: "3mm (lightweight)", short: "3mm" },
+  { id: "5mm", label: "5mm", short: "5mm" },
 ];
 
 export type Sides = "single" | "double";
@@ -79,39 +78,9 @@ export const SIZES: CorfluteSize[] = [
     },
   },
   {
-    id: "900x600",
-    label: "900 × 600mm",
-    orientation: "Landscape",
-    price: {
-      "5mm": {
-        single: p(180, 235, 24, 18, 14.5, 12.5),
-        double: p(230, 340, 34, 27, 23, 20),
-      },
-      "3mm": {
-        single: p(180, 200, 20, 15.5, 12, 10.5),
-        double: p(195, 290, 29, 24, 19.5, 17),
-      },
-    },
-  },
-  {
     id: "900x1200",
     label: "900 × 1200mm",
     orientation: "Portrait",
-    price: {
-      "5mm": {
-        single: p(235, 355, 36, 30, 25, 22),
-        double: p(340, 540, 54, 47, 40, 36),
-      },
-      "3mm": {
-        single: p(200, 305, 31, 26, 21, 18.5),
-        double: p(290, 465, 47, 40, 34, 31),
-      },
-    },
-  },
-  {
-    id: "1200x900",
-    label: "1200 × 900mm",
-    orientation: "Landscape",
     price: {
       "5mm": {
         single: p(235, 355, 36, 30, 25, 22),
@@ -157,9 +126,11 @@ export const EYELETS: { id: Eyelets; label: string; count: number }[] = [
   { id: "none", label: "No eyelets", count: 0 },
   { id: "4corners", label: "4 eyelets, one in each corner", count: 4 },
   { id: "2top", label: "2 eyelets, top corners", count: 2 },
-  { id: "2sides", label: "2 eyelets, middle of each side", count: 2 },
   { id: "custom", label: "Other positions (tell us in the notes)", count: 0 },
 ];
+
+// Every size can be printed portrait or landscape (same price); the quote form asks which.
+export const ORIENTATIONS = ["Portrait", "Landscape"] as const;
 
 // ---- quote form choices and the live estimate
 export type QuoteChoice = {
@@ -231,7 +202,7 @@ const round2 = (n: number) => Math.round(n * 100) / 100;
 const D = "downloads/corflute-signs/";
 export type Download = { label: string; guide: string; template: string };
 export const DOWNLOADS: Download[] = SIZES.map((s) => ({
-  label: `${s.label} (${s.orientation.toLowerCase()})`,
+  label: s.label,
   guide: `${D}corflute-sign-${s.id}mm-artwork-guide.pdf`,
   template: `${D}corflute-sign-${s.id}mm-artwork-template.pdf`,
 }));

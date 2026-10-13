@@ -36,7 +36,7 @@ const types = [
   },
   {
     title: "Table runners",
-    text: "A printed strip that runs over your own tablecloth. Front drop runners hang down the front; side drop runners hang over each end.",
+    text: "A printed strip that runs over your own tablecloth. It hangs down the front of the table. Any size on request.",
   },
 ];
 
@@ -68,8 +68,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "Which size do I need?",
     a: (
       <>
-        Measure your table top and match it to our sizes: 4ft tables are about
-        1220 × 610mm, 6ft about 1840 × 760mm and 8ft about 2450 × 760mm, all
+        Measure your table top and match it to our sizes: 6ft tables are about 1840 × 760mm and 8ft about 2450 × 760mm, all
         around 740mm high. For round tables, measure the diameter. Not sure? Put
         your table measurements in the notes and we'll check.
       </>
@@ -117,8 +116,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        There's nothing to pay online. Once you're happy with the quote and the
-        order is confirmed, we email you an invoice to pay by bank transfer.
+        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
       </>
     ),
   },
@@ -239,7 +237,7 @@ export default function TableCoversPage() {
         </tr>
       }
     >
-      {THROWS.map((t) => (
+      {THROWS.filter((t) => t[style]).map((t) => (
         <tr key={t.id} className="odd:bg-cream-light/60">
           <th scope="row" className={`${td} font-bold`}>
             {t.label}
@@ -247,8 +245,8 @@ export default function TableCoversPage() {
               fits about {t.fits}
             </span>
           </th>
-          <td className={priceTd}>{aud(t[style].four)}</td>
-          <td className={priceTd}>{aud(t[style].three)}</td>
+          <td className={priceTd}>{aud(t[style]!.four)}</td>
+          <td className={priceTd}>{aud(t[style]!.three)}</td>
           <td className={quoteTd}>
             <QuoteButton
               label={`${style} throw, ${t.label}`}
@@ -431,7 +429,7 @@ export default function TableCoversPage() {
                 </tr>
               }
             >
-              {(["front", "side"] as const).flatMap((k) => [
+              {(["front"] as const).flatMap((k) => [
                 ...RUNNERS[k].map((r) => (
                   <tr key={`${k}-${r.id}`} className="odd:bg-cream-light/60">
                     <th

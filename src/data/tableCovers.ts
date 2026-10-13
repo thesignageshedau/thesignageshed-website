@@ -15,16 +15,9 @@ export type ThrowSize = {
   label: string; // "6ft (1.8m) table"
   fits: string; // table top W × D
   fitted: { four: number; three: number };
-  loose: { four: number; three: number };
+  loose?: { four: number; three: number }; // loose throws: 6ft only
 };
 export const THROWS: ThrowSize[] = [
-  {
-    id: "4ft",
-    label: "4ft (1.2m) table",
-    fits: "1220 × 610mm",
-    fitted: { four: 205, three: 185 },
-    loose: { four: 195, three: 185 },
-  },
   {
     id: "6ft",
     label: "6ft (1.8m) table",
@@ -37,7 +30,6 @@ export const THROWS: ThrowSize[] = [
     label: "8ft (2.4m) table",
     fits: "2450 × 760mm",
     fitted: { four: 260, three: 245 },
-    loose: { four: 250, three: 235 },
   },
 ];
 
@@ -47,14 +39,8 @@ export type RoundSize = {
   full: number | null;
   half: number;
 };
-// 2130mm and 2430mm tables come in half drop only.
 export const ROUNDS: RoundSize[] = [
-  { id: "760", label: "760mm round table", full: 165, half: 130 },
-  { id: "910", label: "910mm round table", full: 180, half: 140 },
-  { id: "1370", label: "1370mm round table", full: 225, half: 155 },
   { id: "1520", label: "1520mm round table", full: 240, half: 165 },
-  { id: "2130", label: "2130mm round table", full: null, half: 225 },
-  { id: "2430", label: "2430mm round table", full: null, half: 255 },
 ];
 
 export type RunnerSize = { id: string; label: string; price: number };
@@ -67,17 +53,8 @@ export const RUNNERS: {
   front: [
     { id: "610x2006", label: "610 × 2006mm", price: 180 },
     { id: "914x2006", label: "914 × 2006mm", price: 180 },
-    { id: "1220x2006", label: "1220 × 2006mm", price: 180 },
-    { id: "1524x2006", label: "1524 × 2006mm", price: 180 },
-    { id: "1828x2006", label: "1828 × 2006mm", price: 180 },
   ],
-  side: [
-    { id: "1830x250", label: "1830 × 250mm", price: 180 },
-    { id: "1625x300", label: "1625 × 300mm", price: 180 },
-    { id: "2740x300", label: "2740 × 300mm", price: 180 },
-    { id: "2440x400", label: "2440 × 400mm", price: 180 },
-    { id: "3250x400", label: "3250 × 400mm", price: 180 },
-  ],
+  side: [],
   frontCustom: 180,
   sideCustom: 180,
 };
@@ -90,8 +67,7 @@ export const FROM_PRICE = Math.min(
   ...THROWS.flatMap((t) => [
     t.fitted.four,
     t.fitted.three,
-    t.loose.four,
-    t.loose.three,
+    ...(t.loose ? [t.loose.four, t.loose.three] : []),
   ]),
   ...ROUNDS.flatMap((r) => (r.full ? [r.full, r.half] : [r.half])),
   ...RUNNERS.front.map((r) => r.price),
@@ -108,7 +84,6 @@ export const PRODUCTS: { id: Product; label: string }[] = [
   { id: "loose", label: "Loose table throw" },
   { id: "round", label: "Round table throw" },
   { id: "runner-front", label: "Table runner, front drop" },
-  { id: "runner-side", label: "Table runner, side drop" },
 ];
 export type Option = "four" | "three" | "full" | "half";
 export const OPTION_LABELS: Record<Option, string> = {
@@ -128,7 +103,7 @@ export type QuoteChoice = {
 
 export function sizesFor(p: Product): { id: string; label: string }[] {
   if (p === "fitted" || p === "loose")
-    return THROWS.map((t) => ({ id: t.id, label: t.label }));
+    return THROWS.filter((t) => t[p]).map((t) => ({ id: t.id, label: t.label }));
   if (p === "round")
     return ROUNDS.map((r) => ({
       id: r.id,
@@ -155,7 +130,7 @@ export function priceFor(c: QuoteChoice): number | null {
   if (c.product === "fitted" || c.product === "loose") {
     const t = THROWS.find((x) => x.id === c.size);
     if (!t || (c.option !== "four" && c.option !== "three")) return null;
-    return t[c.product][c.option];
+    return t[c.product]?.[c.option] ?? null;
   }
   if (c.product === "round") {
     const r = ROUNDS.find((x) => x.id === c.size);
@@ -219,7 +194,7 @@ const pair = (slug: string, label: string, template = true): Download => ({
   template: template ? `${D}${slug}-artwork-template.pdf` : null,
 });
 const throwDownloads = (style: "fitted" | "loose") =>
-  THROWS.flatMap((t) => [
+  THROWS.filter((t) => t[style]).flatMap((t) => [
     pair(`${style}-throw-${t.id}-4-sided`, `${t.label}, 4 sided`),
     pair(`${style}-throw-${t.id}-3-sided`, `${t.label}, 3 sided`),
   ]);
@@ -240,9 +215,6 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
     items: [
       ...RUNNERS.front.map((r) =>
         pair(`runner-front-drop-${r.id}mm`, `Front drop, ${r.label}`),
-      ),
-      ...RUNNERS.side.map((r) =>
-        pair(`runner-side-drop-${r.id}mm`, `Side drop, ${r.label}`),
       ),
       pair(
         "runner-custom-size",

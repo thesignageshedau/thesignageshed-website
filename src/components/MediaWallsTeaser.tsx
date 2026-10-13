@@ -26,7 +26,7 @@ export default function MediaWallsTeaser() {
                 Media walls, printed with your artwork
               </h2>
               <p className="mt-3 text-lg leading-relaxed text-cream/90">
-                Fabric sock and frame walls from 1.5m to 6m wide, single or
+                Fabric sock and frame walls from 2.4m to 4m wide, single or
                 double-sided, with optional LED lights. Each kit comes with the
                 frame, your printed fabric and a carry bag.
               </p>
