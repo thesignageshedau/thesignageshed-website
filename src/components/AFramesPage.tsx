@@ -325,6 +325,10 @@ export default function AFramesPage() {
               <strong>Folding corflute:</strong> carry handle cut-out optional
               (same price).
             </p>
+            <p>
+              <strong>Replacement inserts:</strong> small orders have a minimum
+              charge, so the price per pair drops a lot from 5 pairs.
+            </p>
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
                 {n}.
