@@ -4,6 +4,13 @@ import EtsyShop from "./EtsyShop";
 import WhyUs from "./WhyUs";
 import Faq from "./Faq";
 import { homeSection } from "../lib/routes";
+import { SHOP } from "../data/products";
+
+const elsewhere = [
+  { href: SHOP.gumroad, label: "Gumroad store", text: "All our spreadsheets, with instant download.", track: "signshops-gumroad" },
+  { href: SHOP.etsy, label: "Etsy shop", text: "Selected spreadsheets and kits on Etsy.", track: "signshops-etsy" },
+  { href: SHOP.youtube, label: "Shed Talk on YouTube", text: "Walkthroughs of the spreadsheets and sign shop talk.", track: "signshops-youtube" },
+];
 
 /** Digital products for other sign shops: pricing spreadsheets, the free sheet and template packs. */
 export default function ForSignShopsPage() {
@@ -37,6 +44,28 @@ export default function ForSignShopsPage() {
       <FreeSample />
       <EtsyShop />
       <WhyUs />
+      <section aria-labelledby="elsewhere-heading" className="py-14 sm:py-16">
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id="elsewhere-heading" className="text-3xl sm:text-4xl">Find us elsewhere</h2>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+            {elsewhere.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener"
+                  data-track={l.track}
+                  className="block h-full rounded-xl border border-charcoal/15 bg-white p-5 shadow-sm hover:border-rust"
+                >
+                  <span className="font-slab text-xl font-bold text-rust-dark">{l.label} ↗</span>
+                  <span className="mt-1 block text-charcoal/80">{l.text}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
       <Faq digital />
     </>
   );
