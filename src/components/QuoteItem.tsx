@@ -3,6 +3,7 @@ import { QUOTE_PRODUCTS } from "../data/quoteProducts";
 import { OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
 import * as CF from "../data/corfluteSigns";
 import * as PB from "../data/pullUpBanners";
+import { corflutePrice } from "./CorflutePrices";
 import { DesignsField, input, label } from "./QuoteFormParts";
 
 // One product line on the quote form. Item 1 uses the plain field names (the original 28-label email);
@@ -96,6 +97,7 @@ export default function QuoteItem({
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [unit, setUnit] = useState<Unit>("mm");
+  const [qtyText, setQtyText] = useState("1");
   const setProduct = (slug: string, presetSize = "") => {
     setProductState(slug);
     setSize(presetSize);
@@ -128,7 +130,8 @@ export default function QuoteItem({
     else groups.push([s.group ?? "", [s]]);
   }
   const cfSize = corflute ? CF.SIZES.find((x) => x.id === size) : undefined;
-  const cfPrice = cfSize && sides ? cfSize.price[thickness][sides].upTo5 : null;
+  const qty = Math.floor(Number(qtyText));
+  const cfPrice = cfSize && sides && qty >= 1 && qty <= 999 ? corflutePrice(cfSize.id, thickness, sides, qty) : null;
   const w = parseFloat(width);
   const h = parseFloat(height);
   const hasWH = custom && w > 0 && h > 0;
@@ -136,7 +139,7 @@ export default function QuoteItem({
   const sizeMm = hasWH ? `${Math.round(w * UNIT_MM[unit])} x ${Math.round(h * UNIT_MM[unit])}` : "";
   const priceText =
     cfPrice != null
-      ? `${money(cfPrice)} ${spec!.priceNote}.`
+      ? `${money(cfPrice.each)} each, ${money(cfPrice.total)} total for ${qty} ${qty === 1 ? "sign" : "signs"}.`
       : optionChoice?.price != null
         ? `${money(optionChoice.price)} ${spec!.priceNote}.`
         : sizeChoice?.from != null && !custom
@@ -384,7 +387,8 @@ export default function QuoteItem({
                   max={9999}
                   step={1}
                   required
-                  defaultValue={1}
+                  value={qtyText}
+                  onChange={(e) => setQtyText(e.target.value)}
                   className={input}
                 />
               </label>

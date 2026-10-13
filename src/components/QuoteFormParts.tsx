@@ -295,7 +295,7 @@ export function SubmitArea({
 
 // The quote email is read by people and by our quoting bot, so every form sends the same labels in the
 // same order, with "N/A" for anything that doesn't apply. Change these labels only together with the bot.
-export const QUOTE_FORM_VERSION = "quote-v2";
+export const QUOTE_FORM_VERSION = "quote-v3";
 export const EMAIL_FIELDS = [
   "Form version",
   "Product code",

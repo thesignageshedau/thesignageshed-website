@@ -1,9 +1,9 @@
-# Quote email format (FormSubmit, "Form version: quote-v2")
+# Quote email format (FormSubmit, "Form version: quote-v3")
 
 Every quote request email is a table of label/value rows in this exact order. Blank values are sent as `N/A`.
 
 ## Item 1 and the request (the original 28 labels, unchanged)
-1. Form version (`quote-v2`)
+1. Form version (`quote-v3`; v3 added Item count and the Item N rows)
 2. Product code (slug, e.g. `pull-up-banners`, `corflute-signs`, `other`)
 3. Product
 4. Item
@@ -18,7 +18,7 @@ Every quote request email is a table of label/value rows in this exact order. Bl
 13. Options (`Key: value; Key: value`, e.g. `Stand: Luxury pull up banner; Base colour: Silver`)
 14. Quantity
 15. Number of designs
-16. Price shown
+16. Price shown (corflute: `$X each, $Y total for N signs`, matching the quantity tier)
 17. Name
 18. Email
 19. Phone
