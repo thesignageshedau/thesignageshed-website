@@ -22,14 +22,16 @@ export default function QuotePage() {
   // Stable keys so removing an item doesn't reset the others; numbering follows position.
   const [items, setItems] = useState<number[]>([1]);
   const [nextKey, setNextKey] = useState(2);
-  const [estimates, setEstimates] = useState<Record<number, number | null>>({});
+  const [estimates, setEstimates] = useState<Record<number, { v: number | null; product: string }>>({});
   const live = items.map((k) => estimates[k]);
-  const priced = live.filter((x): x is number => typeof x === "number");
+  const priced = live.filter((x): x is { v: number; product: string } => typeof x?.v === "number");
   const unpriced = live.length - priced.length;
-  const subtotal = Math.round(priced.reduce((a, b) => a + b, 0) * 100) / 100;
+  // The $180 minimum applies per product: group lines of the same product, then raise each group to $180.
   const MIN_ORDER = 180;
-  const underMin = subtotal < MIN_ORDER;
-  const total = underMin ? MIN_ORDER : subtotal;
+  const groups = new Map<string, number>();
+  for (const x of priced) groups.set(x.product, (groups.get(x.product) ?? 0) + x.v);
+  const underMin = [...groups.values()].some((g) => g < MIN_ORDER);
+  const total = Math.round([...groups.values()].reduce((a, g) => a + Math.max(g, MIN_ORDER), 0) * 100) / 100;
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const product = first.product;
   const size = first.size;
@@ -80,7 +82,7 @@ export default function QuotePage() {
                   fromUrl={i === 0}
                   onChange={i === 0 ? (product, size) => setFirst({ product, size }) : undefined}
                   onRemove={i > 0 ? () => setItems((xs) => xs.filter((x) => x !== k)) : undefined}
-                  onEstimate={(v) => setEstimates((e) => (e[k] === v ? e : { ...e, [k]: v }))}
+                  onEstimate={(v, product) => setEstimates((e) => (e[k]?.v === v && e[k]?.product === product ? e : { ...e, [k]: { v, product } }))}
                 />
               ))}
               {items.length < MAX_ITEMS && (
@@ -104,13 +106,13 @@ export default function QuotePage() {
                   </p>
                   <p className="mt-1 text-xs text-charcoal/75">
                     From the prices on our product pages.
-                    {underMin ? ` Your items come to $${fmt(subtotal)}, so our $${MIN_ORDER} minimum order applies.` : ""}
+                    {underMin ? ` Our $${MIN_ORDER} minimum per product applies.` : ""}
                     {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} Extras like
                     eyelets or extra designs, and any quantity price breaks, are worked out in your quote.
                   </p>
                 </div>
               )}
-              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 across the whole order, plus delivery.</p>
+              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 per product, plus delivery.</p>
             </div>
 
             <DeliveryFields />

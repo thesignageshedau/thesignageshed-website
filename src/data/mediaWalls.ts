@@ -11,7 +11,7 @@ export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery (we're not registered for GST)",
-  "Minimum order $180 across your whole order. You can mix products to reach it.",
+  "Minimum order $180 per product.",
 ] as const;
 export const TURNAROUND =
   "Usually dispatched within a few business days of artwork approval.";

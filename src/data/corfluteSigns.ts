@@ -5,7 +5,7 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery (we're not registered for GST)",
-  "Minimum order $180 across your whole order. You can mix products to reach it.",
+  "Minimum order $180 per product.",
 ] as const;
 export const MATERIAL =
   "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";

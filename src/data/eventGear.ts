@@ -8,7 +8,7 @@ import { MOCKUPS } from "./mockups";
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery (we're not registered for GST)",
-  "Minimum order $180 across your whole order. You can mix products to reach it.",
+  "Minimum order $180 per product.",
 ] as const;
 
 export type GearItem = {
@@ -190,7 +190,7 @@ const BANDS_BANNER = [
 ];
 
 // Vinyl, mesh and fabric mesh banners. Supplier price inc GST x 1.3, rounded UP to the next $5
-// (checked 13 Oct 2026). 1 to 4 uses the supplier price at 2 banners; orders under $180 pay a $180 minimum.
+// (checked 13 Oct 2026). 1 to 4 uses the supplier price at 2 banners; each product has a $180 minimum.
 export const BANNERS: GearProduct = {
   slug: "banners",
   eventName: "banner",
@@ -220,7 +220,7 @@ export const BANNERS: GearProduct = {
   ],
   addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for up to $15 more each, depending on size. The quote form shows the exact price." },
   notes: [
-    "Orders under $180 are charged a $180 minimum (this covers the whole order, so you can combine a banner with other products).",
+    "Minimum order $180 per product.",
     "All banners are printed single sided in full colour.",
     "Need a different size? Choose \"Other\" in the quote form and tell us the width and height.",
   ],
@@ -228,7 +228,7 @@ export const BANNERS: GearProduct = {
   faqs: [
     { q: "Which banner should I choose?", a: "PVC vinyl gives the boldest colour and suits walls, shopfronts and indoor events. On a fence or anywhere windy, choose mesh vinyl or fabric mesh, as the holes let wind through so the banner and fence take less load." },
     { q: "What comes with the banner?", a: "Every banner is finished and ready to hang: PVC vinyl has hemmed edges and eyelets every 1m (ropes optional), mesh vinyl has welded edges and eyelets, and fabric mesh has hemmed edges and stainless steel eyelets. Cable ties or hooks to fix it up are not included." },
-    { q: "Is there a minimum order?", a: "Yes. Orders under $180 are charged a $180 minimum. It covers the whole order, not each banner, so you can combine a banner with other products from our range to reach it. Order 5 or more of the same banner and the price per banner drops." },
+    { q: "Is there a minimum order?", a: "Yes. The minimum order is $180 per product, so your banners together come to at least $180. Order 5 or more of the same banner and the price per banner drops." },
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.bannerPvc,
