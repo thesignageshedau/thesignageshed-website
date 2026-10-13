@@ -3,9 +3,9 @@
 // the next $5). Prices are final, no GST added. Delivery is quoted separately.
 
 export const QUOTE_EMAIL = "infothesignageshed@gmail.com";
-// FormSubmit (https://formsubmit.co). The first submission makes FormSubmit email an activation
-// link to QUOTE_EMAIL. Once activated, the random alias it gives can replace the address here.
-export const FORMSUBMIT_ID: string = QUOTE_EMAIL;
+// FormSubmit (https://formsubmit.co), activated for https://thesignageshed.au/. The random alias
+// delivers to QUOTE_EMAIL without putting the address in the form.
+export const FORMSUBMIT_ID: string = "03cd0ec74efac66729aed8677b60d8e0";
 export const FORMSUBMIT_ACTION = `https://formsubmit.co/${FORMSUBMIT_ID}`;
 export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
