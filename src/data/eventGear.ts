@@ -238,9 +238,9 @@ export const BANNERS: GearProduct = {
 
 export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS, BANNERS] as const;
 
-/** Lowest single-item price on a product (used for "From $..." text). */
+/** Lowest single-item price on a product (used for "From $..." text). Replacement parts don't count. */
 export const fromPrice = (p: GearProduct) =>
-  Math.min(...p.items.map((i) => i.price[0]));
+  Math.min(...p.items.filter((i) => !i.label.startsWith("Replacement")).map((i) => i.price[0]));
 
 export type GearChoice = { item: string; addon: boolean; qty: string };
 
