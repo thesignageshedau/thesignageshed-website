@@ -188,7 +188,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
             onChange={(e) => update({ designs: e.target.value })}
           />
           <span className="mt-1 block text-xs font-normal text-charcoal/70">
-            1 design is included. Each extra design is {money(EXTRA_DESIGN)}.
+            Same design on every sign? Enter 1. 1 design is included; each extra design is {money(EXTRA_DESIGN)}.
           </span>
         </label>
       </fieldset>
