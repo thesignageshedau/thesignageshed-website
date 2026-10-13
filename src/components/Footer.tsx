@@ -9,6 +9,9 @@ export default function Footer() {
         <div className="md:justify-self-end">
           <ul className="flex flex-wrap gap-x-6 gap-y-1 font-semibold">
             <li>
+              <a href="/about/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">About</a>
+            </li>
+            <li>
               <a href="/delivery/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Delivery</a>
             </li>
             <li>
