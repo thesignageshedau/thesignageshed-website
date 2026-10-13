@@ -85,7 +85,7 @@ export default function QuotePage() {
                   + Add another product
                 </button>
               )}
-              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything.</p>
+              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 across the whole order, plus delivery.</p>
             </div>
 
             <DeliveryFields />

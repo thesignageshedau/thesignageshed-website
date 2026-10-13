@@ -5,6 +5,7 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery (we're not registered for GST)",
+  "Minimum order $180 across your whole order. You can mix products to reach it.",
 ] as const;
 
 /** Price each: 1, 2 to 4, 5 to 9, 10 to 19, 20+. */

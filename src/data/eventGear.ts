@@ -8,6 +8,7 @@ import { MOCKUPS } from "./mockups";
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery (we're not registered for GST)",
+  "Minimum order $180 across your whole order. You can mix products to reach it.",
 ] as const;
 
 export type GearItem = {
