@@ -196,13 +196,12 @@ export const UMBRELLAS: GearProduct = {
 };
 
 const BANDS_BANNER = [
-  { label: "1", min: 1 },
-  { label: "2 to 4", min: 2 },
+  { label: "1 to 4", min: 1 },
   { label: "5+", min: 5 },
 ];
 
 // Vinyl, mesh and fabric mesh banners. Supplier price inc GST x 1.3, rounded UP to the next $5
-// (checked 13 Oct 2026). A single banner sits on the supplier's minimum order, so 1-off prices are the same for every size.
+// (checked 13 Oct 2026). 1 to 4 uses the supplier price at 2 banners; orders under $180 pay a $180 minimum.
 export const BANNERS: GearProduct = {
   slug: "banners",
   eventName: "banner",
@@ -222,21 +221,22 @@ export const BANNERS: GearProduct = {
   ],
   bands: BANDS_BANNER,
   items: [
-    { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 90, 70], priceWithAddon: [180, 90, 75] },
-    { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 105, 95], priceWithAddon: [180, 115, 100] },
-    { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", price: [180, 145, 130], priceWithAddon: [180, 155, 140] },
-    { id: "pvc-4000x1000", group: "pvc", label: "PVC vinyl banner 4000 × 1000mm", short: "4000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 140, 125], priceWithAddon: [180, 155, 140] },
-    { id: "mesh-3000x1000", group: "mesh", label: "Mesh vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Welded edges and eyelets", price: [180, 110, 95] },
-    { id: "mesh-2400x1600", group: "mesh", label: "Mesh vinyl banner 2400 × 1600mm", short: "2400 × 1600mm", includes: "Welded edges and eyelets", price: [180, 130, 115] },
-    { id: "mesh-2400x1800", group: "mesh", label: "Mesh vinyl banner 2400 × 1800mm", short: "2400 × 1800mm", includes: "Welded edges and eyelets", price: [180, 140, 125] },
-    { id: "mesh-3000x1600", group: "mesh", label: "Mesh vinyl banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Welded edges and eyelets", price: [180, 150, 135] },
-    { id: "fabric-2000x1000", group: "fabric-mesh", label: "Fabric mesh banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 90, 75] },
-    { id: "fabric-3000x900", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 900mm", short: "3000 × 900mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 105, 95] },
-    { id: "fabric-3000x1000", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 110, 100] },
-    { id: "fabric-3000x1600", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 145, 130] },
+    { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", price: [90, 70], priceWithAddon: [90, 75] },
+    { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", price: [105, 95], priceWithAddon: [115, 100] },
+    { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", price: [145, 130], priceWithAddon: [155, 140] },
+    { id: "pvc-4000x1000", group: "pvc", label: "PVC vinyl banner 4000 × 1000mm", short: "4000 × 1000mm", includes: "Hemmed edges and eyelets", price: [140, 125], priceWithAddon: [155, 140] },
+    { id: "mesh-3000x1000", group: "mesh", label: "Mesh vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Welded edges and eyelets", price: [110, 95] },
+    { id: "mesh-2400x1600", group: "mesh", label: "Mesh vinyl banner 2400 × 1600mm", short: "2400 × 1600mm", includes: "Welded edges and eyelets", price: [130, 115] },
+    { id: "mesh-2400x1800", group: "mesh", label: "Mesh vinyl banner 2400 × 1800mm", short: "2400 × 1800mm", includes: "Welded edges and eyelets", price: [140, 125] },
+    { id: "mesh-3000x1600", group: "mesh", label: "Mesh vinyl banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Welded edges and eyelets", price: [150, 135] },
+    { id: "fabric-2000x1000", group: "fabric-mesh", label: "Fabric mesh banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [90, 75] },
+    { id: "fabric-3000x900", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 900mm", short: "3000 × 900mm", includes: "Hemmed edges and stainless steel eyelets", price: [105, 95] },
+    { id: "fabric-3000x1000", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [110, 100] },
+    { id: "fabric-3000x1600", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Hemmed edges and stainless steel eyelets", price: [145, 130] },
   ],
-  addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for up to $15 more each, depending on size and quantity. The quote form shows the exact price." },
+  addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for up to $15 more each, depending on size. The quote form shows the exact price." },
   notes: [
+    "Orders under $180 are charged a $180 minimum (this covers the whole order, so you can combine a banner with other products).",
     "All banners are printed single sided in full colour.",
     "Need a different size? Choose \"Other\" in the quote form and tell us the width and height.",
   ],
@@ -244,7 +244,7 @@ export const BANNERS: GearProduct = {
   faqs: [
     { q: "Which banner should I choose?", a: "PVC vinyl gives the boldest colour and suits walls, shopfronts and indoor events. On a fence or anywhere windy, choose mesh vinyl or fabric mesh, as the holes let wind through so the banner and fence take less load." },
     { q: "What comes with the banner?", a: "Every banner is finished and ready to hang: PVC vinyl has hemmed edges and eyelets every 1m (ropes optional), mesh vinyl has welded edges and eyelets, and fabric mesh has hemmed edges and stainless steel eyelets. Cable ties or hooks to fix it up are not included." },
-    { q: "Why is one banner the same price whatever the size?", a: "A single banner has a minimum production cost, so 1-off prices are the same across these sizes. Order two or more of the same design and the price per banner drops." },
+    { q: "Is there a minimum order?", a: "Yes. Orders under $180 are charged a $180 minimum. It covers the whole order, not each banner, so you can combine a banner with other products from our range to reach it. Order 5 or more of the same banner and the price per banner drops." },
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.bannerPvc,
