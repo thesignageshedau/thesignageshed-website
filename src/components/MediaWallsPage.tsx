@@ -1,3 +1,4 @@
+import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
@@ -365,6 +366,7 @@ export default function MediaWallsPage() {
             Send a print-ready PDF with your quote request, or ask us for design
             help.
           </p>
+          <ArtworkCheckLink product="media-walls" />
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {DOWNLOADS.map((d) => (
               <li

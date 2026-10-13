@@ -1,4 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
+// The artwork checker (and pdf.js) only loads when someone opens it.
+const ArtworkCheckPage = lazy(() => import("./components/ArtworkCheckPage"));
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Products from "./components/Products";
@@ -50,7 +52,8 @@ type Route =
   | "market-umbrellas"
   | "banners"
   | "quote-thanks"
-  | "quote";
+  | "quote"
+  | "check-artwork";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -64,6 +67,7 @@ const slugs = [
   "banners",
   "quote-thanks",
   "quote",
+  "check-artwork",
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
@@ -84,6 +88,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "market-umbrellas": UMBRELLAS.pageTitle,
   banners: BANNERS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
+  "check-artwork": "Check Your Artwork: Free Print File Checker | The Signage Shed",
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
 
@@ -164,6 +169,10 @@ export default function App() {
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
         ) : route === "banners" ? (
           <GearPage key="banners" product={BANNERS} />
+        ) : route === "check-artwork" ? (
+          <Suspense fallback={<p className="mx-auto max-w-site px-4 py-20 text-lg sm:px-6">Loading the artwork checker…</p>}>
+            <ArtworkCheckPage />
+          </Suspense>
         ) : route === "quote" ? (
           <QuotePage />
         ) : route === "quote-thanks" ? (

@@ -1,3 +1,4 @@
+import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
@@ -413,6 +414,7 @@ export default function CorfluteSignsPage() {
             a print-ready PDF with your quote request, or ask us for design
             help.
           </p>
+          <ArtworkCheckLink product="corflute-signs" />
           <div className="mt-6 space-y-3">
             <DownloadGroup
               title="Corflute sign sizes"

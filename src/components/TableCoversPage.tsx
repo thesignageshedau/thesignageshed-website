@@ -1,3 +1,4 @@
+import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
@@ -494,6 +495,7 @@ export default function TableCoversPage() {
             a print-ready PDF with your quote request, or ask us for design
             help.
           </p>
+          <ArtworkCheckLink product="table-covers" />
           <div className="mt-6 space-y-3">
             {DOWNLOAD_GROUPS.map((g) => (
               <details

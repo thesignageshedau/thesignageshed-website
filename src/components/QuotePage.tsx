@@ -26,6 +26,7 @@ function sizeFromHash(product: string) {
 }
 
 export default function QuotePage() {
+  const [artworkNote] = useState(() => (hashParams().get("artwork") ?? "").slice(0, 300));
   const [product, setProductState] = useState(productFromHash);
   const [size, setSize] = useState(() => sizeFromHash(productFromHash()));
   const [option, setOption] = useState("");
@@ -91,6 +92,12 @@ export default function QuotePage() {
               <input type="hidden" name="Options" value={option === OTHER ? OTHER_LABEL : (optionChoice?.label ?? "")} />
             )}
             {priceText && <input type="hidden" name="Price shown" value={priceText} />}
+            {artworkNote && <input type="hidden" name="Artwork check" value={artworkNote} />}
+            {artworkNote && (
+              <p className="rounded-md border-2 border-charcoal/15 bg-cream px-4 py-3 text-sm sm:col-span-2">
+                <span className="font-bold">Artwork check:</span> {artworkNote}. We'll include this with your request. Reply to our quote email with the file attached.
+              </p>
+            )}
             <fieldset className="grid gap-4 sm:grid-cols-2">
               <legend className="mb-3 font-display text-xl tracking-wide">
                 Your details
@@ -308,7 +315,11 @@ export default function QuotePage() {
                   <a className="font-semibold text-rust-dark underline" href={`mailto:${QUOTE_EMAIL}`}>
                     {QUOTE_EMAIL}
                   </a>{" "}
-                  after you send this form.
+                  after you send this form.{" "}
+                  <a className="font-semibold text-rust-dark underline" href={`#/check-artwork${product ? `?product=${product}${size ? `&size=${encodeURIComponent(size)}` : ""}` : ""}`}>
+                    Check your artwork first
+                  </a>
+                  .
                 </span>
               </label>
               <label className={label}>

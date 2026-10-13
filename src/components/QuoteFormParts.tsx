@@ -241,7 +241,7 @@ const EMAIL_ORDER = [
   "Printing", "Eyelets", "Frame colour", "Carry handle", "Base colour",
   "Sides or drop", "What you need", "Print", "LED lights",
   "Quantity", "Number of designs", "Estimate shown",
-  "Artwork ready", "Artwork link", "Design help needed",
+  "Artwork ready", "Artwork link", "Artwork check", "Design help needed",
   "Needed by", "Delivery suburb", "Delivery state", "Delivery postcode",
   "Message", "Notes",
 ];

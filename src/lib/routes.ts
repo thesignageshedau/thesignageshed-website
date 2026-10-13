@@ -14,6 +14,7 @@ export const GEAR_HREFS = {
   "market-umbrellas": MARKET_UMBRELLAS_HREF,
   banners: BANNERS_HREF,
 } as const;
+export const CHECK_ARTWORK_HREF = "#/check-artwork";
 export const QUOTE_THANKS_HREF = "#/quote-thanks";
 export const homeSection = (id: string) => `#${id}`;
 export function goTo(href: string) {
