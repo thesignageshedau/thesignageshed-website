@@ -2,4 +2,4 @@
 export const asset = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\//, "")}`;
 
 export const srcSet = (name: string) =>
-  `${asset(`images/${name}-800.webp`)} 800w, ${asset(`images/${name}-1600.webp`)} 1600w`;
+  [480, 800, 1200, 1600].map((w) => `${asset(`images/${name}-${w}.webp`)} ${w}w`).join(", ");

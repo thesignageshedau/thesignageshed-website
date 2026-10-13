@@ -1,9 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@fontsource/ultra/latin-400.css";
-import "@fontsource/zilla-slab/latin-400.css";
-import "@fontsource/zilla-slab/latin-600.css";
-import "@fontsource/zilla-slab/latin-700.css";
+// Fonts: woff2 only, font-display: swap.
+import "./fonts.css";
 import "./index.css";
 import App, { SIGN_SHOP_SECTIONS } from "./App";
 import { goTo } from "./lib/routes";

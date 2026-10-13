@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "images": "node scripts/build-images.mjs",
-    "images:mockups": "node scripts/build-mockups.mjs"
+    "images:mockups": "node scripts/build-mockups.mjs",
+    "images:og": "node scripts/build-og.mjs",
+    "images:responsive": "node scripts/build-responsive.mjs"
   },
   "dependencies": {
     "@fontsource/ultra": "^5.3.0",

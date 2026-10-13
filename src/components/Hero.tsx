@@ -31,6 +31,8 @@ export default function Hero() {
             sizes="(min-width: 768px) 440px, 80vw"
             width={480} height={300}
             alt="The Signage Shed hanging sign logo"
+            loading="eager"
+            decoding="async"
             fetchPriority="high"
             className="h-auto w-full max-w-[300px] md:max-w-[440px]"
           />
