@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
@@ -10,8 +11,6 @@ import {
   RUNNERS,
   RUNNER_CUSTOM,
   THROWS,
-  normalise,
-  type Product,
   type QuoteChoice,
 } from "../data/tableCovers";
 import { asset } from "../lib/asset";
@@ -174,19 +173,18 @@ function PriceTable({
 
 function QuoteButton({
   label,
-  onClick,
+  href,
 }: {
   label: string;
-  onClick: () => void;
+  href: string;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="whitespace-nowrap rounded-md border-2 border-charcoal px-3 py-1.5 text-sm font-bold hover:bg-charcoal hover:text-cream"
+    <a
+      href={href}
+      className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-3 py-1.5 text-sm font-bold hover:bg-charcoal hover:text-cream"
     >
       Quote<span className="sr-only"> for {label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -199,14 +197,6 @@ export default function TableCoversPage() {
     qty: "1",
   });
 
-  function quoteFor(
-    product: Product,
-    size: string,
-    option: QuoteChoice["option"] = "",
-  ) {
-    setChoice(normalise({ ...choice, product, size, option }));
-    scrollToId("quote");
-  }
 
   const throwTable = (style: "fitted" | "loose") => (
     <PriceTable
@@ -250,7 +240,7 @@ export default function TableCoversPage() {
           <td className={quoteTd}>
             <QuoteButton
               label={`${style} throw, ${t.label}`}
-              onClick={() => quoteFor(style, t.id, "four")}
+              href={quoteHref("table-covers", `${style}:${t.id}`)}
             />
           </td>
         </tr>
@@ -400,9 +390,7 @@ export default function TableCoversPage() {
                   <td className={quoteTd}>
                     <QuoteButton
                       label={`round throw, ${r.label}`}
-                      onClick={() =>
-                        quoteFor("round", r.id, r.full ? "full" : "half")
-                      }
+                      href={quoteHref("table-covers", `round:${r.id}`)}
                     />
                   </td>
                 </tr>
@@ -445,12 +433,7 @@ export default function TableCoversPage() {
                     <td className={quoteTd}>
                       <QuoteButton
                         label={`${k} drop runner ${r.label}`}
-                        onClick={() =>
-                          quoteFor(
-                            k === "front" ? "runner-front" : "runner-side",
-                            r.id,
-                          )
-                        }
+                        href={quoteHref("table-covers", `${k === "front" ? "runner-front" : "runner-side"}:${r.id}`)}
                       />
                     </td>
                   </tr>
@@ -473,12 +456,7 @@ export default function TableCoversPage() {
                   <td className={quoteTd}>
                     <QuoteButton
                       label={`custom ${k} drop runner`}
-                      onClick={() =>
-                        quoteFor(
-                          k === "front" ? "runner-front" : "runner-side",
-                          "custom",
-                        )
-                      }
+                      href={quoteHref("table-covers", `${k === "front" ? "runner-front" : "runner-side"}:${"custom"}`)}
                     />
                   </td>
                 </tr>,

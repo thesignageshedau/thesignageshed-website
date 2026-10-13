@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
@@ -7,9 +8,7 @@ import {
   MATERIAL,
   PRICE_NOTES,
   SIZES,
-  normalise,
   type QuoteChoice,
-  type Stand,
 } from "../data/pullUpBanners";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
@@ -122,19 +121,18 @@ const priceTd = "px-2 py-3 font-bold text-rust-dark sm:px-4 sm:text-lg";
 
 function QuoteButton({
   label,
-  onClick,
+  href,
 }: {
   label: string;
-  onClick: () => void;
+  href: string;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
+    <a
+      href={href}
+      className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
     >
       Quote<span className="sr-only"> for {label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -146,10 +144,6 @@ export default function PullUpBannersPage() {
     qty: "1",
   });
 
-  function quoteFor(stand: Stand, size: string) {
-    setChoice(normalise({ ...choice, stand, size }));
-    scrollToId("quote");
-  }
 
   return (
     <>
@@ -293,7 +287,7 @@ export default function PullUpBannersPage() {
                           {aud(s.price[st])}
                           <QuoteButton
                             label={`${st === "luxury" ? "Luxury" : "Double sided"} ${s.label}`}
-                            onClick={() => quoteFor(st, s.id)}
+                            href={quoteHref("pull-up-banners", s.id)}
                           />
                         </span>
                       </td>

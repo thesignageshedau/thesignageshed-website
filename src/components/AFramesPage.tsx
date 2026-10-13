@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
@@ -9,7 +10,6 @@ import {
   QTY_COLUMNS,
   TYPES,
   money,
-  normalise,
   type QuoteChoice,
 } from "../data/aFrames";
 import { homeSection } from "../lib/routes";
@@ -145,10 +145,6 @@ export default function AFramesPage() {
     qty: "1",
   });
 
-  function quoteFor(item: string) {
-    setChoice(normalise({ ...choice, item }));
-    scrollToId("quote");
-  }
 
   return (
     <>
@@ -306,7 +302,7 @@ export default function AFramesPage() {
                       <td className={td}>
                         <QuoteButton
                           label={i.label}
-                          onClick={() => quoteFor(i.id)}
+                          href={quoteHref("a-frames", i.id)}
                         />
                       </td>
                     </tr>

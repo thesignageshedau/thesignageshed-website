@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
@@ -13,9 +14,7 @@ import {
   SIZES,
   THICKNESSES,
   money,
-  normalise,
   type QuoteChoice,
-  type Sides,
   type Thickness,
 } from "../data/corfluteSigns";
 import { homeSection } from "../lib/routes";
@@ -177,10 +176,6 @@ export default function CorfluteSignsPage() {
 
   const [thick, setThick] = useState<Thickness>("5mm");
 
-  function quoteFor(sides: Sides, size: string) {
-    setChoice(normalise({ ...choice, thickness: thick, sides, size }));
-    scrollToId("quote");
-  }
 
   return (
     <>
@@ -368,7 +363,7 @@ export default function CorfluteSignsPage() {
                         <td className={td}>
                           <QuoteButton
                             label={`${side.label} ${thick} ${s.label}`}
-                            onClick={() => quoteFor(side.id, s.id)}
+                            href={quoteHref("corflute-signs", s.id)}
                           />
                         </td>
                       </tr>

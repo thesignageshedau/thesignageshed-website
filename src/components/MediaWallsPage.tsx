@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import {
@@ -129,10 +130,6 @@ export default function MediaWallsPage() {
     qty: "1",
   });
 
-  function quoteFor(sizeId: string) {
-    setChoice({ ...choice, item: "kit", size: sizeId, sides });
-    scrollToId("quote");
-  }
 
   return (
     <>
@@ -290,13 +287,12 @@ export default function MediaWallsPage() {
                       {aud(s.fabric[sides])}
                     </td>
                     <td className="hidden px-2 py-3 text-right sm:table-cell sm:px-4">
-                      <button
-                        type="button"
-                        onClick={() => quoteFor(s.id)}
-                        className="whitespace-nowrap rounded-md border-2 border-charcoal px-3 py-1.5 text-sm font-bold hover:bg-charcoal hover:text-cream"
+                      <a
+                        href={quoteHref("media-walls", s.id)}
+                        className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-3 py-1.5 text-sm font-bold hover:bg-charcoal hover:text-cream"
                       >
                         Quote<span className="sr-only"> for {s.label}</span>
-                      </button>
+                      </a>
                     </td>
                   </tr>
                 ))}

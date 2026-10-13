@@ -1,3 +1,4 @@
+import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState } from "react";
 import { QUOTE_EMAIL } from "../data/mediaWalls";
@@ -21,10 +22,6 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
     addon: false,
     qty: "1",
   });
-  function quoteFor(item: string) {
-    setChoice({ ...choice, item });
-    scrollToId("quote");
-  }
   const mailSubject = encodeURIComponent(`Artwork template: ${p.teaserTitle}`);
 
   return (
@@ -168,7 +165,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                         <td className={td}>
                           <QuoteButton
                             label={i.label}
-                            onClick={() => quoteFor(i.id)}
+                            href={quoteHref(p.slug, i.id)}
                           />
                         </td>
                       </tr>

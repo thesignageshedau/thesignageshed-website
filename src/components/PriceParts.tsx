@@ -15,19 +15,18 @@ export const priceTd =
 
 export function QuoteButton({
   label,
-  onClick,
+  href,
 }: {
   label: string;
-  onClick: () => void;
+  href: string;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
+    <a
+      href={href}
+      className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
     >
       Quote<span className="sr-only"> for {label}</span>
-    </button>
+    </a>
   );
 }
 

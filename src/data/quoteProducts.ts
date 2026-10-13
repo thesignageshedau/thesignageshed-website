@@ -12,5 +12,7 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "market-umbrellas", label: "Market umbrellas", optionHint: "e.g. 2.4m, printed on all panels" },
   { slug: "other", label: "Something else or a mix", optionHint: "Tell us the size or option you're after" },
 ];
-export const quoteHref = (slug?: string) =>
-  slug ? `#/quote?product=${encodeURIComponent(slug)}` : "#/quote";
+export const quoteHref = (slug?: string, size?: string) =>
+  slug
+    ? `#/quote?product=${encodeURIComponent(slug)}${size ? `&size=${encodeURIComponent(size)}` : ""}`
+    : "#/quote";

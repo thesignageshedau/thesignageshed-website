@@ -98,7 +98,7 @@ export const DOWNLOADS = SIZES.map((s) => {
   const slug = s.label.replace(" × ", "-x-").replace(/\./g, "-").toLowerCase(); // 2.4m × 2.2m -> 2-4m-x-2-2m
   return {
     label: s.label,
-    guide: `${D}stretch-${slug}-artwork-guide.pdf`,
-    template: `${D}stretch-${slug}-artwork-template.pdf`,
+    guide: `${D}media-wall-${slug}-artwork-guide.pdf`,
+    template: `${D}media-wall-${slug}-artwork-template.pdf`,
   };
 });
