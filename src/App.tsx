@@ -28,6 +28,7 @@ import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
 import NotFound from "./components/NotFound";
 import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
+import { OG_IMAGES } from "./data/ogImages";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
@@ -136,6 +137,13 @@ export default function App() {
     if (missing) document.querySelector('link[rel="canonical"]')?.remove();
     else set('link[rel="canonical"]', "href", url);
     set('meta[property="og:url"]', "content", url);
+    const og = missing ? undefined : (route ?? "home");
+    const ogImg = og && OG_IMAGES[og] ? `${SITE_URL}og/${og}.jpg` : `${SITE_URL}og-image.jpg`;
+    const ogAlt = (og && OG_IMAGES[og]) || "The Signage Shed logo: printed signs, banners and event gear";
+    set('meta[property="og:image"]', "content", ogImg);
+    set('meta[name="twitter:image"]', "content", ogImg);
+    set('meta[property="og:image:alt"]', "content", ogAlt);
+    set('meta[name="twitter:image:alt"]', "content", ogAlt);
     let robots = document.querySelector('meta[name="robots"]');
     if (missing || route === "quote-thanks") {
       if (!robots) {
