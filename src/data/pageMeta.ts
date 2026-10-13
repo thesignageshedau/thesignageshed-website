@@ -11,7 +11,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "banners": "Custom printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
   "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free quick pricing sheet. GST built in, works in Excel and Google Sheets, instant download.",
   "check-artwork": "Check your print file before you order. Pick your product and size, choose a PDF, JPG or PNG, and see size, bleed, resolution and colour checks with guides on a preview. Your file stays on your device.",
-  "delivery": "How delivery works at The Signage Shed: Australia-wide, quoted from your postcode, size and weight, with freight in your quote before you pay. Packing, no pick up or installation, and what to do if something arrives damaged.",
+  "delivery": "How delivery works at The Signage Shed: Australia-wide, quoted from your postcode, size and weight, with freight in your quote before you pay. No pick up or installation: we print and deliver to your door.",
   "artwork-help": "Plain-English artwork help for print: bleed, safe area, resolution (130 ppi minimum, 150+ crisp), CMYK vs RGB, outlining fonts, PDF files, vector vs raster and 10% scale templates, plus artwork guides per product.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
 };
