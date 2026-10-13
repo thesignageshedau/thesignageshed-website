@@ -8,8 +8,7 @@ import {
   SubmitArea,
   input,
   label,
-  useQuoteSubmit,
-} from "./QuoteFormParts";
+  useQuoteSubmit, DesignsField } from "./QuoteFormParts";
 
 const SUBJECT = "Quote request (website)";
 const STATES = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
@@ -241,6 +240,7 @@ export default function QuotePage() {
                   className={input}
                 />
               </label>
+              <DesignsField />
               <label className={label}>
                 Date needed by <span className="font-normal text-charcoal/70">(optional)</span>
                 <input name="Needed by" type="date" min={today || undefined} className={input} />

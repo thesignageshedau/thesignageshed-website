@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { quotePayload } from "./QuoteFormParts";
+import { quotePayload, DesignsField } from "./QuoteFormParts";
 import {
   FORMSUBMIT_ACTION,
   FORMSUBMIT_AJAX,
@@ -236,6 +236,7 @@ export default function TableCoverQuoteForm({ choice, setChoice }: Props) {
             onChange={(e) => update({ qty: e.target.value })}
           />
         </label>
+        <DesignsField />
       </fieldset>
 
       <div

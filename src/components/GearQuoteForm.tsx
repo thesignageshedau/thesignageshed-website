@@ -12,8 +12,7 @@ import {
   YourDetailsFields,
   input,
   label,
-  useQuoteSubmit,
-} from "./QuoteFormParts";
+  useQuoteSubmit, DesignsField } from "./QuoteFormParts";
 
 type Props = {
   product: GearProduct;
@@ -104,6 +103,7 @@ export default function GearQuoteForm({ product: p, choice, setChoice }: Props) 
             onChange={(e) => update({ qty: e.target.value })}
           />
         </label>
+        <DesignsField />
         {p.addon && (
           <label className="flex items-center gap-3 self-end pb-3 text-base font-bold">
             <input

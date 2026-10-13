@@ -268,3 +268,26 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
   for (const k of keys) if (raw[k]) out[k] = raw[k];
   return out;
 }
+
+/** "How many designs?" (sent as "Number of designs" in the FormSubmit email). */
+export function DesignsField() {
+  return (
+    <label className={label}>
+      How many designs?
+      <input
+        name="Number of designs"
+        type="number"
+        inputMode="numeric"
+        min={1}
+        max={999}
+        step={1}
+        required
+        defaultValue={1}
+        className={input}
+      />
+      <span className="mt-1 block text-xs font-normal text-charcoal/70">
+        Different artworks across your order.
+      </span>
+    </label>
+  );
+}

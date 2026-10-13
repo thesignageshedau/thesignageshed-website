@@ -173,7 +173,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
           />
         </label>
         <label className={label}>
-          Number of different designs
+          How many designs?
           <input
             name="Number of designs"
             type="number"

@@ -15,8 +15,7 @@ import {
   YourDetailsFields,
   input,
   label,
-  useQuoteSubmit,
-} from "./QuoteFormParts";
+  useQuoteSubmit, DesignsField } from "./QuoteFormParts";
 
 type Props = { choice: QuoteChoice; setChoice: (c: QuoteChoice) => void };
 const SUBJECT = "A-frame quote";
@@ -131,6 +130,7 @@ export default function AFrameQuoteForm({ choice, setChoice }: Props) {
             onChange={(e) => update({ qty: e.target.value })}
           />
         </label>
+        <DesignsField />
       </fieldset>
 
       <div
