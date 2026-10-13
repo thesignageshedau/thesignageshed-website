@@ -1,29 +1,55 @@
 import { SHOP } from "../data/products";
 
+const link = "font-semibold text-rust-dark underline underline-offset-2";
+
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
-    q: "How do I get my files after I buy?",
-    a: <>Straight away. On Gumroad you get a download link on screen and by email. On Etsy the files are in your Purchases page once payment clears. Nothing is posted.</>,
+    q: "What do you make?",
+    a: <>Printed signage and event gear, delivered Australia-wide: A-frames, corflute signs, pull up banners, media walls, table covers, flags, gazebos, market umbrellas and vinyl and mesh banners. We also sell a few spreadsheets and digital kits for sign makers on the side.</>,
   },
   {
-    q: "Do the spreadsheets work in Google Sheets?",
-    a: <>Yes. They're standard .xlsx files. Upload the file to Google Drive, then open it with Google Sheets. They also work in Microsoft Excel.</>,
+    q: "How do I get a quote?",
+    a: <>Fill in our <a className={link} href="#/quote">quote form</a>, or use the Quote button next to any price on a product page. Tell us the product, size, quantity and when you need it. We reply by email, usually within one business day.</>,
   },
   {
-    q: "Can I get a refund?",
-    a: <>Because these are digital downloads, we don't offer refunds for change of mind. If a file is faulty, won't open, or isn't as described, email us and we'll fix it or refund you. Your rights under Australian Consumer Law aren't affected.</>,
+    q: "What about artwork and templates?",
+    a: <>Send print-ready artwork at the finished size, or send us your logo and wording and we'll set it up for you. If you'd like to design it yourself, ask for the template for your product with your quote.</>,
   },
   {
-    q: "Do the prices include GST?",
-    a: <>Prices are shown in Australian dollars. Any GST or sales tax is worked out by Gumroad or Etsy at checkout, based on where you are. Inside the spreadsheets you can quote prices ex or inc GST.</>,
+    q: "Will I see a proof before it's printed?",
+    a: <>Always. We send you a digital proof, and nothing is printed until you approve it in writing.</>,
   },
   {
-    q: "Can I change the rates and materials?",
-    a: <>Yes. Your rates, materials, margins and business details go into a settings tab, and everything else works from those.</>,
+    q: "How long does it take?",
+    a: <>Usually dispatched within a few business days of artwork approval. Tell us your needed-by date in the quote form and we'll let you know if it's tight.</>,
+  },
+  {
+    q: "Do you deliver?",
+    a: <>Yes, Australia-wide. Delivery is quoted separately, based on your postcode, and included in your quote.</>,
+  },
+  {
+    q: "How do I pay?",
+    a: <>There's nothing to pay online. Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.</>,
+  },
+  {
+    q: "Is there a minimum order?",
+    a: <>Yes. Orders under $180 are charged a $180 minimum. It covers the whole order, so you can combine products to reach it.</>,
+  },
+  {
+    q: "Do you install signs?",
+    a: <>No. We print and deliver, and everything arrives ready to put up yourself, with the fittings listed on each product page.</>,
+  },
+  {
+    q: "Digital products: how do I get my files?",
+    a: <>Straight away. Gumroad gives you a download link on screen and by email; on Etsy the files are in your Purchases page. The spreadsheets are .xlsx and work in Excel and Google Sheets, with your rates and materials in a settings tab.</>,
+  },
+  {
+    q: "Digital products: refunds and GST?",
+    a: <>No change-of-mind refunds on downloads, but if a file is faulty or not as described we'll fix it or refund you. Your rights under Australian Consumer Law aren't affected. Any GST is worked out by Gumroad or Etsy at checkout.</>,
   },
   {
     q: "I have a question that isn't here.",
-    a: <>Email us at <a className="font-semibold text-rust-dark underline underline-offset-2" href={`mailto:${SHOP.email}`}>{SHOP.email}</a> and we'll get back to you.</>,
+    a: <>Email us at <a className={link} href={`mailto:${SHOP.email}`}>{SHOP.email}</a> and we'll get back to you.</>,
   },
 ];
 
