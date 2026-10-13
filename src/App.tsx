@@ -22,6 +22,8 @@ import QuoteBar from "./components/QuoteBar";
 import TrustStrip from "./components/TrustStrip";
 import FaqSchema from "./components/FaqSchema";
 import { QUOTE_PRODUCTS } from "./data/quoteProducts";
+import DeliveryPage from "./components/DeliveryPage";
+import ArtworkHelpPage from "./components/ArtworkHelpPage";
 import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
 import NotFound from "./components/NotFound";
@@ -52,7 +54,9 @@ type Route =
   | "quote-thanks"
   | "quote"
   | "check-artwork"
-  | "for-sign-shops";
+  | "for-sign-shops"
+  | "delivery"
+  | "artwork-help";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -68,6 +72,8 @@ const slugs = [
   "quote",
   "check-artwork",
   "for-sign-shops",
+  "delivery",
+  "artwork-help",
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
@@ -93,6 +99,8 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops (Australia) | The Signage Shed",
   "check-artwork": "Check Your Artwork: Free Print File Checker | The Signage Shed",
+  delivery: "Delivery Australia-wide: How It Works | The Signage Shed",
+  "artwork-help": "Artwork Help: Bleed, Safe Area, Resolution and File Setup | The Signage Shed",
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
 
@@ -179,6 +187,10 @@ export default function App() {
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
         ) : route === "banners" ? (
           <GearPage key="banners" product={BANNERS} />
+        ) : route === "delivery" ? (
+          <DeliveryPage />
+        ) : route === "artwork-help" ? (
+          <ArtworkHelpPage />
         ) : route === "for-sign-shops" ? (
           <ForSignShopsPage />
         ) : route === "check-artwork" ? (

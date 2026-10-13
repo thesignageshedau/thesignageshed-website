@@ -60,7 +60,7 @@ const BANDS_3 = [
 const COMMON_FAQS: GearFaq[] = [
   { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
   { q: "How long does it take?", a: "Usually dispatched within a few business days of artwork approval. Tell us your needed-by date in the quote form and we'll let you know if it's tight." },
-  { q: "How much is delivery?", a: "Delivery is quoted separately, based on your postcode. We'll include it in your quote." },
+  { q: "How much is delivery?", a: "Delivery is quoted separately, based on your postcode. We'll include it in your quote. See our Delivery page for how it works." },
   { q: "Do your prices include GST?", a: "Prices are final, no GST added. The price you see is the price you pay, plus delivery." },
   { q: "How do I pay?", a: "Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card." },
 ];
