@@ -188,6 +188,7 @@ export default function MediaWallsPage() {
       {/* Mockups */}
       <MockupGallery
         id="mockups"
+        exclude={MOCKUPS.mediaWallSingle.slug}
         heading="Single sided, double sided or LED backlit"
         items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
       />

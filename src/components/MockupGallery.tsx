@@ -5,13 +5,18 @@ import MockupImage from "./MockupImage";
 export default function MockupGallery({
   id,
   heading = "See it in place",
-  items,
+  items: allItems,
+  exclude,
 }: {
   id: string;
   heading?: string;
   items: Mockup[];
+  /** Slug of the hero mockup, so the same image doesn't repeat straight after the hero. */
+  exclude?: string;
 }) {
-  const cols = items.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2";
+  const items = allItems.filter((m) => m.slug !== exclude);
+  if (!items.length) return null;
+  const cols = items.length === 1 ? "max-w-xl" : items.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2";
   return (
     <section aria-labelledby={`${id}-heading`} className="py-14 sm:py-16">
       <div className="mx-auto max-w-site px-4 sm:px-6">

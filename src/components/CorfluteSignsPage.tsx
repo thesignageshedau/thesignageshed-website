@@ -234,6 +234,7 @@ export default function CorfluteSignsPage() {
       {/* Mockups */}
       <MockupGallery
         id="mockups"
+        exclude={MOCKUPS.corfluteShopfront.slug}
         items={[MOCKUPS.corfluteShopfront, MOCKUPS.corfluteFence]}
       />
 

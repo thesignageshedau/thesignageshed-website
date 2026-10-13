@@ -200,6 +200,7 @@ export default function PullUpBannersPage() {
       {/* Mockups */}
       <MockupGallery
         id="mockups"
+        exclude={MOCKUPS.pullUpLuxury.slug}
         items={[MOCKUPS.pullUpLuxury, MOCKUPS.pullUpDouble]}
       />
 

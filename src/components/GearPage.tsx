@@ -74,7 +74,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
       </section>
       <TrustStrip tone="dark" />
 
-      <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} />
+      <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} exclude={p.hero.slug} />
 
       <section
         aria-labelledby={`${p.slug}-types`}

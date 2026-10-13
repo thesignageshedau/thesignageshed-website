@@ -303,6 +303,7 @@ export default function TableCoversPage() {
       {/* Mockups */}
       <MockupGallery
         id="mockups"
+        exclude={MOCKUPS.tableCoverFitted.slug}
         items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
       />
 

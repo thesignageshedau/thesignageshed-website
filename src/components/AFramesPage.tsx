@@ -202,6 +202,7 @@ export default function AFramesPage() {
       {/* Mockups */}
       <MockupGallery
         id="mockups"
+        exclude={MOCKUPS.aframeAluminium.slug}
         items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
       />
 
