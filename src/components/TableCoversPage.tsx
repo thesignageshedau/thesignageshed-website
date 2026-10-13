@@ -1,8 +1,8 @@
+import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
 import {
   DOWNLOAD_GROUPS,
@@ -13,14 +13,12 @@ import {
   RUNNERS,
   RUNNER_CUSTOM,
   THROWS,
-  type QuoteChoice,
 } from "../data/tableCovers";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
-import TableCoverQuoteForm from "./TableCoverQuoteForm";
 
 const types = [
   {
@@ -191,13 +189,6 @@ function QuoteButton({
 }
 
 export default function TableCoversPage() {
-  const [choice, setChoice] = useState<QuoteChoice>({
-    product: "fitted",
-    size: "",
-    option: "four",
-    custom: "",
-    qty: "1",
-  });
 
 
   const throwTable = (style: "fitted" | "loose") => (
@@ -278,13 +269,9 @@ export default function TableCoversPage() {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref("table-covers")} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {aud(FROM_PRICE)}
@@ -299,43 +286,6 @@ export default function TableCoversPage() {
           />
         </div>
       </section>
-      <TrustStrip tone="dark" />
-
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.tableCoverFitted.slug}
-        items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
-      />
-
-      {/* Types */}
-      <section
-        aria-labelledby="types-heading"
-        className="bg-cream py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-site px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="types-heading" className="text-3xl sm:text-4xl">
-            Choose your cover
-          </h2>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {types.map((t) => (
-              <div
-                key={t.title}
-                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
-              >
-                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
-                <p className="mt-2 leading-relaxed">{t.text}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-5 text-sm">
-            {MATERIAL} Hemmed edges. Price per item, including printing your
-            artwork.
-          </p>
-        </div>
-      </section>
-
       {/* Prices */}
       <section
         id="prices"
@@ -478,6 +428,43 @@ export default function TableCoversPage() {
         </div>
       </section>
 
+      <TrustStrip tone="dark" />
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        exclude={MOCKUPS.tableCoverFitted.slug}
+        items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
+      />
+
+      {/* Types */}
+      <section
+        aria-labelledby="types-heading"
+        className="bg-cream py-14 sm:py-16"
+      >
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id="types-heading" className="text-3xl sm:text-4xl">
+            Choose your cover
+          </h2>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {types.map((t) => (
+              <div
+                key={t.title}
+                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
+              >
+                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
+                <p className="mt-2 leading-relaxed">{t.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-sm">
+            {MATERIAL} Hemmed edges. Price per item, including printing your
+            artwork.
+          </p>
+        </div>
+      </section>
+
       {/* Artwork */}
       <section
         id="artwork"
@@ -550,28 +537,7 @@ export default function TableCoversPage() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section
-        id="quote"
-        aria-labelledby="quote-heading"
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="quote-heading" className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug="table-covers" />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <TableCoverQuoteForm choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={"table-covers"} label={"table covers"} />
 
       {/* FAQ */}
       <section

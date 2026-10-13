@@ -1,8 +1,8 @@
+import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
 import {
   DOWNLOAD_GROUPS,
@@ -12,13 +12,11 @@ import {
   QTY_COLUMNS,
   TYPES,
   money,
-  type QuoteChoice,
 } from "../data/aFrames";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
-import AFrameQuoteForm from "./AFrameQuoteForm";
 import {
   DownloadGroup,
   FaqList,
@@ -140,12 +138,6 @@ const faqs: { q: string; a: ReactNode }[] = [
 ];
 
 export default function AFramesPage() {
-  const [choice, setChoice] = useState<QuoteChoice>({
-    item: "",
-    colour: "Black",
-    handle: "Yes",
-    qty: "1",
-  });
 
 
   return (
@@ -177,13 +169,9 @@ export default function AFramesPage() {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref("a-frames")} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {money(FROM_PRICE)}
@@ -198,44 +186,6 @@ export default function AFramesPage() {
           />
         </div>
       </section>
-      <TrustStrip tone="dark" />
-
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.aframeAluminium.slug}
-        items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
-      />
-
-      {/* Types */}
-      <section
-        aria-labelledby="types-heading"
-        className="bg-cream py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-site px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="types-heading" className="text-3xl sm:text-4xl">
-            Choose your A-frame
-          </h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {TYPES.map((t) => (
-              <div
-                key={t.id}
-                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
-              >
-                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
-                <p className="mt-2 leading-relaxed">{t.text}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-5 text-sm">
-            Every A-frame is printed on both sides with your artwork. Prices
-            include the frame and printing, except replacement inserts, which
-            are printed inserts only.
-          </p>
-        </div>
-      </section>
-
       {/* Prices */}
       <section
         id="prices"
@@ -338,6 +288,44 @@ export default function AFramesPage() {
         </div>
       </section>
 
+      <TrustStrip tone="dark" />
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        exclude={MOCKUPS.aframeAluminium.slug}
+        items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
+      />
+
+      {/* Types */}
+      <section
+        aria-labelledby="types-heading"
+        className="bg-cream py-14 sm:py-16"
+      >
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id="types-heading" className="text-3xl sm:text-4xl">
+            Choose your A-frame
+          </h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {TYPES.map((t) => (
+              <div
+                key={t.id}
+                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
+              >
+                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
+                <p className="mt-2 leading-relaxed">{t.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-sm">
+            Every A-frame is printed on both sides with your artwork. Prices
+            include the frame and printing, except replacement inserts, which
+            are printed inserts only.
+          </p>
+        </div>
+      </section>
+
       {/* Artwork */}
       <section
         id="artwork"
@@ -370,28 +358,7 @@ export default function AFramesPage() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section
-        id="quote"
-        aria-labelledby="quote-heading"
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="quote-heading" className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug="a-frames" />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <AFrameQuoteForm choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={"a-frames"} label={"A-frames"} />
 
       <FaqList
         id="af-faq-heading"

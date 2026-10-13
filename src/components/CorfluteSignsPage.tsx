@@ -1,37 +1,29 @@
+import CorflutePrices from "./CorflutePrices";
+import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
 import {
-  COLUMNS,
   DOWNLOADS,
   EXTRA_DESIGN,
   EYELET_EACH,
   FROM_PRICE,
   MATERIAL,
   PRICE_NOTES,
-  SIDES,
   SIZES,
-  THICKNESSES,
   money,
-  type QuoteChoice,
   type Thickness,
 } from "../data/corfluteSigns";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
-import CorfluteQuoteForm from "./CorfluteQuoteForm";
 import {
   DownloadGroup,
   FaqList,
-  QuoteButton,
-  priceTd,
   scrollToId,
-  td,
-  th,
 } from "./PriceParts";
 
 const types = [
@@ -167,16 +159,8 @@ const faqs: { q: string; a: ReactNode }[] = [
 ];
 
 export default function CorfluteSignsPage() {
-  const [choice, setChoice] = useState<QuoteChoice>({
-    size: "",
-    thickness: "5mm",
-    sides: "single",
-    eyelets: "none",
-    designs: "1",
-    qty: "5",
-  });
 
-  const [thick, setThick] = useState<Thickness>("5mm");
+  const thick: Thickness = "5mm";
 
 
   return (
@@ -208,13 +192,9 @@ export default function CorfluteSignsPage() {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref("corflute-signs")} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {money(FROM_PRICE)} for up to 5 signs ·
@@ -229,6 +209,41 @@ export default function CorfluteSignsPage() {
           />
         </div>
       </section>
+      {/* Prices */}
+      <section
+        id="prices"
+        aria-labelledby="prices-heading"
+        className="scroll-mt-20 py-14 sm:py-16"
+      >
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id="prices-heading" className="text-3xl sm:text-4xl">
+            Prices
+          </h2>
+          <p className="mt-2 max-w-3xl text-lg">
+            Per sign and in total, in Australian dollars. Choose your size,
+            sides and how many you need.
+          </p>
+          <CorflutePrices thick={thick} />
+          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+            <p>
+              <strong>Eyelets:</strong> {money(EYELET_EACH)} per eyelet, per
+              sign ({money(EYELET_EACH * 4)} a sign for 4 corners).
+            </p>
+            <p>
+              <strong>Extra designs:</strong> {money(EXTRA_DESIGN)} each (one
+              design included).
+            </p>
+            {PRICE_NOTES.map((n) => (
+              <p key={n} className="font-semibold">
+                {n}.
+              </p>
+            ))}
+            <p>{TURNAROUND}</p>
+          </div>
+        </div>
+      </section>
+
       <TrustStrip tone="dark" />
 
       {/* Mockups */}
@@ -267,133 +282,6 @@ export default function CorfluteSignsPage() {
         </div>
       </section>
 
-      {/* Prices */}
-      <section
-        id="prices"
-        aria-labelledby="prices-heading"
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-site px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="prices-heading" className="text-3xl sm:text-4xl">
-            Prices
-          </h2>
-          <p className="mt-2 max-w-3xl text-lg">
-            In Australian dollars, for printed corflute signs. Choose a
-            thickness to see its prices.{" "}
-          </p>
-          <div className="mt-6 max-w-3xl rounded-xl border-2 border-rust bg-cream px-5 py-4">
-            <p className="font-slab text-lg font-bold">
-              Bundle prices are flat prices
-            </p>
-            <p className="mt-1 leading-relaxed">
-              The <strong>1 to 5 signs</strong> and{" "}
-              <strong>6 to 10 signs</strong> prices are one flat price for the
-              whole order, not a price per sign. For example, 1, 3 or 5 single
-              sided {ex.label} signs are {money(exBundle)} in total. From 11
-              signs you pay the price shown <strong>per sign</strong>.
-            </p>
-          </div>
-          <div
-            role="radiogroup"
-            aria-label="Corflute thickness"
-            className={`mt-8 rounded-lg border-2 border-charcoal bg-white p-1 ${THICKNESSES.length > 1 ? "inline-flex" : "hidden"}`}
-          >
-            {THICKNESSES.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                role="radio"
-                aria-checked={thick === t.id}
-                onClick={() => setThick(t.id)}
-                className={`rounded-md px-3 py-2 font-slab font-bold sm:px-5 ${
-                  thick === t.id
-                    ? "bg-charcoal text-cream"
-                    : "text-charcoal hover:bg-cream"
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-          {SIDES.map((side) => (
-            <div key={side.id} className="mt-8">
-              <h3 className="font-slab text-2xl font-bold">
-                {side.label}, {thick} corflute
-              </h3>
-              <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
-              <div className="relative mt-3 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
-                <table className="w-full text-left">
-                  <caption className="sr-only">
-                    {side.label} {thick} corflute sign prices
-                  </caption>
-                  <thead className="bg-charcoal text-cream">
-                    <tr>
-                      <th scope="col" className={th}>
-                        Size (W × H)
-                      </th>
-                      {COLUMNS.map((c) => (
-                        <th key={c.key} scope="col" className={th}>
-                          <span className="whitespace-nowrap">{c.label}</span>
-                          <span className="block whitespace-nowrap text-xs font-normal text-cream/75">
-                            {c.flat ? "flat price, total" : "per sign"}
-                          </span>
-                        </th>
-                      ))}
-                      <th scope="col" className={th}>
-                        <span className="sr-only">Quote</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-charcoal/10">
-                    {SIZES.map((s) => (
-                      <tr key={s.id} className="odd:bg-cream-light/60">
-                        <th
-                          scope="row"
-                          className={`${td} whitespace-nowrap font-bold`}
-                        >
-                          {s.label}
-                          <span className="block text-xs font-normal text-charcoal/70">
-                            portrait or landscape
-                          </span>
-                        </th>
-                        {COLUMNS.map((c) => (
-                          <td key={c.key} className={priceTd}>
-                            {money(s.price[thick][side.id][c.key])}
-                          </td>
-                        ))}
-                        <td className={td}>
-                          <QuoteButton
-                            label={`${side.label} ${thick} ${s.label}`}
-                            href={quoteHref("corflute-signs", s.id)}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))}
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
-            <p>
-              <strong>Eyelets:</strong> {money(EYELET_EACH)} per eyelet, per
-              sign ({money(EYELET_EACH * 4)} a sign for 4 corners).
-            </p>
-            <p>
-              <strong>Extra designs:</strong> {money(EXTRA_DESIGN)} each (one
-              design included).
-            </p>
-            {PRICE_NOTES.map((n) => (
-              <p key={n} className="font-semibold">
-                {n}.
-              </p>
-            ))}
-            <p>{TURNAROUND}</p>
-          </div>
-        </div>
-      </section>
-
       {/* Artwork */}
       <section
         id="artwork"
@@ -424,28 +312,7 @@ export default function CorfluteSignsPage() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section
-        id="quote"
-        aria-labelledby="quote-heading"
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="quote-heading" className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug="corflute-signs" />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <CorfluteQuoteForm choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={"corflute-signs"} label={"corflute signs"} />
 
       <FaqList
         id="cf-faq-heading"

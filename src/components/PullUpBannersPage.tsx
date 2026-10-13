@@ -1,8 +1,8 @@
+import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
 import {
   DOWNLOAD_GROUPS,
@@ -10,14 +10,12 @@ import {
   MATERIAL,
   PRICE_NOTES,
   SIZES,
-  type QuoteChoice,
 } from "../data/pullUpBanners";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
-import PullUpBannerQuoteForm from "./PullUpBannerQuoteForm";
 
 const types = [
   {
@@ -139,12 +137,6 @@ function QuoteButton({
 }
 
 export default function PullUpBannersPage() {
-  const [choice, setChoice] = useState<QuoteChoice>({
-    stand: "luxury",
-    size: "",
-    base: "silver",
-    qty: "1",
-  });
 
 
   return (
@@ -175,13 +167,9 @@ export default function PullUpBannersPage() {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref("pull-up-banners")} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {aud(FROM_PRICE)}
@@ -196,44 +184,6 @@ export default function PullUpBannersPage() {
           />
         </div>
       </section>
-      <TrustStrip tone="dark" />
-
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.pullUpLuxury.slug}
-        items={[MOCKUPS.pullUpLuxury, MOCKUPS.pullUpDouble]}
-      />
-
-      {/* Types */}
-      <section
-        aria-labelledby="types-heading"
-        className="bg-cream py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-site px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="types-heading" className="text-3xl sm:text-4xl">
-            Choose your stand
-          </h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
-            {types.map((t) => (
-              <div
-                key={t.title}
-                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
-              >
-                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
-                <p className="mt-2 leading-relaxed">{t.text}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-5 text-sm">
-            Every stand comes with your printed banner fitted and a carry bag.
-            Printed in full colour on tear-resistant, low-curl blockout PVC.
-            Price per stand, including printing your artwork.
-          </p>
-        </div>
-      </section>
-
       {/* Prices */}
       <section
         id="prices"
@@ -316,6 +266,44 @@ export default function PullUpBannersPage() {
         </div>
       </section>
 
+      <TrustStrip tone="dark" />
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        exclude={MOCKUPS.pullUpLuxury.slug}
+        items={[MOCKUPS.pullUpLuxury, MOCKUPS.pullUpDouble]}
+      />
+
+      {/* Types */}
+      <section
+        aria-labelledby="types-heading"
+        className="bg-cream py-14 sm:py-16"
+      >
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id="types-heading" className="text-3xl sm:text-4xl">
+            Choose your stand
+          </h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            {types.map((t) => (
+              <div
+                key={t.title}
+                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
+              >
+                <h3 className="font-slab text-xl font-bold">{t.title}</h3>
+                <p className="mt-2 leading-relaxed">{t.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-sm">
+            Every stand comes with your printed banner fitted and a carry bag.
+            Printed in full colour on tear-resistant, low-curl blockout PVC.
+            Price per stand, including printing your artwork.
+          </p>
+        </div>
+      </section>
+
       {/* Artwork */}
       <section
         id="artwork"
@@ -387,28 +375,7 @@ export default function PullUpBannersPage() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section
-        id="quote"
-        aria-labelledby="quote-heading"
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="quote-heading" className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug="pull-up-banners" />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <PullUpBannerQuoteForm choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={"pull-up-banners"} label={"pull up banners"} />
 
       {/* FAQ */}
       <section

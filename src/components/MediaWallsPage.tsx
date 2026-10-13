@@ -1,7 +1,7 @@
+import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
 import {
   DOWNLOADS,
@@ -11,14 +11,12 @@ import {
   SIZES,
   TURNAROUND,
   aud,
-  type QuoteChoice,
 } from "../data/mediaWalls";
 import { asset } from "../lib/asset";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
-import MediaWallQuoteForm from "./MediaWallQuoteForm";
 
 const included = [
   {
@@ -124,13 +122,6 @@ const Check = () => (
 
 export default function MediaWallsPage() {
   const [sides, setSides] = useState<"single" | "double">("single");
-  const [choice, setChoice] = useState<QuoteChoice>({
-    item: "kit",
-    size: "",
-    sides: "single",
-    led: "no",
-    qty: "1",
-  });
 
 
   return (
@@ -163,13 +154,9 @@ export default function MediaWallsPage() {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref("media-walls")} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {aud(SIZES[0]!.kit.single)}
@@ -184,16 +171,6 @@ export default function MediaWallsPage() {
           />
         </div>
       </section>
-      <TrustStrip tone="dark" />
-
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.mediaWallSingle.slug}
-        heading="Single sided, double sided or LED backlit"
-        items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
-      />
-
       {/* Prices */}
       <section
         id="prices"
@@ -318,6 +295,16 @@ export default function MediaWallsPage() {
         </div>
       </section>
 
+      <TrustStrip tone="dark" />
+
+      {/* Mockups */}
+      <MockupGallery
+        id="mockups"
+        exclude={MOCKUPS.mediaWallSingle.slug}
+        heading="Single sided, double sided or LED backlit"
+        items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
+      />
+
       {/* What's included */}
       <section
         aria-labelledby="included-heading"
@@ -400,28 +387,7 @@ export default function MediaWallsPage() {
         </div>
       </section>
 
-      {/* Quote */}
-      <section
-        id="quote"
-        aria-labelledby="quote-heading"
-        className="scroll-mt-20 bg-cream py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id="quote-heading" className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug="media-walls" />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <MediaWallQuoteForm choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={"media-walls"} label={"media wall"} />
 
       {/* FAQ */}
       <section aria-labelledby="mw-faq-heading" className="py-14 sm:py-16">

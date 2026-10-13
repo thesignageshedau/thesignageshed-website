@@ -327,6 +327,58 @@ export const EMAIL_FIELDS = [
   "Notes",
 ] as const;
 
+export const MAX_QUOTE_ITEMS = 5;
+/** Per-item labels repeated for items 2 to 5 as "Item N – <label>" (same meaning as item 1's labels). */
+export const ITEM_FIELDS = [
+  "Product code",
+  "Product",
+  "Size",
+  "Custom size (as entered)",
+  "Size (mm)",
+  "Material",
+  "Orientation",
+  "Thickness",
+  "Sides",
+  "Eyelets",
+  "Options",
+  "Quantity",
+  "Number of designs",
+  "Price shown",
+] as const;
+
+/** Item 2 to 5 fields from their un-prefixed form values. */
+function itemFieldsFrom(b: Record<string, string>): Record<string, string> {
+  const take = (...keys: string[]) => {
+    for (const k of keys) {
+      const v = b[k]?.trim();
+      delete b[k];
+      if (v) return v;
+    }
+    return "";
+  };
+  const f: Record<string, string> = {};
+  const code = take("Product code") || "other";
+  f["Product code"] = code;
+  const productRaw = take("Product");
+  f["Product"] = PRODUCT_LABELS[code] ?? (productRaw || "N/A");
+  f["Size"] = take("Size");
+  f["Custom size (as entered)"] = take("Custom size");
+  f["Size (mm)"] = take("Size (mm)") || sizeToMm(f["Custom size (as entered)"]) || sizeToMm(f["Size"]);
+  f["Material"] = take("Banner material", "Material");
+  f["Orientation"] = take("Orientation");
+  f["Thickness"] = take("Thickness");
+  f["Sides"] = take("Sides");
+  f["Eyelets"] = take("Eyelets");
+  f["Quantity"] = take("Quantity");
+  f["Number of designs"] = take("Number of designs");
+  f["Price shown"] = take("Price shown");
+  f["Options"] = Object.entries(b)
+    .filter(([, v]) => v)
+    .map(([k, v]) => (k === "Options" ? v : `${k}: ${v}`))
+    .join("; ");
+  return f;
+}
+
 const PRODUCT_LABELS: Record<string, string> = {
   "media-walls": "Media walls",
   "table-covers": "Table covers",
@@ -368,6 +420,20 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
     }
     return "";
   };
+  // Items 2 to 5 on the general form: pull their "Item N – " fields out first, so item 1 works as before.
+  const extraItems: Record<string, string>[] = [];
+  for (let n = 2; n <= MAX_QUOTE_ITEMS; n++) {
+    const pre = `Item ${n} – `;
+    const bucket: Record<string, string> = {};
+    for (const k of Object.keys(raw)) {
+      if (k.startsWith(pre)) {
+        bucket[k.slice(pre.length)] = raw[k]!;
+        delete raw[k];
+      }
+    }
+    if (Object.keys(bucket).length) extraItems.push(bucket);
+  }
+  const itemCount = take("Item count");
   const code = form.dataset.productCode || take("Product code") || "other";
   const general = form.dataset.form === "general";
   const productRaw = take("Product");
@@ -423,16 +489,23 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
   if (raw._next) out._next = raw._next;
   out._honey = raw._honey ?? "";
   for (const k of EMAIL_FIELDS) out[k] = f[k] || "N/A";
+  out["Item count"] = String(1 + extraItems.length);
+  void itemCount;
+  extraItems.forEach((b, i) => {
+    const item = itemFieldsFrom(b);
+    for (const k of ITEM_FIELDS) out[`Item ${i + 2} – ${k}`] = item[k] || "N/A";
+  });
+  if (extraItems.length) out._subject += ` + ${extraItems.length} more`;
   return out;
 }
 
 /** "How many designs?" (sent as "Number of designs" in the FormSubmit email). */
-export function DesignsField() {
+export function DesignsField({ prefix = "" }: { prefix?: string }) {
   return (
     <label className={label}>
       Number of different designs/artworks
       <input
-        name="Number of designs"
+        name={`${prefix}Number of designs`}
         type="number"
         inputMode="numeric"
         min={1}

@@ -1,28 +1,20 @@
+import QuoteCta from "./QuoteCta";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import QuoteLink from "./QuoteLink";
-import { useState } from "react";
 import { QUOTE_EMAIL } from "../data/mediaWalls";
 import {
   PRICE_NOTES,
   fromPrice,
   money,
-  type GearChoice,
   type GearProduct,
 } from "../data/eventGear";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
-import GearQuoteForm from "./GearQuoteForm";
 import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
 
 // One page layout for the event gear products (gazebos, flags, market umbrellas).
 export default function GearPage({ product: p }: { product: GearProduct }) {
-  const [choice, setChoice] = useState<GearChoice>({
-    item: "",
-    addon: false,
-    qty: "1",
-  });
   const mailSubject = encodeURIComponent(`Artwork template: ${p.teaserTitle}`);
 
   return (
@@ -51,13 +43,9 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               >
                 See prices
               </button>
-              <button
-                type="button"
-                className="btn-ghost-light"
-                onClick={() => scrollToId("quote")}
-              >
-                Request a quote
-              </button>
+              <a href={quoteHref(p.slug)} className="btn-ghost-light">
+                Get a quote
+              </a>
             </div>
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {money(fromPrice(p))}
@@ -72,33 +60,6 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           />
         </div>
       </section>
-      <TrustStrip tone="dark" />
-
-      <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} exclude={p.hero.slug} />
-
-      <section
-        aria-labelledby={`${p.slug}-types`}
-        className="bg-cream py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-site px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id={`${p.slug}-types`} className="text-3xl sm:text-4xl">
-            Choose your {p.noun}
-          </h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {p.groups.map((g) => (
-              <div
-                key={g.id}
-                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
-              >
-                <h3 className="font-slab text-xl font-bold">{g.title}</h3>
-                <p className="mt-2 leading-relaxed">{g.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section
         id="prices"
         aria-labelledby={`${p.slug}-prices`}
@@ -194,6 +155,33 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
         </div>
       </section>
 
+      <TrustStrip tone="dark" />
+
+      <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} exclude={p.hero.slug} />
+
+      <section
+        aria-labelledby={`${p.slug}-types`}
+        className="bg-cream py-14 sm:py-16"
+      >
+        <div className="mx-auto max-w-site px-4 sm:px-6">
+          <div className="rule mb-4" />
+          <h2 id={`${p.slug}-types`} className="text-3xl sm:text-4xl">
+            Choose your {p.noun}
+          </h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            {p.groups.map((g) => (
+              <div
+                key={g.id}
+                className="rounded-xl border-2 border-charcoal/15 bg-white p-6"
+              >
+                <h3 className="font-slab text-xl font-bold">{g.title}</h3>
+                <p className="mt-2 leading-relaxed">{g.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section
         id="artwork"
         aria-labelledby={`${p.slug}-artwork`}
@@ -215,27 +203,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
         </div>
       </section>
 
-      <section
-        id="quote"
-        aria-labelledby={`${p.slug}-quote`}
-        className="scroll-mt-20 py-14 sm:py-16"
-      >
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rule mb-4" />
-          <h2 id={`${p.slug}-quote`} className="text-3xl sm:text-4xl">
-            Request a quote
-          </h2>
-          <p className="mt-2 text-lg leading-relaxed">
-            Tell us what you need and we'll email you a quote with delivery
-            included, usually within one business day.
-          </p>
-          <QuoteLink slug={p.slug} />
-          <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
-            <div className="mb-6"><TrustStrip /></div>
-            <GearQuoteForm product={p} choice={choice} setChoice={setChoice} />
-          </div>
-        </div>
-      </section>
+      <QuoteCta slug={p.slug} label={p.noun} />
 
       <FaqList
         id={`${p.slug}-faq`}
