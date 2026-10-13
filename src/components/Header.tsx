@@ -1,5 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { asset } from "../lib/asset";
+import { quoteHref, QUOTE_PRODUCTS } from "../data/quoteProducts";
+
+/** Product slug of the page we're on (#/pull-up-banners), so the quote button pre-selects it. */
+function useProductSlug() {
+  const read = () => {
+    const m = window.location.hash.match(/^#\/([a-z-]+)/);
+    const slug = m?.[1] ?? "";
+    return QUOTE_PRODUCTS.some((p) => p.slug === slug && slug !== "other") ? slug : undefined;
+  };
+  const [slug, setSlug] = useState(read);
+  useEffect(() => {
+    const on = () => setSlug(read());
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return slug;
+}
 import {
   A_FRAMES_HREF,
   CORFLUTE_SIGNS_HREF,
@@ -29,10 +46,9 @@ const links: { href: string; label: string; show: string }[] = [
   { href: "#why", label: "Why us", show: "hidden md:block" },
   { href: "#faq", label: "FAQ", show: "hidden lg:block" },
   { href: "#contact", label: "Contact", show: "hidden sm:block" },
-  { href: "#/quote", label: "Get a quote", show: "" },
 ];
 const linkClass =
-  "whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
+  "inline-flex min-h-11 items-center whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
 
 function ProductsMenu() {
   const [open, setOpen] = useState(false);
@@ -98,7 +114,7 @@ function ProductsMenu() {
             <a
               href={p.href}
               onClick={() => setOpen(false)}
-              className="block px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+              className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
             >
               {p.label}
             </a>
@@ -108,7 +124,7 @@ function ProductsMenu() {
           <a
             href="#products"
             onClick={() => setOpen(false)}
-            className="block px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+            className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
           >
             Pricing spreadsheets
           </a>
@@ -119,6 +135,7 @@ function ProductsMenu() {
 }
 
 export default function Header() {
+  const slug = useProductSlug();
   return (
     <header className="sticky top-0 z-40 border-b-4 border-rust bg-charcoal text-cream">
       <div className="mx-auto flex max-w-site items-center justify-between gap-2 px-4 py-3 min-[400px]:gap-4 sm:px-6">
@@ -132,7 +149,7 @@ export default function Header() {
             srcSet={`${asset("images/badge-96.webp")} 1x, ${asset("images/badge-192.webp")} 2x`}
             width={44}
             height={44}
-            alt=""
+            alt="The Signage Shed badge"
             className="h-11 w-11"
           />
           <span className="whitespace-nowrap font-display text-lg leading-none tracking-wide max-[459px]:sr-only sm:text-xl">
@@ -149,6 +166,15 @@ export default function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={quoteHref(slug)}
+                data-track="quote-header"
+                className="ml-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-md bg-rust-dark px-3 text-sm font-semibold text-white hover:bg-rust-deeper md:px-4 md:text-base"
+              >
+                Get a quote
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

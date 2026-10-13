@@ -20,6 +20,10 @@ import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
+import QuoteBar from "./components/QuoteBar";
+import TrustStrip from "./components/TrustStrip";
+import FaqSchema from "./components/FaqSchema";
+import { QUOTE_PRODUCTS } from "./data/quoteProducts";
 import QuotePage from "./components/QuotePage";
 import NotFound from "./components/NotFound";
 import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
@@ -70,17 +74,17 @@ function routeFromHash(): Route | null {
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
-  "media-walls": "Media Walls: Prices and Quotes | The Signage Shed",
-  "table-covers": "Table Covers: Prices and Quotes | The Signage Shed",
-  "pull-up-banners": "Pull Up Banners: Prices and Quotes | The Signage Shed",
-  "corflute-signs": "Corflute Signs: Prices and Quotes | The Signage Shed",
-  "a-frames": "A-Frame Signs: Prices and Quotes | The Signage Shed",
+  "media-walls": "Media Walls Australia: Printed Fabric Backdrops | The Signage Shed",
+  "table-covers": "Printed Table Covers Australia: Custom Table Throws | The Signage Shed",
+  "pull-up-banners": "Pull Up Banners Australia: Printed and Delivered | The Signage Shed",
+  "corflute-signs": "Corflute Signs Australia: Custom Printed | The Signage Shed",
+  "a-frames": "A-Frame Signs Australia: Custom Printed Sandwich Boards | The Signage Shed",
   gazebos: GAZEBOS.pageTitle,
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,
   banners: BANNERS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
-  quote: "Request a Quote | The Signage Shed",
+  quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
 
 export default function App() {
@@ -126,6 +130,8 @@ export default function App() {
     if (el) el.scrollIntoView({ behavior: "instant" });
   }, [route]);
 
+  const barProduct = QUOTE_PRODUCTS.find((p) => p.slug === route);
+
   usePageview(route ? `/${route}` : "/");
 
   return (
@@ -167,6 +173,7 @@ export default function App() {
         ) : (
           <>
             <Hero />
+            <TrustStrip tone="dark" />
             <div id="signage" className="scroll-mt-20" />
             <MediaWallsTeaser />
             <TableCoversTeaser />
@@ -183,7 +190,10 @@ export default function App() {
           </>
         )}
       </main>
+      <FaqSchema page={route ?? (missing ? "missing" : "home")} />
       <Footer />
+      {barProduct && <div aria-hidden className="h-20 md:hidden" />}
+      {barProduct && <QuoteBar slug={barProduct.slug} label={barProduct.label} />}
     </>
   );
 }

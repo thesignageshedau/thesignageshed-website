@@ -1,13 +1,13 @@
 // Per-page meta descriptions (also used for the static share pages in public/<slug>/).
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
-  "media-walls": "Printed fabric sock and frame media walls from 2.4m to 4m wide, single or double sided, with optional LED lights. Frame, print and carry bag included. Prices online, delivered Australia-wide.",
-  "table-covers": "Printed fitted and loose table throws for 6ft and 8ft tables, round throws and front drop table runners. Machine-washable polyester. Prices online, delivered Australia-wide.",
-  "pull-up-banners": "Luxury and double-sided pull up banners, 850mm or 1200mm wide, printed, fitted and supplied with a carry bag. Prices online, delivered Australia-wide.",
-  "corflute-signs": "Printed corflute signs in 3 standard sizes, 5mm, portrait or landscape, single or double sided, with optional eyelets. Bulk pricing online, delivered Australia-wide.",
-  "a-frames": "Printed aluminium, insert, real estate and folding corflute A-frame signs, printed both sides with your artwork. Prices online, delivered Australia-wide.",
-  "gazebos": "Printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional printed back walls. Prices online, delivered Australia-wide.",
-  "flags": "Printed teardrop and feather flags with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
+  "media-walls": "Custom printed fabric sock and frame media walls from 2.4m to 4m wide, single or double sided, with optional LED lights. Frame, print and carry bag included. Prices online, delivered Australia-wide.",
+  "table-covers": "Custom printed fitted and loose table throws for 6ft and 8ft tables, round throws and front drop table runners. Machine-washable polyester. Prices online, delivered Australia-wide.",
+  "pull-up-banners": "Custom printed luxury and double-sided pull up banners, 850mm or 1200mm wide, printed, fitted and supplied with a carry bag. Prices online, delivered Australia-wide.",
+  "corflute-signs": "Custom printed corflute signs in standard sizes, 5mm, portrait or landscape, single or double sided, with optional eyelets. Bulk pricing online, delivered Australia-wide.",
+  "a-frames": "Custom printed aluminium, insert, real estate and folding corflute A-frame signs, printed both sides with your artwork. Prices online, delivered Australia-wide.",
+  "gazebos": "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional printed back walls. Prices online, delivered Australia-wide.",
+  "flags": "Custom printed teardrop and feather flags with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
-  "banners": "Printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
-  "quote": "Request a quote for printed signs, banners, flags, gazebos and event gear from The Signage Shed. We reply by email, usually within one business day.",
+  "banners": "Custom printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
+  "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
 };

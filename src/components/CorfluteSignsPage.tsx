@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
@@ -185,16 +186,16 @@ export default function CorfluteSignsPage() {
           <div>
             <a
               href={homeSection("top")}
-              className="text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
             >
               ← Back to The Signage Shed
             </a>
-            <p className="eyebrow mt-8">Printed corflute signs</p>
+            <p className="eyebrow mt-8">Printed corflute signs, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
               Corflute signs for events, sites and sales
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
-              Tough, light, weatherproof signs in 5 standard sizes, printed on
+              Tough, light, weatherproof signs in 3 standard sizes, printed on
               one side or both. Bundle pricing makes small runs simple: up to 5
               signs is one flat price. {MATERIAL}
             </p>
@@ -228,6 +229,7 @@ export default function CorfluteSignsPage() {
           />
         </div>
       </section>
+      <TrustStrip tone="dark" />
 
       {/* Mockups */}
       <MockupGallery
@@ -438,6 +440,7 @@ export default function CorfluteSignsPage() {
           </p>
           <QuoteLink slug="corflute-signs" />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
+            <div className="mb-6"><TrustStrip /></div>
             <CorfluteQuoteForm choice={choice} setChoice={setChoice} />
           </div>
         </div>

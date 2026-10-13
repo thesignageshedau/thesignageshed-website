@@ -13,14 +13,14 @@ export default function Footer() {
       <div className="mx-auto grid max-w-site gap-8 px-4 py-12 sm:px-6 md:grid-cols-[auto_1fr] md:items-center">
         <img src={asset("images/badge-192.webp")} width={88} height={88} alt="The Signage Shed badge" loading="lazy" className="h-[88px] w-[88px]" />
         <div className="md:justify-self-end">
-          <ul className="flex flex-wrap gap-x-6 gap-y-3 font-semibold">
+          <ul className="flex flex-wrap gap-x-6 gap-y-1 font-semibold">
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} target="_blank" rel="noopener" data-track={l.track} className="hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">{l.label}</a>
+                <a href={l.href} target="_blank" rel="noopener" data-track={l.track} className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">{l.label}</a>
               </li>
             ))}
             <li>
-              <a href={`mailto:${SHOP.email}`} className="hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Email us</a>
+              <a href={`mailto:${SHOP.email}`} className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Email us</a>
             </li>
           </ul>
         </div>
@@ -28,10 +28,10 @@ export default function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto max-w-site px-4 py-5 sm:px-6">
           <nav aria-label="Legal">
-            <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+            <ul className="flex flex-wrap gap-x-5 gap-y-0 text-sm font-semibold">
               {LEGAL_PAGES.map((p) => (
                 <li key={p.slug}>
-                  <a href={`#/${p.slug}`} className="text-cream/85 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">
+                  <a href={`#/${p.slug}`} className="inline-flex min-h-11 items-center text-cream/85 hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">
                     {p.label}
                   </a>
                 </li>

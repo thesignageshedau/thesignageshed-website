@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState } from "react";
@@ -31,7 +32,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           <div>
             <a
               href={homeSection("top")}
-              className="text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
             >
               ← Back to The Signage Shed
             </a>
@@ -71,6 +72,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           />
         </div>
       </section>
+      <TrustStrip tone="dark" />
 
       <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} />
 
@@ -229,6 +231,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           </p>
           <QuoteLink slug={p.slug} />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
+            <div className="mb-6"><TrustStrip /></div>
             <GearQuoteForm product={p} choice={choice} setChoice={setChoice} />
           </div>
         </div>

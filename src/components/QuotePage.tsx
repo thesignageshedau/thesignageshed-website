@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { useEffect, useState } from "react";
 import { FORMSUBMIT_ACTION, QUOTE_EMAIL } from "../data/mediaWalls";
 import { QUOTE_PRODUCTS } from "../data/quoteProducts";
@@ -77,6 +78,7 @@ export default function QuotePage() {
           Tell us what you need and we'll email you a quote with delivery
           included, usually within one business day. No payment now.
         </p>
+        <div className="mt-6"><TrustStrip /></div>
         <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
           <form
             action={FORMSUBMIT_ACTION}

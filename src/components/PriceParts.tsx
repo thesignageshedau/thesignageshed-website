@@ -23,7 +23,7 @@ export function QuoteButton({
   return (
     <a
       href={href}
-      className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-md border-2 border-charcoal px-3 text-sm font-bold hover:bg-charcoal hover:text-cream"
     >
       Quote<span className="sr-only"> for {label}</span>
     </a>
@@ -71,7 +71,7 @@ export function DownloadGroup({
               <a
                 href={asset(d.guide)}
                 download
-                className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                 data-track={`${track}-guide-${title} ${d.label}`}
               >
                 Artwork guide (PDF)
@@ -79,7 +79,7 @@ export function DownloadGroup({
               <a
                 href={asset(d.template)}
                 download
-                className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                 data-track={`${track}-template-${title} ${d.label}`}
               >
                 Artwork template (PDF)
@@ -110,7 +110,7 @@ export function FaqList({
         <h2 id={id} className="text-3xl sm:text-4xl">
           {title}
         </h2>
-        <div className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
+        <div data-faq className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
           {faqs.map((f) => (
             <details key={f.q} className="group p-5 sm:p-6">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">

@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
@@ -139,11 +140,11 @@ export default function MediaWallsPage() {
           <div>
             <a
               href={homeSection("top")}
-              className="text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
             >
               ← Back to The Signage Shed
             </a>
-            <p className="eyebrow mt-8">Printed media walls</p>
+            <p className="eyebrow mt-8">Printed media walls, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
               Media walls for events, launches and shopfronts
             </h1>
@@ -182,6 +183,7 @@ export default function MediaWallsPage() {
           />
         </div>
       </section>
+      <TrustStrip tone="dark" />
 
       {/* Mockups */}
       <MockupGallery
@@ -289,7 +291,7 @@ export default function MediaWallsPage() {
                     <td className="hidden px-2 py-3 text-right sm:table-cell sm:px-4">
                       <a
                         href={quoteHref("media-walls", s.id)}
-                        className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-3 py-1.5 text-sm font-bold hover:bg-charcoal hover:text-cream"
+                        className="inline-flex min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-md border-2 border-charcoal px-3 text-sm font-bold hover:bg-charcoal hover:text-cream"
                       >
                         Quote<span className="sr-only"> for {s.label}</span>
                       </a>
@@ -375,7 +377,7 @@ export default function MediaWallsPage() {
                   <a
                     href={asset(d.guide)}
                     download
-                    className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                    className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                     data-track={`media-wall-guide-${d.label}`}
                   >
                     Artwork guide (PDF)
@@ -383,7 +385,7 @@ export default function MediaWallsPage() {
                   <a
                     href={asset(d.template)}
                     download
-                    className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                    className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                     data-track={`media-wall-template-${d.label}`}
                   >
                     Artwork template (PDF)
@@ -412,6 +414,7 @@ export default function MediaWallsPage() {
           </p>
           <QuoteLink slug="media-walls" />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
+            <div className="mb-6"><TrustStrip /></div>
             <MediaWallQuoteForm choice={choice} setChoice={setChoice} />
           </div>
         </div>
@@ -424,7 +427,7 @@ export default function MediaWallsPage() {
           <h2 id="mw-faq-heading" className="text-3xl sm:text-4xl">
             Media wall FAQ
           </h2>
-          <div className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
+          <div data-faq className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
             {faqs.map((f) => (
               <details key={f.q} className="group p-5 sm:p-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">

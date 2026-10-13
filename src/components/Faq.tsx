@@ -59,7 +59,7 @@ export default function Faq() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="rule mb-4" />
         <h2 className="text-3xl sm:text-4xl">FAQ</h2>
-        <div className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
+        <div data-faq className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
           {faqs.map((f) => (
             <details key={f.q} className="group p-5 sm:p-6">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">

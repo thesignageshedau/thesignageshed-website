@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
@@ -154,11 +155,11 @@ export default function AFramesPage() {
           <div>
             <a
               href={homeSection("top")}
-              className="text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
             >
               ← Back to The Signage Shed
             </a>
-            <p className="eyebrow mt-8">Printed A-frame signs</p>
+            <p className="eyebrow mt-8">Printed A-frame signs, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
               A-frames that bring people through the door
             </h1>
@@ -196,6 +197,7 @@ export default function AFramesPage() {
           />
         </div>
       </section>
+      <TrustStrip tone="dark" />
 
       {/* Mockups */}
       <MockupGallery
@@ -382,6 +384,7 @@ export default function AFramesPage() {
           </p>
           <QuoteLink slug="a-frames" />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
+            <div className="mb-6"><TrustStrip /></div>
             <AFrameQuoteForm choice={choice} setChoice={setChoice} />
           </div>
         </div>

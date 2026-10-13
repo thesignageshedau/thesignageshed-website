@@ -6,6 +6,7 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { @apply bg-cream-light font-slab text-charcoal antialiased; }
   h1, h2, h3 { @apply font-display font-normal tracking-wide; }
+  summary { min-height: 44px; }
   :focus-visible { @apply outline outline-2 outline-offset-2 outline-rust-dark; }
 }
 

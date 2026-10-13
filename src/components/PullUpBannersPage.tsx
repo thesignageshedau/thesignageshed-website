@@ -1,3 +1,4 @@
+import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import QuoteLink from "./QuoteLink";
 import { useState, type ReactNode } from "react";
@@ -129,7 +130,7 @@ function QuoteButton({
   return (
     <a
       href={href}
-      className="inline-block whitespace-nowrap rounded-md border-2 border-charcoal px-2.5 py-1 text-xs font-bold hover:bg-charcoal hover:text-cream sm:px-3 sm:py-1.5 sm:text-sm"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-md border-2 border-charcoal px-3 text-sm font-bold hover:bg-charcoal hover:text-cream"
     >
       Quote<span className="sr-only"> for {label}</span>
     </a>
@@ -153,11 +154,11 @@ export default function PullUpBannersPage() {
           <div>
             <a
               href={homeSection("top")}
-              className="text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
+              className="inline-flex min-h-11 items-center text-sm font-semibold text-cream/80 underline underline-offset-4 hover:text-white"
             >
               ← Back to The Signage Shed
             </a>
-            <p className="eyebrow mt-8">Printed pull up banners</p>
+            <p className="eyebrow mt-8">Printed pull up banners, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
               Pull up banners for expos, shopfronts and events
             </h1>
@@ -194,6 +195,7 @@ export default function PullUpBannersPage() {
           />
         </div>
       </section>
+      <TrustStrip tone="dark" />
 
       {/* Mockups */}
       <MockupGallery
@@ -360,7 +362,7 @@ export default function PullUpBannersPage() {
                         <a
                           href={asset(d.guide)}
                           download
-                          className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                          className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                           data-track={`pull-up-banner-guide-${g.title} ${d.label}`}
                         >
                           Artwork guide (PDF)
@@ -368,7 +370,7 @@ export default function PullUpBannersPage() {
                         <a
                           href={asset(d.template)}
                           download
-                          className="text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
+                          className="inline-flex min-h-11 items-center text-rust-dark underline underline-offset-4 hover:text-rust-deeper"
                           data-track={`pull-up-banner-template-${g.title} ${d.label}`}
                         >
                           Artwork template (PDF)
@@ -400,6 +402,7 @@ export default function PullUpBannersPage() {
           </p>
           <QuoteLink slug="pull-up-banners" />
           <div className="mt-8 rounded-2xl border-2 border-charcoal/15 bg-white p-5 sm:p-8">
+            <div className="mb-6"><TrustStrip /></div>
             <PullUpBannerQuoteForm choice={choice} setChoice={setChoice} />
           </div>
         </div>
@@ -415,7 +418,7 @@ export default function PullUpBannersPage() {
           <h2 id="pu-faq-heading" className="text-3xl sm:text-4xl">
             Pull up banner FAQ
           </h2>
-          <div className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
+          <div data-faq className="mt-8 divide-y divide-charcoal/15 rounded-xl border border-charcoal/15 bg-white">
             {faqs.map((f) => (
               <details key={f.q} className="group p-5 sm:p-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
