@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { quotePayload, DesignsField } from "./QuoteFormParts";
+import { quotePayload, DesignsField, DeliveryArtworkFields } from "./QuoteFormParts";
 import {
   FORMSUBMIT_ACTION,
   FORMSUBMIT_AJAX,
@@ -37,7 +37,7 @@ const SUBJECT = "Pull up banner quote";
 export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
-  const [today, setToday] = useState("");
+  const [, setToday] = useState("");
   const [next, setNext] = useState("");
   const est = estimate(choice);
   const update = (patch: Partial<QuoteChoice>) =>
@@ -104,6 +104,7 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
 
   return (
     <form
+      data-product-code="pull-up-banners"
       action={FORMSUBMIT_ACTION}
       method="POST"
       onSubmit={onSubmit}
@@ -232,59 +233,7 @@ export default function PullUpBannerQuoteForm({ choice, setChoice }: Props) {
         )}
       </div>
 
-      <fieldset className="grid gap-4 sm:grid-cols-2">
-        <legend className="mb-3 font-display text-xl tracking-wide">
-          Delivery and artwork
-        </legend>
-        <label className={label}>
-          Delivery postcode
-          <input
-            name="Delivery postcode"
-            required
-            inputMode="numeric"
-            pattern="[0-9]{4}"
-            maxLength={4}
-            placeholder="e.g. 2000"
-            className={input}
-            title="A 4-digit Australian postcode"
-          />
-        </label>
-        <label className={label}>
-          Needed by
-          <input
-            name="Needed by"
-            type="date"
-            min={today || undefined}
-            className={input}
-          />
-        </label>
-        <label className={label}>
-          Do you need design help?
-          <select name="Design help needed" className={input} defaultValue="No">
-            <option>No</option>
-            <option>Yes</option>
-          </select>
-        </label>
-        <label className={label}>
-          Artwork link{" "}
-          <span className="font-normal text-charcoal/70">(optional)</span>
-          <input
-            name="Artwork link"
-            type="url"
-            placeholder="Google Drive, WeTransfer or Dropbox link"
-            className={input}
-          />
-        </label>
-        <label className={`${label} sm:col-span-2`}>
-          Notes <span className="font-normal text-charcoal/70">(optional)</span>
-          <textarea
-            name="Notes"
-            rows={4}
-            className={input}
-            placeholder="Event, venue, colours, anything we should know"
-          />
-        </label>
-      </fieldset>
+      <DeliveryArtworkFields notesHint="Event, venue, colours, anything we should know" checkHref="#/check-artwork?product=pull-up-banners" />
 
       <fieldset className="grid gap-4 sm:grid-cols-2">
         <legend className="mb-3 font-display text-xl tracking-wide">

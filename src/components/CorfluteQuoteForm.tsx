@@ -54,6 +54,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
 
   return (
     <form
+      data-product-code="corflute-signs"
       action={FORMSUBMIT_ACTION}
       method="POST"
       onSubmit={onSubmit}
@@ -173,7 +174,7 @@ export default function CorfluteQuoteForm({ choice, setChoice }: Props) {
           />
         </label>
         <label className={label}>
-          How many designs?
+          Number of different designs/artworks
           <input
             name="Number of designs"
             type="number"

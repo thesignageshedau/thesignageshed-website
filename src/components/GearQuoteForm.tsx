@@ -39,6 +39,7 @@ export default function GearQuoteForm({ product: p, choice, setChoice }: Props) 
 
   return (
     <form
+      data-product-code={p.slug}
       action={FORMSUBMIT_ACTION}
       method="POST"
       onSubmit={onSubmit}

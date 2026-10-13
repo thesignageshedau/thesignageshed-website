@@ -38,6 +38,7 @@ export default function AFrameQuoteForm({ choice, setChoice }: Props) {
 
   return (
     <form
+      data-product-code="a-frames"
       action={FORMSUBMIT_ACTION}
       method="POST"
       onSubmit={onSubmit}
