@@ -42,12 +42,14 @@ const products: { href: string; label: string }[] = [
   { href: FLAGS_HREF, label: "Teardrop and feather flags" },
   { href: MARKET_UMBRELLAS_HREF, label: "Market umbrellas" },
 ];
+const signShops = { href: "/for-sign-shops/", label: "For sign shops: pricing spreadsheets" };
 const howItWorks = [
   { href: "/check-artwork/", label: "Check your artwork" },
   { href: "/artwork-help/", label: "Artwork help" },
   { href: "/delivery/", label: "Delivery" },
 ];
 const links: { href: string; label: string; show: string }[] = [
+  { href: "/for-sign-shops/", label: "For sign shops", show: "hidden md:block" },
   { href: "/#faq", label: "FAQ", show: "hidden lg:block" },
   { href: "/#contact", label: "Contact", show: "hidden sm:block" },
 ];
@@ -138,6 +140,15 @@ function ProductsMenu() {
             </a>
           </li>
         ))}
+        <li className="mt-1 border-t border-cream/20 pt-1 md:hidden">
+          <a
+            href={signShops.href}
+            onClick={() => setOpen(false)}
+            className="flex min-h-11 items-center px-4 py-2.5 text-sm text-cream/85 hover:bg-white/10 hover:text-white"
+          >
+            {signShops.label}
+          </a>
+        </li>
       </ul>
     </li>
   );
@@ -170,7 +181,7 @@ export default function Header() {
             <ProductsMenu />
             {links.map((l) => (
               <li key={l.href} className={l.show}>
-                <a href={l.href} className={linkClass}>
+                <a href={l.href} className={`${linkClass} ${l.href === "/for-sign-shops/" ? "font-normal text-cream/80" : ""}`}>
                   {l.label}
                 </a>
               </li>
