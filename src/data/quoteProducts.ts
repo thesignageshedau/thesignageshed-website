@@ -6,6 +6,7 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "pull-up-banners", label: "Pull up banners", optionHint: "e.g. 850mm x 2000mm standard" },
   { slug: "corflute-signs", label: "Corflute signs", optionHint: "e.g. 600 x 900mm, 5mm, double sided" },
   { slug: "a-frames", label: "A-frames", optionHint: "e.g. 600 x 900mm, both sides printed" },
+  { slug: "banners", label: "Vinyl and mesh banners", optionHint: "e.g. 3000 x 1000mm mesh, eyelets" },
   { slug: "gazebos", label: "Gazebos", optionHint: "e.g. 3m x 3m with 2 walls" },
   { slug: "flags", label: "Teardrop and feather flags", optionHint: "e.g. medium feather flag, ground spike" },
   { slug: "market-umbrellas", label: "Market umbrellas", optionHint: "e.g. 2.4m, printed on all panels" },

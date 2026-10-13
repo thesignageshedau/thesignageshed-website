@@ -21,12 +21,12 @@ export default function EventGearTeaser() {
               New: outdoor event gear
             </span>
             <h2 id="eg-teaser-heading" className="mt-4 text-3xl sm:text-4xl">
-              Gazebos, flags and market umbrellas
+              Gazebos, flags, umbrellas and banners
             </h2>
             <p className="mt-2 text-base text-charcoal/80">
               {PRICE_NOTES.join(" · ")}
             </p>
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
+            <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {GEAR_PRODUCTS.map((p) => (
                 <a
                   key={p.slug}

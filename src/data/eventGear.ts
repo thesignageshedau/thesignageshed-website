@@ -195,7 +195,64 @@ export const UMBRELLAS: GearProduct = {
   notesHint: "Where it will be used, colours or design ideas, anything we should know",
 };
 
-export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS] as const;
+const BANDS_BANNER = [
+  { label: "1", min: 1 },
+  { label: "2 to 4", min: 2 },
+  { label: "5+", min: 5 },
+];
+
+// Vinyl, mesh and fabric mesh banners. Supplier price inc GST x 1.3, rounded UP to the next $5
+// (checked 13 Oct 2026). A single banner sits on the supplier's minimum order, so 1-off prices are the same for every size.
+export const BANNERS: GearProduct = {
+  slug: "banners",
+  eventName: "banner",
+  subject: "Vinyl or mesh banner quote",
+  noun: "banner",
+  pageTitle: "Vinyl and Mesh Banners: Prices and Quotes | The Signage Shed",
+  description: "Printed PVC vinyl banners, mesh vinyl banners and fabric mesh banners in popular sizes, finished with hemmed edges and eyelets. Full price list and a quick quote form.",
+  eyebrow: "Printed vinyl and mesh banners",
+  heading: "Banners for fences, shopfronts and events",
+  intro: "Full colour banners, finished and ready to hang. Choose solid PVC vinyl for the boldest colour, or mesh when the banner goes on a fence or anywhere wind can catch it.",
+  teaserTitle: "Vinyl and mesh banners",
+  teaserText: "PVC vinyl, mesh vinyl and fabric mesh banners, hemmed with eyelets and ready to hang.",
+  groups: [
+    { id: "pvc", title: "PVC vinyl banners", text: "Heavy 510gsm blockout vinyl printed single sided in full colour. Hemmed edges and clear rust-free eyelets every 1m. Add ropes if you want to tie it straight up." },
+    { id: "mesh", title: "Mesh vinyl banners", text: "Perforated vinyl mesh that lets wind through, so it suits fences, scaffolding and building sites. Welded edges with eyelets." },
+    { id: "fabric-mesh", title: "Fabric mesh banners", text: "Lightweight woven polyester mesh that folds without creasing and lets air through. Hemmed edges with stainless steel eyelets every 1m." },
+  ],
+  bands: BANDS_BANNER,
+  items: [
+    { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 90, 70], priceWithAddon: [180, 90, 75] },
+    { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 105, 95], priceWithAddon: [180, 115, 100] },
+    { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", price: [180, 145, 130], priceWithAddon: [180, 155, 140] },
+    { id: "pvc-4000x1000", group: "pvc", label: "PVC vinyl banner 4000 × 1000mm", short: "4000 × 1000mm", includes: "Hemmed edges and eyelets", price: [180, 140, 125], priceWithAddon: [180, 155, 140] },
+    { id: "mesh-3000x1000", group: "mesh", label: "Mesh vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Welded edges and eyelets", price: [180, 110, 95] },
+    { id: "mesh-2400x1600", group: "mesh", label: "Mesh vinyl banner 2400 × 1600mm", short: "2400 × 1600mm", includes: "Welded edges and eyelets", price: [180, 130, 115] },
+    { id: "mesh-2400x1800", group: "mesh", label: "Mesh vinyl banner 2400 × 1800mm", short: "2400 × 1800mm", includes: "Welded edges and eyelets", price: [180, 140, 125] },
+    { id: "mesh-3000x1600", group: "mesh", label: "Mesh vinyl banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Welded edges and eyelets", price: [180, 150, 135] },
+    { id: "fabric-2000x1000", group: "fabric-mesh", label: "Fabric mesh banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 90, 75] },
+    { id: "fabric-3000x900", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 900mm", short: "3000 × 900mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 105, 95] },
+    { id: "fabric-3000x1000", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 110, 100] },
+    { id: "fabric-3000x1600", group: "fabric-mesh", label: "Fabric mesh banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Hemmed edges and stainless steel eyelets", price: [180, 145, 130] },
+  ],
+  addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for up to $15 more each, depending on size and quantity. The quote form shows the exact price." },
+  notes: [
+    "All banners are printed single sided in full colour.",
+    "Need a different size? Choose \"Other\" in the quote form and tell us the width and height.",
+  ],
+  artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve. Keep text and logos at least 50mm in from the edges so the eyelets stay clear of them.",
+  faqs: [
+    { q: "Which banner should I choose?", a: "PVC vinyl gives the boldest colour and suits walls, shopfronts and indoor events. On a fence or anywhere windy, choose mesh vinyl or fabric mesh, as the holes let wind through so the banner and fence take less load." },
+    { q: "What comes with the banner?", a: "Every banner is finished and ready to hang: PVC vinyl has hemmed edges and eyelets every 1m (ropes optional), mesh vinyl has welded edges and eyelets, and fabric mesh has hemmed edges and stainless steel eyelets. Cable ties or hooks to fix it up are not included." },
+    { q: "Why is one banner the same price whatever the size?", a: "A single banner has a minimum production cost, so 1-off prices are the same across these sizes. Order two or more of the same design and the price per banner drops." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.bannerPvc,
+  gallery: [MOCKUPS.bannerPvc, MOCKUPS.bannerMesh, MOCKUPS.bannerFabricMesh],
+  notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
+};
+
+export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS, BANNERS] as const;
 
 /** Lowest single-item price on a product (used for "From $..." text). */
 export const fromPrice = (p: GearProduct) =>

@@ -5,7 +5,7 @@ import * as TC from "./tableCovers";
 import * as PB from "./pullUpBanners";
 import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
-import { FLAGS, GAZEBOS, UMBRELLAS, type GearProduct } from "./eventGear";
+import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS, type GearProduct } from "./eventGear";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -153,6 +153,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   gazebos: gear(GAZEBOS, "Gazebo"),
   flags: gear(FLAGS, "Flag"),
   "market-umbrellas": gear(UMBRELLAS, "Umbrella"),
+  banners: gear(BANNERS, "Banner type and size"),
 };
 
 export const money = (n: number) =>

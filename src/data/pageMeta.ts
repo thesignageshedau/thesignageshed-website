@@ -8,5 +8,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "gazebos": "Printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional printed back walls. Prices online, delivered Australia-wide.",
   "flags": "Printed teardrop and feather flags with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
+  "banners": "Printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
   "quote": "Request a quote for printed signs, banners, flags, gazebos and event gear from The Signage Shed. We reply by email, usually within one business day.",
 };

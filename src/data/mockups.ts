@@ -3,6 +3,21 @@
 export type Mockup = { slug: string; title: string; alt: string };
 
 export const MOCKUPS = {
+  bannerPvc: {
+    slug: "banner-pvc",
+    title: "PVC vinyl banner",
+    alt: "Illustration of a cream PVC vinyl banner with charcoal and orange stripes and The Signage Shed logo, tied between two posts",
+  },
+  bannerMesh: {
+    slug: "banner-mesh",
+    title: "Mesh vinyl banner",
+    alt: "Illustration of a mesh vinyl banner with The Signage Shed logo and eyelets along the edges, fixed between two posts",
+  },
+  bannerFabricMesh: {
+    slug: "banner-fabric-mesh",
+    title: "Fabric mesh banner",
+    alt: "Illustration of a fabric mesh banner with The Signage Shed logo and stainless eyelets, fixed between two posts",
+  },
   mediaWallSingle: {
     slug: "media-wall-single",
     title: "Single sided",

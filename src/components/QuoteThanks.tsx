@@ -8,6 +8,7 @@ import {
   GAZEBOS_HREF,
   FLAGS_HREF,
   MARKET_UMBRELLAS_HREF,
+  BANNERS_HREF,
   homeSection,
 } from "../lib/routes";
 
@@ -41,6 +42,9 @@ export default function QuoteThanks() {
           </a>
           <a href={PULL_UP_BANNERS_HREF} className="btn-outline">
             Pull up banners
+          </a>
+          <a href={BANNERS_HREF} className="btn-outline">
+            Vinyl and mesh banners
           </a>
           <a href={CORFLUTE_SIGNS_HREF} className="btn-outline">
             Corflute signs

@@ -19,7 +19,7 @@ import AFramesPage from "./components/AFramesPage";
 import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
-import { FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
+import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
 import QuotePage from "./components/QuotePage";
 import NotFound from "./components/NotFound";
 import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
@@ -31,7 +31,7 @@ import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { usePageview } from "./lib/analytics";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
-// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/gazebos, /#/flags, /#/market-umbrellas, /#/quote-thanks.
+// /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/gazebos, /#/flags, /#/market-umbrellas, /#/banners, /#/quote-thanks.
 // (public/404.html also sends clean links like /refund-policy to the hash route.)
 // Section links such as #products keep working as normal in-page anchors.
 type Route =
@@ -44,6 +44,7 @@ type Route =
   | "gazebos"
   | "flags"
   | "market-umbrellas"
+  | "banners"
   | "quote-thanks"
   | "quote";
 const slugs = [
@@ -56,6 +57,7 @@ const slugs = [
   "gazebos",
   "flags",
   "market-umbrellas",
+  "banners",
   "quote-thanks",
   "quote",
 ] as readonly string[];
@@ -76,6 +78,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   gazebos: GAZEBOS.pageTitle,
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,
+  banners: BANNERS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   quote: "Request a Quote | The Signage Shed",
 };
@@ -153,6 +156,8 @@ export default function App() {
           <GearPage key="flags" product={FLAGS} />
         ) : route === "market-umbrellas" ? (
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
+        ) : route === "banners" ? (
+          <GearPage key="banners" product={BANNERS} />
         ) : route === "quote" ? (
           <QuotePage />
         ) : route === "quote-thanks" ? (
