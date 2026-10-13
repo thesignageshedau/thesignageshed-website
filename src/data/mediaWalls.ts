@@ -1,4 +1,4 @@
-// Media wall prices, sizes, downloads and the quote estimate. Straight stretch fabric walls only.
+// Media wall prices, sizes, downloads and the quote estimate. Fabric sock and frame walls only.
 // Prices come from the customer Price List tab of the Media Walls spreadsheet (+30%, rounded up to
 // the next $5). Prices are final, no GST added. Delivery is quoted separately.
 

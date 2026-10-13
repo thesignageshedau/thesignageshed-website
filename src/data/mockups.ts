@@ -6,22 +6,22 @@ export const MOCKUPS = {
   mediaWallSingle: {
     slug: "media-wall-single",
     title: "Single sided",
-    alt: "Single-sided charcoal fabric media wall with orange pinstripes and The Signage Shed logo on a cream panel, in an event foyer",
+    alt: "Fabric sock and frame media wall printed in cream with orange and charcoal stripes and The Signage Shed logo, in an event foyer",
   },
   mediaWallDouble: {
     slug: "media-wall-double",
     title: "Double sided",
-    alt: "Charcoal fabric media wall with orange and cream stripes and The Signage Shed logo on a cream panel, in an expo hall",
+    alt: "Charcoal fabric sock and frame media wall with orange and cream stripes and The Signage Shed logo on a cream panel, in an expo hall",
   },
   mediaWallLed: {
     slug: "media-wall-led",
     title: "LED backlit",
-    alt: "LED backlit media wall with glowing orange stripes and The Signage Shed logo on a cream panel, in a dim convention foyer",
+    alt: "Fabric sock and frame media wall lit by LED lights, with glowing orange stripes and The Signage Shed logo on a cream panel, in a dim convention foyer",
   },
   tableCoverFitted: {
     slug: "table-cover-fitted",
     title: "Fitted table cover",
-    alt: "Fitted charcoal table cover with an orange stripe and The Signage Shed logo on the front panel, in an event foyer",
+    alt: "Fitted cream 6ft table cover with charcoal and orange stripes and The Signage Shed logo on the front, in an expo hall",
   },
   tableCoverLoose: {
     slug: "table-cover-loose",
@@ -31,7 +31,7 @@ export const MOCKUPS = {
   pullUpLuxury: {
     slug: "pull-up-luxury",
     title: "Luxury pull up banner",
-    alt: "Luxury charcoal pull up banner with a silver base and The Signage Shed logo, standing in an expo hall",
+    alt: "Pull up banner with a silver base, printed in cream with The Signage Shed logo, standing in a conference foyer",
   },
   pullUpDouble: {
     slug: "pull-up-double",
@@ -46,12 +46,12 @@ export const MOCKUPS = {
   corfluteShopfront: {
     slug: "corflute-shopfront",
     title: "Mounted on a shopfront",
-    alt: "Cream and charcoal corflute sign with The Signage Shed logo mounted on a brick shopfront",
+    alt: "Cream corflute sign with charcoal and orange borders and The Signage Shed logo mounted on a shopfront wall",
   },
   aframeAluminium: {
     slug: "aframe-aluminium",
     title: "Printed aluminium A-frame",
-    alt: "Silver aluminium A-frame with a cream printed panel, orange hazard stripes and The Signage Shed logo, on a café footpath",
+    alt: "Silver aluminium A-frame with a cream printed panel, orange and charcoal border and The Signage Shed logo, on a café footpath",
   },
   aframeInsert: {
     slug: "aframe-insert",
@@ -71,7 +71,7 @@ export const MOCKUPS = {
   gazebo3x3: {
     slug: "gazebo-3x3",
     title: "3 × 3m gazebo with printed back wall",
-    alt: "Black 3 by 3 metre pop up gazebo with The Signage Shed logo on the valance and printed back wall, on a park lawn",
+    alt: "3 by 3 metre pop up gazebo with a cream striped canopy and The Signage Shed logo on the printed back wall, on a park lawn",
   },
   gazebo6x3: {
     slug: "gazebo-6x3",

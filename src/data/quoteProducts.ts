@@ -1,7 +1,7 @@
 // Products offered on the general "Request a quote" page (#/quote). Slugs match the product page routes,
 // so #/quote?product=gazebos pre-selects Gazebos.
 export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }[] = [
-  { slug: "media-walls", label: "Media walls", optionHint: "e.g. 3m x 2.25m straight, fabric only" },
+  { slug: "media-walls", label: "Media walls", optionHint: "e.g. 3m x 2.2m, single sided, complete kit" },
   { slug: "table-covers", label: "Table covers", optionHint: "e.g. 6ft fitted, full colour" },
   { slug: "pull-up-banners", label: "Pull up banners", optionHint: "e.g. 850mm x 2000mm standard" },
   { slug: "corflute-signs", label: "Corflute signs", optionHint: "e.g. 600 x 900mm, 5mm, double sided" },

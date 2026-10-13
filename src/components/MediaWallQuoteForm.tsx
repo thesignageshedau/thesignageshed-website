@@ -106,7 +106,7 @@ export default function MediaWallQuoteForm({ choice, setChoice }: Props) {
       <input
         type="hidden"
         name="Product"
-        value="Straight stretch fabric media wall (standard fabric)"
+        value="Fabric sock and frame media wall (standard fabric)"
       />
       <input
         type="hidden"

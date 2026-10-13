@@ -24,7 +24,7 @@ const included = [
   },
   {
     title: "Printed fabric",
-    text: "A stretch fabric sleeve printed edge to edge with your artwork. It pulls over the frame and zips closed at the bottom, so it sits smooth and crease-free.",
+    text: "A fabric sock printed edge to edge with your artwork. It pulls over the frame and zips closed at the bottom, so it sits smooth and crease-free.",
   },
   {
     title: "Carry bag",
@@ -152,7 +152,7 @@ export default function MediaWallsPage() {
               Media walls for events, launches and shopfronts
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
-              Straight stretch fabric media walls, printed with your artwork.
+              Fabric sock and frame media walls, printed with your artwork.
               Six sizes from 1.5m to 6m wide, all 2.2m tall, single or
               double-sided, with optional LED lights. Quick to set up, light to
               carry.
@@ -208,7 +208,7 @@ export default function MediaWallsPage() {
                 Prices
               </h2>
               <p className="mt-2 max-w-2xl text-lg">
-                Straight stretch fabric media walls, 2.2m tall. Prices are per
+                Fabric sock and frame media walls, 2.2m tall. Prices are per
                 wall in Australian dollars and include printing your artwork.
               </p>
             </div>
@@ -355,7 +355,7 @@ export default function MediaWallsPage() {
             ))}
           </div>
           <p className="mt-5 text-sm">
-            Standard stretch fabric. For indoor use.
+            Standard fabric sock. For indoor use.
           </p>
         </div>
       </section>
