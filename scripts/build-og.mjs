@@ -1,4 +1,4 @@
-// Builds the 1200x630 Open Graph images in public/og/ (one per page) from the v2 product mockups,
+// Builds the 1200x630 Open Graph images in public/og/ (one per page) from the v4 photo set,
 // the logo and the page name, in the brand fonts and colours. Rendered with headless Chromium.
 // Run with: node scripts/build-og.mjs  (sources default to the side-projects folder; override with SRC_ROOT)
 import { chromium } from "playwright";
@@ -6,26 +6,27 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 const SRC = process.env.SRC_ROOT ?? "/workspace/side-projects";
-const V2 = `${SRC}/The Signage Shed Website/Product Mockups/v2`;
+const V4 = `${SRC}/The Signage Shed Website/Product Mockups/v4 Photo Set`;
+const v4 = (n) => `${V4}/${n} - Lifestyle - 1600x1200.jpg`;
 const LOGO = `${SRC}/The Signage Shed Brand/Logo Pack 2026 v2 (New Apps)/The Signage Shed Logo Pack 2026 v2/01 Main Logo/Digital - Web PNG and JPG/The Signage Shed Logo - Full Colour (Dark Backgrounds) - 1000px.png`;
 const font = (pkg, w) => path.resolve(`node_modules/@fontsource/${pkg}/files/${pkg}-latin-${w}-normal.woff2`);
 const data = (f, type) => `data:${type};base64,${readFileSync(f).toString("base64")}`;
 
 // slug: [image, title, tagline]
 export const OG_PAGES = {
-  home: [`${V2}/Media Wall - Tension Fabric - Event Foyer.jpg`, "Signs, banners & event gear", "Printed and delivered Australia-wide"],
-  "media-walls": [`${V2}/Media Wall - Tension Fabric - Event Foyer.jpg`, "Media walls", "Fabric backdrops, delivered Australia-wide"],
-  "table-covers": [`${V2}/Table Cover - Fitted 6ft - Expo Hall.jpg`, "Table covers", "Printed throws and runners, delivered Australia-wide"],
-  "pull-up-banners": [`${V2}/Pull Up Banner - Conference Foyer.jpg`, "Pull up banners", "Printed, fitted and delivered Australia-wide"],
-  "corflute-signs": [`${V2}/Corflute Sign - Shopfront Wall.jpg`, "Corflute signs", "Custom printed, delivered Australia-wide"],
-  "a-frames": [`${V2}/A-Frame - Aluminium - Cafe Footpath.jpg`, "A-frame signs", "Printed both sides, delivered Australia-wide"],
-  gazebos: [`${V2}/Gazebo - 3x3 with Back Wall - Park Lawn.jpg`, "Printed gazebos", "Your logo on the canopy, delivered Australia-wide"],
-  flags: [`${V2}/Flags - Teardrop and Feather - Lakeside.jpg`, "Teardrop & feather flags", "Printed and delivered Australia-wide"],
-  "market-umbrellas": [`${V2}/Market Umbrella - Garden Market.jpg`, "Market umbrellas", "Printed on every panel, delivered Australia-wide"],
-  banners: [`${V2}/Banner - PVC on Timber Fence.jpg`, "Vinyl & mesh banners", "Hemmed, eyeleted and delivered Australia-wide"],
-  delivery: [`${V2}/Gazebo - 3x3 with Back Wall - Park Lawn.jpg`, "Delivery", "Australia-wide, quoted before you pay"],
-  "artwork-help": [`${V2}/Pull Up Banner - Conference Foyer.jpg`, "Artwork help", "Bleed, safe area, resolution and file setup"],
-  "check-artwork": [`${V2}/Corflute Sign - Shopfront Wall.jpg`, "Check your artwork", "Free print file checker"],
+  home: [v4("03 Media Wall"), "Signs, banners & event gear", "Printed and delivered Australia-wide"],
+  "media-walls": [v4("03 Media Wall"), "Media walls", "Fabric backdrops, delivered Australia-wide"],
+  "table-covers": [v4("08 Table Cover"), "Table covers", "Printed throws and runners, delivered Australia-wide"],
+  "pull-up-banners": [v4("02 Pull Up Banner"), "Pull up banners", "Printed, fitted and delivered Australia-wide"],
+  "corflute-signs": [v4("01 Corflute Sign"), "Corflute signs", "Custom printed, delivered Australia-wide"],
+  "a-frames": [v4("04 A-Frames"), "A-frame signs", "Printed both sides, delivered Australia-wide"],
+  gazebos: [v4("05 Gazebo 3x3"), "Printed gazebos", "Your logo on the canopy, delivered Australia-wide"],
+  flags: [v4("06 Flags"), "Teardrop & feather flags", "Printed and delivered Australia-wide"],
+  "market-umbrellas": [v4("07 Market Umbrella"), "Market umbrellas", "Printed on every panel, delivered Australia-wide"],
+  banners: [v4("09 Mesh Banner"), "Vinyl & mesh banners", "Hemmed, eyeleted and delivered Australia-wide"],
+  delivery: [v4("05 Gazebo 3x3"), "Delivery", "Australia-wide, quoted before you pay"],
+  "artwork-help": [v4("02 Pull Up Banner"), "Artwork help", "Bleed, safe area, resolution and file setup"],
+  "check-artwork": [v4("01 Corflute Sign"), "Check your artwork", "Free print file checker"],
   "for-sign-shops": [path.resolve("public/images/pricing-kit-1600.webp"), "For sign shops", "Pricing spreadsheets for Australian sign shops"],
 };
 
