@@ -7,7 +7,7 @@ const M = "public/images/mockups";
 const SCENES = [
   ["01 Corflute Sign - Lifestyle", "v4-corflute", true],
   ["02 Pull Up Banner - Lifestyle", "v4-pull-up", true],
-  ["03 Media Wall - Lifestyle", "v4-media-wall", false],
+  ["03 Media Wall - Lifestyle", "v4-media-wall", true],
   ["04 A-Frames - Lifestyle", "v4-aframes", false],
   ["05 Gazebo 3x3 - Lifestyle", "v4-gazebo", true],
   ["06 Flags - Lifestyle", "v4-flags", true],

@@ -106,7 +106,7 @@ export const MOCKUPS = {
   },
   v4Corflute: { slug: "v4-corflute", title: "Corflute sign", alt: "Large cream corflute sign reading Your Brand cable-tied to a wire fence at a park" },
   v4PullUp: { slug: "v4-pull-up", title: "Pull up banner", alt: "Cream and green pull up banner reading Your Brand in a bright office foyer with city views" },
-  v4MediaWall: { slug: "v4-media-wall", title: "Media wall", alt: "Stretched fabric media wall printed with a repeating Your Brand logo on a rooftop terrace, with guests in the background", noSquare: true },
+  v4MediaWall: { slug: "v4-media-wall", title: "Media wall", alt: "Stretched fabric media wall printed with Your Brand and green squares in a repeating pattern, standing on a park lawn with guests and festoon lights behind" },
   v4AFrames: { slug: "v4-aframes", title: "A-frames", alt: "Two A-frame signs reading Your Brand, one black and one white, on a café terrace", noSquare: true },
   v4Gazebo: { slug: "v4-gazebo", title: "3 × 3m gazebo", alt: "Black 3 by 3 metre pop up gazebo with a cream valance reading Your Brand, over a fresh produce stall at an outdoor market" },
   v4Flags: { slug: "v4-flags", title: "Feather flags", alt: "Two feather flags reading Your Brand on a grassy park beside gum trees" },
