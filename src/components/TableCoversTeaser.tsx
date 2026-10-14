@@ -20,7 +20,7 @@ export default function TableCoversTeaser() {
           />
           <div className="relative grid items-center gap-8 p-6 sm:p-10 md:grid-cols-[1fr_1.1fr] md:gap-10">
             <MockupImage
-              mockup={MOCKUPS.tableCoverLoose}
+              mockup={MOCKUPS.v4TableCover}
               square
               sizes="(min-width: 768px) 384px, 320px"
               className="order-last mx-auto w-full max-w-xs md:order-first md:max-w-sm rounded-xl ring-2 ring-rust/70"

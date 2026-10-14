@@ -163,7 +163,7 @@ export default function MediaWallsPage() {
             </p>
           </div>
           <MockupImage
-            mockup={MOCKUPS.mediaWallSingle}
+            mockup={MOCKUPS.v4MediaWall}
             square
             eager
             sizes="(min-width: 768px) 448px, 100vw"
@@ -304,6 +304,8 @@ export default function MediaWallsPage() {
         heading="Single sided, double sided or LED backlit"
         items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
       />
+
+      <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4MediaWallScale, MOCKUPS.v4FabricTexture]} />
 
       {/* What's included */}
       <section

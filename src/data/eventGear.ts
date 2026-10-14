@@ -44,6 +44,8 @@ export type GearProduct = {
   faqs: GearFaq[];
   hero: Mockup;
   gallery: Mockup[];
+  /** Smaller "Size and finish" photos (scale and close-ups). */
+  sizeFinish?: Mockup[];
   notesHint: string;
 };
 
@@ -100,7 +102,7 @@ export const GAZEBOS: GearProduct = {
     { q: "Will it blow away?", a: "Always weigh down every leg with sandbags or water bags outdoors, and take the gazebo down in strong wind. We can add sandbags or water bags to your quote." },
     ...COMMON_FAQS,
   ],
-  hero: MOCKUPS.gazebo3x3,
+  hero: MOCKUPS.v4Gazebo,
   gallery: [MOCKUPS.gazebo3x3, MOCKUPS.gazebo6x3],
   notesHint: "Event date, frame colour, side walls or weights, or design ideas",
 };
@@ -141,7 +143,7 @@ export const FLAGS: GearProduct = {
     { q: "What base comes with it?", a: "A 10kg heavy duty square base, so it stands on paving, concrete, grass or indoors. No ground spikes needed." },
     ...COMMON_FAQS,
   ],
-  hero: MOCKUPS.flags,
+  hero: MOCKUPS.v4Flags,
   gallery: [MOCKUPS.flags],
   notesHint: "Where the flags will stand, colours or design ideas, anything we should know",
 };
@@ -178,8 +180,8 @@ export const UMBRELLAS: GearProduct = {
     { q: "Can it stay up in wind?", a: "Close the umbrella in strong wind. Like any market umbrella it can tip or be damaged in gusts." },
     ...COMMON_FAQS,
   ],
-  hero: MOCKUPS.umbrella,
-  gallery: [MOCKUPS.umbrella],
+  hero: MOCKUPS.v4Umbrella,
+  gallery: [],
   notesHint: "Where it will be used, colours or design ideas, anything we should know",
 };
 
@@ -230,8 +232,9 @@ export const BANNERS: GearProduct = {
     { q: "Is there a minimum order?", a: "Yes. The minimum order is $180 per product, so your banners together come to at least $180. Order 5 or more of the same banner and the price per banner drops." },
     ...COMMON_FAQS,
   ],
-  hero: MOCKUPS.bannerPvc,
+  hero: MOCKUPS.v4MeshBanner,
   gallery: [MOCKUPS.bannerPvc, MOCKUPS.bannerMesh, MOCKUPS.bannerFabricMesh],
+  sizeFinish: [MOCKUPS.v4BannerEyelet],
   notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
 };
 

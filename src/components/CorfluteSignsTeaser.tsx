@@ -46,7 +46,7 @@ export default function CorfluteSignsTeaser() {
               </div>
             </div>
             <MockupImage
-              mockup={MOCKUPS.corfluteFence}
+              mockup={MOCKUPS.v4Corflute}
               square
               sizes="(min-width: 768px) 384px, 320px"
               className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"

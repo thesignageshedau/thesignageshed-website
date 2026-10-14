@@ -196,7 +196,7 @@ export default function CorfluteSignsPage() {
             </p>
           </div>
           <MockupImage
-            mockup={MOCKUPS.corfluteShopfront}
+            mockup={MOCKUPS.v4Corflute}
             square
             eager
             sizes="(min-width: 768px) 448px, 100vw"
@@ -247,6 +247,8 @@ export default function CorfluteSignsPage() {
         exclude={MOCKUPS.corfluteShopfront.slug}
         items={[MOCKUPS.corfluteShopfront, MOCKUPS.corfluteFence]}
       />
+
+      <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4CorfluteScale, MOCKUPS.v4CorfluteEdge]} />
 
       {/* Types */}
       <section

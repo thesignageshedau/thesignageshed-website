@@ -282,7 +282,7 @@ export default function TableCoversPage() {
             </p>
           </div>
           <MockupImage
-            mockup={MOCKUPS.tableCoverFitted}
+            mockup={MOCKUPS.v4TableCover}
             square
             eager
             sizes="(min-width: 768px) 448px, 100vw"
@@ -440,6 +440,8 @@ export default function TableCoversPage() {
         exclude={MOCKUPS.tableCoverFitted.slug}
         items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
       />
+
+      <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4FabricTexture]} />
 
       {/* Types */}
       <section

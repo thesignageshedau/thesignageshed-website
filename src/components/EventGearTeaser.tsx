@@ -33,9 +33,8 @@ export default function EventGearTeaser() {
                 >
                   <MockupImage
                     mockup={p.hero}
-                    square
                     sizes="(min-width: 768px) 320px, 100vw"
-                    className="aspect-square h-auto w-full object-cover"
+                    className="aspect-[4/3] h-auto w-full object-cover"
                   />
                   <span className="block p-4">
                     <span className="block font-slab text-xl font-bold group-hover:underline">

@@ -173,7 +173,7 @@ export default function AFramesPage() {
             </p>
           </div>
           <MockupImage
-            mockup={MOCKUPS.aframeAluminium}
+            mockup={MOCKUPS.v4AFrames}
             square
             eager
             sizes="(min-width: 768px) 448px, 100vw"
@@ -291,6 +291,8 @@ export default function AFramesPage() {
         exclude={MOCKUPS.aframeAluminium.slug}
         items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
       />
+
+      <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4AFrameScale, MOCKUPS.v4CorfluteEdge]} />
 
       {/* Types */}
       <section

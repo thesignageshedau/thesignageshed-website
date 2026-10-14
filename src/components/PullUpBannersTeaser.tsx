@@ -47,7 +47,7 @@ export default function PullUpBannersTeaser() {
               </div>
             </div>
             <MockupImage
-              mockup={MOCKUPS.pullUpDouble}
+              mockup={MOCKUPS.v4PullUp}
               square
               sizes="(min-width: 768px) 384px, 320px"
               className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"

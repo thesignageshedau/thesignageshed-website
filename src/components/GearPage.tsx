@@ -162,6 +162,9 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
       <TrustStrip tone="dark" />
 
       <MockupGallery id={`${p.slug}-mockups`} items={p.gallery} exclude={p.hero.slug} />
+      {p.sizeFinish && (
+        <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={p.sizeFinish} />
+      )}
 
       <section
         aria-labelledby={`${p.slug}-types`}

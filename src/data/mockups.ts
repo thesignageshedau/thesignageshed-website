@@ -1,6 +1,7 @@
 // Product mockup images (AI-generated scenes with our real logo files composited on).
 // Web files are built by scripts/build-mockups.mjs into public/images/mockups.
-export type Mockup = { slug: string; title: string; alt: string };
+export type Mockup = { slug: string; title: string; alt: string; noSquare?: boolean };
+// v4 photo set (scripts/build-v4.mjs). noSquare: the square crop cuts off the product, so square slots show the landscape image.
 
 export const MOCKUPS = {
   bannerPvc: {
@@ -103,4 +104,20 @@ export const MOCKUPS = {
     title: "Printed market umbrella",
     alt: "Charcoal and cream market umbrella with The Signage Shed logo on the valance, on a garden path near a market",
   },
+  v4Corflute: { slug: "v4-corflute", title: "Corflute sign", alt: "Large cream corflute sign reading Your Brand cable-tied to a wire fence at a park" },
+  v4PullUp: { slug: "v4-pull-up", title: "Pull up banner", alt: "Cream and green pull up banner reading Your Brand in a bright office foyer with city views" },
+  v4MediaWall: { slug: "v4-media-wall", title: "Media wall", alt: "Stretched fabric media wall printed with a repeating Your Brand logo on a rooftop terrace, with guests in the background", noSquare: true },
+  v4AFrames: { slug: "v4-aframes", title: "A-frames", alt: "Two A-frame signs reading Your Brand, one black and one white, on a café terrace", noSquare: true },
+  v4Gazebo: { slug: "v4-gazebo", title: "3 × 3m gazebo", alt: "Black 3 by 3 metre pop up gazebo with a cream valance reading Your Brand, over a fresh produce stall at an outdoor market" },
+  v4Flags: { slug: "v4-flags", title: "Feather flags", alt: "Two feather flags reading Your Brand on a grassy park beside gum trees" },
+  v4Umbrella: { slug: "v4-umbrella", title: "Market umbrella", alt: "Charcoal market umbrella with a cream scalloped valance reading Your Brand, over a market stall under gum trees" },
+  v4TableCover: { slug: "v4-table-cover", title: "Table cover", alt: "Charcoal fitted table cover reading Your Brand on a trestle table in a bright event hall", noSquare: true },
+  v4MeshBanner: { slug: "v4-mesh-banner", title: "Mesh banner", alt: "Long cream mesh banner reading Your Brand fixed to a chain-link fence beside a footpath", noSquare: true },
+  v4PullUpScale: { slug: "v4-pull-up-scale", title: "Pull up banner next to a person", alt: "A man standing next to a pull up banner reading Your Brand, showing it is taller than him" },
+  v4MediaWallScale: { slug: "v4-media-wall-scale", title: "Media wall next to a person", alt: "A man standing beside a media wall printed with a repeating Your Brand logo, showing its size", noSquare: true },
+  v4AFrameScale: { slug: "v4-aframe-scale", title: "A-frame next to a person", alt: "A woman standing on a shopfront footpath beside a timber A-frame sign reading Your Brand, which reaches her waist" },
+  v4CorfluteScale: { slug: "v4-corflute-scale", title: "Corflute sign next to a person", alt: "A man standing beside a corflute sign reading Your Brand on a sports ground gate, showing its size" },
+  v4CorfluteEdge: { slug: "v4-corflute-edge", title: "Corflute edge close-up", alt: "Close-up of the cut edge of a printed corflute sign, showing its fluted core" },
+  v4BannerEyelet: { slug: "v4-banner-eyelet", title: "Banner eyelet close-up", alt: "Close-up of a metal eyelet in the hemmed corner of a printed banner, with a cable tie through it" },
+  v4FabricTexture: { slug: "v4-fabric-texture", title: "Fabric close-up", alt: "Close-up of printed stretch fabric with a stitched edge, showing the fabric texture" },
 } satisfies Record<string, Mockup>;

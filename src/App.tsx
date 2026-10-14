@@ -19,6 +19,7 @@ import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
 import ProductGrid from "./components/ProductGrid";
+import HowItWorks from "./components/HowItWorks";
 import QuoteBar from "./components/QuoteBar";
 import TrustStrip from "./components/TrustStrip";
 import FaqSchema from "./components/FaqSchema";
@@ -244,6 +245,7 @@ export default function App() {
               <AFramesTeaser />
               <EventGearTeaser />
             </div>
+            <HowItWorks />
             <Faq />
             <Contact />
           </>

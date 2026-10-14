@@ -18,6 +18,11 @@ export default function MockupImage({
   eager?: boolean;
 }) {
   const s = mockup.slug;
+  // Some photos have no usable square crop: show the landscape image (4:3) in square slots.
+  if (square && mockup.noSquare) {
+    square = false;
+    className = className.replace("aspect-square", "aspect-[4/3]");
+  }
   const widths = square ? [480, 600, 800, 1200] : [480, 800, 1200, 1600];
   const small = square ? 600 : 800;
   const base = square ? `${s}-sq` : s;
