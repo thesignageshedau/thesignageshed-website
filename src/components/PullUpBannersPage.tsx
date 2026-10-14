@@ -269,6 +269,8 @@ export default function PullUpBannersPage() {
       <TrustStrip tone="dark" />
 
 
+      <MockupGallery id="mockups" heading="Luxury or double sided" items={[MOCKUPS.v4PullUp, MOCKUPS.v4PullUpDouble]} />
+
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4PullUpScale]} />
 
       {/* Types */}

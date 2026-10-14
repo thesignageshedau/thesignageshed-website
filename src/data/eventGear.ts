@@ -147,7 +147,8 @@ export const FLAGS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4Flags,
-  gallery: [],
+  gallery: [MOCKUPS.v4FlagsTeardrop, MOCKUPS.v4Flags],
+  galleryHeading: "Teardrop or feather",
   notesHint: "Where the flags will stand, colours or design ideas, anything we should know",
 };
 
@@ -239,7 +240,8 @@ export const BANNERS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4MeshBanner,
-  gallery: [],
+  gallery: [MOCKUPS.v4PvcBanner, MOCKUPS.v4MeshBannerEvent, MOCKUPS.v4MeshBanner],
+  galleryHeading: "PVC vinyl, mesh vinyl or fabric mesh",
   sizeFinish: [MOCKUPS.v4BannerEyelet],
   notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
 };

@@ -242,6 +242,8 @@ export default function CorfluteSignsPage() {
       <TrustStrip tone="dark" />
 
 
+      <MockupGallery id="mockups" heading="On a fence or fixed to a wall" items={[MOCKUPS.v4CorfluteWall]} />
+
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4CorfluteScale, MOCKUPS.v4CorfluteEdge]} />
 
       {/* Types */}

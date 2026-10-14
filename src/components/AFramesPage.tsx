@@ -286,6 +286,8 @@ export default function AFramesPage() {
       <TrustStrip tone="dark" />
 
 
+      <MockupGallery id="mockups" heading="Printed aluminium, insert, folding corflute or small 600 × 450" items={[MOCKUPS.v4AFramePrinted, MOCKUPS.v4AFrameInsert, MOCKUPS.v4AFrameCorflute, MOCKUPS.v4AFrameSmall]} />
+
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4AFrameScale, MOCKUPS.v4CorfluteEdge]} />
 
       {/* Types */}

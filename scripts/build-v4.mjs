@@ -25,6 +25,16 @@ const SCENES = [
   ["18 Media Wall LED Backlit - Lifestyle", "v4-media-wall-led", true],
   ["19 Gazebo 3x3 Back Wall - Lifestyle", "v4-gazebo-3x3-wall", true],
   ["20 Gazebo 6x3 Back Wall - Lifestyle", "v4-gazebo-6x3-wall", false],
+  ["21 Corflute Sign Wall - Lifestyle", "v4-corflute-wall", true],
+  ["22 A-Frame Printed - Lifestyle", "v4-aframe-printed", true],
+  ["23 A-Frame Insert - Lifestyle", "v4-aframe-insert", true],
+  ["24 A-Frame Corflute Folding - Lifestyle", "v4-aframe-corflute", true],
+  ["25 A-Frame Small 600x450 - Lifestyle", "v4-aframe-small", true],
+  ["26 Pull Up Banner Double Sided - Lifestyle", "v4-pull-up-double", true],
+  ["27 Table Throw - Lifestyle", "v4-table-throw", true],
+  ["28 Teardrop Flags - Lifestyle", "v4-flags-teardrop", true],
+  ["29 PVC Banner Fence - Lifestyle", "v4-pvc-banner", true],
+  ["30 Mesh Banner Event Fence - Lifestyle", "v4-mesh-banner-event", true],
 ];
 const ONLY = process.env.ONLY?.split(",");
 for (const [f, slug, sq] of SCENES.filter(([, s]) => !ONLY || ONLY.includes(s))) {
