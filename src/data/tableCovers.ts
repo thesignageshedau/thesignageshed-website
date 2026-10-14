@@ -4,7 +4,7 @@
 // Generated price data: /workspace/es/tc/build/tc_site_data.py (re-run if the spreadsheet changes).
 
 export const PRICE_NOTES = [
-  "Prices include everything except delivery (we're not registered for GST)",
+  "Prices include everything except delivery.",
   "Minimum order $180 per product.",
 ] as const;
 export const MATERIAL =

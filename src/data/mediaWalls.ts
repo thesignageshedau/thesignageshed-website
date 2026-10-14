@@ -10,7 +10,7 @@ export const FORMSUBMIT_ACTION = `https://formsubmit.co/${FORMSUBMIT_ID}`;
 export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
-  "Prices include everything except delivery (we're not registered for GST)",
+  "Prices include everything except delivery.",
   "Minimum order $180 per product.",
 ] as const;
 export const TURNAROUND =

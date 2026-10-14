@@ -4,7 +4,7 @@
 // prices are rounded up per item. Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
-  "Prices include everything except delivery (we're not registered for GST)",
+  "Prices include everything except delivery.",
   "Minimum order $180 per product.",
 ] as const;
 

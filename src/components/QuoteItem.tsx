@@ -393,7 +393,7 @@ export default function QuoteItem({
               {priceText && (
                 <p className="text-sm font-semibold text-rust-dark sm:col-span-2" aria-live="polite">
                   {priceText}{" "}
-                  <span className="font-normal text-charcoal/70">Prices include everything except delivery (we're not registered for GST).</span>
+                  <span className="font-normal text-charcoal/70">Prices include everything except delivery.</span>
                 </p>
               )}
 

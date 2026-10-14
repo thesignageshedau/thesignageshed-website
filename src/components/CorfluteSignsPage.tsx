@@ -140,15 +140,6 @@ const faqs: { q: string; a: ReactNode }[] = [
     ),
   },
   {
-    q: "Do your prices include GST?",
-    a: (
-      <>
-        The price you see is the price you pay,
-        plus delivery.
-      </>
-    ),
-  },
-  {
     q: "How do I pay?",
     a: (
       <>

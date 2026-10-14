@@ -44,8 +44,8 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
     a: <>Straight away. Gumroad gives you a download link on screen and by email; on Etsy the files are in your Purchases page. The spreadsheets are .xlsx and work in Excel and Google Sheets, with your rates and materials in a settings tab.</>,
   },
   {
-    q: "Digital products: refunds and GST?",
-    a: <>No change-of-mind refunds on downloads, but if a file is faulty or not as described we'll fix it or refund you. Your rights under Australian Consumer Law aren't affected. Any GST is worked out by Gumroad or Etsy at checkout.</>,
+    q: "Digital products: refunds?",
+    a: <>No change-of-mind refunds on downloads, but if a file is faulty or not as described we'll fix it or refund you. Your rights under Australian Consumer Law aren't affected.</>,
   },
   {
     q: "I have a question that isn't here.",

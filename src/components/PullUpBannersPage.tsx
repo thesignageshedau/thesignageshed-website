@@ -104,10 +104,6 @@ const faqs: { q: string; a: ReactNode }[] = [
       </>
     ),
   },
-  {
-    q: "Do the prices include GST?",
-    a: <>Prices include everything except delivery. We're not registered for GST, so there's no GST to add.</>,
-  },
 ];
 
 const scrollToId = (id: string) =>

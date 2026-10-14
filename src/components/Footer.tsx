@@ -41,7 +41,7 @@ export default function Footer() {
             <a href="/for-sign-shops/" className="underline underline-offset-4 hover:text-white">Digital products for sign shops</a>.
             General information only, not tax or financial advice. Excel and Google Sheets are trademarks of their owners.
           </p>
-          <p className="mt-2 text-sm text-cream/70">The Signage Shed Co · ABN 51 879 534 008 · Prices in AUD. Not registered for GST.</p>
+          <p className="mt-2 text-sm text-cream/70">The Signage Shed Co · ABN 51 879 534 008 · Prices in AUD.</p>
         </div>
       </div>
     </footer>
