@@ -31,7 +31,7 @@ jobs:
         env:
           # Project site path. Change to "/" once a custom domain is connected.
           BASE_PATH: /
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
