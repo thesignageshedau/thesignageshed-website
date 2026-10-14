@@ -241,12 +241,6 @@ export default function CorfluteSignsPage() {
 
       <TrustStrip tone="dark" />
 
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.corfluteShopfront.slug}
-        items={[MOCKUPS.corfluteShopfront, MOCKUPS.corfluteFence]}
-      />
 
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4CorfluteScale, MOCKUPS.v4CorfluteEdge]} />
 

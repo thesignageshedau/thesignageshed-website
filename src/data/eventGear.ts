@@ -19,6 +19,7 @@ export type GearItem = {
   includes: string;
   price: number[]; // price each per quantity band
   priceWithAddon?: number[]; // price each with the add-on, per band
+  accessory?: boolean; // an extra part sold on its own, left out of the "From" price
 };
 
 export type GearFaq = { q: string; a: string };
@@ -103,7 +104,7 @@ export const GAZEBOS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4Gazebo,
-  gallery: [MOCKUPS.gazebo3x3, MOCKUPS.gazebo6x3],
+  gallery: [],
   notesHint: "Event date, frame colour, side walls or weights, or design ideas",
 };
 
@@ -144,7 +145,7 @@ export const FLAGS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4Flags,
-  gallery: [MOCKUPS.flags],
+  gallery: [],
   notesHint: "Where the flags will stand, colours or design ideas, anything we should know",
 };
 
@@ -163,20 +164,23 @@ export const UMBRELLAS: GearProduct = {
   groups: [
     { id: "umbrella", title: "Printed market umbrella 2m × 2m", text: "Full colour canopy (270gsm polyester) on a 45mm aluminium pole with four height settings and a 12 month warranty on the frame and base." },
     { id: "canopy", title: "Replacement canopy", text: "A new printed canopy for one of our umbrella frames, for a rebrand or a worn canopy." },
+    { id: "weights", title: "Extra bases and water bags", text: "Every umbrella already comes with a 10kg base. Add a spare base, or a 20L water bag (20kg when filled) for more weight." },
   ],
   bands: BANDS_3,
   items: [
-    { id: "umbrella-10kg", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base", short: "With 10kg base", includes: "Umbrella, printed canopy and 10kg heavy duty base", price: [490, 465, 450] },
+    { id: "umbrella-10kg", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base", short: "With 10kg base", includes: "Umbrella, printed canopy and 10kg heavy duty base", price: [490, 465, 450], priceWithAddon: [535, 505, 485] },
     { id: "canopy-only", group: "canopy", label: "Replacement printed canopy (2m × 2m)", short: "Replacement canopy", includes: "Printed canopy only, fits our umbrella frame", price: [245, 235, 225] },
+    { id: "base-10kg", group: "weights", label: "Extra 10kg heavy duty umbrella base", short: "10kg heavy duty base", includes: "Base only, fits our umbrella pole", price: [135, 125, 120], accessory: true },
+    { id: "water-bag", group: "weights", label: "20L umbrella water bag", short: "20L water bag", includes: "Water bag only, 20kg when filled", price: [45, 45, 40], accessory: true },
   ],
   notes: [
     "Printed on all four canopy panels and the valance.",
-    "A 20L water bag for windy spots can be added on request.",
   ],
+  addon: { label: "Water bag", note: "Add a 20L water bag to an umbrella for $35 to $45 extra each. Tick it in the quote form to see the price." },
   artwork: "Umbrella canopies are printed from a full-size template for the panels and valance. Ask for the template with your quote, or send us your logo and we'll set the artwork up for you to approve.",
   faqs: [
     { q: "What size is it?", a: "2m × 2m square, with a 220mm valance around the edge. The pole has four height settings." },
-    { q: "Which base should I choose?", a: "The 10kg heavy duty base suits most sites. For windy spots, ask us to add a 20L water bag for extra weight." },
+    { q: "Which base should I choose?", a: "Every umbrella comes with a 10kg heavy duty base, which suits most sites. Add a 20L water bag (20kg when filled) for extra weight." },
     { q: "Can it stay up in wind?", a: "Close the umbrella in strong wind. Like any market umbrella it can tip or be damaged in gusts." },
     ...COMMON_FAQS,
   ],
@@ -233,7 +237,7 @@ export const BANNERS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4MeshBanner,
-  gallery: [MOCKUPS.bannerPvc, MOCKUPS.bannerMesh, MOCKUPS.bannerFabricMesh],
+  gallery: [],
   sizeFinish: [MOCKUPS.v4BannerEyelet],
   notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
 };
@@ -242,7 +246,7 @@ export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS, BANNERS] as const;
 
 /** Lowest single-item price on a product (used for "From $..." text). Replacement parts don't count. */
 export const fromPrice = (p: GearProduct) =>
-  Math.min(...p.items.filter((i) => !i.label.startsWith("Replacement")).map((i) => i.price[0]));
+  Math.min(...p.items.filter((i) => !i.accessory && !i.label.startsWith("Replacement")).map((i) => i.price[0]));
 
 export type GearChoice = { item: string; addon: boolean; qty: string };
 

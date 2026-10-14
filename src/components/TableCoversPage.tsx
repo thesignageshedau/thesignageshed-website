@@ -434,12 +434,6 @@ export default function TableCoversPage() {
 
       <TrustStrip tone="dark" />
 
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.tableCoverFitted.slug}
-        items={[MOCKUPS.tableCoverFitted, MOCKUPS.tableCoverLoose]}
-      />
 
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4FabricTexture]} />
 

@@ -285,12 +285,6 @@ export default function AFramesPage() {
 
       <TrustStrip tone="dark" />
 
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.aframeAluminium.slug}
-        items={[MOCKUPS.aframeAluminium, MOCKUPS.aframeInsert, MOCKUPS.aframeRealEstate, MOCKUPS.aframeFolding]}
-      />
 
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4AFrameScale, MOCKUPS.v4CorfluteEdge]} />
 

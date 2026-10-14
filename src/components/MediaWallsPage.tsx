@@ -297,13 +297,6 @@ export default function MediaWallsPage() {
 
       <TrustStrip tone="dark" />
 
-      {/* Mockups */}
-      <MockupGallery
-        id="mockups"
-        exclude={MOCKUPS.mediaWallSingle.slug}
-        heading="Single sided, double sided or LED backlit"
-        items={[MOCKUPS.mediaWallSingle, MOCKUPS.mediaWallDouble, MOCKUPS.mediaWallLed]}
-      />
 
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4MediaWallScale, MOCKUPS.v4FabricTexture]} />
 
