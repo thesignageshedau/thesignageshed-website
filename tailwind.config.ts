@@ -16,8 +16,8 @@ export default {
         chain: "#A7AAAC",
       },
       fontFamily: {
-        display: ['"Ultra"', '"Ultra Fallback"', "Georgia", "serif"],
-        slab: ['"Zilla Slab"', '"Zilla Slab Fallback"', "Georgia", "serif"],
+        display: ['"Ultra"', "Georgia", "serif"],
+        slab: ['"Zilla Slab"', "Georgia", "serif"],
       },
       maxWidth: { site: "72rem" },
     },

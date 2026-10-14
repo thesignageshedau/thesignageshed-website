@@ -26,21 +26,3 @@
   font-weight: 700;
   src: url(../node_modules/@fontsource/zilla-slab/files/zilla-slab-latin-700-normal.woff2) format('woff2');
 }
-/* Metric-matched fallbacks (computed with fontkit against Times New Roman metrics,
-   Liberation Serif/Tinos are metric-compatible) so the swap to the web font doesn't reflow. */
-@font-face {
-  font-family: 'Ultra Fallback';
-  src: local('Times New Roman'), local('TimesNewRomanPSMT'), local('Liberation Serif'), local('Tinos');
-  size-adjust: 146.8%;
-  ascent-override: 68.72%;
-  descent-override: 18.66%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: 'Zilla Slab Fallback';
-  src: local('Times New Roman'), local('TimesNewRomanPSMT'), local('Liberation Serif'), local('Tinos');
-  size-adjust: 103.61%;
-  ascent-override: 91.11%;
-  descent-override: 24.71%;
-  line-gap-override: 0%;
-}
