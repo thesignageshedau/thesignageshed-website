@@ -1,3 +1,5 @@
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 import { asset } from "../lib/asset";
 
 export default function Hero() {
@@ -28,17 +30,20 @@ export default function Hero() {
             <a href="/artwork-help/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Artwork help</a>
           </p>
         </div>
-        <div className="flex justify-center md:justify-end">
+        <div className="relative">
+          <MockupImage
+            mockup={MOCKUPS.v4Gazebo}
+            eager
+            sizes="(min-width: 1152px) 540px, (min-width: 768px) 46vw, 92vw"
+            className="aspect-[4/3] w-full rounded-xl object-cover shadow-lg ring-1 ring-cream/10"
+          />
           <img
-            src={asset("images/logo-sign-480.webp")}
-            srcSet={`${asset("images/logo-sign-480.webp")} 480w, ${asset("images/logo-sign-960.webp")} 960w`}
-            sizes="(min-width: 768px) 440px, 80vw"
-            width={480} height={300}
-            alt="The Signage Shed hanging sign logo"
+            src={asset("images/badge-192.webp")}
+            width={96} height={96}
+            alt=""
             loading="eager"
             decoding="async"
-            fetchPriority="high"
-            className="h-auto w-full max-w-[300px] md:max-w-[440px]"
+            className="absolute -bottom-5 -left-3 h-20 w-20 drop-shadow-lg sm:h-24 sm:w-24"
           />
         </div>
       </div>

@@ -6,7 +6,7 @@ const STEPS = ["Get a quote", "Send artwork or we set it up", "We print", "Deliv
 // steps as real text for screen readers and search.
 export default function HowItWorks() {
   return (
-    <section aria-labelledby="how-heading" className="bg-[#F2EBDD]">
+    <section aria-labelledby="how-heading" className="bg-cream">
       <h2 id="how-heading" className="sr-only">How it works</h2>
       <ol className="sr-only">
         {STEPS.map((s) => (

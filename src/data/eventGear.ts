@@ -45,6 +45,7 @@ export type GearProduct = {
   faqs: GearFaq[];
   hero: Mockup;
   gallery: Mockup[];
+  galleryHeading?: string;
   /** Smaller "Size and finish" photos (scale and close-ups). */
   sizeFinish?: Mockup[];
   notesHint: string;
@@ -105,6 +106,7 @@ export const GAZEBOS: GearProduct = {
   ],
   hero: MOCKUPS.v4Gazebo,
   gallery: [MOCKUPS.v4Gazebo3x3Wall, MOCKUPS.v4Gazebo6x3Wall],
+  galleryHeading: "3 × 3m or 6 × 3m, with a printed back wall",
   notesHint: "Event date, frame colour, side walls or weights, or design ideas",
 };
 

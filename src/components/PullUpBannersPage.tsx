@@ -274,7 +274,7 @@ export default function PullUpBannersPage() {
       {/* Types */}
       <section
         aria-labelledby="types-heading"
-        className="bg-cream py-14 sm:py-16"
+        className="bg-sage-light py-14 sm:py-16"
       >
         <div className="mx-auto max-w-site px-4 sm:px-6">
           <div className="rule mb-4" />

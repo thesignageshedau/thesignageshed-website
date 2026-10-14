@@ -64,9 +64,9 @@ function SafeDiagram() {
       <svg viewBox="0 0 300 200" role="img" aria-labelledby="safe-t" className="w-full">
         <title id="safe-t">Safe area: keep text and logos inside the inner box</title>
         <rect x="10" y="10" width="280" height="180" fill="#FAF6EE" stroke="#33373A" strokeWidth="2" />
-        <rect x="45" y="40" width="210" height="120" fill="#2f6b4f" opacity="0.12" stroke="#2f6b4f" strokeDasharray="5 4" />
-        <text x="150" y="95" textAnchor="middle" fontSize="13" fill="#1f4a36">Safe area</text>
-        <text x="150" y="113" textAnchor="middle" fontSize="11" fill="#1f4a36">text, logos, phone numbers</text>
+        <rect x="45" y="40" width="210" height="120" fill="#828E77" opacity="0.18" stroke="#56614D" strokeDasharray="5 4" />
+        <text x="150" y="95" textAnchor="middle" fontSize="13" fill="#56614D">Safe area</text>
+        <text x="150" y="113" textAnchor="middle" fontSize="11" fill="#56614D">text, logos, phone numbers</text>
         <text x="150" y="30" textAnchor="middle" fontSize="11" fill="#33373A">Finished edge</text>
       </svg>
       <figcaption className="mt-2 text-sm text-charcoal/80">Anything important stays inside the dashed box, clear of trims, folds, hems and frames.</figcaption>

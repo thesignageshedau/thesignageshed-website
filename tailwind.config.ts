@@ -10,6 +10,8 @@ export default {
         cream: { DEFAULT: "#F2EBDD", light: "#FAF6EE" },
         // rust = brand accent (decoration); rust-dark = accessible text/buttons on light; rust-light = text on charcoal
         rust: { DEFAULT: "#C0582F", dark: "#A2461F", deeper: "#873A19", light: "#E8946C" },
+        // sage = brand sage (decoration only, 2.9:1 on cream); sage-dark = text and borders (5.5:1 on cream); sage-light = section tint
+        sage: { DEFAULT: "#828E77", dark: "#56614D", light: "#E3E6DC" },
         steel: "#7F8181",
         chain: "#A7AAAC",
       },

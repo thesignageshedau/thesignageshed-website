@@ -13,7 +13,7 @@
 @layer components {
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-base font-semibold transition-colors; }
   .btn-rust { @apply btn bg-rust-dark text-white hover:bg-rust-deeper; }
-  .btn-outline { @apply btn border-2 border-charcoal text-charcoal hover:bg-charcoal hover:text-cream; }
+  .btn-outline { @apply btn border-2 border-sage-dark text-sage-dark hover:bg-sage-dark hover:text-white; }
   .btn-cream { @apply btn bg-cream text-charcoal hover:bg-white; }
   .btn-ghost-light { @apply btn border-2 border-cream/60 text-cream hover:border-cream hover:bg-cream/10; }
   .eyebrow { @apply text-sm font-bold uppercase tracking-[0.18em] text-rust-light; }

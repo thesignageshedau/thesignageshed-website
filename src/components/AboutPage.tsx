@@ -1,3 +1,4 @@
+import HowItWorks from "./HowItWorks";
 import { HelpCta, HelpHero, HelpSection, helpLink } from "./HelpParts";
 
 /** About the studio. Only says what the rest of the site already says. */
@@ -7,6 +8,8 @@ export default function AboutPage() {
       <HelpHero eyebrow="About us" title="An online print studio for signs, banners and event gear">
         <p>We print custom signage and event gear and deliver it Australia-wide. You order online, by quote, from wherever you are.</p>
       </HelpHero>
+
+      <HowItWorks />
 
       <HelpSection id="what-we-do" title="What we do">
         <p>

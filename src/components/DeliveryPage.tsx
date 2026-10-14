@@ -1,3 +1,5 @@
+import MockupImage from "./MockupImage";
+import { MOCKUPS } from "../data/mockups";
 import FaqSchema from "./FaqSchema";
 import { HelpCta, HelpFaq, HelpHero, HelpSection } from "./HelpParts";
 
@@ -15,6 +17,12 @@ export default function DeliveryPage() {
       <HelpHero eyebrow="Delivery" title="How delivery works">
         <p>We print your signage and send it to you, anywhere in Australia. Delivery is quoted with your order, so you know the full cost before you pay.</p>
       </HelpHero>
+
+      <div className="mx-auto max-w-site px-4 pt-10 sm:px-6">
+        <figure className="overflow-hidden rounded-xl border border-charcoal/10 bg-white shadow-sm">
+          <MockupImage mockup={MOCKUPS.v4Gazebo} sizes="(min-width: 1152px) 1152px, 100vw" className="aspect-[16/7] w-full object-cover" />
+        </figure>
+      </div>
 
       <HelpSection id="cost" title="What delivery costs">
         <p>Delivery is quoted separately from the product price. We work it out from:</p>
