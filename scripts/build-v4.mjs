@@ -21,8 +21,13 @@ const SCENES = [
   ["14 Corflute Edge - Close-up", "v4-corflute-edge", true],
   ["15 Banner Eyelet - Close-up", "v4-banner-eyelet", true],
   ["16 Fabric Texture - Close-up", "v4-fabric-texture", true],
+  ["17 Media Wall Double Sided - Lifestyle", "v4-media-wall-double", true],
+  ["18 Media Wall LED Backlit - Lifestyle", "v4-media-wall-led", true],
+  ["19 Gazebo 3x3 Back Wall - Lifestyle", "v4-gazebo-3x3-wall", true],
+  ["20 Gazebo 6x3 Back Wall - Lifestyle", "v4-gazebo-6x3-wall", false],
 ];
-for (const [f, slug, sq] of SCENES) {
+const ONLY = process.env.ONLY?.split(",");
+for (const [f, slug, sq] of SCENES.filter(([, s]) => !ONLY || ONLY.includes(s))) {
   const land = `${SRC}/${f} - 1600x1200.jpg`;
   for (const w of [480, 800, 1200, 1600]) await sharp(land).resize({ width: w }).webp({ quality: 74 }).toFile(`${M}/${slug}-${w}.webp`);
   await sharp(land).resize({ width: 800 }).jpeg({ quality: 78, mozjpeg: true }).toFile(`${M}/${slug}-800.jpg`);
@@ -32,6 +37,7 @@ for (const [f, slug, sq] of SCENES) {
     await sharp(s).resize({ width: 600 }).jpeg({ quality: 78, mozjpeg: true }).toFile(`${M}/${slug}-sq-600.jpg`);
   }
 }
+if (ONLY) process.exit(0);
 const H = `${SRC}/How It Works`;
 for (const w of [800, 1600]) await sharp(`${H}/How It Works - Desktop 1600x400 @2x.png`).resize({ width: w }).webp({ quality: 82 }).toFile(`public/images/how-it-works-desktop-${w}.webp`);
 for (const w of [400, 800]) await sharp(`${H}/How It Works - Mobile 800x1400 @2x.png`).resize({ width: w }).webp({ quality: 82 }).toFile(`public/images/how-it-works-mobile-${w}.webp`);

@@ -20,4 +20,8 @@ export const MOCKUPS = {
   v4CorfluteEdge: { slug: "v4-corflute-edge", title: "Corflute edge close-up", alt: "Close-up of the cut edge of a printed corflute sign, showing its fluted core" },
   v4BannerEyelet: { slug: "v4-banner-eyelet", title: "Banner eyelet close-up", alt: "Close-up of a metal eyelet in the hemmed corner of a printed banner, with a cable tie through it" },
   v4FabricTexture: { slug: "v4-fabric-texture", title: "Fabric close-up", alt: "Close-up of printed stretch fabric with a stitched edge, showing the fabric texture" },
+  v4MediaWallDouble: { slug: "v4-media-wall-double", title: "Double sided", alt: "Double-sided fabric media wall printed with a repeating Your Brand logo and green squares, standing on a park lawn with guests and festoon lights" },
+  v4MediaWallLed: { slug: "v4-media-wall-led", title: "LED backlit", alt: "LED backlit fabric media wall glowing with a repeating Your Brand logo at an evening outdoor event under festoon lights" },
+  v4Gazebo3x3Wall: { slug: "v4-gazebo-3x3-wall", title: "3 × 3m gazebo with printed back wall", alt: "Black 3 by 3 metre pop up gazebo with a cream valance and back wall reading Your Brand, weighted with sandbags at a park event" },
+  v4Gazebo6x3Wall: { slug: "v4-gazebo-6x3-wall", title: "6 × 3m gazebo with printed back wall", alt: "Black 6 by 3 metre pop up gazebo with a cream valance and back wall reading Your Brand over two trestle tables at a park event", noSquare: true },
 } satisfies Record<string, Mockup>;

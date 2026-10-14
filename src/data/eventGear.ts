@@ -104,7 +104,7 @@ export const GAZEBOS: GearProduct = {
     ...COMMON_FAQS,
   ],
   hero: MOCKUPS.v4Gazebo,
-  gallery: [],
+  gallery: [MOCKUPS.v4Gazebo3x3Wall, MOCKUPS.v4Gazebo6x3Wall],
   notesHint: "Event date, frame colour, side walls or weights, or design ideas",
 };
 

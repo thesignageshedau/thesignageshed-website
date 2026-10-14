@@ -46,12 +46,12 @@ function BleedDiagram() {
     <figure className="rounded-xl border border-charcoal/15 bg-white p-4">
       <svg viewBox="0 0 300 200" role="img" aria-labelledby="bleed-t" className="w-full">
         <title id="bleed-t">Bleed: the artwork runs past the finished edge and the extra is trimmed off</title>
-        <rect x="10" y="10" width="280" height="180" fill="#b4532a" opacity="0.25" />
-        <rect x="35" y="35" width="230" height="130" fill="#f5efe3" />
-        <rect x="10" y="10" width="280" height="180" fill="none" stroke="#b4532a" strokeDasharray="4 3" />
-        <rect x="35" y="35" width="230" height="130" fill="none" stroke="#33373a" strokeWidth="2" />
-        <text x="150" y="27" textAnchor="middle" fontSize="12" fill="#7a3518">Bleed (trimmed off)</text>
-        <text x="150" y="105" textAnchor="middle" fontSize="13" fill="#33373a">Finished size</text>
+        <rect x="10" y="10" width="280" height="180" fill="#C0582F" opacity="0.25" />
+        <rect x="35" y="35" width="230" height="130" fill="#FAF6EE" />
+        <rect x="10" y="10" width="280" height="180" fill="none" stroke="#C0582F" strokeDasharray="4 3" />
+        <rect x="35" y="35" width="230" height="130" fill="none" stroke="#33373A" strokeWidth="2" />
+        <text x="150" y="27" textAnchor="middle" fontSize="12" fill="#873A19">Bleed (trimmed off)</text>
+        <text x="150" y="105" textAnchor="middle" fontSize="13" fill="#33373A">Finished size</text>
       </svg>
       <figcaption className="mt-2 text-sm text-charcoal/80">Background colour and images run out into the bleed. The solid line is where it's cut.</figcaption>
     </figure>
@@ -63,11 +63,11 @@ function SafeDiagram() {
     <figure className="rounded-xl border border-charcoal/15 bg-white p-4">
       <svg viewBox="0 0 300 200" role="img" aria-labelledby="safe-t" className="w-full">
         <title id="safe-t">Safe area: keep text and logos inside the inner box</title>
-        <rect x="10" y="10" width="280" height="180" fill="#f5efe3" stroke="#33373a" strokeWidth="2" />
+        <rect x="10" y="10" width="280" height="180" fill="#FAF6EE" stroke="#33373A" strokeWidth="2" />
         <rect x="45" y="40" width="210" height="120" fill="#2f6b4f" opacity="0.12" stroke="#2f6b4f" strokeDasharray="5 4" />
         <text x="150" y="95" textAnchor="middle" fontSize="13" fill="#1f4a36">Safe area</text>
         <text x="150" y="113" textAnchor="middle" fontSize="11" fill="#1f4a36">text, logos, phone numbers</text>
-        <text x="150" y="30" textAnchor="middle" fontSize="11" fill="#33373a">Finished edge</text>
+        <text x="150" y="30" textAnchor="middle" fontSize="11" fill="#33373A">Finished edge</text>
       </svg>
       <figcaption className="mt-2 text-sm text-charcoal/80">Anything important stays inside the dashed box, clear of trims, folds, hems and frames.</figcaption>
     </figure>
