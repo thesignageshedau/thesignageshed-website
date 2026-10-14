@@ -31,7 +31,7 @@ export default function ProductGrid() {
           {items.map((it) => (
             <li key={it.href}>
               <a href={it.href} className="block h-full overflow-hidden rounded-xl border-2 border-charcoal/15 bg-white hover:border-rust">
-                <MockupImage mockup={it.img} sizes="45vw" className="aspect-[4/3] w-full object-cover" />
+                <MockupImage mockup={it.img} sizes="calc(50vw - 22px)" className="aspect-[4/3] w-full object-cover" />
                 <span className="block px-3 pt-2 font-slab text-base font-bold leading-tight">{it.name}</span>
                 <span className="mx-3 mb-3 mt-1.5 inline-block rounded-full bg-sage-light px-2.5 py-0.5 text-sm font-semibold text-sage-dark">From {money(it.from)}</span>
               </a>

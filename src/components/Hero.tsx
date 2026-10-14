@@ -34,7 +34,7 @@ export default function Hero() {
           <MockupImage
             mockup={MOCKUPS.v4Gazebo}
             eager
-            sizes="(min-width: 1152px) 540px, (min-width: 768px) 46vw, 92vw"
+            sizes="(min-width: 1152px) 540px, (min-width: 768px) 46vw, calc(100vw - 32px)"
             className="aspect-[4/3] w-full rounded-xl object-cover shadow-lg ring-1 ring-cream/10"
           />
           <img

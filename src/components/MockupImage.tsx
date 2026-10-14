@@ -23,7 +23,7 @@ export default function MockupImage({
     square = false;
     className = className.replace("aspect-square", "aspect-[4/3]");
   }
-  const widths = square ? [480, 600, 800, 1200] : [480, 800, 1200, 1600];
+  const widths = square ? [320, 480, 640, 800, 1200] : [320, 480, 640, 800, 1200, 1600];
   const small = square ? 600 : 800;
   const base = square ? `${s}-sq` : s;
   return (

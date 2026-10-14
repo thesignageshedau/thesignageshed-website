@@ -33,7 +33,7 @@ export default function EventGearTeaser() {
                 >
                   <MockupImage
                     mockup={p.hero}
-                    sizes="(min-width: 768px) 320px, 100vw"
+                    sizes="(min-width: 768px) 320px, calc(100vw - 32px)"
                     className="aspect-[4/3] h-auto w-full object-cover"
                   />
                   <span className="block p-4">

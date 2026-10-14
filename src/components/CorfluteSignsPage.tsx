@@ -199,8 +199,8 @@ export default function CorfluteSignsPage() {
             mockup={MOCKUPS.v4Corflute}
             square
             eager
-            sizes="(min-width: 768px) 448px, 100vw"
-            className="mx-auto w-full max-w-md rounded-xl shadow-xl ring-4 ring-rust/70"
+            sizes="(min-width: 768px) 448px, calc(100vw - 32px)"
+            className="mx-auto aspect-square w-full max-w-md rounded-xl object-cover shadow-xl ring-4 ring-rust/70"
           />
         </div>
       </section>

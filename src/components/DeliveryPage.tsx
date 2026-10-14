@@ -20,7 +20,7 @@ export default function DeliveryPage() {
 
       <div className="mx-auto max-w-site px-4 pt-10 sm:px-6">
         <figure className="overflow-hidden rounded-xl border border-charcoal/10 bg-white shadow-sm">
-          <MockupImage mockup={MOCKUPS.v4Gazebo} sizes="(min-width: 1152px) 1152px, 100vw" className="aspect-[16/7] w-full object-cover" />
+          <MockupImage mockup={MOCKUPS.v4Gazebo} sizes="(min-width: 1152px) 1120px, calc(100vw - 32px)" className="aspect-[16/7] w-full object-cover" />
         </figure>
       </div>
 
