@@ -26,6 +26,7 @@ import FaqSchema from "./components/FaqSchema";
 import { QUOTE_PRODUCTS } from "./data/quoteProducts";
 import AboutPage from "./components/AboutPage";
 import DeliveryPage from "./components/DeliveryPage";
+import FaqPage from "./components/FaqPage";
 import ArtworkHelpPage from "./components/ArtworkHelpPage";
 import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
@@ -60,6 +61,7 @@ type Route =
   | "check-artwork"
   | "for-sign-shops"
   | "delivery"
+  | "faq"
   | "artwork-help"
   | "about";
 const slugs = [
@@ -78,6 +80,7 @@ const slugs = [
   "check-artwork",
   "for-sign-shops",
   "delivery",
+  "faq",
   "artwork-help",
   "about",
 ] as readonly string[];
@@ -105,6 +108,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops (Australia) | The Signage Shed",
   "check-artwork": "Check Your Artwork: Free Print File Checker | The Signage Shed",
   about: "About Us: An Online Print Studio, Delivered Australia-wide | The Signage Shed",
+  faq: "Questions: Quotes, Minimums, Artwork and Freight | The Signage Shed",
   delivery: "Delivery Australia-wide: How It Works | The Signage Shed",
   "artwork-help": "Artwork Help: Bleed, Safe Area, Resolution and File Setup | The Signage Shed",
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
@@ -215,6 +219,8 @@ export default function App() {
           <GearPage key="banners" product={BANNERS} />
         ) : route === "about" ? (
           <AboutPage />
+        ) : route === "faq" ? (
+          <FaqPage />
         ) : route === "delivery" ? (
           <DeliveryPage />
         ) : route === "artwork-help" ? (

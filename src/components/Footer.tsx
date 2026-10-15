@@ -15,6 +15,9 @@ export default function Footer() {
               <a href="/delivery/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Delivery</a>
             </li>
             <li>
+              <a href="/faq/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Questions</a>
+            </li>
+            <li>
               <a href="/artwork-help/" className="inline-flex min-h-11 items-center hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4">Artwork help</a>
             </li>
             <li>
