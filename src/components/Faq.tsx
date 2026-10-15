@@ -21,15 +21,15 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How long does it take?",
-    a: <>Usually dispatched within a few business days of artwork approval. Tell us your needed-by date in the quote form and we'll let you know if it's tight.</>,
+    a: <>Within 3 days of artwork approval, depending on order size. Tell us your needed-by date in the quote form and we'll let you know if it's tight.</>,
   },
   {
     q: "Do you deliver?",
-    a: <>Yes, Australia-wide. Delivery is quoted separately, based on your postcode, and included in your quote. See <a className={link} href="/delivery/">how delivery works</a>.</>,
+    a: <>Yes, Australia-wide. Freight depends on the product's size and weight, and it's included on your quote. See <a className={link} href="/delivery/">how delivery works</a>.</>,
   },
   {
     q: "How do I pay?",
-    a: <>There's nothing to pay online. Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.</>,
+    a: <>Payment is due once your artwork is approved.</>,
   },
   {
     q: "Is there a minimum order?",

@@ -5,8 +5,8 @@ import { HelpCta, HelpFaq, HelpHero, HelpSection } from "./HelpParts";
 
 const faqs = [
   { q: "Do you deliver Australia-wide?", a: <>Yes. We deliver to addresses all over Australia.</> },
-  { q: "How much is delivery?", a: <>Delivery is quoted separately, based on your postcode and the size and weight of your order. The freight cost is in your quote, so you see it before you pay.</> },
-  { q: "How long does delivery take?", a: <>Orders are usually dispatched within a few business days of artwork approval. Typical transit times vary by carrier and location, and we confirm them in your quote.</> },
+  { q: "How much is delivery?", a: <>Freight depends on the product's size and weight. We quote it to your postcode and include it on your quote. You see it before you pay.</> },
+  { q: "How long does delivery take?", a: <>We dispatch within 3 days of artwork approval, depending on order size. Typical transit times vary by carrier and location, and we confirm them in your quote.</> },
   { q: "Can I pick up my order?", a: <>No, we don't offer pick up. Every order is delivered to the address you give us.</> },
   { q: "Do you install signs?", a: <>No. We print and deliver, and everything arrives ready to put up yourself.</> },
 ];
@@ -25,10 +25,10 @@ export default function DeliveryPage() {
       </div>
 
       <HelpSection id="cost" title="What delivery costs">
-        <p>Delivery is quoted separately from the product price. We work it out from:</p>
+        <p>Freight depends on the product's size and weight, and it's included on your quote. We work it out from:</p>
         <ul>
           <li>your delivery postcode</li>
-          <li>the size of your order once it's packed</li>
+          <li>the size of the product</li>
           <li>its weight</li>
         </ul>
         <p>The freight cost is in your quote, and you see it before you pay anything. Typical transit times vary by carrier and location, so we confirm them in your quote too.</p>

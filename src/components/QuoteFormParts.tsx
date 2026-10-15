@@ -366,8 +366,8 @@ export function SubmitArea({
           {status === "sending" ? "Sending…" : "Send quote request"}
         </button>
         <p className="text-sm text-charcoal/80">
-          No payment now. We'll reply by email with a quote, and invoice you
-          once the order is confirmed.
+          No payment now. We'll reply by email with a quote including freight.
+          Payment is due once your artwork is approved.
         </p>
       </div>
       <p className="text-xs text-charcoal/70">

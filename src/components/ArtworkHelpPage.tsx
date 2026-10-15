@@ -75,7 +75,7 @@ function SafeDiagram() {
 }
 
 const faqs = [
-  { q: "What file type should I send?", a: <>A print-ready PDF is best. High resolution JPG and PNG files are fine too.</> },
+  { q: "What file type should I send?", a: <>A print-ready PDF is best. We also take AI and EPS files with fonts outlined, and high resolution JPG, PNG or TIFF files at full size.</> },
   { q: "What resolution does my artwork need?", a: <>At least 130 ppi at the full printed size, and 150 ppi or more for a crisp print. Logos and text are best as vectors.</> },
   { q: "Should my artwork be CMYK or RGB?", a: <>Supply CMYK for the most accurate colour. RGB files are converted for print, and some bright colours can come out duller.</> },
   { q: "Do I need to add bleed?", a: <>Yes. Run your background past the finished edge by the bleed shown in your product's artwork guide.</> },
@@ -126,7 +126,8 @@ export default function ArtworkHelpPage() {
       <HelpSection id="file-types" title="File types">
         <ul>
           <li><strong>PDF</strong> is preferred: print-ready, with fonts outlined or embedded.</li>
-          <li><strong>JPG or PNG</strong> are fine when they're high resolution at full size.</li>
+          <li><strong>AI or EPS</strong> are fine with fonts outlined.</li>
+          <li><strong>JPG, PNG or TIFF</strong> are fine when they're high resolution at full size.</li>
         </ul>
       </HelpSection>
 

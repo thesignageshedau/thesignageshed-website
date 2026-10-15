@@ -21,7 +21,7 @@ export default function QuoteThanks() {
         <p className="mt-5 text-lg leading-relaxed">
           We'll email you a quote with delivery included, usually within one
           business day. Nothing is printed until you've approved a proof, and
-          you pay by invoice once the order is confirmed. {TURNAROUND}
+          payment is due once your artwork is approved. {TURNAROUND}
         </p>
         <p className="mt-4">
           Need to add something? Email{" "}

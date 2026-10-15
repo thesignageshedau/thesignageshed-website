@@ -14,7 +14,7 @@ export const PRICE_NOTES = [
   "Minimum order $180 per product.",
 ] as const;
 export const TURNAROUND =
-  "Usually dispatched within a few business days of artwork approval.";
+  "We dispatch within 3 days of artwork approval, depending on order size.";
 
 export type WallSize = {
   id: string;

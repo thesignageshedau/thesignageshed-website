@@ -76,7 +76,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How do I pay?",
     a: (
       <>
-        Once you're happy with the quote, we send you an invoice or a secure payment link to pay by card.
+        Payment is due once your artwork is approved.
       </>
     ),
   },
