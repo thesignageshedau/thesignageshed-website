@@ -14,6 +14,10 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "faq": "Common questions about ordering from The Signage Shed: quotes, the $180 minimum per product, dispatch times, freight, payment, artwork help, file types and samples.",
   "delivery": "How delivery works at The Signage Shed: Australia-wide, freight based on the product's size and weight, quoted to your postcode, with freight in your quote before you pay. No pick up or installation: we print and deliver to your door.",
   "artwork-help": "Plain-English artwork help for print: bleed, safe area, resolution (130 ppi minimum, 150+ crisp), CMYK vs RGB, outlining fonts, PDF files, vector vs raster and 10% scale templates, plus artwork guides per product.",
+  "guides": "Short buying guides from The Signage Shed: choosing a pull up banner size, corflute vs rigid signs, and setting up print-ready artwork.",
+  "guides/pull-up-banner-size": "850mm or 1200mm wide, single or double sided: how to choose the right pull up banner size for your space, with prices.",
+  "guides/corflute-vs-rigid-signs": "Corflute vs aluminium composite and insert A-frames: which rigid sign suits your job, with sizes and prices.",
+  "guides/print-ready-artwork": "How to set up print-ready artwork: size, bleed, safe area, 130 to 150 ppi resolution, CMYK, fonts and file types.",
   "about": "The Signage Shed is an online print studio for custom signs, banners and event gear, delivered Australia-wide. Quote first, a digital proof before we print, and help with your artwork.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
 };

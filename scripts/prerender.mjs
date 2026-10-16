@@ -11,6 +11,7 @@ const DIST = new URL("../dist/", import.meta.url).pathname;
 export const ROUTES = [
   "", "media-walls", "table-covers", "pull-up-banners", "corflute-signs", "a-frames", "gazebos", "flags",
   "market-umbrellas", "banners", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
+  "guides", "guides/pull-up-banner-size", "guides/corflute-vs-rigid-signs", "guides/print-ready-artwork",
   "refund-policy", "privacy-policy", "terms", "quote-thanks",
 ];
 const TYPES = { ".js": "text/javascript", ".css": "text/css", ".html": "text/html", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".woff2": "font/woff2", ".json": "application/json", ".mjs": "text/javascript", ".pdf": "application/pdf", ".ico": "image/x-icon", ".mp4": "video/mp4", ".webmanifest": "application/manifest+json" };

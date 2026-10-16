@@ -27,6 +27,8 @@ import { QUOTE_PRODUCTS } from "./data/quoteProducts";
 import AboutPage from "./components/AboutPage";
 import DeliveryPage from "./components/DeliveryPage";
 import FaqPage from "./components/FaqPage";
+import { GuidesIndex, GuidePage } from "./components/GuidesPage";
+import { GUIDES } from "./data/guides";
 import ArtworkHelpPage from "./components/ArtworkHelpPage";
 import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
@@ -63,7 +65,9 @@ type Route =
   | "delivery"
   | "faq"
   | "artwork-help"
-  | "about";
+  | "about"
+  | "guides"
+  | `guides/${string}`;
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -83,6 +87,8 @@ const slugs = [
   "faq",
   "artwork-help",
   "about",
+  "guides",
+  ...GUIDES.map((g) => `guides/${g.slug}`),
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
@@ -91,7 +97,7 @@ function isUnknownRoute(): boolean {
 /** Old home page anchors for the sign shop content now live on #/for-sign-shops. */
 export const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
 function routeFromHash(): Route | null {
-  const m = window.location.pathname.match(/^\/([a-z-]+)\/?$/);
+  const m = window.location.pathname.match(/^\/([a-z-]+(?:\/[a-z-]+)?)\/?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
@@ -111,6 +117,8 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   faq: "Questions: Quotes, Minimums, Artwork and Freight | The Signage Shed",
   delivery: "Delivery Australia-wide: How It Works | The Signage Shed",
   "artwork-help": "Artwork Help: Bleed, Safe Area, Resolution and File Setup | The Signage Shed",
+  guides: "Buying Guides: Signs, Banners and Artwork | The Signage Shed",
+  ...Object.fromEntries(GUIDES.map((g) => [`guides/${g.slug}`, `${g.title} | The Signage Shed`])),
   quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
 };
 
@@ -219,6 +227,10 @@ export default function App() {
           <GearPage key="banners" product={BANNERS} />
         ) : route === "about" ? (
           <AboutPage />
+        ) : route === "guides" ? (
+          <GuidesIndex />
+        ) : route?.startsWith("guides/") ? (
+          <GuidePage key={route} slug={route.slice(7)} />
         ) : route === "faq" ? (
           <FaqPage />
         ) : route === "delivery" ? (
