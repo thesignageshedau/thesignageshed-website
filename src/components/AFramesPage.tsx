@@ -1,3 +1,4 @@
+import ProductSeo from "./ProductSeo";
 import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
@@ -145,7 +146,7 @@ export default function AFramesPage() {
             </a>
             <p className="eyebrow mt-8">Printed A-frame signs, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
-              A-frames that bring people through the door
+              A-frame signs that bring people through the door
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
               Double sided sandwich boards for shopfronts, cafes, open homes and
@@ -350,6 +351,8 @@ export default function AFramesPage() {
           </div>
         </div>
       </section>
+
+      <ProductSeo slug="a-frames" />
 
       <QuoteCta slug={"a-frames"} label={"A-frames"} />
 

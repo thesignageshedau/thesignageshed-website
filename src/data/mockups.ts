@@ -4,12 +4,12 @@ export type Mockup = { slug: string; title: string; alt: string; noSquare?: bool
 // v4 photo set (scripts/build-v4.mjs). noSquare: the square crop cuts off the product, so square slots show the landscape image.
 
 export const MOCKUPS = {
-  v4Corflute: { slug: "v4-corflute", title: "Corflute sign", alt: "Large cream corflute sign reading Your Brand cable-tied to a wire fence at a park" },
+  v4Corflute: { slug: "v4-corflute", title: "Corflute sign", alt: "Large custom printed cream corflute sign reading Your Brand cable-tied to a wire fence at a park" },
   v4PullUp: { slug: "v4-pull-up", title: "Pull up banner", alt: "Cream and green pull up banner reading Your Brand in a bright office foyer with city views" },
   v4MediaWall: { slug: "v4-media-wall", title: "Media wall", alt: "Stretched fabric media wall printed with Your Brand and green squares in a repeating pattern, standing on a park lawn with guests and festoon lights behind" },
-  v4AFrames: { slug: "v4-aframes", title: "A-frames", alt: "Two A-frame signs reading Your Brand on a shopping street footpath: a black framed sign with a cream panel and a green and white folding corflute sign", noSquare: true },
+  v4AFrames: { slug: "v4-aframes", title: "A-frames", alt: "Two custom printed A-frame signs reading Your Brand on a shopping street footpath: a black framed sign with a cream panel and a green and white folding corflute sign", noSquare: true },
   v4Gazebo: { slug: "v4-gazebo", title: "3 × 3m gazebo", alt: "Black 3 by 3 metre pop up gazebo with a cream valance reading Your Brand, over a fresh produce stall at an outdoor market" },
-  v4Flags: { slug: "v4-flags", title: "Feather flags", alt: "Two feather flags reading Your Brand on a grassy park beside gum trees" },
+  v4Flags: { slug: "v4-flags", title: "Feather flags", alt: "Two custom printed feather flags reading Your Brand on a grassy park beside gum trees" },
   v4Umbrella: { slug: "v4-umbrella", title: "Market umbrella", alt: "Charcoal market umbrella with a cream scalloped valance reading Your Brand, over a market stall under gum trees" },
   v4TableCover: { slug: "v4-table-cover", title: "Table cover", alt: "Charcoal fitted table cover reading Your Brand on a trestle table in a bright event hall", noSquare: true },
   v4MeshBanner: { slug: "v4-mesh-banner", title: "Mesh banner", alt: "Long cream mesh banner reading Your Brand fixed to a chain-link fence beside a footpath", noSquare: true },
@@ -31,7 +31,7 @@ export const MOCKUPS = {
   v4AFrameSmall: { slug: "v4-aframe-small", title: "Small 600 × 450 or real estate frame", alt: "Small white framed A-frame sign reading Your Brand with a directional arrow, on a footpath beside a lawn", noSquare: true },
   v4PullUpDouble: { slug: "v4-pull-up-double", title: "Double sided", alt: "Two cream and green pull up banners reading Your Brand in a busy, sunlit building foyer" },
   v4TableThrow: { slug: "v4-table-throw", title: "Loose table throw", alt: "Charcoal loose table throw printed with Your Brand draped over a table at a busy indoor expo", noSquare: true },
-  v4FlagsTeardrop: { slug: "v4-flags-teardrop", title: "Teardrop flags", alt: "Two teardrop flags reading Your Brand on a sports oval with gum trees and a grandstand behind" },
+  v4FlagsTeardrop: { slug: "v4-flags-teardrop", title: "Teardrop flags", alt: "Two custom printed teardrop flags reading Your Brand on a sports oval with gum trees and a grandstand behind" },
   v4PvcBanner: { slug: "v4-pvc-banner", title: "PVC vinyl banner", alt: "Cream and green PVC banner reading Your Brand tied to a timber post fence in a paddock", noSquare: true },
   v4MeshBannerEvent: { slug: "v4-mesh-banner-event", title: "Mesh on event fencing", alt: "Charcoal mesh banners with a repeating Your Brand logo on temporary event fencing at a park", noSquare: true },
 } satisfies Record<string, Mockup>;

@@ -41,7 +41,7 @@ export const GUIDES: Guide[] = [
       { id: "corflute", title: "Corflute: light, tough and great value", body: <>
         <p>Corflute is a fluted plastic board, like a plastic version of cardboard. It's light, waterproof and cheap to print in quantity, which is why it's the go-to for event signs, directional signs, site boards and short to medium term promotions.</p>
         <p>We print on premium Australian-made corflute, built for outdoor use, in 5mm or 3mm. Choose 5mm when the sign needs to stay flat and stiff, and 3mm for lighter, lower cost runs. Signs come in 600 × 450mm, 600 × 900mm and 900 × 1200mm, single or double sided, with optional eyelets for tying to fences and posts.</p>
-        <p>Corflute is priced in bundles: 1 to 5 signs from $180, with the price per sign dropping as your quantity grows. Our {L("/corflute-signs/", "corflute signs page")} has an instant price calculator.</p>
+        <p>Corflute is priced in bundles: 1 to 5 signs from $180, with the price per sign dropping as your quantity grows. Our {L("/corflute-signs/", "custom corflute signs")} page has an instant price calculator.</p>
       </> },
       { id: "acm", title: "Aluminium composite: our sturdiest option", body: <>
         <p>Aluminium composite panel (often called ACM) is two thin sheets of aluminium bonded to a solid core. It's rigid, flat and much heavier duty than corflute, so it's the choice for signs that need to look sharp for longer.</p>
@@ -57,7 +57,7 @@ export const GUIDES: Guide[] = [
           <li><strong>A message that changes often:</strong> insert A-frame.</li>
           <li><strong>Events and markets on a budget:</strong> folding corflute A-frame.</li>
         </ul>
-        <p>See every option and price on our {L("/a-frames/", "A-frames page")}.</p>
+        <p>See every option and price on our {L("/a-frames/", "A-frame signs")} page. Need something taller to catch eyes from the road? Our {L("/flags/", "feather and teardrop flags")} stand 2.7m to 3.0m tall.</p>
       </> },
     ],
   },

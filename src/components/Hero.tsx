@@ -14,8 +14,11 @@ export default function Hero() {
             you seen.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90 sm:text-xl">
-            Media walls, pull up banners, flags, corflute signs, A-frames and gazebos, printed with
-            your artwork. Prices online, quoted fast and delivered Australia-wide.
+            Signage and printing, shipped Australia-wide: media walls, pull up banners,{" "}
+            <a href="/flags/" className="underline underline-offset-4 hover:text-white">feather and teardrop flags</a>,{" "}
+            <a href="/corflute-signs/" className="underline underline-offset-4 hover:text-white">corflute signs</a>,{" "}
+            <a href="/a-frames/" className="underline underline-offset-4 hover:text-white">A-frame signs</a> and gazebos, printed with
+            your artwork. Prices online and quoted fast.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="/quote/" className="btn-rust" data-track="quote-hero">

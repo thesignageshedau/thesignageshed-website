@@ -1,3 +1,4 @@
+import ProductSeo from "./ProductSeo";
 import CorflutePrices from "./CorflutePrices";
 import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
@@ -168,7 +169,7 @@ export default function CorfluteSignsPage() {
             </a>
             <p className="eyebrow mt-8">Printed corflute signs, delivered Australia-wide</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">
-              Corflute signs for events, sites and sales
+              Custom corflute signs for events, sites and sales
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
               Tough, light, weatherproof signs in 3 standard sizes, printed on
@@ -304,6 +305,8 @@ export default function CorfluteSignsPage() {
           </div>
         </div>
       </section>
+
+      <ProductSeo slug="corflute-signs" />
 
       <QuoteCta slug={"corflute-signs"} label={"corflute signs"} />
 

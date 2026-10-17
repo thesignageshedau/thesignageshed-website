@@ -41,7 +41,7 @@ export default function CorfluteSignsTeaser() {
                   className="btn-rust"
                   data-track="corflute-signs-teaser"
                 >
-                  See sizes and prices
+                  See corflute sign sizes and prices
                 </a>
               </div>
             </div>

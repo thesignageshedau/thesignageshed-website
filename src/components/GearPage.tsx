@@ -1,3 +1,4 @@
+import ProductSeo from "./ProductSeo";
 import QuoteCta from "./QuoteCta";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
@@ -209,6 +210,8 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           </a>
         </div>
       </section>
+
+      {p.slug === "flags" && <ProductSeo slug="flags" />}
 
       <QuoteCta slug={p.slug} label={p.noun} />
 
