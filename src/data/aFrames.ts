@@ -51,7 +51,7 @@ export const TYPES: {
     id: "real-estate",
     title: "Real estate A-frame",
     short: "Real estate",
-    text: "The classic compact 600 × 450mm sign for open homes, directions and footpaths. Black, white or red frame, with printed corflute inserts you can swap.",
+    text: "A compact 600 × 450mm frame for outdoor directional or promo signs on footpaths. Black, white or red frame, with printed corflute inserts you can swap.",
   },
   {
     id: "folding",

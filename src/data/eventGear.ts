@@ -119,7 +119,7 @@ export const FLAGS: GearProduct = {
   description: "Medium teardrop (2.7m) and feather (3.0m) flags printed with your artwork, with a 10kg heavy duty square base. Prices online, delivered Australia-wide.",
   eyebrow: "Printed teardrop and feather flags, delivered Australia-wide",
   heading: "Custom teardrop and feather flags that get you seen",
-  intro: "Tall printed flags for shopfronts, open homes, sport and events. Each one comes with its pole set and a 10kg heavy duty square base, so it works on paving, grass or indoors with no ground spikes.",
+  intro: "Tall printed flags for shopfronts, sport and events. Each one comes with its pole set and a 10kg heavy duty square base, so it works on paving, grass or indoors with no ground spikes.",
   teaserTitle: "Teardrop and feather flags",
   teaserText: "Medium teardrop and feather flags printed with your artwork, with a 10kg heavy duty base.",
   groups: [
@@ -161,7 +161,7 @@ export const UMBRELLAS: GearProduct = {
   description: "2m × 2m square market umbrellas with your logo printed on all four panels and the valance. With a 10kg heavy duty base. Prices online, delivered Australia-wide.",
   eyebrow: "Printed market umbrellas, delivered Australia-wide",
   heading: "Printed market umbrellas with your logo on top",
-  intro: "A 2m × 2m square umbrella printed on all four panels and the valance, on a heavy duty 45mm aluminium pole with an easy slider (no ropes or pulleys). Great for cafes, markets, fetes and real estate open homes.",
+  intro: "A 2m × 2m square umbrella printed on all four panels and the valance, on a heavy duty 45mm aluminium pole with an easy slider (no ropes or pulleys). Great for cafes, markets and fetes.",
   teaserTitle: "Printed market umbrellas",
   teaserText: "2m × 2m square umbrellas printed on every panel, with a 10kg heavy duty base.",
   groups: [

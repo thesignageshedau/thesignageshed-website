@@ -36,8 +36,8 @@ const faqs: { q: string; a: ReactNode }[] = [
         A printed aluminium A-frame is the most durable and looks the most
         premium, for a sign that lives outside your shop every day. An insert
         A-frame is great when your message changes, because you only re-order
-        the inserts. The real estate A-frame is compact and ideal for open homes
-        and directions. The folding corflute A-frame is the lightest and
+        the inserts. The real estate A-frame is a compact 600 × 450mm frame
+        for outdoor directional or promo signs. The folding corflute A-frame is the lightest and
         cheapest, for events and short promotions.
       </>
     ),
@@ -149,9 +149,9 @@ export default function AFramesPage() {
               A-frame signs that bring people through the door
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
-              Double sided sandwich boards for shopfronts, cafes, open homes and
+              Double sided sandwich boards for shopfronts, cafes, markets and
               events. Choose printed aluminium, a frame with swappable inserts,
-              a compact real estate sign or a light folding corflute A-frame.
+              the compact real estate frame or a light folding corflute A-frame.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button
