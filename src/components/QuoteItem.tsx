@@ -98,7 +98,7 @@ export default function QuoteItem({
   const [thickness, setThickness] = useState<CF.Thickness>("5mm");
   const [sides, setSides] = useState<CF.Sides | "">(() => {
     const v = urlParam("sides");
-    return v === "single" || v === "double" ? v : "";
+    return v === "double" ? "double" : "single";
   });
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
@@ -111,7 +111,7 @@ export default function QuoteItem({
     setProductState(slug);
     setSize(presetSize);
     setOption("");
-    setSides("");
+    setSides("single");
   };
   useEffect(() => {
     if (!fromUrl) return;

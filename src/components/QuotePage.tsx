@@ -114,7 +114,7 @@ export default function QuotePage() {
             </div>
 
             <DeliveryFields />
-            <ArtworkFields notesHint="What it's for, colours, wording, anything we should know" checkHref={checkHref} />
+            <ArtworkFields notesHint="Need it by a date? Tell us here, plus anything else we should know." checkHref={checkHref} />
 
             <fieldset className="grid gap-4 sm:grid-cols-2">
               <legend className="mb-3 font-display text-xl tracking-wide">Your details</legend>
