@@ -32,6 +32,7 @@ function messageFor(el: Field): string {
   if (v.valueMissing) return el.tagName === "SELECT" || el.type === "radio" ? `Choose ${name.toLowerCase()}` : `Enter ${name.toLowerCase()}`;
   if (v.typeMismatch && el.type === "email") return "Enter a valid email address, like name@example.com";
   if (v.patternMismatch && el.name.endsWith("postcode")) return "Enter a 4 digit postcode";
+  if (v.customError) return el.validationMessage;
   if (v.patternMismatch && el.type === "tel") return "Enter a phone number, like 0412 345 678";
   if (v.rangeUnderflow || v.rangeOverflow || v.stepMismatch || v.badInput) return `Enter a whole number for ${name.toLowerCase()}`;
   return el.validationMessage || `Check ${name.toLowerCase()}`;
@@ -179,15 +180,26 @@ export const AU_STATES = [
 ] as const;
 export const ARTWORK_STATUS = ["Print-ready files", "Need help with design", "Not sure"] as const;
 
-/** Delivery suburb, state, postcode and date (all forms). */
+/** State from a 4 digit Australian postcode (Australia Post ranges). Empty when the postcode isn't one we know. */
+export function stateFromPostcode(pc: string): string {
+  if (!/^[0-9]{4}$/.test(pc)) return "";
+  const n = Number(pc);
+  if ((n >= 200 && n <= 299) || (n >= 2600 && n <= 2618) || (n >= 2900 && n <= 2920)) return "ACT";
+  if (n >= 800 && n <= 999) return "NT";
+  if (n >= 1000 && n <= 2999) return "NSW";
+  if ((n >= 3000 && n <= 3999) || (n >= 8000 && n <= 8999)) return "VIC";
+  if ((n >= 4000 && n <= 4999) || (n >= 9000 && n <= 9999)) return "QLD";
+  if (n >= 5000 && n <= 5999) return "SA";
+  if (n >= 6000 && n <= 6999) return "WA";
+  if (n >= 7000 && n <= 7999) return "TAS";
+  return "";
+}
+
+/** Delivery postcode (all forms). The state is worked out from the postcode and sent as "Delivery state". */
 export function DeliveryFields() {
-  const [today, setToday] = useState("");
-  useEffect(() => {
-    const d = new Date();
-    setToday(
-      `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`,
-    );
-  }, []);
+  const [pc, setPc] = useState("");
+  const state = stateFromPostcode(pc);
+  const stateName = AU_STATES.find(([c]) => c === state)?.[1] ?? "";
   return (
     <fieldset className="grid gap-4 sm:grid-cols-2">
       <legend className="mb-3 font-display text-xl tracking-wide">Delivery</legend>
@@ -195,27 +207,19 @@ export function DeliveryFields() {
         We deliver Australia-wide and quote freight from your postcode.{" "}
         <a className="font-semibold text-rust-dark underline" href="/delivery/">How delivery works</a>
       </p>
-      <label className={label}>
-        Delivery suburb <span className="font-normal text-charcoal/70">(optional)</span>
-        <input name="Delivery suburb" autoComplete="address-level2" placeholder="e.g. Parramatta" maxLength={80} className={input} />
-      </label>
-      <label className={label}>
-        State
-        <select name="Delivery state" required defaultValue="" className={input}>
-          <option value="" disabled>
-            Choose a state
-          </option>
-          {AU_STATES.map(([code, name]) => (
-            <option key={code} value={code}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </label>
+      <input type="hidden" name="Delivery state" value={state} />
       <label className={label}>
         Postcode
         <input
           name="Delivery postcode"
+          value={pc}
+          onChange={(e) => {
+            const v = e.target.value.trim();
+            setPc(v);
+            e.target.setCustomValidity(
+              /^[0-9]{4}$/.test(v) && !stateFromPostcode(v) ? "Enter a valid Australian postcode" : "",
+            );
+          }}
           required
           inputMode="numeric"
           autoComplete="postal-code"
@@ -225,10 +229,9 @@ export function DeliveryFields() {
           title="A 4 digit Australian postcode"
           className={input}
         />
-      </label>
-      <label className={label}>
-        Date needed by <span className="font-normal text-charcoal/70">(optional)</span>
-        <input name="Needed by" type="date" min={today || undefined} className={input} />
+        <span className="mt-1 block text-xs font-normal text-charcoal/70" aria-live="polite">
+          {stateName ? `Delivering to ${stateName}.` : "Freight is quoted to this postcode."}
+        </span>
       </label>
     </fieldset>
   );
@@ -456,7 +459,7 @@ function itemFieldsFrom(b: Record<string, string>): Record<string, string> {
   f["Sides"] = take("Sides");
   f["Eyelets"] = take("Eyelets");
   f["Quantity"] = take("Quantity");
-  f["Number of designs"] = take("Number of designs");
+  f["Number of designs"] = take("Number of designs") || "1";
   f["Price shown"] = take("Price shown");
   f["Options"] = Object.entries(b)
     .filter(([, v]) => v)
@@ -538,7 +541,7 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
   f["Sides"] = take("Sides", "Printing", "Print");
   f["Eyelets"] = take("Eyelets");
   const quantity = take("Quantity");
-  const designs = take("Number of designs");
+  const designs = take("Number of designs") || "1";
   const price = take("Price shown", "Estimate shown");
   const contact = { name: take("Name"), email: take("email", "Email"), phone: take("Phone"), business: take("Business") };
   const delivery = { suburb: take("Delivery suburb"), state: take("Delivery state"), postcode: take("Delivery postcode"), date: take("Needed by") };
@@ -589,7 +592,7 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
 export function DesignsField({ prefix = "" }: { prefix?: string }) {
   return (
     <label className={label}>
-      Number of different designs/artworks
+      Number of different designs/artworks <span className="font-normal text-charcoal/70">(optional)</span>
       <input
         name={`${prefix}Number of designs`}
         type="number"
@@ -597,7 +600,6 @@ export function DesignsField({ prefix = "" }: { prefix?: string }) {
         min={1}
         max={999}
         step={1}
-        required
         defaultValue={1}
         className={input}
       />
