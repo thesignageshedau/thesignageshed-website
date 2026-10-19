@@ -100,25 +100,25 @@ function routeFromHash(): Route | null {
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
 const PAGE_TITLES: Partial<Record<Route, string>> = {
-  "media-walls": "Media Walls Australia: Printed Fabric Backdrops | The Signage Shed",
-  "table-covers": "Printed Table Covers Australia: Custom Table Throws | The Signage Shed",
-  "pull-up-banners": "Pull Up Banners Australia: Printed and Delivered | The Signage Shed",
-  "corflute-signs": "Corflute Signs & Signage Australia: Custom Printed | The Signage Shed",
-  "a-frames": "A-Frame Signs Australia: Printed A Frame Sandwich Boards | The Signage Shed",
+  "media-walls": "Media Walls Australia: Printed Backdrops | The Signage Shed",
+  "table-covers": "Printed Table Covers & Throws Australia | The Signage Shed",
+  "pull-up-banners": "Pull Up Banners Australia: Printed | The Signage Shed",
+  "corflute-signs": "Corflute Signs Australia: Custom Printed | The Signage Shed",
+  "a-frames": "A-Frame Signs Australia: Printed Sandwich Boards",
   gazebos: GAZEBOS.pageTitle,
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,
   banners: BANNERS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
-  "for-sign-shops": "Pricing Spreadsheets for Sign Shops (Australia) | The Signage Shed",
-  "check-artwork": "Check Your Artwork: Free Print File Checker | The Signage Shed",
-  about: "About Us: An Online Print Studio, Delivered Australia-wide | The Signage Shed",
-  faq: "Questions: Quotes, Minimums, Artwork and Freight | The Signage Shed",
+  "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
+  "check-artwork": "Free Print File Checker | The Signage Shed",
+  about: "About Us: Online Print Studio, Australia | The Signage Shed",
+  faq: "Questions: Quotes, Artwork & Freight | The Signage Shed",
   delivery: "Delivery Australia-wide: How It Works | The Signage Shed",
-  "artwork-help": "Artwork Help: Bleed, Safe Area, Resolution and File Setup | The Signage Shed",
+  "artwork-help": "Artwork Help: Bleed, Resolution & Files | The Signage Shed",
   guides: "Buying Guides: Signs, Banners and Artwork | The Signage Shed",
-  ...Object.fromEntries(GUIDES.map((g) => [`guides/${g.slug}`, `${g.title} | The Signage Shed`])),
-  quote: "Request a Quote: Custom Printed Signage Australia | The Signage Shed",
+  ...Object.fromEntries(GUIDES.map((g) => [`guides/${g.slug}`, `${g.title} | The Signage Shed`.length <= 60 ? `${g.title} | The Signage Shed` : g.title])),
+  quote: "Request a Quote: Printed Signage | The Signage Shed",
 };
 
 const SITE_URL = "https://thesignageshed.au/";
