@@ -184,6 +184,10 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
               products people are interested in. None of this identifies you personally.
             </p>
             <p>
+              We also use Cloudflare Web Analytics, a cookie-free service, to count visits. It doesn't track you across
+              sites or collect personal information.
+            </p>
+            <p>
               Our website host and the services that deliver fonts and scripts to your browser receive your IP address
               as a normal part of loading a web page, and may keep it briefly in their logs for security.
             </p>
