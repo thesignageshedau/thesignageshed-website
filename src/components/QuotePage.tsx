@@ -1,7 +1,6 @@
 import TrustStrip from "./TrustStrip";
 import { useState } from "react";
 import { FORMSUBMIT_ACTION } from "../data/mediaWalls";
-import { QUOTE_PRODUCTS } from "../data/quoteProducts";
 import QuoteItem, { MAX_ITEMS } from "./QuoteItem";
 import {
   ArtworkFields,
@@ -35,8 +34,7 @@ export default function QuotePage() {
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const product = first.product;
   const size = first.size;
-  const chosen = QUOTE_PRODUCTS.find((p) => p.slug === product);
-  const { status, error, onSubmit, onInput, fieldErrors } = useQuoteSubmit("general", () => `General quote: ${chosen?.label ?? "none"}${items.length > 1 ? ` + ${items.length - 1} more` : ""}`);
+  const { status, error, onSubmit, onInput, fieldErrors } = useQuoteSubmit();
   const checkHref = `/check-artwork/${product ? `?product=${product}${size ? `&size=${encodeURIComponent(size)}` : ""}` : ""}`;
 
   return (

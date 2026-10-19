@@ -4,7 +4,6 @@ import { QUOTE_EMAIL } from "../data/mediaWalls";
 import { quoteHref } from "../data/quoteProducts";
 import { asset } from "../lib/asset";
 import { ACCEPT, analyseArtwork, overall, type Analysis, type Status } from "../lib/artworkCheck";
-import { trackEvent } from "../lib/analytics";
 import { input, label } from "./QuoteFormParts";
 
 function params() {
@@ -95,7 +94,6 @@ export default function ArtworkCheckPage() {
         if (cancelled) return;
         setResult(r);
         setPreview(r.preview.toDataURL("image/jpeg", 0.85));
-        trackEvent(`artwork-check-${overall(r.checks)}`);
         window.setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
       })
       .catch((e: unknown) => {

@@ -40,7 +40,6 @@ import TableCoversPage from "./components/TableCoversPage";
 import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
-import { usePageview } from "./lib/analytics";
 import { useReveal } from "./lib/reveal";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
@@ -193,7 +192,6 @@ export default function App() {
   const barProduct = QUOTE_PRODUCTS.find((p) => p.slug === route);
 
   useReveal(route ?? (missing ? "missing" : "home"));
-  usePageview(route ? `/${route}` : "/");
 
   return (
     <>

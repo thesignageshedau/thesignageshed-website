@@ -16,10 +16,6 @@ export const SITE_URL = "https://thesignageshed.au/";
 // Gumroad collects the email address). Leave empty to hide the free sheet section.
 export const FREE_SAMPLE_URL: string = "https://thesignageshedau.gumroad.com/l/quick-pricing-sheet";
 
-// Analytics: your GoatCounter code, e.g. "thesignageshed" for thesignageshed.goatcounter.com.
-// Cookieless, no banner needed. Leave empty to load no analytics at all.
-// (A VITE_GOATCOUNTER_CODE environment variable overrides this if set.)
-export const GOATCOUNTER_CODE: string = "thesignageshed";
 
 // Legal pages, linked from the footer.
 export const LEGAL_PAGES = [

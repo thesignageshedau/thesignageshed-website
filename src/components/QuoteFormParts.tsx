@@ -1,6 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { FORMSUBMIT_AJAX, QUOTE_EMAIL } from "../data/mediaWalls";
-import { trackEvent } from "../lib/analytics";
 import {
   PRIVACY_HREF,
   QUOTE_THANKS_HREF,
@@ -87,7 +86,7 @@ export function ErrorSummary({ errors }: { errors: FieldError[] }) {
 }
 
 /** Sends the form in the background and goes to the thank-you page on success. */
-export function useQuoteSubmit(eventName: string, describe: () => string) {
+export function useQuoteSubmit() {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
@@ -129,7 +128,6 @@ export function useQuoteSubmit(eventName: string, describe: () => string) {
         message?: string;
       };
       if (res.ok && String(body.success) === "true") {
-        trackEvent(`${eventName}-quote-sent`, describe());
         goTo(QUOTE_THANKS_HREF);
         return;
       }
@@ -138,7 +136,6 @@ export function useQuoteSubmit(eventName: string, describe: () => string) {
           `The form service replied with an error (${res.status}).`,
       );
     } catch (err) {
-      trackEvent(`${eventName}-quote-error`);
       setError(err instanceof Error ? err.message : String(err));
       setStatus("error");
     }

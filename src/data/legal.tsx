@@ -177,15 +177,9 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <>
             <p>
-              We use GoatCounter, a privacy-friendly analytics service, to count visits to this website. It doesn't use
-              cookies, doesn't store your IP address and doesn't follow you across other websites. It tells us things
-              like which pages are visited, which site you came from, your browser type, screen size and country.
-              We also count clicks on our Gumroad and Etsy buttons, and when a quote request is sent, so we know which
-              products people are interested in. None of this identifies you personally.
-            </p>
-            <p>
-              We also use Cloudflare Web Analytics, a cookie-free service, to count visits. It doesn't track you across
-              sites or collect personal information.
+              We use Cloudflare Web Analytics, a cookie-free service, to count visits to this website. It tells us
+              things like which pages are visited, which site you came from, your browser type and country. It
+              doesn't use cookies, doesn't track you across other websites and doesn't collect personal information.
             </p>
             <p>
               Our website host and the services that deliver fonts and scripts to your browser receive your IP address
@@ -220,7 +214,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         body: (
           <p>
             We don't sell, rent or trade your personal information. It's only handled by the services we use to run
-            the shop: Gumroad, Etsy, FormSubmit, Google (Gmail) and GoatCounter. Some of these services store information
+            the shop: Gumroad, Etsy, FormSubmit, Google (Gmail) and Cloudflare. Some of these services store information
             overseas, including in the United States.
           </p>
         ),
