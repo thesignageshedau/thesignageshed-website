@@ -41,6 +41,10 @@ const products: { href: string; label: string }[] = [
   { href: GAZEBOS_HREF, label: "Gazebos" },
   { href: FLAGS_HREF, label: "Teardrop and feather flags" },
   { href: MARKET_UMBRELLAS_HREF, label: "Market umbrellas" },
+  { href: "/stretch-fabric-displays/", label: "Stretch fabric displays" },
+  { href: "/table-top-banners/", label: "Table-top banners" },
+  { href: "/acm-signs/", label: "ACM signs" },
+  { href: "/rectangle-flags/", label: "Rectangle flags" },
 ];
 const signShops = { href: "/for-sign-shops/", label: "For sign shops: pricing spreadsheets" };
 const howItWorks = [

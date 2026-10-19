@@ -1,5 +1,9 @@
 // Per-page meta descriptions (also used for the static share pages in public/<slug>/).
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
+  "stretch-fabric-displays": "Stretch fabric display stands, 850 or 1200mm wide and 2000mm tall, single or double sided, with a carry case. Prices online, delivered Australia-wide.",
+  "table-top-banners": "Printed table-top banner kits for 4ft and 6ft tables, 600mm or 800mm tall, single sided on a light frame. Prices online, delivered Australia-wide.",
+  "acm-signs": "Printed ACM (aluminium composite) signs from 900 × 600mm to 2400 × 1200mm, white vinyl with gloss laminate. Prices online, delivered Australia-wide.",
+  "rectangle-flags": "Custom printed double sided rectangle flags in small, medium and large, with pole and ground spike or a cross base and water bag. Delivered Australia-wide.",
   "media-walls": "Custom printed fabric media walls from 2.4m to 4m wide, single or double sided, with optional LED lights. Frame and bag included. Delivered Australia-wide.",
   "table-covers": "Custom printed fitted and loose table throws for 6ft and 8ft tables, round throws and table runners. Machine-washable. Prices online, delivered Australia-wide.",
   "pull-up-banners": "Custom printed luxury and double-sided pull up banners, 850mm or 1200mm wide, fitted and supplied with a carry bag. Prices online, delivered Australia-wide.",

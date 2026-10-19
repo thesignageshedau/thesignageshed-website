@@ -1,4 +1,4 @@
-import ProductSeo from "./ProductSeo";
+import ProductSeo, { SEO_SLUGS } from "./ProductSeo";
 import QuoteCta from "./QuoteCta";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
@@ -211,7 +211,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
         </div>
       </section>
 
-      {p.slug === "flags" && <ProductSeo slug="flags" />}
+      {(SEO_SLUGS as readonly string[]).includes(p.slug) && <ProductSeo slug={p.slug as (typeof SEO_SLUGS)[number]} />}
 
       <QuoteCta slug={p.slug} label={p.noun} />
 

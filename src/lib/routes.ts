@@ -13,6 +13,10 @@ export const GEAR_HREFS = {
   flags: FLAGS_HREF,
   "market-umbrellas": MARKET_UMBRELLAS_HREF,
   banners: BANNERS_HREF,
+  "stretch-fabric-displays": "/stretch-fabric-displays/",
+  "table-top-banners": "/table-top-banners/",
+  "acm-signs": "/acm-signs/",
+  "rectangle-flags": "/rectangle-flags/",
 } as const;
 export const CHECK_ARTWORK_HREF = "/check-artwork/";
 export const QUOTE_THANKS_HREF = "/quote-thanks/";

@@ -1,14 +1,20 @@
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
-import { FLAGS } from "../data/eventGear";
+import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, type GearProduct } from "../data/eventGear";
 
-type Slug = "corflute-signs" | "a-frames" | "flags";
+export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags"] as const;
+type Slug = (typeof SEO_SLUGS)[number];
+const gearPrices = (g: GearProduct) => g.items.flatMap((i) => [i.price[0]!, ...(i.priceWithAddon ? [i.priceWithAddon[0]!] : [])]);
 const SITE = "https://thesignageshed.au";
 
 const prices: Record<Slug, number[]> = {
   "corflute-signs": CF.SIZES.flatMap((s) => CF.THICKNESSES.flatMap((t) => [s.price[t.id].single.upTo5, s.price[t.id].double.upTo5])),
   "a-frames": AF.ITEMS.filter((i) => !i.replacement).map((i) => i.price[0]),
   flags: FLAGS.items.map((i) => i.price[0]),
+  "stretch-fabric-displays": gearPrices(STRETCH_FABRIC),
+  "table-top-banners": gearPrices(TABLE_TOP_BANNERS),
+  "acm-signs": gearPrices(ACM_SIGNS),
+  "rectangle-flags": gearPrices(RECTANGLE_FLAGS),
 };
 
 const INFO: Record<Slug, { name: string; description: string }> = {
@@ -24,6 +30,10 @@ const INFO: Record<Slug, { name: string; description: string }> = {
     name: "Custom printed teardrop and feather flags",
     description: "Medium teardrop (2.7m) and feather (3.0m) flags printed with your artwork, with pole set and 10kg heavy duty square base, delivered Australia-wide.",
   },
+  "stretch-fabric-displays": { name: "Stretch fabric display stands", description: STRETCH_FABRIC.description },
+  "table-top-banners": { name: "Printed table-top banner kits", description: TABLE_TOP_BANNERS.description },
+  "acm-signs": { name: "Printed ACM (aluminium composite) signs", description: ACM_SIGNS.description },
+  "rectangle-flags": { name: "Custom printed rectangle flags", description: RECTANGLE_FLAGS.description },
 };
 
 const RELATED: Record<Slug, { href: string; text: string }[]> = {
@@ -41,6 +51,27 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/corflute-signs/", text: "Corflute signs" },
     { href: "/a-frames/", text: "A-frame signs" },
     { href: "/pull-up-banners/", text: "Pull up banners" },
+    { href: "/rectangle-flags/", text: "Rectangle flags" },
+  ],
+  "stretch-fabric-displays": [
+    { href: "/pull-up-banners/", text: "Pull up banners" },
+    { href: "/media-walls/", text: "Media walls" },
+    { href: "/table-top-banners/", text: "Table-top banners" },
+  ],
+  "table-top-banners": [
+    { href: "/table-covers/", text: "Table covers" },
+    { href: "/pull-up-banners/", text: "Pull up banners" },
+    { href: "/stretch-fabric-displays/", text: "Stretch fabric displays" },
+  ],
+  "acm-signs": [
+    { href: "/corflute-signs/", text: "Corflute signs" },
+    { href: "/a-frames/", text: "A-frame signs" },
+    { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
+  ],
+  "rectangle-flags": [
+    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/corflute-signs/", text: "Corflute signs" },
+    { href: "/a-frames/", text: "A-frame signs" },
   ],
 };
 
