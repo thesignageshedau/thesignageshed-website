@@ -9,7 +9,7 @@ export default function Hero() {
         <div>
           <p className="eyebrow mb-4">Printed signage &amp; event gear, Australia-wide</p>
           <h1 className="text-4xl leading-tight sm:text-5xl lg:text-6xl">
-            Signs that get
+            Signs that get{" "}
             <br />
             you seen.
           </h1>

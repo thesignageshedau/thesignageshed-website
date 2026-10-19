@@ -49,9 +49,9 @@ export const SITE_COPY = SHOW_ETSY_PACKS
       heroProducts: "pricing calculators, job costing sheets and print-ready sign templates",
     }
   : {
-      title: "Signage & Printing Australia: Custom Signs, Banners & Flags | The Signage Shed",
+      title: "Signage & Printing Australia: Signs, Banners & Flags",
       description:
-        "Signage and printing, shipped Australia-wide. Custom printed corflute signs, A-frame signs, feather and teardrop flags, pull up banners, media walls, gazebos and banners. Prices online, quotes by email.",
+        "Signage and printing, shipped Australia-wide: corflute signs, A-frames, feather and teardrop flags, pull up banners, media walls and gazebos. Prices online.",
       ogDescription:
         "Custom printed signs, banners and event gear with prices online, delivered Australia-wide.",
       heroProducts: "pricing calculators and job costing sheets",

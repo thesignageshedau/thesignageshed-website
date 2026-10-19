@@ -58,3 +58,20 @@ await writeFile(join(DIST, "404.html"), await snapshot("/__not-found__/"));
 console.log("prerendered 404.html");
 await browser.close();
 server.close();
+
+// Sitemap <lastmod>: the date of the last commit (the site is built and deployed from main on every push),
+// falling back to the build date when git isn't available. W3C date format (YYYY-MM-DD).
+{
+  const { execSync } = await import("node:child_process");
+  let lastmod = "";
+  try {
+    lastmod = execSync("git log -1 --format=%cs", { encoding: "utf8" }).trim();
+  } catch {}
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) lastmod = new Date().toISOString().slice(0, 10);
+  const file = join(DIST, "sitemap.xml");
+  const xml = (await readFile(file, "utf8"))
+    .replace(/<lastmod>[^<]*<\/lastmod>/g, "")
+    .replace(/(<loc>[^<]*<\/loc>)/g, `$1<lastmod>${lastmod}</lastmod>`);
+  await writeFile(file, xml);
+  console.log(`sitemap lastmod ${lastmod}`);
+}
