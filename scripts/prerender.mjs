@@ -10,7 +10,7 @@ import { chromium } from "playwright";
 const DIST = new URL("../dist/", import.meta.url).pathname;
 export const ROUTES = [
   "", "media-walls", "table-covers", "pull-up-banners", "corflute-signs", "a-frames", "gazebos", "flags",
-  "market-umbrellas", "banners", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
+  "market-umbrellas", "banners", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
   "guides", "guides/pull-up-banner-size", "guides/corflute-vs-rigid-signs", "guides/print-ready-artwork",
   "refund-policy", "privacy-policy", "terms", "quote-thanks",
 ];

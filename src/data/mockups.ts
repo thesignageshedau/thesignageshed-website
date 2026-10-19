@@ -34,4 +34,8 @@ export const MOCKUPS = {
   v4FlagsTeardrop: { slug: "v4-flags-teardrop", title: "Teardrop flags", alt: "Two custom printed teardrop flags reading Your Brand on a sports oval with gum trees and a grandstand behind" },
   v4PvcBanner: { slug: "v4-pvc-banner", title: "PVC vinyl banner", alt: "Cream and green PVC banner reading Your Brand tied to a timber post fence in a paddock", noSquare: true },
   v4MeshBannerEvent: { slug: "v4-mesh-banner-event", title: "Mesh on event fencing", alt: "Charcoal mesh banners with a repeating Your Brand logo on temporary event fencing at a park", noSquare: true },
+  v4StretchFabric: { slug: "v4-stretch-fabric", title: "Stretch fabric display", alt: "Cream and green stretch fabric display reading Your Brand, the fabric pulled tight over a curved-corner frame on two feet, in a bright office foyer" },
+  v4TableTopBanner: { slug: "v4-table-top-banner", title: "Table-top banner", alt: "Long cream table-top banner reading Your Brand on a light metal frame, standing on a charcoal covered trestle table at an indoor expo", noSquare: true },
+  v4AcmSign: { slug: "v4-acm-sign", title: "ACM sign", alt: "Flat cream and green aluminium composite sign reading Your Brand fixed to a pale rendered wall beside a shopfront window" },
+  v4RectangleFlags: { slug: "v4-rectangle-flags", title: "Rectangle flags", alt: "Two cream and green rectangle flags reading Your Brand on black poles in a park, one on a cross base with a water bag and one on a ground spike" },
 } satisfies Record<string, Mockup>;

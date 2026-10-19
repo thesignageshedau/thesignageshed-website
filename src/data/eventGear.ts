@@ -63,7 +63,7 @@ const BANDS_3 = [
 
 const COMMON_FAQS: GearFaq[] = [
   { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
-  { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Tell us your needed-by date in the quote form and we'll let you know if it's tight." },
+  { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
   { q: "How much is delivery?", a: "Freight depends on the product's size and weight. We quote it to your postcode and include it on your quote. See our Delivery page for how it works." },
   { q: "How do I pay?", a: "Payment is due once your artwork is approved." },
 ];
@@ -246,7 +246,163 @@ export const BANNERS: GearProduct = {
   notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
 };
 
-export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS, BANNERS] as const;
+const BANDS_EACH = [{ label: "Price each", min: 1 }];
+
+// New products (checked 20 Oct 2026): supplier regular price inc GST x 1.3, rounded UP to the next $5.
+// Pricing record: /workspace/pricing/new-products-2026-10-20.csv. No custom sizes on these.
+export const STRETCH_FABRIC: GearProduct = {
+  slug: "stretch-fabric-displays",
+  eventName: "stretch_fabric",
+  subject: "Stretch fabric display quote",
+  noun: "display",
+  pageTitle: "Stretch Fabric Displays Australia | The Signage Shed",
+  description: "Stretch fabric display stands, 850 or 1200mm wide and 2000mm tall, single or double sided, with a carry case. Prices online, delivered Australia-wide.",
+  eyebrow: "Stretch fabric displays, delivered Australia-wide",
+  heading: "Stretch fabric displays for expos, foyers and events",
+  intro: "A printed fabric cover pulled tight over a curved-corner tube frame. Smooth, crease-free and quick to put up, and it packs into its own carry case.",
+  teaserTitle: "Stretch fabric displays",
+  teaserText: "Printed fabric over a curved tube frame, 850 or 1200mm wide, single or double sided, with a carry case.",
+  groups: [
+    { id: "850", title: "850 × 2000mm", text: "The slim size, about the footprint of a pull up banner." },
+    { id: "1200", title: "1200 × 2000mm", text: "Wider, for a bigger logo or more room for your message." },
+  ],
+  bands: BANDS_EACH,
+  items: [
+    { id: "850-single", group: "850", label: "Stretch fabric display 850 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [260] },
+    { id: "850-double", group: "850", label: "Stretch fabric display 850 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [305] },
+    { id: "1200-single", group: "1200", label: "Stretch fabric display 1200 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [315] },
+    { id: "1200-double", group: "1200", label: "Stretch fabric display 1200 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [375] },
+  ],
+  notes: [
+    "Every display includes the curved frame, the printed fabric and a carry case.",
+    "Double sided: printed on both faces, so it works in the middle of a room.",
+  ],
+  artwork: "Stretch fabric displays are printed from a full-size template. Ask for the template with your quote, or send us your logo and wording and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "What's included?", a: "The curved tube frame, the printed fabric cover and a carry case." },
+    { q: "Single or double sided?", a: "Single sided suits a display against a wall. Choose double sided when people will see it from both sides." },
+    { q: "How is it different from a pull up banner?", a: "A pull up banner rolls into its base. A stretch fabric display is a fabric cover pulled over a frame, so it has rounded corners and a smooth, seamless look." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.v4StretchFabric,
+  gallery: [],
+  notesHint: "Where it will be used, colours or design ideas, anything we should know",
+};
+
+export const TABLE_TOP_BANNERS: GearProduct = {
+  slug: "table-top-banners",
+  eventName: "table_top",
+  subject: "Table-top banner quote",
+  noun: "banner",
+  pageTitle: "Table-Top Banners Australia | The Signage Shed",
+  description: "Printed table-top banner kits for 4ft and 6ft tables, 600mm or 800mm tall, single sided on a light frame. Prices online, delivered Australia-wide.",
+  eyebrow: "Table-top banners, delivered Australia-wide",
+  heading: "Table-top banners that sit along your table",
+  intro: "A printed fabric banner on a light frame that sits on top of your table, so your brand shows above the tablecloth at expos, markets and events.",
+  teaserTitle: "Table-top banners",
+  teaserText: "Printed table-top banner kits for 4ft and 6ft tables, single sided.",
+  groups: [
+    { id: "kit", title: "Table-top banner kit, single sided", text: "Printed banner and frame. Choose the size to suit your table." },
+  ],
+  bands: BANDS_EACH,
+  items: [
+    { id: "600x4ft", group: "kit", label: "Table-top banner kit 600mm tall × 4ft, single sided", short: "600mm tall × 4ft table", includes: "Printed banner and frame", price: [200] },
+    { id: "600x6ft", group: "kit", label: "Table-top banner kit 600mm tall × 6ft, single sided", short: "600mm tall × 6ft table", includes: "Printed banner and frame", price: [240] },
+    { id: "800x6ft", group: "kit", label: "Table-top banner kit 800mm tall × 6ft, single sided", short: "800mm tall × 6ft table", includes: "Printed banner and frame", price: [265] },
+  ],
+  notes: [
+    "Printed single sided.",
+    "Pair it with a printed table cover for the full look.",
+  ],
+  artwork: "Table-top banners are printed from a full-size template. Ask for the template with your quote, or send us your logo and wording and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "What's included?", a: "The printed banner and its frame, ready to sit on your table." },
+    { q: "Which size do I need?", a: "Match the width to your table: 4ft or 6ft. On a 6ft table, choose 600mm or 800mm tall depending on how much height you want above the table." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.v4TableTopBanner,
+  gallery: [],
+  notesHint: "Your table size, colours or design ideas, anything we should know",
+};
+
+export const ACM_SIGNS: GearProduct = {
+  slug: "acm-signs",
+  eventName: "acm",
+  subject: "ACM sign quote",
+  noun: "sign",
+  pageTitle: "ACM Signs Australia: Aluminium Composite | The Signage Shed",
+  description: "Printed ACM (aluminium composite) signs from 900 × 600mm to 2400 × 1200mm, white vinyl with gloss laminate. Prices online, delivered Australia-wide.",
+  eyebrow: "ACM signs, delivered Australia-wide",
+  heading: "ACM signs for shopfronts, sites and walls",
+  intro: "Flat, rigid aluminium composite panels printed on white vinyl with a gloss laminate. Our sturdiest sign, for walls, fences and anywhere it needs to last.",
+  teaserTitle: "ACM signs",
+  teaserText: "Rigid aluminium composite signs, white vinyl with gloss laminate, from 900 × 600mm to 2400 × 1200mm.",
+  groups: [
+    { id: "900x600", title: "900 × 600mm", text: "Single or double sided." },
+    { id: "large", title: "Larger sizes", text: "Printed single sided." },
+  ],
+  bands: BANDS_EACH,
+  items: [
+    { id: "900x600-single", group: "900x600", label: "ACM sign 900 × 600mm, single sided", short: "Single sided", includes: "White vinyl, gloss laminate", price: [180] },
+    { id: "900x600-double", group: "900x600", label: "ACM sign 900 × 600mm, double sided", short: "Double sided", includes: "White vinyl, gloss laminate", price: [210] },
+    { id: "1200x900-single", group: "large", label: "ACM sign 1200 × 900mm, single sided", short: "1200 × 900mm", includes: "White vinyl, gloss laminate", price: [215] },
+    { id: "1800x1200-single", group: "large", label: "ACM sign 1800 × 1200mm, single sided", short: "1800 × 1200mm", includes: "White vinyl, gloss laminate", price: [390] },
+    { id: "2400x1200-single", group: "large", label: "ACM sign 2400 × 1200mm, single sided", short: "2400 × 1200mm", includes: "White vinyl, gloss laminate", price: [510] },
+  ],
+  notes: [
+    "Printed on white vinyl with a gloss laminate. Supplied with no holes.",
+    "Need holes for fixing? Ask us and we'll include it in your quote.",
+  ],
+  artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "What is ACM?", a: "Aluminium composite material: a flat, rigid panel with aluminium faces. It's sturdier than corflute and suits signs that need to last." },
+    { q: "Does it come with holes?", a: "No, signs are supplied without holes. If you need holes for fixing, ask us and we'll include them in your quote." },
+    { q: "ACM or corflute?", a: "Corflute is lighter and lower cost, great for events and short-term signs. ACM is rigid and sturdier for longer-term use. See our corflute vs rigid signs guide." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.v4AcmSign,
+  gallery: [],
+  notesHint: "Where it will go, whether you need holes, colours or design ideas",
+};
+
+export const RECTANGLE_FLAGS: GearProduct = {
+  slug: "rectangle-flags",
+  eventName: "rectangle_flag",
+  subject: "Rectangle flag quote",
+  noun: "flag",
+  pageTitle: "Rectangle Flags Australia: Custom Printed | The Signage Shed",
+  description: "Custom printed double sided rectangle flags in small, medium and large, with pole and ground spike or a cross base and water bag. Delivered Australia-wide.",
+  eyebrow: "Printed rectangle flags, delivered Australia-wide",
+  heading: "Rectangle flags with room for your whole message",
+  intro: "A rectangular printed flag on a pole, so your logo and wording show in full. Double sided, with a pole and ground spike, or a cross base and water bag for hard ground.",
+  teaserTitle: "Rectangle flags",
+  teaserText: "Double sided rectangle flags in three sizes, with pole and ground spike or cross base.",
+  groups: [
+    { id: "rect", title: "Rectangle flag, double sided", text: "Printed flag with pole and ground spike. Choose the size." },
+  ],
+  bands: BANDS_EACH,
+  items: [
+    { id: "small", group: "rect", label: "Rectangle flag small 1.5m, double sided", short: "Small 1.5m", includes: "Printed flag, pole and ground spike", price: [170], priceWithAddon: [220] },
+    { id: "medium", group: "rect", label: "Rectangle flag medium 2.2m, double sided", short: "Medium 2.2m", includes: "Printed flag, pole and ground spike", price: [210], priceWithAddon: [260] },
+    { id: "large", group: "rect", label: "Rectangle flag large 3.2m, double sided", short: "Large 3.2m", includes: "Printed flag, pole and ground spike", price: [260], priceWithAddon: [305] },
+  ],
+  addon: { label: "Cross base and water bag", note: "Cross base and water bag instead of the ground spike: Small $220, Medium $260, Large $305 each." },
+  notes: [
+    "Double sided, so it reads correctly from both sides.",
+    "Ground spike for grass, or a cross base and water bag for paving and indoors.",
+  ],
+  artwork: "Flags are printed from the full-size template for that size. Ask for the template with your quote, or send us your logo and we'll set the artwork up for you to approve.",
+  faqs: [
+    { q: "Spike or cross base?", a: "The ground spike suits grass and soft ground. On paving, concrete or indoors, choose the cross base and water bag." },
+    { q: "Rectangle or teardrop and feather?", a: "A rectangle flag gives you the most room for a logo and wording. Teardrop and feather flags have a curved shape that stands out from a distance." },
+    ...COMMON_FAQS,
+  ],
+  hero: MOCKUPS.v4RectangleFlags,
+  gallery: [],
+  notesHint: "Where the flags will stand, colours or design ideas, anything we should know",
+};
+
+export const GEAR_PRODUCTS = [GAZEBOS, FLAGS, UMBRELLAS, BANNERS, STRETCH_FABRIC, TABLE_TOP_BANNERS, ACM_SIGNS, RECTANGLE_FLAGS] as const;
 
 /** Lowest single-item price on a product (used for "From $..." text). Replacement parts don't count. */
 export const fromPrice = (p: GearProduct) =>

@@ -1,4 +1,4 @@
-import ProductSeo from "./ProductSeo";
+import ProductSeo, { SEO_SLUGS } from "./ProductSeo";
 import QuoteCta from "./QuoteCta";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
@@ -76,8 +76,9 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
             Prices
           </h2>
           <p className="mt-2 max-w-3xl text-lg">
-            Price each, in Australian dollars, by how many of the same item you
-            order.
+            {p.bands.length > 1
+              ? "Price each, in Australian dollars, by how many of the same item you order."
+              : "Price each, in Australian dollars."}
           </p>
           <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-8 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
@@ -211,7 +212,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
         </div>
       </section>
 
-      {p.slug === "flags" && <ProductSeo slug="flags" />}
+      {(SEO_SLUGS as readonly string[]).includes(p.slug) && <ProductSeo slug={p.slug as (typeof SEO_SLUGS)[number]} />}
 
       <QuoteCta slug={p.slug} label={p.noun} />
 

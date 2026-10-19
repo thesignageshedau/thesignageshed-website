@@ -23,6 +23,10 @@ export const OG_PAGES = {
   gazebos: [v4("05 Gazebo 3x3"), "Printed gazebos", "Your logo on the canopy, delivered Australia-wide"],
   flags: [v4("06 Flags"), "Teardrop & feather flags", "Printed and delivered Australia-wide"],
   "market-umbrellas": [v4("07 Market Umbrella"), "Market umbrellas", "Printed on every panel, delivered Australia-wide"],
+  "stretch-fabric-displays": [v4("31 Stretch Fabric Display"), "Stretch fabric displays", "Curved frame and carry case, delivered Australia-wide"],
+  "table-top-banners": [v4("32 Table-Top Banner"), "Table-top banners", "For 4ft and 6ft tables, delivered Australia-wide"],
+  "acm-signs": [v4("33 ACM Sign"), "ACM signs", "Rigid aluminium composite, delivered Australia-wide"],
+  "rectangle-flags": [v4("34 Rectangle Flags"), "Rectangle flags", "Double sided, delivered Australia-wide"],
   banners: [v4("09 Mesh Banner"), "Vinyl & mesh banners", "Hemmed, eyeleted and delivered Australia-wide"],
   delivery: [v4("05 Gazebo 3x3"), "Delivery", "Australia-wide, quoted before you pay"],
   "artwork-help": [v4("02 Pull Up Banner"), "Artwork help", "Bleed, safe area, resolution and file setup"],
@@ -33,7 +37,8 @@ export const OG_PAGES = {
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
 const logo = data(LOGO, "image/png");
-for (const [slug, [img, title, tag]] of Object.entries(OG_PAGES)) {
+const ONLY = process.env.ONLY?.split(",");
+for (const [slug, [img, title, tag]] of Object.entries(OG_PAGES).filter(([s]) => !ONLY || ONLY.includes(s))) {
   const photo = data(img, img.endsWith(".webp") ? "image/webp" : "image/jpeg");
   await p.setContent(`<!doctype html><html><head><style>
     @font-face { font-family: Ultra; src: url("file://${font("ultra", 400)}"); }

@@ -5,7 +5,7 @@ import * as TC from "../data/tableCovers";
 import * as PB from "../data/pullUpBanners";
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
-import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS, fromPrice } from "../data/eventGear";
+import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, fromPrice } from "../data/eventGear";
 
 const items: { href: string; name: string; from: number; img: Mockup }[] = [
   { href: "/media-walls/", name: "Media walls", from: MW.FROM_PRICE, img: MOCKUPS.v4MediaWall },
@@ -17,6 +17,10 @@ const items: { href: string; name: string; from: number; img: Mockup }[] = [
   { href: "/gazebos/", name: "Gazebos", from: fromPrice(GAZEBOS), img: GAZEBOS.hero },
   { href: "/flags/", name: "Teardrop and feather flags", from: fromPrice(FLAGS), img: FLAGS.hero },
   { href: "/market-umbrellas/", name: "Market umbrellas", from: fromPrice(UMBRELLAS), img: UMBRELLAS.hero },
+  { href: "/stretch-fabric-displays/", name: "Stretch fabric displays", from: fromPrice(STRETCH_FABRIC), img: STRETCH_FABRIC.hero },
+  { href: "/table-top-banners/", name: "Table-top banners", from: fromPrice(TABLE_TOP_BANNERS), img: TABLE_TOP_BANNERS.hero },
+  { href: "/acm-signs/", name: "ACM signs", from: fromPrice(ACM_SIGNS), img: ACM_SIGNS.hero },
+  { href: "/rectangle-flags/", name: "Rectangle flags", from: fromPrice(RECTANGLE_FLAGS), img: RECTANGLE_FLAGS.hero },
 ];
 const money = (n: number) => `$${n.toLocaleString("en-AU", { maximumFractionDigits: 2 })}`;
 

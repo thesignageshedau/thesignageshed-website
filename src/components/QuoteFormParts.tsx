@@ -478,6 +478,10 @@ const PRODUCT_LABELS: Record<string, string> = {
   gazebos: "Gazebos",
   flags: "Teardrop and feather flags",
   "market-umbrellas": "Market umbrellas",
+  "stretch-fabric-displays": "Stretch fabric displays",
+  "table-top-banners": "Table-top banners",
+  "acm-signs": "ACM signs",
+  "rectangle-flags": "Rectangle flags",
   other: "Something else or a mix",
 };
 

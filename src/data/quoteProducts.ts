@@ -10,6 +10,10 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "gazebos", label: "Gazebos", optionHint: "e.g. 3m x 3m with 2 walls" },
   { slug: "flags", label: "Teardrop and feather flags", optionHint: "e.g. medium feather flag, ground spike" },
   { slug: "market-umbrellas", label: "Market umbrellas", optionHint: "e.g. 2.4m, printed on all panels" },
+  { slug: "stretch-fabric-displays", label: "Stretch fabric displays", optionHint: "e.g. 850 × 2000mm, double sided" },
+  { slug: "table-top-banners", label: "Table-top banners", optionHint: "e.g. 600mm tall × 6ft" },
+  { slug: "acm-signs", label: "ACM signs", optionHint: "e.g. 1200 × 900mm" },
+  { slug: "rectangle-flags", label: "Rectangle flags", optionHint: "e.g. medium, cross base" },
   { slug: "other", label: "Something else or a mix", optionHint: "Tell us the size or option you're after" },
 ];
 /** Quote form link, pre-filling product and size, plus extras like option, sides and qty. */

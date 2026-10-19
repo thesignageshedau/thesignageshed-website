@@ -17,7 +17,7 @@ import AFramesPage from "./components/AFramesPage";
 import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
-import { BANNERS, FLAGS, GAZEBOS, UMBRELLAS } from "./data/eventGear";
+import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS } from "./data/eventGear";
 import ProductGrid from "./components/ProductGrid";
 import HowItWorks from "./components/HowItWorks";
 import QuoteBar from "./components/QuoteBar";
@@ -56,6 +56,10 @@ type Route =
   | "gazebos"
   | "flags"
   | "market-umbrellas"
+  | "stretch-fabric-displays"
+  | "table-top-banners"
+  | "acm-signs"
+  | "rectangle-flags"
   | "banners"
   | "quote-thanks"
   | "quote"
@@ -77,6 +81,10 @@ const slugs = [
   "gazebos",
   "flags",
   "market-umbrellas",
+  "stretch-fabric-displays",
+  "table-top-banners",
+  "acm-signs",
+  "rectangle-flags",
   "banners",
   "quote-thanks",
   "quote",
@@ -109,6 +117,10 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,
   banners: BANNERS.pageTitle,
+  "stretch-fabric-displays": STRETCH_FABRIC.pageTitle,
+  "table-top-banners": TABLE_TOP_BANNERS.pageTitle,
+  "acm-signs": ACM_SIGNS.pageTitle,
+  "rectangle-flags": RECTANGLE_FLAGS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
   "check-artwork": "Free Print File Checker | The Signage Shed",
@@ -223,6 +235,14 @@ export default function App() {
           <GearPage key="market-umbrellas" product={UMBRELLAS} />
         ) : route === "banners" ? (
           <GearPage key="banners" product={BANNERS} />
+        ) : route === "stretch-fabric-displays" ? (
+          <GearPage key="stretch-fabric-displays" product={STRETCH_FABRIC} />
+        ) : route === "table-top-banners" ? (
+          <GearPage key="table-top-banners" product={TABLE_TOP_BANNERS} />
+        ) : route === "acm-signs" ? (
+          <GearPage key="acm-signs" product={ACM_SIGNS} />
+        ) : route === "rectangle-flags" ? (
+          <GearPage key="rectangle-flags" product={RECTANGLE_FLAGS} />
         ) : route === "about" ? (
           <AboutPage />
         ) : route === "guides" ? (
