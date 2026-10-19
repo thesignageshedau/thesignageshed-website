@@ -63,7 +63,7 @@ const BANDS_3 = [
 
 const COMMON_FAQS: GearFaq[] = [
   { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
-  { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Tell us your needed-by date in the quote form and we'll let you know if it's tight." },
+  { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
   { q: "How much is delivery?", a: "Freight depends on the product's size and weight. We quote it to your postcode and include it on your quote. See our Delivery page for how it works." },
   { q: "How do I pay?", a: "Payment is due once your artwork is approved." },
 ];

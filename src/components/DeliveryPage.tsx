@@ -32,7 +32,7 @@ export default function DeliveryPage() {
           <li>its weight</li>
         </ul>
         <p>The freight cost is in your quote, and you see it before you pay anything. Typical transit times vary by carrier and location, so we confirm them in your quote too.</p>
-        <p>Need it by a certain date? Put it in the <em>Date needed by</em> field on the quote form and we'll tell you if it's tight.</p>
+        <p>Need it by a certain date? Put it in the <em>Notes</em> box on the quote form and we'll tell you if it's tight.</p>
       </HelpSection>
 
 

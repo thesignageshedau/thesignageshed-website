@@ -97,8 +97,8 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "How long does it take?",
     a: (
       <>
-        {TURNAROUND} Tell us your needed-by date in the quote form and we'll let
-        you know if it's tight.
+        {TURNAROUND} Need it by a date? Put it in the Notes box on the quote form and
+        we'll let you know if it's tight.
       </>
     ),
   },

@@ -21,7 +21,7 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How long does it take?",
-    a: <>Within 3 days of artwork approval, depending on order size. Tell us your needed-by date in the quote form and we'll let you know if it's tight.</>,
+    a: <>Within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight.</>,
   },
   {
     q: "Do you deliver?",
