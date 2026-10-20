@@ -9,7 +9,8 @@ import { SHOP } from "../data/products";
 const elsewhere = [
   { href: SHOP.gumroad, label: "Gumroad store", text: "All our spreadsheets, with instant download.", track: "signshops-gumroad" },
   { href: SHOP.etsy, label: "Etsy shop", text: "Selected spreadsheets and kits on Etsy.", track: "signshops-etsy" },
-  { href: SHOP.youtube, label: "Shed Talk on YouTube", text: "Walkthroughs of the spreadsheets and sign shop talk.", track: "signshops-youtube" },
+  { href: SHOP.youtube, label: "Shed Talk on YouTube", text: "Short updates on markets, the economy and small business, plus quick pricing tips.", track: "signshops-youtube" },
+  { href: SHOP.instagram, label: "Instagram", text: "Sign templates and pricing tools at @thesignageshedau.", track: "signshops-instagram" },
 ];
 
 /** Digital products for other sign shops: pricing spreadsheets, the free sheet and template packs. */
@@ -48,7 +49,7 @@ export default function ForSignShopsPage() {
         <div className="mx-auto max-w-site px-4 sm:px-6">
           <div className="rule mb-4" />
           <h2 id="elsewhere-heading" className="text-3xl sm:text-4xl">Find us elsewhere</h2>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {elsewhere.map((l) => (
               <li key={l.href}>
                 <a
@@ -56,6 +57,7 @@ export default function ForSignShopsPage() {
                   target="_blank"
                   rel="noopener"
                   data-track={l.track}
+                  aria-label={`${l.label} (opens in a new tab)`}
                   className="block h-full rounded-xl border border-charcoal/15 bg-white p-5 shadow-sm hover:border-rust"
                 >
                   <span className="font-slab text-xl font-bold text-rust-dark">{l.label} ↗</span>
