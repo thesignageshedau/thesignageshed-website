@@ -6,6 +6,7 @@ export const SHOP = {
   etsy: "https://www.etsy.com/shop/TheSignageShedAU",
   email: "infothesignageshed@gmail.com",
   youtube: "https://www.youtube.com/@ShedTalkAU",
+  instagram: "https://www.instagram.com/thesignageshedau/",
 };
 
 // ---- Site settings -------------------------------------------------------------------
