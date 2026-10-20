@@ -185,7 +185,7 @@ export default function Header() {
             <ProductsMenu />
             {links.map((l) => (
               <li key={l.href} className={l.show}>
-                <a href={l.href} className={`${linkClass} ${l.href === "/for-sign-shops/" ? "font-normal text-cream/80" : ""}`}>
+                <a href={l.href} className={linkClass}>
                   {l.label}
                 </a>
               </li>
