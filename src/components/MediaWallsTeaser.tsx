@@ -9,7 +9,7 @@ export default function MediaWallsTeaser() {
     <section
       id="media-walls"
       aria-labelledby="mw-teaser-heading"
-      className="scroll-mt-20 bg-cream-light pb-16 sm:pb-20"
+      className="scroll-mt-20 bg-cream-light pb-16 sm:pb-20 md:pb-10"
     >
       <div className="mx-auto max-w-site px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-2xl border-4 border-charcoal bg-charcoal text-cream shadow-md">
