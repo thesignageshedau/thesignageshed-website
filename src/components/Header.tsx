@@ -117,7 +117,7 @@ function ProductsMenu() {
       <ul
         id="products-menu"
         hidden={!open}
-        className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-lg border-2 border-rust bg-charcoal py-1 shadow-xl"
+        className="absolute right-0 top-full z-50 mt-2 max-h-[calc(100dvh-6rem)] w-56 overflow-y-auto overscroll-contain rounded-lg border-2 border-rust bg-charcoal py-1 shadow-xl"
       >
         {products.map((p) => (
           <li key={p.href}>
