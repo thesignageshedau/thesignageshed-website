@@ -5,6 +5,7 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
 const ArtworkCheckPage = lazy(() => import("./components/ArtworkCheckPage"));
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import ScrollStand from "./components/ScrollStand";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -272,6 +273,7 @@ export default function App() {
         ) : (
           <>
             <Hero />
+            <ScrollStand />
             <TrustStrip tone="dark" />
             <div id="signage" className="scroll-mt-20" />
             <ProductGrid />
