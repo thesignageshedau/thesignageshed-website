@@ -7,10 +7,10 @@ import { homeSection } from "../lib/routes";
 import { SHOP } from "../data/products";
 
 const tools = [
-  { href: SHOP.etsy, label: "Etsy shop", text: "Our sign templates and spreadsheets on Etsy.", track: "signshops-tools-etsy" },
   { href: "https://thesignageshedau.gumroad.com/l/ylljx", label: "AI Prompt Pack", text: "40 AI prompts we wrote for small sign and print shops.", track: "signshops-tools-prompts" },
   { href: "https://thesignageshedau.gumroad.com/l/xglczm", label: "Yield Calculator", text: "Work out how many signs you get from a sheet or roll.", track: "signshops-tools-yield" },
   { href: "https://thesignageshedau.gumroad.com/l/rrqofd", label: "Starter Kit bundle", text: "The Yield Calculator and AI Prompt Pack together.", track: "signshops-tools-bundle" },
+  { href: SHOP.etsy, label: "Etsy shop", text: "Our sign templates and spreadsheets on Etsy.", track: "signshops-tools-etsy" },
 ];
 
 const elsewhere = [
@@ -48,10 +48,6 @@ export default function ForSignShopsPage() {
           </div>
         </div>
       </section>
-      <Products />
-      <FreeSample />
-      <EtsyShop />
-      <WhyUs />
       <section id="tools" aria-labelledby="tools-heading" className="scroll-mt-24 py-14 sm:py-16">
         <div className="mx-auto max-w-site px-4 sm:px-6">
           <div className="rule mb-4" />
@@ -75,6 +71,10 @@ export default function ForSignShopsPage() {
           </ul>
         </div>
       </section>
+      <Products />
+      <FreeSample />
+      <EtsyShop />
+      <WhyUs />
       <section aria-labelledby="elsewhere-heading" className="py-14 sm:py-16">
         <div className="mx-auto max-w-site px-4 sm:px-6">
           <div className="rule mb-4" />
