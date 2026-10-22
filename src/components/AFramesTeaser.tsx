@@ -26,7 +26,7 @@ export default function AFramesTeaser() {
                 A-frame signs for your shopfront
               </h2>
               <p className="mt-3 text-lg leading-relaxed">
-                Printed aluminium, insert, real estate and folding corflute
+                Printed aluminium, insert and folding corflute
                 A-frames, printed on both sides with your artwork. Replacement
                 inserts available.
               </p>
