@@ -6,13 +6,14 @@ import { asset } from "../lib/asset";
 
 const W = 0.85, H = 2.0; // metres, 850 × 2000mm
 
-function bannerTexture(onReady: () => void): THREE.CanvasTexture {
+function bannerTexture(onReady: () => void, scale = 1): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  c.width = 1024; c.height = 2408; // 850 × 2000mm
+  c.width = Math.round(1024 * scale); c.height = Math.round(2408 * scale); // 850 × 2000mm
   const g = c.getContext("2d")!;
+  g.scale(scale, scale);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 8;
+  tex.anisotropy = scale < 1 ? 4 : 8;
   const draw = (logo?: HTMLImageElement) => {
     const W2 = 1024, cx = 512;
     g.textAlign = "center"; g.textBaseline = "alphabetic";
@@ -51,9 +52,21 @@ function bannerTexture(onReady: () => void): THREE.CanvasTexture {
   return tex;
 }
 
-export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number, onFirstFrame?: () => void): () => void {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+export interface StandOptions { mobile?: boolean; isVisible?: () => boolean }
+
+export function mountStand(
+  canvas: HTMLCanvasElement,
+  getProgress: () => number,
+  onFirstFrame?: () => void,
+  opts: StandOptions = {},
+): () => void {
+  const mobile = !!opts.mobile;
+  const seg = mobile ? 0.5 : 1; // geometry detail
+  const renderer = new THREE.WebGLRenderer({
+    canvas, antialias: !mobile, alpha: true, preserveDrawingBuffer: !mobile,
+    powerPreference: mobile ? "low-power" : "default",
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobile ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
   const scene = new THREE.Scene();
@@ -76,12 +89,12 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number,
   const dark = new THREE.MeshStandardMaterial({ color: 0x33373a, metalness: 0.4, roughness: 0.5 });
 
   // Base cassette: rounded body plus end caps and feet.
-  const cassette = new THREE.Mesh(new THREE.CapsuleGeometry(0.06, W - 0.06, 6, 24), metal);
+  const cassette = new THREE.Mesh(new THREE.CapsuleGeometry(0.06, W - 0.06, mobile ? 4 : 6, 24 * seg), metal);
   cassette.rotation.z = Math.PI / 2;
   cassette.position.y = 0.09;
   stand.add(cassette);
   for (const x of [-1, 1]) {
-    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.072, 0.072, 0.03, 24), dark);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.072, 0.072, 0.03, 24 * seg), dark);
     cap.rotation.z = Math.PI / 2; cap.position.set(x * (W / 2 + 0.02), 0.09, 0);
     stand.add(cap);
     const foot = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.02, 0.32), dark);
@@ -89,14 +102,14 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number,
     stand.add(foot);
   }
   // Pole rises behind the banner.
-  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 1, 12), metal);
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 1, mobile ? 8 : 12), metal);
   pole.position.set(0, 0.09, -0.05);
   stand.add(pole);
   // Banner: unit-height plane anchored at its bottom, scaled and UV-cropped as it unrolls.
   const geo = new THREE.PlaneGeometry(W, 1);
   geo.translate(0, 0.5, 0);
   const uv = geo.attributes.uv as THREE.BufferAttribute;
-  const tex = bannerTexture(() => { last = -1; });
+  const tex = bannerTexture(() => { last = -1; }, mobile ? 0.75 : 1);
   const banner = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.75, side: THREE.DoubleSide }));
   banner.position.set(0, 0.14, 0);
   stand.add(banner);
@@ -117,6 +130,7 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number,
   const ease = (t: number) => 1 - Math.pow(1 - t, 3);
   const frame = () => {
     raf = requestAnimationFrame(frame);
+    if (!first && opts.isVisible && !opts.isVisible()) return; // paused off-screen
     const target = getProgress();
     shown += (target - shown) * 0.12; // smooth toward the scroll position
     if (Math.abs(shown - last) < 0.0005) return;
@@ -132,6 +146,7 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number,
     pole.position.y = 0.09 + (h + 0.05) / 2;
     stand.rotation.y = -0.9 + shown * 1.25;
     camera.position.y = 0.6 + unroll * 0.55;
+    camera.position.z = mobile ? 4.3 / Math.min(1, Math.max(0.6, camera.aspect / 0.75)) : 5.2;
     camera.lookAt(0, 0.45 + unroll * 0.6, 0);
     renderer.render(scene, camera);
     if (first) { first = false; onFirstFrame?.(); }
