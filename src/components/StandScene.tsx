@@ -15,23 +15,23 @@ function bannerTexture(onReady: () => void): THREE.CanvasTexture {
   tex.anisotropy = 8;
   const draw = (logo?: HTMLImageElement) => {
     const W2 = 1024, cx = 512;
-    // Rust top with the cream cutout logo.
-    g.fillStyle = "#C0582F"; g.fillRect(0, 0, W2, 1180);
-    if (logo) {
-      const lw = 800, lh = lw * (logo.naturalHeight / logo.naturalWidth);
-      g.drawImage(logo, cx - lw / 2, 560 - lh / 2, lw, lh);
-    }
-    g.fillStyle = "#F2EBDD"; g.fillRect(112, 1000, 800, 6);
     g.textAlign = "center"; g.textBaseline = "alphabetic";
-    g.font = '600 46px "Zilla Slab", Georgia, serif';
+    // Cream top: the official main logo in its real colours.
+    g.fillStyle = "#FAF6EE"; g.fillRect(0, 0, W2, 1180);
+    if (logo) {
+      const lw = 820, lh = lw * (logo.naturalHeight / logo.naturalWidth);
+      g.drawImage(logo, cx - lw / 2, 520 - lh / 2, lw, lh);
+    }
+    g.fillStyle = "#C0582F"; g.fillRect(162, 1000, 700, 6);
+    g.fillStyle = "#A2461F"; g.font = '600 46px "Zilla Slab", Georgia, serif';
     g.fillText("SIGNS THAT GET YOU SEEN", cx, 1090);
-    // Cream middle: what we do.
-    g.fillStyle = "#F2EBDD"; g.fillRect(0, 1180, W2, 820);
-    g.fillStyle = "#33373A"; g.font = '112px "Ultra", Georgia, serif';
-    g.fillText("Printed", cx, 1440); g.fillText("signage", cx, 1580);
-    g.fillStyle = "#A2461F"; g.font = '600 76px "Zilla Slab", Georgia, serif';
-    g.fillText("& event gear", cx, 1700);
-    g.fillStyle = "#828E77"; g.fillRect(cx - 60, 1790, 120, 8);
+    // Rust middle: what we do.
+    g.fillStyle = "#C0582F"; g.fillRect(0, 1180, W2, 820);
+    g.fillStyle = "#FAF6EE"; g.font = '112px "Ultra", Georgia, serif';
+    g.fillText("Printed", cx, 1450); g.fillText("signage", cx, 1590);
+    g.fillStyle = "#F2EBDD"; g.font = '600 76px "Zilla Slab", Georgia, serif';
+    g.fillText("& event gear", cx, 1710);
+    g.fillStyle = "#F2EBDD"; g.fillRect(cx - 60, 1800, 120, 8);
     // Sage band: delivery.
     g.fillStyle = "#828E77"; g.fillRect(0, 2000, W2, 230);
     g.fillStyle = "#FAF6EE"; g.font = '600 66px "Zilla Slab", Georgia, serif';
@@ -44,7 +44,7 @@ function bannerTexture(onReady: () => void): THREE.CanvasTexture {
     onReady();
   };
   const img = new Image();
-  img.src = asset("images/logo-cutout-cream-800.webp");
+  img.src = asset("images/logo-main-light-800.webp");
   Promise.all([img.decode().catch(() => undefined), document.fonts?.ready]).then(() =>
     draw(img.naturalWidth ? img : undefined),
   );
