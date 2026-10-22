@@ -1,4 +1,4 @@
-// A-frame prices, sizes, downloads and the quote estimate. Printed aluminium, Insert and Real Estate A-frames
+// A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
 // A-Frame spreadsheet (+30% on the regular supplier price). Single prices are rounded up to the next $5; quantity
 // prices are rounded up per item. Prices include everything except delivery (not registered for GST).
@@ -18,7 +18,7 @@ export const QTY_COLUMNS = [
   "20+",
 ] as const;
 
-export type FrameType = "printed" | "insert" | "real-estate" | "folding";
+export type FrameType = "printed" | "insert" | "folding";
 export type AFrameItem = {
   id: string;
   type: FrameType;
@@ -46,12 +46,6 @@ export const TYPES: {
     title: "Insert A-frame",
     short: "Insert",
     text: "A strong frame with printed 5mm corflute inserts that slide in from the top. Change your message in seconds and re-order just the inserts.",
-  },
-  {
-    id: "real-estate",
-    title: "Real estate A-frame",
-    short: "Real estate",
-    text: "A compact 600 × 450mm frame for outdoor directional or promo signs on footpaths. Black, white or red frame, with printed corflute inserts you can swap.",
   },
   {
     id: "folding",
@@ -86,23 +80,6 @@ export const ITEMS: AFrameItem[] = [
     includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
     replacement: true,
     price: [115, 60, 30, 20, 15],
-  },
-  {
-    id: "real-estate-600x450",
-    type: "real-estate",
-    label: "Real estate A-frame 600 × 450mm",
-    size: "600 × 450mm",
-    includes: "Frame plus 2 printed corflute inserts (one each side), frame in black, white or red",
-    price: [160, 160, 145, 140, 135],
-  },
-  {
-    id: "real-estate-600x450-inserts",
-    type: "real-estate",
-    label: "Replacement inserts for Real estate A-frame (pair)",
-    size: "600 × 450mm",
-    includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
-    replacement: true,
-    price: [145, 75, 30, 15, 10],
   },
   {
     id: "folding-600x950",
@@ -171,10 +148,6 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
     items: [
       dl("600 × 900mm insert", "insert-a-frame-600x900mm"),
     ],
-  },
-  {
-    title: "Real estate A-frame and replacement inserts",
-    items: [dl("600 × 450mm insert", "real-estate-a-frame-600x450mm")],
   },
   {
     title: "Folding corflute A-frames",

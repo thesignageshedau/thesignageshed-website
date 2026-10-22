@@ -125,7 +125,6 @@ export const ARTWORK_SPECS: ArtworkSpec[] = [
   cf(900, 1200),
   af("printed", "printed-a-frame-600x900mm", "Printed aluminium A-frame 600 × 900mm", "printed-600x900", 600, 900, 10, uniform(30)),
   af("insert", "insert-a-frame-600x900mm", "Insert A-frame 600 × 900mm (insert)", "insert-600x900", 600, 900, 1, uniform(20)),
-  af("real-estate", "real-estate-a-frame-600x450mm", "Real estate A-frame 600 × 450mm (insert)", "real-estate-600x450", 600, 450, 1, uniform(20)),
   af("folding", "folding-corflute-a-frame-600x950mm", "Folding corflute A-frame 600 × 950mm (face)", "folding-600x950", 600, 960.3, 5, uniform(10)),
   tc("fitted-6-3", "fitted-throw-6ft-3-sided", "Fitted table throw 6ft, 3 sided", "fitted:6ft", 3200, 1500, 40),
   tc("fitted-6-4", "fitted-throw-6ft-4-sided", "Fitted table throw 6ft, 4 sided", "fitted:6ft", 3214, 2134, 40),

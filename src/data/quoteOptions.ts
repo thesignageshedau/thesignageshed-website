@@ -117,11 +117,8 @@ const aFrames: QuoteSpec = {
     group: AF.TYPES.find((t) => t.id === i.type)?.title,
     from: i.price[0],
   })),
-  options: (size) => {
-    const i = AF.ITEMS.find((x) => x.id === size);
-    if (!i || i.type !== "real-estate" || i.replacement) return [];
-    return AF.FRAME_COLOURS.map((c) => ({ id: c.toLowerCase(), label: c, price: i.price[0] }));
-  },
+  // No frame colour choice: it only applied to the 600 × 450mm frame, now removed.
+  options: () => [],
 };
 
 function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec {

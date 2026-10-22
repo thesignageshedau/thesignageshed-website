@@ -36,8 +36,7 @@ const faqs: { q: string; a: ReactNode }[] = [
         A printed aluminium A-frame is the most durable and looks the most
         premium, for a sign that lives outside your shop every day. An insert
         A-frame is great when your message changes, because you only re-order
-        the inserts. The real estate A-frame is a compact 600 × 450mm frame
-        for outdoor directional or promo signs. The folding corflute A-frame is the lightest and
+        the inserts. The folding corflute A-frame is the lightest and
         cheapest, for events and short promotions.
       </>
     ),
@@ -57,7 +56,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "Can I buy just the inserts?",
     a: (
       <>
-        Yes. Replacement inserts for our Insert and Real estate A-frames are
+        Yes. Replacement inserts for our Insert A-frames are
         sold in pairs (a front and a back), so you can change your message
         without buying a new frame.
       </>
@@ -76,9 +75,8 @@ const faqs: { q: string; a: ReactNode }[] = [
     q: "What colour are the frames?",
     a: (
       <>
-        The real estate A-frame comes in black, white or red. Choose your colour
-        in the quote form. Ask us if you need a particular colour for another
-        frame.
+        Ask us if you need a particular frame colour, and we'll let you know
+        what's available.
       </>
     ),
   },
@@ -150,8 +148,8 @@ export default function AFramesPage() {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
               Double sided sandwich boards for shopfronts, cafes, markets and
-              events. Choose printed aluminium, a frame with swappable inserts,
-              the compact real estate frame or a light folding corflute A-frame.
+              events. Choose printed aluminium, a frame with swappable inserts
+              or a light folding corflute A-frame.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button
@@ -263,10 +261,6 @@ export default function AFramesPage() {
           </div>
           <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
             <p>
-              <strong>Real estate frame colour:</strong> black, white or red
-              (same price).
-            </p>
-            <p>
               <strong>Folding corflute:</strong> carry handle cut-out optional
               (same price).
             </p>
@@ -287,7 +281,7 @@ export default function AFramesPage() {
       <TrustStrip tone="dark" />
 
 
-      <MockupGallery id="mockups" heading="Printed aluminium, insert, folding corflute or small 600 × 450" items={[MOCKUPS.v4AFramePrinted, MOCKUPS.v4AFrameInsert, MOCKUPS.v4AFrameCorflute, MOCKUPS.v4AFrameSmall]} />
+      <MockupGallery id="mockups" heading="Printed aluminium, insert or folding corflute" items={[MOCKUPS.v4AFramePrinted, MOCKUPS.v4AFrameInsert, MOCKUPS.v4AFrameCorflute]} />
 
       <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={[MOCKUPS.v4AFrameScale, MOCKUPS.v4CorfluteEdge]} />
 

@@ -24,7 +24,6 @@ const guides: { product: string; items: [string, string][] }[] = [
   { product: "A-frames", items: [
     ["Printed A-frame 600 × 900mm", "a-frames/printed-a-frame-600x900mm"],
     ["Insert A-frame 600 × 900mm", "a-frames/insert-a-frame-600x900mm"],
-    ["Real estate A-frame 600 × 450mm", "a-frames/real-estate-a-frame-600x450mm"],
     ["Folding corflute A-frame 600 × 950mm", "a-frames/folding-corflute-a-frame-600x950mm"],
   ] },
   { product: "Table covers", items: [
