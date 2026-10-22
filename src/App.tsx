@@ -1,3 +1,4 @@
+import RecentWork from "./components/RecentWork";
 import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
 // The artwork checker (and pdf.js) only loads when someone opens it.
 const ArtworkCheckPage = lazy(() => import("./components/ArtworkCheckPage"));
@@ -281,6 +282,7 @@ export default function App() {
               <AFramesTeaser />
               <EventGearTeaser />
             </div>
+            <RecentWork />
             <HowItWorks />
             <Faq />
             <Contact />
