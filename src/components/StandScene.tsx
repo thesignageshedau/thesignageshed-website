@@ -8,38 +8,50 @@ const W = 0.85, H = 2.0; // metres, 850 × 2000mm
 
 function bannerTexture(onReady: () => void): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  c.width = 512; c.height = 1204;
+  c.width = 1024; c.height = 2408; // 850 × 2000mm
   const g = c.getContext("2d")!;
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
+  tex.anisotropy = 8;
   const draw = (logo?: HTMLImageElement) => {
-    g.fillStyle = "#F2EBDD"; g.fillRect(0, 0, 512, 1204);
-    g.fillStyle = "#C0582F"; g.fillRect(0, 0, 512, 330);
-    g.fillStyle = "#828E77"; g.fillRect(0, 1020, 512, 184);
-    g.strokeStyle = "#33373A"; g.lineWidth = 10; g.strokeRect(22, 22, 468, 1160);
-    g.fillStyle = "#F2EBDD"; g.textAlign = "center";
-    g.font = '64px "Ultra", Georgia, serif';
-    g.fillText("YOUR", 256, 150); g.fillText("BRAND", 256, 230);
-    g.font = '600 30px "Zilla Slab", Georgia, serif';
-    g.fillText("HERE", 256, 285);
-    if (logo) g.drawImage(logo, 76, 400, 360, 360 * (logo.naturalHeight / logo.naturalWidth || 1));
-    g.fillStyle = "#33373A"; g.font = '600 38px "Zilla Slab", Georgia, serif';
-    g.fillText("Printed signage", 256, 900); g.fillText("& event gear", 256, 950);
-    g.fillStyle = "#F2EBDD"; g.font = '600 30px "Zilla Slab", Georgia, serif';
-    g.fillText("thesignageshed.au", 256, 1120);
+    const W2 = 1024, cx = 512;
+    // Rust top with the cream cutout logo.
+    g.fillStyle = "#C0582F"; g.fillRect(0, 0, W2, 1180);
+    if (logo) {
+      const lw = 800, lh = lw * (logo.naturalHeight / logo.naturalWidth);
+      g.drawImage(logo, cx - lw / 2, 560 - lh / 2, lw, lh);
+    }
+    g.fillStyle = "#F2EBDD"; g.fillRect(112, 1000, 800, 6);
+    g.textAlign = "center"; g.textBaseline = "alphabetic";
+    g.font = '600 46px "Zilla Slab", Georgia, serif';
+    g.fillText("SIGNS THAT GET YOU SEEN", cx, 1090);
+    // Cream middle: what we do.
+    g.fillStyle = "#F2EBDD"; g.fillRect(0, 1180, W2, 820);
+    g.fillStyle = "#33373A"; g.font = '112px "Ultra", Georgia, serif';
+    g.fillText("Printed", cx, 1440); g.fillText("signage", cx, 1580);
+    g.fillStyle = "#A2461F"; g.font = '600 76px "Zilla Slab", Georgia, serif';
+    g.fillText("& event gear", cx, 1700);
+    g.fillStyle = "#828E77"; g.fillRect(cx - 60, 1790, 120, 8);
+    // Sage band: delivery.
+    g.fillStyle = "#828E77"; g.fillRect(0, 2000, W2, 230);
+    g.fillStyle = "#FAF6EE"; g.font = '600 66px "Zilla Slab", Georgia, serif';
+    g.fillText("Shipped Australia-wide", cx, 2138);
+    // Charcoal foot: web address.
+    g.fillStyle = "#33373A"; g.fillRect(0, 2230, W2, 178);
+    g.fillStyle = "#F2EBDD"; g.font = '600 58px "Zilla Slab", Georgia, serif';
+    g.fillText("thesignageshed.au", cx, 2338);
     tex.needsUpdate = true;
     onReady();
   };
-  draw();
   const img = new Image();
-  img.onload = () => draw(img);
-  img.src = asset("images/logo-sign-480.webp");
-  document.fonts?.ready.then(() => draw(img.complete && img.naturalWidth ? img : undefined));
+  img.src = asset("images/logo-cutout-cream-800.webp");
+  Promise.all([img.decode().catch(() => undefined), document.fonts?.ready]).then(() =>
+    draw(img.naturalWidth ? img : undefined),
+  );
   return tex;
 }
 
-export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number): () => void {
+export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number, onFirstFrame?: () => void): () => void {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -57,6 +69,7 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number)
   rim.position.set(-3, 2, -2);
   scene.add(rim);
 
+  let raf = 0, last = -1, shown = getProgress(), first = true;
   const stand = new THREE.Group();
   scene.add(stand);
   const metal = new THREE.MeshStandardMaterial({ color: 0xa7aaac, metalness: 0.85, roughness: 0.3 });
@@ -83,14 +96,13 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number)
   const geo = new THREE.PlaneGeometry(W, 1);
   geo.translate(0, 0.5, 0);
   const uv = geo.attributes.uv as THREE.BufferAttribute;
-  const tex = bannerTexture(() => {});
+  const tex = bannerTexture(() => { last = -1; });
   const banner = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.75, side: THREE.DoubleSide }));
   banner.position.set(0, 0.14, 0);
   stand.add(banner);
   const rail = new THREE.Mesh(new THREE.BoxGeometry(W + 0.01, 0.025, 0.025), dark);
   stand.add(rail);
 
-  let raf = 0, last = -1, shown = 0;
   const resize = () => {
     const { clientWidth: w, clientHeight: h } = canvas;
     renderer.setSize(w, h, false);
@@ -109,7 +121,7 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number)
     shown += (target - shown) * 0.12; // smooth toward the scroll position
     if (Math.abs(shown - last) < 0.0005) return;
     last = shown;
-    const unroll = ease(Math.min(1, Math.max(0, (shown - 0.05) / 0.75)));
+    const unroll = ease(Math.min(1, Math.max(0, (shown - 0.02) / 0.7)));
     const h = Math.max(0.001, unroll * H);
     banner.scale.y = h;
     // Show the top of the artwork first, as a real banner pulls out of the cassette.
@@ -122,6 +134,7 @@ export function mountStand(canvas: HTMLCanvasElement, getProgress: () => number)
     camera.position.y = 0.6 + unroll * 0.55;
     camera.lookAt(0, 0.45 + unroll * 0.6, 0);
     renderer.render(scene, camera);
+    if (first) { first = false; onFirstFrame?.(); }
   };
   frame();
 

@@ -28,7 +28,7 @@ function Captions({ progress }: { progress?: number }) {
     <ol className="space-y-8">
       {CAPTIONS.map((c, i) => {
         // Each caption fades in over its third of the scroll.
-        const o = progress === undefined ? 1 : Math.min(1, Math.max(0, (progress - i * 0.28) / 0.12));
+        const o = progress === undefined ? 1 : Math.min(1, Math.max(0, (progress - 0.05 - i * 0.24) / 0.1));
         return (
           <li key={c.title} style={{ opacity: o, transform: `translateY(${(1 - o) * 16}px)` }}>
             <h3 className="text-2xl sm:text-3xl">{c.title}</h3>
@@ -52,7 +52,7 @@ function StaticStand() {
         </div>
         <img
           src={asset("images/stand-3d-800.webp")}
-          srcSet={`${asset("images/stand-3d-480.webp")} 480w, ${asset("images/stand-3d-800.webp")} 800w`}
+          srcSet={`${asset("images/stand-3d-480.webp")} 480w, ${asset("images/stand-3d-800.webp")} 800w, ${asset("images/stand-3d-1064.webp")} 1064w`}
           sizes="(min-width: 768px) 45vw, calc(100vw - 32px)"
           width={800} height={1000}
           alt="A printed pull up banner stand"
@@ -70,6 +70,7 @@ export default function ScrollStand() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!animate || !wrap.current) return;
@@ -79,11 +80,20 @@ export default function ScrollStand() {
       (entries) => {
         if (!entries[0].isIntersecting) return;
         io.disconnect();
-        import("./StandScene").then((m) => {
-          if (!cancelled && canvas.current) dispose = m.mountStand(canvas.current, () => progressRef.current);
-        });
+        // Wait for the page to finish loading and go idle, so the hero always wins.
+        const start = () => {
+          const idle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
+          idle(() => {
+            import("./StandScene").then((m) => {
+              if (!cancelled && canvas.current)
+                dispose = m.mountStand(canvas.current, () => progressRef.current, () => setReady(true));
+            });
+          });
+        };
+        if (document.readyState === "complete") start();
+        else window.addEventListener("load", start, { once: true });
       },
-      { rootMargin: "800px 0px" },
+      { rootMargin: "200px 0px" },
     );
     io.observe(wrap.current);
     const onScroll = () => {
@@ -108,18 +118,34 @@ export default function ScrollStand() {
 
   return (
     <section aria-labelledby="stand-heading" className="bg-charcoal-deep text-cream">
-      <div ref={wrap} className="relative" style={{ height: "220vh" }}>
+      <div ref={wrap} className="relative" style={{ height: "160vh" }}>
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <div className="mx-auto grid h-full w-full max-w-site grid-cols-2 items-center gap-10 px-6">
             <div>
               <p className="eyebrow mb-3">Pull up banners</p>
               <h2 id="stand-heading" className="mb-8 text-4xl">Up in seconds, seen all day.</h2>
               <Captions progress={progress} />
-              <a href="/pull-up-banners/" className="btn-rust mt-8" style={{ opacity: Math.min(1, Math.max(0, (progress - 0.8) / 0.15)) }}>
+              <a href="/pull-up-banners/" className="btn-rust mt-8" style={{ opacity: Math.min(1, Math.max(0, (progress - 0.7) / 0.12)) }}>
                 See pull up banners
               </a>
             </div>
-            <canvas ref={canvas} aria-hidden="true" className="h-[85vh] w-full" />
+            <div className="relative h-[85vh] w-full">
+              {/* Poster: the closed stand, shown until the 3D scene has drawn, then cross-faded out. */}
+              <img
+                src={asset("images/stand-3d-poster.webp")}
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500"
+                style={{ opacity: ready ? 0 : 1 }}
+              />
+              <canvas
+                ref={canvas}
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full transition-opacity duration-500"
+                style={{ opacity: ready ? 1 : 0 }}
+              />
+            </div>
           </div>
         </div>
       </div>
