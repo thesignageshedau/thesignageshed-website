@@ -30,12 +30,12 @@ export const SEO_PAGES: SeoPage[] = [
   {
     slug: "cafe-a-frame-signs",
     title: "Café A-Frame Signs: Footpath Boards | The Signage Shed",
-    description: `Printed A-frame signs for cafés: aluminium, insert and folding corflute footpath boards, printed both sides. From $${AF.FROM_PRICE}, delivered Australia-wide.`,
+    description: `Printed A-frame signs for cafés: aluminium, insert and folding corflute footpath boards, printed both sides. From $180, delivered Australia-wide.`,
     eyebrow: "A-frame signs for cafés",
     h1: "Café A-frame signs for your footpath",
     intro: "A double sided footpath sign tells people walking past what you serve and that you're open. We print three styles of A-frame, so you can pick the one that suits how often your menu changes.",
-    from: AF.FROM_PRICE,
-    fromNote: "each, folding corflute A-frame 600 × 950mm",
+    from: 180,
+    fromNote: "",
     image: MOCKUPS.v4AFramePrinted,
     quote: { product: "a-frames", size: "printed-600x900", label: "café A-frame" },
     related: [{ href: "/a-frames/", text: "All A-frame signs and prices" }, { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" }],
@@ -53,7 +53,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve. Our {L("/artwork-help/", "artwork help")} covers bleed and safe areas.</p>
       </> },
       { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery, and the minimum order is $180 per product. We send a digital proof before we print, and deliver Australia-wide.</p>
+        <p>Prices include everything except delivery. Minimum order $180. We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },
@@ -79,7 +79,7 @@ export const SEO_PAGES: SeoPage[] = [
       </> },
       { id: "price", title: "Bundle pricing", body: <>
         <p>Corflute is priced in bundles: 1 to 5 signs from ${CF.FROM_PRICE}, and the price per sign drops as your quantity grows. See every price on our {L("/corflute-signs/", "corflute signs page")}.</p>
-        <p>Prices include everything except delivery, and the minimum order is $180 per product.</p>
+        <p>Prices include everything except delivery. Minimum order $180.</p>
       </> },
       { id: "artwork", title: "Artwork for event signs", body: <>
         <p>Use big arrows and short words so people can read the sign on the move. Our {L("/check-artwork/", "free print file checker")} checks size, bleed and resolution before you order.</p>
@@ -110,30 +110,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>Window graphics are priced on quote. Tell us your glass size and what you'd like on it, and we'll come back to you with options and a price.</p>
       </> },
       { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery, and the minimum order is $180 per product. We send a digital proof before we print, and deliver Australia-wide.</p>
-      </> },
-    ],
-  },
-  {
-    slug: "acrylic-office-signs",
-    title: "Acrylic Office Signs: Custom Printed | The Signage Shed",
-    description: "Custom acrylic signs for office foyers and reception walls. Tell us your size and artwork and we'll quote. Minimum order $180 per product, delivered Australia-wide.",
-    eyebrow: "Signs for your office",
-    h1: "Acrylic office signs",
-    intro: "A clean acrylic sign gives a reception or foyer a finished look. Acrylic signs are priced on quote: tell us your size and artwork and we'll come back to you with a price.",
-    from: null,
-    fromNote: "",
-    quote: { product: "other", label: "acrylic office sign" },
-    related: [{ href: "/acm-signs/", text: "ACM signs and prices" }, { href: "/pull-up-banners/", text: "Pull up banners for foyers" }],
-    sections: [
-      { id: "quote", title: "How to get a price", body: <>
-        <p>On the quote form, tell us the size you're after and where the sign will go, and attach your logo or artwork. We'll reply by email with a quote, usually within one business day.</p>
-      </> },
-      { id: "alt", title: "Need a price straight away?", body: <>
-        <p>Our {L("/acm-signs/", "ACM signs")} are flat, rigid aluminium composite panels with published prices from ${acmFrom}, and they suit office walls too.</p>
-      </> },
-      { id: "price", title: "Minimum order", body: <>
-        <p>The minimum order is $180 per product. We send a digital proof before we print, and deliver Australia-wide.</p>
+        <p>Prices include everything except delivery. Minimum order $180. We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },

@@ -77,8 +77,7 @@ type Route =
   | `guides/${string}`
   | "cafe-a-frame-signs"
   | "corflute-event-signs"
-  | "shop-window-wall-signs"
-  | "acrylic-office-signs";
+  | "shop-window-wall-signs";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
