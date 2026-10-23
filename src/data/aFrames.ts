@@ -69,8 +69,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Insert A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame plus 2 printed corflute inserts (one each side)",
-    tiers: [[1, 175], [2, 345], [3, 505], [5, 780], [10, 1460], [20, 2775]],
-    price: [175, 172.5, 168.33, 156, 146, 138.75, 138.75],
+    tiers: [[1, 205], [2, 410], [3, 600], [5, 925], [10, 1725], [20, 3285]],
+    price: [205, 205, 200, 185, 172.5, 164.25, 164.25],
   },
   {
     id: "insert-600x900-inserts",
@@ -87,8 +87,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Folding corflute A-frame 600 × 950mm",
     size: "600 × 950mm",
     includes: "Printed front and back, with legs, no metal frame",
-    tiers: [[1, 105], [2, 205], [3, 275], [5, 305], [10, 420], [20, 635], [50, 1200]],
-    price: [105, 102.5, 91.67, 61, 42, 31.75, 24],
+    tiers: [[1, 120], [2, 240], [3, 325], [5, 360], [10, 495], [20, 750], [50, 1415]],
+    price: [120, 120, 108.33, 72, 49.5, 37.5, 28.3],
   },
 ];
 

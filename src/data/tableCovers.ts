@@ -26,8 +26,8 @@ export const THROWS: ThrowSize[] = [
     id: "6ft",
     label: "6ft (1.8m) table",
     fits: "1840 × 760mm",
-    fitted: { four: 230, three: 220 },
-    fittedFourTiers: [[1, 230], [2, 455], [3, 670], [5, 1005], [10, 1835], [20, 3420]],
+    fitted: { four: 270, three: 220 },
+    fittedFourTiers: [[1, 270], [2, 540], [3, 790], [5, 1190], [10, 2170], [20, 4050]],
     loose: { four: 225, three: 215 },
   },
   {

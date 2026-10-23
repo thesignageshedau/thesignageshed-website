@@ -32,8 +32,8 @@ export const SIZES: WallSize[] = [
   {
     id: "2.4x2.2",
     label: "2.4m × 2.2m",
-    kit: { single: 520, double: 605 },
-    kitSingleTiers: [[1, 520], [2, 1015], [3, 1495], [5, 2395]],
+    kit: { single: 615, double: 605 },
+    kitSingleTiers: [[1, 615], [2, 1200], [3, 1770], [5, 2830]],
     fabric: { single: 285, double: 375 },
     frameOnly: 245,
   },
@@ -47,8 +47,8 @@ export const SIZES: WallSize[] = [
   {
     id: "4x2.2",
     label: "4m × 2.2m",
-    kit: { single: 800, double: 955 },
-    kitSingleTiers: [[1, 800], [2, 1600], [5, 3805]],
+    kit: { single: 945, double: 955 },
+    kitSingleTiers: [[1, 945], [2, 1890], [5, 4505]],
     fabric: { single: 475, double: 620 },
     frameOnly: 345,
   },

@@ -69,7 +69,7 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(180, 235, 23.5, 17.75, 14.1, 12.1), // 23 Oct 2026 quantity tiers
+        single: p(215, 280, 28, 21, 16.7, 14.3), // 23 Oct 2026 quantity tiers
         double: p(230, 340, 34, 27, 23, 20),
       },
       "3mm": {
