@@ -1,3 +1,4 @@
+import { TierTable } from "./PriceParts";
 import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
@@ -280,6 +281,7 @@ export default function MediaWallsPage() {
               </tbody>
             </table>
           </div>
+          <TierTable title="Quantity prices" rows={SIZES.flatMap((s) => (s.kitSingleTiers ? [{ label: `${s.label} complete kit, single sided`, tiers: s.kitSingleTiers }] : []))} />
           <div className="mt-4 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
             <p>
               <strong>Add-on:</strong> clamp-on LED lights, pack of 2,{" "}

@@ -1,3 +1,4 @@
+import { type Tier, tierEach } from "./tiers";
 // Media wall prices, sizes, downloads and the quote estimate. Fabric sock and frame walls only.
 // Prices come from the customer Price List tab of the Media Walls spreadsheet (+30%, rounded up to
 // the next $5). Prices include everything except delivery (not registered for GST).
@@ -11,7 +12,8 @@ export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 for the whole order.",
+  "Minimum order $180 (excl. freight).",
+  "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const TURNAROUND =
   "We dispatch within 3 days of artwork approval, depending on order size.";
@@ -22,6 +24,8 @@ export type WallSize = {
   kit: { single: number; double: number }; // frame + printed fabric + carry bag
   fabric: { single: number; double: number }; // replacement printed fabric
   frameOnly: number;
+  /** Quantity tiers (our total per quantity) for a complete single sided kit, where we have them. */
+  kitSingleTiers?: Tier[];
 };
 
 export const SIZES: WallSize[] = [
@@ -29,6 +33,7 @@ export const SIZES: WallSize[] = [
     id: "2.4x2.2",
     label: "2.4m × 2.2m",
     kit: { single: 520, double: 605 },
+    kitSingleTiers: [[1, 520], [2, 1015], [3, 1495], [5, 2395]],
     fabric: { single: 285, double: 375 },
     frameOnly: 245,
   },
@@ -43,12 +48,18 @@ export const SIZES: WallSize[] = [
     id: "4x2.2",
     label: "4m × 2.2m",
     kit: { single: 800, double: 955 },
+    kitSingleTiers: [[1, 800], [2, 1600], [5, 3805]],
     fabric: { single: 475, double: 620 },
     frameOnly: 345,
   },
 ];
 export const LED_PACK = 95; // clamp-on LED lights, pack of 2, fits any size
 export const FROM_PRICE = Math.min(...SIZES.map((s) => s.kit.single));
+/** Price each at a quantity: exact tiers where we have them. */
+export function eachFor(s: WallSize, item: "kit" | "fabric", sides: "single" | "double", qty: number): number {
+  if (item === "kit" && sides === "single" && s.kitSingleTiers) return tierEach(s.kitSingleTiers, qty);
+  return s[item][sides];
+}
 
 // ---- quote form choices and the live estimate
 export type Item = "kit" | "fabric" | "frame";
@@ -75,19 +86,9 @@ export function estimate(c: QuoteChoice): Estimate {
   const qty = Math.floor(Number(c.qty));
   if (!Number.isFinite(qty) || qty < 1 || qty > 99)
     return { ok: false, reason: "Enter a quantity from 1 to 99" };
-  const dbl = c.sides === "double";
-  const each =
-    c.item === "kit"
-      ? dbl
-        ? s.kit.double
-        : s.kit.single
-      : c.item === "fabric"
-        ? dbl
-          ? s.fabric.double
-          : s.fabric.single
-        : s.frameOnly;
+  const each = c.item === "frame" ? s.frameOnly : eachFor(s, c.item, c.sides, qty);
   const led = c.led === "yes" ? LED_PACK : 0;
-  return { ok: true, each, led, qty, total: (each + led) * qty };
+  return { ok: true, each, led, qty, total: Math.round((each + led) * qty * 100) / 100 };
 }
 
 export const aud = (n: number) => `$${n.toLocaleString("en-AU")}`;

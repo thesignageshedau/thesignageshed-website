@@ -53,7 +53,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve. Our {L("/artwork-help/", "artwork help")} covers bleed and safe areas.</p>
       </> },
       { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery. Minimum order $180. We send a digital proof before we print, and deliver Australia-wide.</p>
+        <p>Prices include everything except delivery. Minimum order $180 (excl. freight). We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },
@@ -79,7 +79,7 @@ export const SEO_PAGES: SeoPage[] = [
       </> },
       { id: "price", title: "Bundle pricing", body: <>
         <p>Corflute is priced in bundles: 1 to 5 signs from ${CF.FROM_PRICE}, and the price per sign drops as your quantity grows. See every price on our {L("/corflute-signs/", "corflute signs page")}.</p>
-        <p>Prices include everything except delivery. Minimum order $180.</p>
+        <p>Prices include everything except delivery. Minimum order $180 (excl. freight).</p>
       </> },
       { id: "artwork", title: "Artwork for event signs", body: <>
         <p>Use big arrows and short words so people can read the sign on the move. Our {L("/check-artwork/", "free print file checker")} checks size, bleed and resolution before you order.</p>
@@ -110,7 +110,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>Window graphics are priced on quote. Tell us your glass size and what you'd like on it, and we'll come back to you with options and a price.</p>
       </> },
       { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery. Minimum order $180. We send a digital proof before we print, and deliver Australia-wide.</p>
+        <p>Prices include everything except delivery. Minimum order $180 (excl. freight). We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },

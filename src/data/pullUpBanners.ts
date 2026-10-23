@@ -1,10 +1,12 @@
+import { type Tier, tierEach } from "./tiers";
 // Pull up banner prices, sizes, downloads and the quote estimate. Luxury and Double Sided stands only.
 // Prices come from the customer Price List tab of the Pull Up Banners spreadsheet (+30%, rounded up to
 // the next $5). Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 for the whole order.",
+  "Minimum order $180 (excl. freight).",
+  "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
   "Full colour print on tear-resistant, low-curl blockout PVC. Carry bag included.";
@@ -22,6 +24,8 @@ export type BannerSize = {
   visible: { luxury: string; double: string }; // visible graphic W × H in mm
   shoppingCentre: boolean;
   price: { luxury: number; double: number };
+  /** Quantity tiers (our total per quantity) per stand, where we have them. */
+  tiers?: Partial<Record<Stand, Tier[]>>;
 };
 
 // Shopping Centre sizes stand no more than 1400mm tall including the base.
@@ -33,6 +37,7 @@ export const SIZES: BannerSize[] = [
     visible: { luxury: "850 × 2000mm", double: "850 × 2000mm" },
     shoppingCentre: false,
     price: { luxury: 195, double: 285 },
+    tiers: { luxury: [[1, 195], [2, 390], [3, 570], [5, 885], [10, 1650], [20, 3135]] },
   },
   {
     id: "1200x2000",
@@ -41,12 +46,19 @@ export const SIZES: BannerSize[] = [
     visible: { luxury: "1200 × 2000mm", double: "1200 × 2000mm" },
     shoppingCentre: false,
     price: { luxury: 260, double: 385 },
+    tiers: { luxury: [[1, 260], [2, 515], [3, 765], [5, 1195], [10, 2255]] },
   },
 ];
 
 export const FROM_PRICE = Math.min(
   ...SIZES.flatMap((s) => [s.price.luxury, s.price.double]),
 );
+
+/** Price each at a quantity: exact tiers where we have them, otherwise the single price. */
+export const eachFor = (s: BannerSize, stand: Stand, qty: number) => {
+  const t = s.tiers?.[stand];
+  return t ? tierEach(t, qty) : s.price[stand];
+};
 
 // ---- quote form choices and the live estimate
 export type Base = "silver" | "black";
@@ -85,8 +97,8 @@ export function estimate(c: QuoteChoice): Estimate {
   const qty = Math.floor(Number(c.qty));
   if (!Number.isFinite(qty) || qty < 1 || qty > 99)
     return { ok: false, reason: "Enter a quantity from 1 to 99" };
-  const each = s.price[c.stand];
-  return { ok: true, each, qty, total: each * qty };
+  const each = eachFor(s, c.stand, qty);
+  return { ok: true, each, qty, total: Math.round(each * qty * 100) / 100 };
 }
 
 // ---- artwork guides and templates (public/downloads/pull-up-banners)

@@ -1,3 +1,4 @@
+import { TierTable } from "./PriceParts";
 import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
@@ -250,6 +251,7 @@ export default function PullUpBannersPage() {
               </tbody>
             </table>
           </div>
+          <TierTable title="Quantity prices" rows={SIZES.flatMap((s) => (s.tiers?.luxury ? [{ label: `Luxury ${s.label}`, tiers: s.tiers.luxury }] : []))} />
           <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
             <p>
               <strong>Base colour:</strong> 850mm Luxury stands come in silver or

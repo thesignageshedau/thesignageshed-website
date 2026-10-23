@@ -1,3 +1,4 @@
+import { type Tier, tierEach } from "./tiers";
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
 // A-Frame spreadsheet (+30% on the regular supplier price). Single prices are rounded up to the next $5; quantity
@@ -5,18 +6,14 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 for the whole order.",
+  "Minimum order $180 (excl. freight).",
+  "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 
-/** Price each: 1, 2 to 4, 5 to 9, 10 to 19, 20+. */
-export type Tiers = [number, number, number, number, number];
-export const QTY_COLUMNS = [
-  "1",
-  "2 to 4",
-  "5 to 9",
-  "10 to 19",
-  "20+",
-] as const;
+/** Price each: 1, 2, 3 to 4, 5 to 9, 10 to 19, 20 to 49, 50+. */
+export type Tiers = [number, number, number, number, number, number, number];
+export const QTY_COLUMNS = ["1", "2", "3 to 4", "5 to 9", "10 to 19", "20 to 49", "50+"] as const;
+const COLUMN_MINS = [1, 2, 3, 5, 10, 20, 50];
 
 export type FrameType = "printed" | "insert" | "folding";
 export type AFrameItem = {
@@ -27,6 +24,8 @@ export type AFrameItem = {
   includes: string;
   replacement?: boolean; // a replacement insert pair, no frame
   price: Tiers;
+  /** Quantity tiers (our total per quantity). When set, the estimate uses these exactly. */
+  tiers?: Tier[];
 };
 
 export const TYPES: {
@@ -62,7 +61,7 @@ export const ITEMS: AFrameItem[] = [
     label: "Printed aluminium A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame with 2 printed faces, gloss laminated",
-    price: [255, 255, 235, 220, 220],
+    price: [255, 255, 255, 235, 220, 220, 220],
   },
   {
     id: "insert-600x900",
@@ -70,7 +69,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Insert A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame plus 2 printed corflute inserts (one each side)",
-    price: [175, 172.5, 160, 150, 140],
+    tiers: [[1, 175], [2, 345], [3, 505], [5, 780], [10, 1460], [20, 2775]],
+    price: [175, 172.5, 168.33, 156, 146, 138.75, 138.75],
   },
   {
     id: "insert-600x900-inserts",
@@ -79,7 +79,7 @@ export const ITEMS: AFrameItem[] = [
     size: "600 × 900mm",
     includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
     replacement: true,
-    price: [115, 60, 30, 20, 15],
+    price: [115, 60, 60, 30, 20, 15, 15],
   },
   {
     id: "folding-600x950",
@@ -87,7 +87,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Folding corflute A-frame 600 × 950mm",
     size: "600 × 950mm",
     includes: "Printed front and back, with legs, no metal frame",
-    price: [105, 105, 65, 45, 35],
+    tiers: [[1, 105], [2, 205], [3, 275], [5, 305], [10, 420], [20, 635], [50, 1200]],
+    price: [105, 102.5, 91.67, 61, 42, 31.75, 24],
   },
 ];
 
@@ -109,12 +110,14 @@ export function normalise(c: QuoteChoice): QuoteChoice {
   return { ...c, item: ITEMS.some((i) => i.id === c.item) ? c.item : "" };
 }
 export function tierIndex(qty: number): number {
-  if (qty <= 1) return 0;
-  if (qty <= 4) return 1;
-  if (qty <= 9) return 2;
-  if (qty <= 19) return 3;
-  return 4;
+  let i = 0;
+  COLUMN_MINS.forEach((m, n) => {
+    if (qty >= m) i = n;
+  });
+  return i;
 }
+/** Price each at a quantity: exact tiers when the item has them, otherwise its column price. */
+export const eachFor = (it: AFrameItem, qty: number) => (it.tiers ? tierEach(it.tiers, qty) : it.price[tierIndex(qty)]!);
 export type Estimate =
   | { ok: true; each: number; qty: number; total: number }
   | { ok: false; reason: string };
@@ -124,7 +127,7 @@ export function estimate(c: QuoteChoice): Estimate {
   const qty = Math.floor(Number(c.qty));
   if (!Number.isFinite(qty) || qty < 1 || qty > 99)
     return { ok: false, reason: "Enter a quantity from 1 to 99" };
-  const each = it.price[tierIndex(qty)];
+  const each = eachFor(it, qty);
   return { ok: true, each, qty, total: Math.round(each * qty * 100) / 100 };
 }
 

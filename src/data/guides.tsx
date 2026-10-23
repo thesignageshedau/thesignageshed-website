@@ -26,7 +26,7 @@ export const GUIDES: Guide[] = [
         <p>A <strong>Luxury</strong> stand has one printed banner, so it suits a spot against a wall or at the back of your stand. A <strong>double sided</strong> stand has a banner rolling out of each side of the base, so people see your message from both directions. That suits the middle of a room, a walkway or a shopfront.</p>
       </> },
       { id: "price", title: "What it costs", body: <>
-        <p>Luxury banners are $195 for 850 × 2000mm and $260 for 1200 × 2000mm. Double sided banners are $285 and $385. Every banner is printed in full colour on tear-resistant, low-curl blockout PVC and comes with a carry bag. Prices include everything except delivery, and the minimum order is $180 for the whole order.</p>
+        <p>Luxury banners are $195 for 850 × 2000mm and $260 for 1200 × 2000mm. Double sided banners are $285 and $385. Every banner is printed in full colour on tear-resistant, low-curl blockout PVC and comes with a carry bag. Prices include everything except delivery, the price each drops as your quantity grows, and the minimum order is $180 (excl. freight).</p>
       </> },
       { id: "artwork", title: "Artwork tips", body: <>
         <p>Keep the bottom 100mm to background only, because it sits low near the base. Put your logo and key message in the top half, where people actually look. Our {L("/artwork-help/#guides", "artwork guides")} have the exact bleed and safe area for each size, and you can see the full range on our {L("/pull-up-banners/", "pull up banners page")}.</p>
