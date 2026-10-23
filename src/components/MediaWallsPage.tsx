@@ -289,7 +289,7 @@ export default function MediaWallsPage() {
             </p>
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
-                {n}.
+                {n.replace(/\.$/, "")}.
               </p>
             ))}
             <p>{TURNAROUND}</p>

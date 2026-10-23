@@ -232,7 +232,7 @@ export default function CorfluteSignsPage() {
             </p>
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
-                {n}.
+                {n.replace(/\.$/, "")}.
               </p>
             ))}
             <p>{TURNAROUND}</p>

@@ -426,7 +426,7 @@ export default function TableCoversPage() {
           <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
-                {n}.
+                {n.replace(/\.$/, "")}.
               </p>
             ))}
             <p>{TURNAROUND}</p>
