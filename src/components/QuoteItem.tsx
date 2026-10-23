@@ -84,6 +84,7 @@ export default function QuoteItem({
   onChange,
   onEstimate,
   orderNote = "",
+  orderSubtotal,
 }: {
   n: number;
   fromUrl?: boolean;
@@ -92,6 +93,8 @@ export default function QuoteItem({
   onEstimate?: (total: number | null, product: string) => void;
   /** Order-level minimum note, added to item 1's Price shown when it applies. */
   orderNote?: string;
+  /** Whole-order estimate subtotal; the minimum top-up hint shows only while it is under the minimum. */
+  orderSubtotal?: number;
 }) {
   const p = itemPrefix(n);
   const [product, setProductState] = useState(() => (fromUrl ? productFromUrl() : ""));
@@ -424,7 +427,7 @@ export default function QuoteItem({
                       </p>
                       <p className="mt-1 text-sm">
                         {qty} × {money(each)} each.
-                        {lineTotal! < MIN_ORDER
+                        {(orderSubtotal ?? lineTotal!) < MIN_ORDER
                           ? ` Our minimum order is ${money(MIN_ORDER)} for the whole order, so you can add other products to reach it.`
                           : ""}
                       </p>

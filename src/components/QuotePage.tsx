@@ -81,6 +81,7 @@ export default function QuotePage() {
                   n={i + 1}
                   fromUrl={i === 0}
                   orderNote={i === 0 ? orderNote : ""}
+                  orderSubtotal={subtotal}
                   onChange={i === 0 ? (product, size) => setFirst({ product, size }) : undefined}
                   onRemove={i > 0 ? () => setItems((xs) => xs.filter((x) => x !== k)) : undefined}
                   onEstimate={(v, product) => setEstimates((e) => (e[k]?.v === v && e[k]?.product === product ? e : { ...e, [k]: { v, product } }))}
