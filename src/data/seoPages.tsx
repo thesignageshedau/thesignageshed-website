@@ -30,11 +30,11 @@ export const SEO_PAGES: SeoPage[] = [
   {
     slug: "cafe-a-frame-signs",
     title: "Café A-Frame Signs: Footpath Boards | The Signage Shed",
-    description: `Printed A-frame signs for cafés: aluminium, insert and folding corflute footpath boards, printed both sides. From $180, delivered Australia-wide.`,
+    description: `Printed A-frame signs for cafés: aluminium, insert and folding corflute footpath boards, printed both sides. From $${AF.FROM_PRICE}, delivered Australia-wide.`,
     eyebrow: "A-frame signs for cafés",
     h1: "Café A-frame signs for your footpath",
     intro: "A double sided footpath sign tells people walking past what you serve and that you're open. We print three styles of A-frame, so you can pick the one that suits how often your menu changes.",
-    from: 180,
+    from: AF.FROM_PRICE,
     fromNote: "",
     image: MOCKUPS.v4AFramePrinted,
     quote: { product: "a-frames", size: "printed-600x900", label: "café A-frame" },
