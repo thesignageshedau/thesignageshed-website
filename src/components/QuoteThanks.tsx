@@ -19,7 +19,7 @@ export default function QuoteThanks() {
         <div className="rule mx-auto mb-4" />
         <h1 className="text-4xl sm:text-5xl">Thanks, we've got your request</h1>
         <p className="mt-5 text-lg leading-relaxed">
-          We'll email you a quote with delivery included, usually within one
+          We'll email you a quote with freight included, usually within one
           business day. Nothing is printed until you've approved a proof, and
           payment is due once your artwork is approved. {TURNAROUND}
         </p>
