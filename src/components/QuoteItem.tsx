@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { QUOTE_PRODUCTS } from "../data/quoteProducts";
-import { OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
+import { MIN_ORDER, OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
 import * as CF from "../data/corfluteSigns";
 import * as PB from "../data/pullUpBanners";
 import { corflutePrice } from "./CorflutePrices";
@@ -146,19 +146,24 @@ export default function QuoteItem({
   const hasWH = custom && w > 0 && h > 0;
   const customText = hasWH ? `${tidy(w)} x ${tidy(h)} ${unit}` : "";
   const sizeMm = hasWH ? `${Math.round(w * UNIT_MM[unit])} x ${Math.round(h * UNIT_MM[unit])}` : "";
-  const priceText =
+  // Estimate: only exact prices published on our product pages, at this quantity's band. null = we quote it.
+  const qtyOk = Number.isFinite(qty) && qty >= 1 && qty <= 9999;
+  const each =
     cfPrice != null
-      ? `${money(cfPrice.each)} each, ${money(cfPrice.total)} total for ${qty} ${qty === 1 ? "sign" : "signs"}.`
-      : optionChoice?.price != null
-        ? `${money(optionChoice.price)} ${spec!.priceNote}.`
-        : sizeChoice?.from != null && !custom
-          ? `From ${money(sizeChoice.from)} ${spec!.priceNote}.`
-          : "";
-
-  // Estimate for the running total: only prices shown on the site, quantity included. null = we price it in the quote.
-  const unitPrice = optionChoice?.price ?? (options.length === 0 && !custom && spec && size ? (sizeChoice?.from ?? null) : null);
-  const estimateTotal =
-    cfPrice != null ? cfPrice.total : unitPrice != null && qty >= 1 ? Math.round(unitPrice * qty * 100) / 100 : null;
+      ? cfPrice.each
+      : spec?.unitPrice && size && !custom && qtyOk && (options.length === 0 || option)
+        ? spec.unitPrice(size, option, qty)
+        : null;
+  const lineTotal = cfPrice != null ? cfPrice.total : each != null ? Math.round(each * qty * 100) / 100 : null;
+  const estimateTotal = lineTotal;
+  const belowMin = lineTotal != null && lineTotal < MIN_ORDER;
+  const shown = lineTotal != null ? Math.max(lineTotal, MIN_ORDER) : null;
+  const priceText =
+    lineTotal != null && each != null
+      ? `Estimate ${money(shown!)} for ${qty} (${money(each)} each${belowMin ? `, raised to the ${money(MIN_ORDER)} minimum` : ""}), excl. freight`
+      : custom
+        ? "Custom size: we'll quote this size"
+        : "";
   useEffect(() => onEstimate?.(product ? estimateTotal : null, product), [estimateTotal, product]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -390,13 +395,6 @@ export default function QuoteItem({
                 </label>
               )}
 
-              {priceText && (
-                <p className="text-sm font-semibold text-rust-dark sm:col-span-2" aria-live="polite">
-                  {priceText}{" "}
-                  <span className="font-normal text-charcoal/70">Prices include everything except delivery.</span>
-                </p>
-              )}
-
               <label className={label}>
                 Quantity
                 <input
@@ -413,6 +411,32 @@ export default function QuoteItem({
                 />
               </label>
               <DesignsField prefix={p} />
+              {product && spec && size && (
+                <div className="rounded-lg border-2 border-charcoal/10 bg-cream px-4 py-3 sm:col-span-2" aria-live="polite" data-item-estimate>
+                  {shown != null && each != null ? (
+                    <>
+                      <p>
+                        <span className="font-bold">Estimate:</span>{" "}
+                        <span className="font-slab text-2xl font-bold text-rust-dark">{money(shown)}</span>
+                      </p>
+                      <p className="mt-1 text-sm">
+                        {qty} × {money(each)} each{lineTotal !== shown ? ` = ${money(lineTotal!)}` : ""}.
+                        {belowMin
+                          ? ` Our minimum order is ${money(MIN_ORDER)} per product, so this one comes to ${money(MIN_ORDER)}. Different products can't be combined to reach it.`
+                          : ""}
+                      </p>
+                    </>
+                  ) : custom ? (
+                    <p className="font-bold">We'll quote this size.</p>
+                  ) : (
+                    <p className="text-sm">{options.length > 0 && !option ? "Choose an option to see an estimate." : qtyOk ? "We'll price this in your quote." : "Enter a quantity to see an estimate."}</p>
+                  )}
+                  <p className="mt-1 text-xs text-charcoal/75">
+                    This is an estimate. Your final quote follows artwork review. Freight isn't included and is shown on your quote.
+                    {corflute ? " Eyelets and extra designs are added in your quote." : ""}
+                  </p>
+                </div>
+              )}
             </fieldset>
     </div>
   );
