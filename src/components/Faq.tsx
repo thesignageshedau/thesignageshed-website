@@ -33,7 +33,7 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Is there a minimum order?",
-    a: <>Yes. The minimum order is $180 per product, so each product in your order is at least $180.</>,
+    a: <>Yes. Our minimum order is $180 for the whole order, and you can mix different products to reach it.</>,
   },
   {
     q: "Do you install signs?",

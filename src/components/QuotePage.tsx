@@ -26,10 +26,13 @@ export default function QuotePage() {
   const live = items.map((k) => estimates[k]);
   const priced = live.filter((x): x is { v: number; product: string } => typeof x?.v === "number");
   const unpriced = live.length - priced.length;
-  // The $180 minimum applies per product: group lines of the same product, then raise each group to $180.
-  const groups = new Map<string, number>();
-  for (const x of priced) groups.set(x.product, (groups.get(x.product) ?? 0) + x.v);
-  const total = Math.round([...groups.values()].reduce((a, g) => a + Math.max(g, MIN_ORDER), 0) * 100) / 100;
+  // The $180 minimum applies to the whole order. Only raise the total when every item is priced,
+  // so a partial total (custom or unpriced items left out) is never padded up misleadingly.
+  const subtotal = Math.round(priced.reduce((a, x) => a + x.v, 0) * 100) / 100;
+  const raised = unpriced === 0 && priced.length > 0 && subtotal < MIN_ORDER;
+  const total = raised ? MIN_ORDER : subtotal;
+  const minNote = `Our minimum order is $${MIN_ORDER}. Your order total has been raised to the minimum.`;
+  const orderNote = raised ? `Order total: estimate $${MIN_ORDER} (items come to $${subtotal.toLocaleString("en-AU", { minimumFractionDigits: subtotal % 1 ? 2 : 0, maximumFractionDigits: 2 })}). ${minNote}` : "";
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const product = first.product;
   const size = first.size;
@@ -42,7 +45,7 @@ export default function QuotePage() {
         <div className="rule mb-4" />
         <h1 className="text-4xl sm:text-5xl">Request a quote</h1>
         <p className="mt-3 text-lg leading-relaxed">
-          Tell us what you need and we'll email you a quote with delivery included, usually within one business day. No
+          Tell us what you need and we'll email you a quote with freight included, usually within one business day. No
           payment now.
         </p>
         <div className="mt-6">
@@ -77,6 +80,8 @@ export default function QuotePage() {
                   key={k}
                   n={i + 1}
                   fromUrl={i === 0}
+                  orderNote={i === 0 ? orderNote : ""}
+                  orderSubtotal={subtotal}
                   onChange={i === 0 ? (product, size) => setFirst({ product, size }) : undefined}
                   onRemove={i > 0 ? () => setItems((xs) => xs.filter((x) => x !== k)) : undefined}
                   onEstimate={(v, product) => setEstimates((e) => (e[k]?.v === v && e[k]?.product === product ? e : { ...e, [k]: { v, product } }))}
@@ -97,18 +102,19 @@ export default function QuotePage() {
               {priced.length > 0 && (
                 <div className="rounded-lg bg-cream px-4 py-3" aria-live="polite" data-estimate>
                   <p>
-                    <span className="font-bold">Estimated total:</span>{" "}
+                    <span className="font-bold">{unpriced > 0 ? "Estimated total (excludes custom and unpriced items):" : "Estimated total:"}</span>{" "}
                     <span className="font-slab text-2xl font-bold text-rust-dark">${fmt(total)}</span>{" "}
                     <span className="text-sm">excl. freight</span>
                   </p>
                   <p className="mt-1 text-xs text-charcoal/75">
-                    From the prices on our product pages, with our ${MIN_ORDER} minimum applied to each product.
-                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} This is an
+                    {raised ? <><span className="font-bold">{minNote}</span> Your items come to ${fmt(subtotal)}. </> : null}
+                    From the prices on our product pages.
+                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote. Our $${MIN_ORDER} minimum applies to the whole order, including those.` : ""} This is an
                     estimate. Your final quote follows artwork review. Freight isn't included and is shown on your quote.
                   </p>
                 </div>
               )}
-              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 per product, plus delivery.</p>
+              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 for the whole order, plus freight.</p>
             </div>
 
             <DeliveryFields />

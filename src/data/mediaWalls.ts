@@ -11,7 +11,7 @@ export const FORMSUBMIT_AJAX = `https://formsubmit.co/ajax/${FORMSUBMIT_ID}`;
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 per product.",
+  "Minimum order $180 for the whole order.",
 ] as const;
 export const TURNAROUND =
   "We dispatch within 3 days of artwork approval, depending on order size.";
