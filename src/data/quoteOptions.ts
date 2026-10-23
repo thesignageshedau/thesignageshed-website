@@ -194,7 +194,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
 };
 
 export const money = (n: number) =>
-  `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2 })}`;
+  `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })}`;
 
 /** The $180 minimum applies to the whole order, not each product. */
 export const MIN_ORDER = 180;
