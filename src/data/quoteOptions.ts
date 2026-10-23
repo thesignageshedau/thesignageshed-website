@@ -5,7 +5,7 @@ import * as TC from "./tableCovers";
 import * as PB from "./pullUpBanners";
 import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
-import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct } from "./eventGear";
+import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, bandIndex } from "./eventGear";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -22,6 +22,9 @@ export type QuoteSpec = {
   allowOther?: boolean;
   /** How the price reads, e.g. "each" or "for up to 5 signs". */
   priceNote: string;
+  /** Exact published price each for this size, option and quantity (using that product's own quantity bands).
+   * null = no published price, so we quote it. Corflute is priced separately (sides, thickness, flat bands). */
+  unitPrice?: (size: string, option: string, qty: number) => number | null;
 };
 
 const minOf = (xs: (number | null | undefined)[]) => {
@@ -43,6 +46,7 @@ const mediaWalls: QuoteSpec = {
       { id: "fabric-double", label: "Replacement fabric only, double sided", price: s?.fabric.double ?? null },
     ];
   },
+  unitPrice: (size, option) => mediaWalls.options(size).find((o) => o.id === option)?.price ?? null,
 };
 
 const tcProducts = TC.PRODUCTS;
@@ -68,6 +72,13 @@ const tableCovers: QuoteSpec = {
       price: TC.priceFor({ product, size: s, option: o, custom: "", qty: "1" }),
     }));
   },
+  unitPrice: (size, option) => {
+    const [product, s] = size.split(":") as [TC.Product, string];
+    if (!s || s === "custom") return null;
+    const opts = TC.optionsFor(product, s);
+    if (opts.length && !opts.includes(option as TC.Option)) return null;
+    return TC.priceFor({ product, size: s, option: (opts.length ? option : "") as TC.Option | "", custom: "", qty: "1" });
+  },
 };
 
 const pullUpBanners: QuoteSpec = {
@@ -83,6 +94,7 @@ const pullUpBanners: QuoteSpec = {
     const s = PB.SIZES.find((x) => x.id === size);
     return PB.STANDS.map((st) => ({ id: st.id, label: st.label, price: s?.price[st.id] ?? null }));
   },
+  unitPrice: (size, option) => pullUpBanners.options(size).find((o) => o.id === option)?.price ?? null,
 };
 
 const corfluteSigns: QuoteSpec = {
@@ -119,6 +131,7 @@ const aFrames: QuoteSpec = {
   })),
   // No frame colour choice: it only applied to the 600 × 450mm frame, now removed.
   options: () => [],
+  unitPrice: (size, _o, qty) => AF.ITEMS.find((i) => i.id === size)?.price[AF.tierIndex(qty)] ?? null,
 };
 
 function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec {
@@ -141,6 +154,14 @@ function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec 
         { id: "with", label: `With ${p.addon.label.toLowerCase()}`, price: i.priceWithAddon[0] ?? null },
       ];
     },
+    unitPrice: (size, option, qty) => {
+      const i = p.items.find((x) => x.id === size);
+      if (!i) return null;
+      const hasAddon = !!p.addon && !!i.priceWithAddon;
+      if (hasAddon && option !== "with" && option !== "without") return null;
+      const prices = hasAddon && option === "with" ? i.priceWithAddon! : i.price;
+      return prices[bandIndex(p, qty)] ?? null;
+    },
   };
 }
 
@@ -162,3 +183,6 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
 
 export const money = (n: number) =>
   `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2 })}`;
+
+/** The $180 minimum applies per product. */
+export const MIN_ORDER = 180;

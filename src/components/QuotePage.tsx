@@ -2,6 +2,7 @@ import TrustStrip from "./TrustStrip";
 import { useState } from "react";
 import { FORMSUBMIT_ACTION } from "../data/mediaWalls";
 import QuoteItem, { MAX_ITEMS } from "./QuoteItem";
+import { MIN_ORDER } from "../data/quoteOptions";
 import {
   ArtworkFields,
   DeliveryFields,
@@ -26,10 +27,8 @@ export default function QuotePage() {
   const priced = live.filter((x): x is { v: number; product: string } => typeof x?.v === "number");
   const unpriced = live.length - priced.length;
   // The $180 minimum applies per product: group lines of the same product, then raise each group to $180.
-  const MIN_ORDER = 180;
   const groups = new Map<string, number>();
   for (const x of priced) groups.set(x.product, (groups.get(x.product) ?? 0) + x.v);
-  const underMin = [...groups.values()].some((g) => g < MIN_ORDER);
   const total = Math.round([...groups.values()].reduce((a, g) => a + Math.max(g, MIN_ORDER), 0) * 100) / 100;
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const product = first.product;
@@ -100,13 +99,12 @@ export default function QuotePage() {
                   <p>
                     <span className="font-bold">Estimated total:</span>{" "}
                     <span className="font-slab text-2xl font-bold text-rust-dark">${fmt(total)}</span>{" "}
-                    <span className="text-sm">excl. delivery</span>
+                    <span className="text-sm">excl. freight</span>
                   </p>
                   <p className="mt-1 text-xs text-charcoal/75">
-                    From the prices on our product pages.
-                    {underMin ? ` Our $${MIN_ORDER} minimum per product applies.` : ""}
-                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} Extras like
-                    eyelets or extra designs, and any quantity price breaks, are worked out in your quote.
+                    From the prices on our product pages, with our ${MIN_ORDER} minimum applied to each product.
+                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} This is an
+                    estimate. Your final quote follows artwork review. Freight isn't included and is shown on your quote.
                   </p>
                 </div>
               )}
