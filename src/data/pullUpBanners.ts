@@ -4,7 +4,7 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 per product.",
+  "Minimum order $180 for the whole order.",
 ] as const;
 export const MATERIAL =
   "Full colour print on tear-resistant, low-curl blockout PVC. Carry bag included.";

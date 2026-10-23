@@ -10,7 +10,7 @@ export default function QuoteCta({ slug, label }: { slug: string; label: string 
           Get a price for your {label}
         </h2>
         <p className="mt-2 text-lg leading-relaxed">
-          We email you a quote with delivery included, usually within one business day. Add other products to the same
+          We email you a quote with freight included, usually within one business day. Add other products to the same
           request.
         </p>
         <a href={quoteHref(slug)} className="btn-rust mt-6 inline-block" data-track={`${slug}-quote-cta`}>

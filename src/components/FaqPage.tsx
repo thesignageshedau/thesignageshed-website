@@ -5,7 +5,7 @@ import { CHECK_ARTWORK_HREF } from "../lib/routes";
 const faqs = [
   { q: "How do I get a quote?", a: <>Fill in our <a className={helpLink} href="/quote/">quote form</a> and we'll email you a quote that includes freight.</> },
   { q: "Are your prices in Australian dollars?", a: <>Yes. All prices are in AUD, and the price shown is what you pay.</> },
-  { q: "Is there a minimum order?", a: <>Yes. The minimum order is $180 per product. Products can't be combined to reach it, so each product in your order needs to be at least $180.</> },
+  { q: "Is there a minimum order?", a: <>Yes. Our minimum order is $180 for the whole order. You can mix different products to reach it.</> },
   { q: "How long until my order is dispatched?", a: <>We dispatch within 3 days of artwork approval, depending on the size of your order.</> },
   { q: "How much is freight?", a: <>Freight depends on the size and weight of the product, and it's included on your quote. See <a className={helpLink} href="/delivery/">how delivery works</a>.</> },
   { q: "When do I pay?", a: <>Payment is due once your artwork is approved.</> },

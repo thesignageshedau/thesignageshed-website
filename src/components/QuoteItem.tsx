@@ -83,12 +83,15 @@ export default function QuoteItem({
   onRemove,
   onChange,
   onEstimate,
+  orderNote = "",
 }: {
   n: number;
   fromUrl?: boolean;
   onRemove?: () => void;
   onChange?: (product: string, size: string) => void;
   onEstimate?: (total: number | null, product: string) => void;
+  /** Order-level minimum note, added to item 1's Price shown when it applies. */
+  orderNote?: string;
 }) {
   const p = itemPrefix(n);
   const [product, setProductState] = useState(() => (fromUrl ? productFromUrl() : ""));
@@ -156,14 +159,14 @@ export default function QuoteItem({
         : null;
   const lineTotal = cfPrice != null ? cfPrice.total : each != null ? Math.round(each * qty * 100) / 100 : null;
   const estimateTotal = lineTotal;
-  const belowMin = lineTotal != null && lineTotal < MIN_ORDER;
-  const shown = lineTotal != null ? Math.max(lineTotal, MIN_ORDER) : null;
-  const priceText =
+  const shown = lineTotal;
+  const lineText =
     lineTotal != null && each != null
-      ? `Estimate ${money(shown!)} for ${qty} (${money(each)} each${belowMin ? `, raised to the ${money(MIN_ORDER)} minimum` : ""}), excl. freight`
+      ? `Estimate ${money(lineTotal)} for ${qty} (${money(each)} each), excl. freight`
       : custom
         ? "Custom size: we'll quote this size"
         : "";
+  const priceText = [lineText, orderNote].filter(Boolean).join(". ");
   useEffect(() => onEstimate?.(product ? estimateTotal : null, product), [estimateTotal, product]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -420,9 +423,9 @@ export default function QuoteItem({
                         <span className="font-slab text-2xl font-bold text-rust-dark">{money(shown)}</span>
                       </p>
                       <p className="mt-1 text-sm">
-                        {qty} × {money(each)} each{lineTotal !== shown ? ` = ${money(lineTotal!)}` : ""}.
-                        {belowMin
-                          ? ` Our minimum order is ${money(MIN_ORDER)} per product, so this one comes to ${money(MIN_ORDER)}. Different products can't be combined to reach it.`
+                        {qty} × {money(each)} each.
+                        {lineTotal! < MIN_ORDER
+                          ? ` Our minimum order is ${money(MIN_ORDER)} for the whole order, so you can add other products to reach it.`
                           : ""}
                       </p>
                     </>
