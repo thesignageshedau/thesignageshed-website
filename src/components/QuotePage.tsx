@@ -26,14 +26,10 @@ export default function QuotePage() {
   const live = items.map((k) => estimates[k]);
   const priced = live.filter((x): x is { v: number; product: string } => typeof x?.v === "number");
   const unpriced = live.length - priced.length;
-  // The $180 minimum applies to the whole order. Only raise the total when every item is priced,
-  // so a partial total (custom or unpriced items left out) is never padded up misleadingly.
-  const subtotal = Math.round(priced.reduce((a, x) => a + x.v, 0) * 100) / 100;
-  const raised = unpriced === 0 && priced.length > 0 && subtotal < MIN_ORDER;
-  const total = raised ? MIN_ORDER : subtotal;
-  const minNote = `Our minimum order is $${MIN_ORDER}. Your order total has been raised to the minimum.`;
-  const orderNote = raised ? `Order total: estimate $${MIN_ORDER} (items come to $${subtotal.toLocaleString("en-AU", { minimumFractionDigits: subtotal % 1 ? 2 : 0, maximumFractionDigits: 2 })}). ${minNote}` : "";
+  // The $180 minimum applies to the whole order. Estimates show the real items total; the minimum is stated, not added.
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  const total = Math.round(priced.reduce((a, x) => a + x.v, 0) * 100) / 100;
+  const orderNote = priced.length > 0 ? `Order total: estimate $${fmt(total)}${unpriced > 0 ? " for priced items" : ""} (minimum order $${MIN_ORDER})` : "";
   const product = first.product;
   const size = first.size;
   const { status, error, onSubmit, onInput, fieldErrors } = useQuoteSubmit();
@@ -81,7 +77,6 @@ export default function QuotePage() {
                   n={i + 1}
                   fromUrl={i === 0}
                   orderNote={i === 0 ? orderNote : ""}
-                  orderSubtotal={subtotal}
                   onChange={i === 0 ? (product, size) => setFirst({ product, size }) : undefined}
                   onRemove={i > 0 ? () => setItems((xs) => xs.filter((x) => x !== k)) : undefined}
                   onEstimate={(v, product) => setEstimates((e) => (e[k]?.v === v && e[k]?.product === product ? e : { ...e, [k]: { v, product } }))}
@@ -107,7 +102,7 @@ export default function QuotePage() {
                     <span className="text-sm">excl. freight</span>
                   </p>
                   <p className="mt-1 text-xs text-charcoal/75">
-                    {raised ? <><span className="font-bold">{minNote}</span> Your items come to ${fmt(subtotal)}. </> : null}
+                    <span className="font-bold">Minimum order value ${MIN_ORDER} (excl. freight).</span>{" "}
                     From the prices on our product pages.
                     {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote. Our $${MIN_ORDER} minimum applies to the whole order, including those.` : ""} This is an
                     estimate. Your final quote follows artwork review. Freight isn't included and is shown on your quote.
