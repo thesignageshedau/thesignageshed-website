@@ -38,11 +38,13 @@ const INFO: Record<Slug, { name: string; description: string }> = {
 
 const RELATED: Record<Slug, { href: string; text: string }[]> = {
   "corflute-signs": [
+    { href: "/corflute-event-signs/", text: "Corflute event signs" },
     { href: "/a-frames/", text: "A-frame signs" },
     { href: "/flags/", text: "Feather and teardrop flags" },
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
   ],
   "a-frames": [
+    { href: "/cafe-a-frame-signs/", text: "Café A-frame signs" },
     { href: "/corflute-signs/", text: "Corflute signs" },
     { href: "/flags/", text: "Feather and teardrop flags" },
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
@@ -64,6 +66,7 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/stretch-fabric-displays/", text: "Stretch fabric displays" },
   ],
   "acm-signs": [
+    { href: "/shop-window-wall-signs/", text: "Shop window and wall signs" },
     { href: "/corflute-signs/", text: "Corflute signs" },
     { href: "/a-frames/", text: "A-frame signs" },
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },

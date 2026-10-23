@@ -31,6 +31,8 @@ import DeliveryPage from "./components/DeliveryPage";
 import FaqPage from "./components/FaqPage";
 import { GuidesIndex, GuidePage } from "./components/GuidesPage";
 import { GUIDES } from "./data/guides";
+import { SEO_PAGES } from "./data/seoPages";
+import SeoProductPage from "./components/SeoProductPage";
 import ArtworkHelpPage from "./components/ArtworkHelpPage";
 import ForSignShopsPage from "./components/ForSignShopsPage";
 import QuotePage from "./components/QuotePage";
@@ -72,7 +74,10 @@ type Route =
   | "artwork-help"
   | "about"
   | "guides"
-  | `guides/${string}`;
+  | `guides/${string}`
+  | "cafe-a-frame-signs"
+  | "corflute-event-signs"
+  | "shop-window-wall-signs";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -98,6 +103,7 @@ const slugs = [
   "about",
   "guides",
   ...GUIDES.map((g) => `guides/${g.slug}`),
+  ...SEO_PAGES.map((p) => p.slug),
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
@@ -133,6 +139,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   guides: "Buying Guides: Signs, Banners and Artwork | The Signage Shed",
   ...Object.fromEntries(GUIDES.map((g) => [`guides/${g.slug}`, `${g.title} | The Signage Shed`.length <= 60 ? `${g.title} | The Signage Shed` : g.title])),
   quote: "Request a Quote: Printed Signage | The Signage Shed",
+  ...Object.fromEntries(SEO_PAGES.map((p) => [p.slug, p.title])),
 };
 
 const SITE_URL = "https://thesignageshed.au/";
@@ -159,7 +166,7 @@ export default function App() {
       : missing
         ? "Page not found | The Signage Shed"
         : (route && PAGE_TITLES[route]) || SITE_COPY.title;
-    const desc = doc?.description ?? ((route && PAGE_DESCRIPTIONS[route]) || SITE_COPY.description);
+    const desc = doc?.description ?? ((route && (PAGE_DESCRIPTIONS[route] ?? SEO_PAGES.find((p) => p.slug === route)?.description)) || SITE_COPY.description);
     const url = `${SITE_URL}${route ? `${route}/` : ""}`;
     const set = (sel: string, attr: string, val: string) => document.querySelector(sel)?.setAttribute(attr, val);
     set('meta[name="description"]', "content", desc);
@@ -245,6 +252,8 @@ export default function App() {
           <GearPage key="acm-signs" product={ACM_SIGNS} />
         ) : route === "rectangle-flags" ? (
           <GearPage key="rectangle-flags" product={RECTANGLE_FLAGS} />
+        ) : route && SEO_PAGES.some((p) => p.slug === route) ? (
+          <SeoProductPage key={route} slug={route} />
         ) : route === "about" ? (
           <AboutPage />
         ) : route === "guides" ? (
