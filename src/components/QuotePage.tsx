@@ -109,7 +109,7 @@ export default function QuotePage() {
                   </p>
                 </div>
               )}
-              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 for the whole order, plus freight.</p>
+              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 (excl. freight).</p>
             </div>
 
             <DeliveryFields />

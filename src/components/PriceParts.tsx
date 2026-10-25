@@ -140,3 +140,49 @@ export function FaqList({
     </section>
   );
 }
+
+/** Quantity price breaks for tiered items: price each at each quantity, 1 design. */
+export function TierTable({
+  title,
+  rows,
+}: {
+  title: string;
+  rows: { label: string; tiers: [number, number][] }[];
+}) {
+  const qtys = [...new Set(rows.flatMap((r) => r.tiers.map(([q]) => q)))].sort((a, b) => a - b);
+  const fmt = (n: number) =>
+    `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })}`;
+  return (
+    <div className="mt-8" data-tier-table>
+      <h3 className="font-slab text-xl font-bold">{title}</h3>
+      <p className="mt-1 text-sm text-charcoal/80">Price each at that quantity. The more you order, the lower the price each.</p>
+      <div className="mt-3 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
+        <table className="w-full text-left text-sm sm:text-base">
+          <thead className="bg-charcoal text-cream">
+            <tr>
+              <th scope="col" className={th}>Item</th>
+              {qtys.map((q) => (
+                <th key={q} scope="col" className={th}>{q}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-charcoal/10">
+            {rows.map((r) => (
+              <tr key={r.label} className="odd:bg-cream-light/60">
+                <th scope="row" className={`${td} font-bold`}>{r.label}</th>
+                {qtys.map((q) => {
+                  const t = r.tiers.find(([x]) => x === q);
+                  return (
+                    <td key={q} className={priceTd}>
+                      {t ? fmt(Math.round((t[1] / t[0]) * 100) / 100) : "–"}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

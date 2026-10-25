@@ -37,5 +37,7 @@ export const MOCKUPS = {
   v4StretchFabric: { slug: "v4-stretch-fabric", title: "Stretch fabric display", alt: "Cream and green stretch fabric display reading Your Brand, the fabric pulled tight over a curved-corner frame on two feet, in a bright office foyer" },
   v4TableTopBanner: { slug: "v4-table-top-banner", title: "Table-top banner", alt: "Long cream table-top banner reading Your Brand on a light metal frame, standing on a charcoal covered trestle table at an indoor expo", noSquare: true },
   v4AcmSign: { slug: "v4-acm-sign", title: "ACM sign", alt: "Flat cream and green aluminium composite sign reading Your Brand fixed to a pale rendered wall beside a shopfront window" },
+  v4TeardropSizes: { slug: "v4-teardrop-sizes", title: "Teardrop flag sizes", alt: "Mockup of three teardrop flags reading Your Brand in small, medium and large heights, each on a black square base, at a sports ground", noSquare: true },
+  v4FeatherSizes: { slug: "v4-feather-sizes", title: "Feather flag sizes", alt: "Mockup of three feather flags reading Your Brand in small, medium and large heights, each on a black square base, on a grass verge outside a shop", noSquare: true },
   v4RectangleFlags: { slug: "v4-rectangle-flags", title: "Rectangle flags", alt: "Two cream and green rectangle flags reading Your Brand on black poles in a park, one on a cross base with a water bag and one on a ground spike" },
 } satisfies Record<string, Mockup>;

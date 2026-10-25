@@ -1,3 +1,4 @@
+import { type Tier, tierEach } from "./tiers";
 // Table cover prices, sizes, downloads and the quote estimate.
 // Prices come from the customer Price List tab of the Table Covers spreadsheet (+30%, rounded up to the
 // next $5). Prices include everything except delivery (not registered for GST).
@@ -5,7 +6,8 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 for the whole order.",
+  "Minimum order $180 (excl. freight).",
+  "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
   "Full colour print on polyester fabric. Machine washable and reusable.";
@@ -16,13 +18,16 @@ export type ThrowSize = {
   fits: string; // table top W × D
   fitted: { four: number; three: number };
   loose?: { four: number; three: number }; // loose throws: 6ft only
+  /** Quantity tiers (our total per quantity) for the fitted 4 sided throw, where we have them. */
+  fittedFourTiers?: Tier[];
 };
 export const THROWS: ThrowSize[] = [
   {
     id: "6ft",
     label: "6ft (1.8m) table",
     fits: "1840 × 760mm",
-    fitted: { four: 230, three: 220 },
+    fitted: { four: 270, three: 220 },
+    fittedFourTiers: [[1, 270], [2, 540], [3, 790], [5, 1190], [10, 2170], [20, 4050]],
     loose: { four: 225, three: 215 },
   },
   {
@@ -130,6 +135,8 @@ export function priceFor(c: QuoteChoice): number | null {
   if (c.product === "fitted" || c.product === "loose") {
     const t = THROWS.find((x) => x.id === c.size);
     if (!t || (c.option !== "four" && c.option !== "three")) return null;
+    const q = Math.floor(Number(c.qty));
+    if (c.product === "fitted" && c.option === "four" && t.fittedFourTiers && q >= 1) return tierEach(t.fittedFourTiers, q);
     return t[c.product]?.[c.option] ?? null;
   }
   if (c.product === "round") {
@@ -178,7 +185,7 @@ export function estimate(c: QuoteChoice): Estimate {
   const qty = Math.floor(Number(c.qty));
   if (!Number.isFinite(qty) || qty < 1 || qty > 99)
     return { ok: false, reason: "Enter a quantity from 1 to 99" };
-  return { ok: true, each, qty, total: each * qty };
+  return { ok: true, each, qty, total: Math.round(each * qty * 100) / 100 };
 }
 
 // ---- artwork guides and templates (public/downloads/table-covers)

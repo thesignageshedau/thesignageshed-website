@@ -5,7 +5,8 @@
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 for the whole order.",
+  "Minimum order $180 (excl. freight).",
+  "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
   "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";
@@ -68,7 +69,7 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(180, 235, 24, 18, 14.5, 12.5),
+        single: p(215, 280, 28, 21, 16.7, 14.3), // 23 Oct 2026 quantity tiers
         double: p(230, 340, 34, 27, 23, 20),
       },
       "3mm": {

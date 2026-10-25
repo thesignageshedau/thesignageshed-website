@@ -154,7 +154,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
             ))}
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
-                {n}.
+                {n.replace(/\.$/, "")}.
               </p>
             ))}
           </div>

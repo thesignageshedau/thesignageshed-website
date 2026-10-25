@@ -25,7 +25,7 @@ export default function SeoProductPage({ slug }: { slug: string }) {
         <p className="mt-5 text-2xl font-bold text-cream">
           {p.from !== null ? <>From ${p.from} <span className="text-base font-normal text-cream/85">{p.fromNote}</span></> : "Price on quote"}
         </p>
-        <p className="mt-1 text-base text-cream/85">Minimum order $180. Delivered Australia-wide.</p>
+        <p className="mt-1 text-base text-cream/85">Minimum order $180 (excl. freight). Delivered Australia-wide.</p>
         <a href={href} className="btn-rust mt-6 inline-block" data-track={`${p.slug}-hero-quote`}>Get a quote</a>
       </HelpHero>
       {p.image && (

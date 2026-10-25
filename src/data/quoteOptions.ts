@@ -1,11 +1,12 @@
 // Size and option dropdowns for the general quote form (#/quote), built from each product page's own
-// price data so the choices and prices always match. Prices shown are the smallest-quantity price.
+// price data so the choices and prices always match. Prices shown are the 1-unit price; the estimate uses
+// the quantity tiers.
 import * as MW from "./mediaWalls";
 import * as TC from "./tableCovers";
 import * as PB from "./pullUpBanners";
 import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
-import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, bandIndex } from "./eventGear";
+import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -46,7 +47,12 @@ const mediaWalls: QuoteSpec = {
       { id: "fabric-double", label: "Replacement fabric only, double sided", price: s?.fabric.double ?? null },
     ];
   },
-  unitPrice: (size, option) => mediaWalls.options(size).find((o) => o.id === option)?.price ?? null,
+  unitPrice: (size, option, qty) => {
+    const s = MW.SIZES.find((x) => x.id === size);
+    const [item, sides] = option.split("-") as ["kit" | "fabric", "single" | "double"];
+    if (!s || (item !== "kit" && item !== "fabric") || (sides !== "single" && sides !== "double")) return null;
+    return MW.eachFor(s, item, sides, qty);
+  },
 };
 
 const tcProducts = TC.PRODUCTS;
@@ -72,12 +78,12 @@ const tableCovers: QuoteSpec = {
       price: TC.priceFor({ product, size: s, option: o, custom: "", qty: "1" }),
     }));
   },
-  unitPrice: (size, option) => {
+  unitPrice: (size, option, qty) => {
     const [product, s] = size.split(":") as [TC.Product, string];
     if (!s || s === "custom") return null;
     const opts = TC.optionsFor(product, s);
     if (opts.length && !opts.includes(option as TC.Option)) return null;
-    return TC.priceFor({ product, size: s, option: (opts.length ? option : "") as TC.Option | "", custom: "", qty: "1" });
+    return TC.priceFor({ product, size: s, option: (opts.length ? option : "") as TC.Option | "", custom: "", qty: String(qty) });
   },
 };
 
@@ -94,7 +100,11 @@ const pullUpBanners: QuoteSpec = {
     const s = PB.SIZES.find((x) => x.id === size);
     return PB.STANDS.map((st) => ({ id: st.id, label: st.label, price: s?.price[st.id] ?? null }));
   },
-  unitPrice: (size, option) => pullUpBanners.options(size).find((o) => o.id === option)?.price ?? null,
+  unitPrice: (size, option, qty) => {
+    const s = PB.SIZES.find((x) => x.id === size);
+    if (!s || (option !== "luxury" && option !== "double")) return null;
+    return PB.eachFor(s, option, qty);
+  },
 };
 
 const corfluteSigns: QuoteSpec = {
@@ -131,7 +141,10 @@ const aFrames: QuoteSpec = {
   })),
   // No frame colour choice: it only applied to the 600 × 450mm frame, now removed.
   options: () => [],
-  unitPrice: (size, _o, qty) => AF.ITEMS.find((i) => i.id === size)?.price[AF.tierIndex(qty)] ?? null,
+  unitPrice: (size, _o, qty) => {
+    const it = AF.ITEMS.find((i) => i.id === size);
+    return it ? AF.eachFor(it, qty) : null;
+  },
 };
 
 function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec {
@@ -159,8 +172,7 @@ function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec 
       if (!i) return null;
       const hasAddon = !!p.addon && !!i.priceWithAddon;
       if (hasAddon && option !== "with" && option !== "without") return null;
-      const prices = hasAddon && option === "with" ? i.priceWithAddon! : i.price;
-      return prices[bandIndex(p, qty)] ?? null;
+      return gearEach(p, i, hasAddon && option === "with", qty) ?? null;
     },
   };
 }
@@ -182,7 +194,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
 };
 
 export const money = (n: number) =>
-  `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2 })}`;
+  `$${n.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })}`;
 
 /** The $180 minimum applies to the whole order, not each product. */
 export const MIN_ORDER = 180;
