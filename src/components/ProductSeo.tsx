@@ -28,7 +28,7 @@ const INFO: Record<Slug, { name: string; description: string }> = {
   },
   flags: {
     name: "Custom printed teardrop and feather flags",
-    description: "Teardrop flags (2.3m to 3.7m) and feather flags (2.4m to 4.0m) printed with your artwork, with pole set and 10kg heavy duty square base, plus wall flags. Delivered Australia-wide.",
+    description: "Teardrop flags (2.3m to 3.7m) and feather flags (2.4m to 4.0m) printed with your artwork, with pole set and 10kg heavy duty square base. Delivered Australia-wide.",
   },
   "stretch-fabric-displays": { name: "Stretch fabric display stands", description: STRETCH_FABRIC.description },
   "table-top-banners": { name: "Printed table-top banner kits", description: TABLE_TOP_BANNERS.description },
