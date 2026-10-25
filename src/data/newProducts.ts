@@ -107,7 +107,7 @@ export const SEG_AFRAMES: GearProduct = {
   subject: "Expandable SEG A-frame quote",
   noun: "A-frame",
   pageTitle: "Expandable SEG A-Frames for Sport & Events | The Signage Shed",
-  description: "Low fabric A-frame signs that link together, 717mm tall and 559mm to 1676mm long. Sponsor signage for pool decks, sidelines and fun runs, delivered Australia-wide.",
+  description: "Low fabric A-frame signs that link together, 717mm tall and 559mm to 2794mm long. Sponsor signage for pool decks, sidelines and fun runs, delivered Australia-wide.",
   eyebrow: "Expandable fabric A-frames, delivered Australia-wide",
   heading: "Expandable SEG A-frames for sidelines and pool decks",
   intro: "Low fabric A-frames that link together into one long run of signage. Great for local sports clubs and events: along a pool lane, a sideline, a fun run finish chute or in front of a stage, with room for every sponsor.",
@@ -121,21 +121,23 @@ items: [
     { id: "1-frame", group: "segaf", label: "Expandable SEG A-frame 559 × 717mm (1 frame)", short: "559 × 717mm · 1 frame", includes: "Frame and printed fabric graphic", tiers: [[1, 325], [2, 635], [5, 1470], [10, 2780]], price: [325.0, 317.5, 294.0, 278.0] },
     { id: "2-frames", group: "segaf", label: "Expandable SEG A-frame 1118 × 717mm (2 frames)", short: "1118 × 717mm · 2 frames", includes: "Frame and printed fabric graphic", tiers: [[1, 610], [2, 1145], [5, 2630], [10, 5045]], price: [610.0, 572.5, 526.0, 504.5] },
     { id: "3-frames", group: "segaf", label: "Expandable SEG A-frame 1676 × 717mm (3 frames)", short: "1676 × 717mm · 3 frames", includes: "Frame and printed fabric graphic", tiers: [[1, 880], [2, 1615], [5, 3765], [10, 7415]], price: [880.0, 807.5, 753.0, 741.5] },
+    { id: "4-frames", group: "segaf", label: "Expandable SEG A-frame 2235 × 717mm (4 frames)", short: "2235 × 717mm · 4 frames", includes: "Frame and printed fabric graphic", tiers: [[1, 1120], [2, 2075], [5, 4895], [10, 9785]], price: [1120.0, 1037.5, 979.0, 978.5] },
+    { id: "5-frames", group: "segaf", label: "Expandable SEG A-frame 2794 × 717mm (5 frames)", short: "2794 × 717mm · 5 frames", includes: "Frame and printed fabric graphic", tiers: [[1, 1350], [2, 2535], [5, 6075], [10, 12150]], price: [1350.0, 1267.5, 1215.0, 1215.0] },
 ],
   notes: [
     "The fabric has a silicone edge that fits into the frame without tools.",
-    "Longer runs are available. Ask us in the Notes box and we'll quote it.",
+    "Longer runs than 5 frames are available. Ask us in the Notes box and we'll quote it.",
   ],
   artwork: "SEG A-frame fabrics are printed from a full-size template for your length. Ask for the template with your quote, or send us your sponsor logos and we'll set the artwork up for you to approve.",
   faqs: [
     { q: "What are they good for?", a: "Sponsor and event signage that sits low, so it doesn't block the view: pool decks, sidelines, fun run chutes, presentation areas and stage fronts." },
-    { q: "How do the frames link?", a: "Each frame is 559mm wide and 717mm tall. Order 1, 2 or 3 frames as one kit, with one printed fabric graphic to suit the full length." },
+    { q: "How do the frames link?", a: "Each frame is 559mm wide and 717mm tall. Order 1 to 5 frames as one kit, with one printed fabric graphic to suit the full length." },
     { q: "Can I change the graphics?", a: "Yes. The fabric has a silicone edge that pulls out and pushes back in, so you can swap sponsors with a new print on the same frame." },
     ...COMMON_FAQS
   ],
   hero: MOCKUPS.v4SegAframe3,
-  gallery: [MOCKUPS.v4SegAframe1, MOCKUPS.v4SegAframe2, MOCKUPS.v4SegAframe3],
-  galleryHeading: "1, 2 or 3 frames long",
+  gallery: [MOCKUPS.v4SegAframe1, MOCKUPS.v4SegAframe2, MOCKUPS.v4SegAframe3, MOCKUPS.v4SegAframe4, MOCKUPS.v4SegAframe5],
+  galleryHeading: "1 to 5 frames long",
   notesHint: "Event or club, how many sponsors, length needed, colours",
 };
 

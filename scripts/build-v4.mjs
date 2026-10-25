@@ -50,6 +50,8 @@ const SCENES = [
   ["../v4-events/44 Expandable SEG A-Frame 1 Frame - Lifestyle", "v4-seg-aframe-1", false],
   ["../v4-events/45 Expandable SEG A-Frame 2 Frames - Lifestyle", "v4-seg-aframe-2", false],
   ["../v4-events/46 Expandable SEG A-Frame 3 Frames - Lifestyle", "v4-seg-aframe-3", false],
+  ["../v4-events/61 Expandable SEG A-Frame 4 Frames - Lifestyle", "v4-seg-aframe-4", false],
+  ["../v4-events/62 Expandable SEG A-Frame 5 Frames - Lifestyle", "v4-seg-aframe-5", false],
   ["../v4-events/47 Barrier Frame 1000x900 - Lifestyle", "v4-barrier-1000", false],
   ["../v4-events/48 Barrier Frame 1500x900 - Lifestyle", "v4-barrier-1500", false],
   ["../v4-events/49 Barrier Frame 2000x900 - Lifestyle", "v4-barrier-2000", false],
