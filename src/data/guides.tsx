@@ -57,7 +57,7 @@ export const GUIDES: Guide[] = [
           <li><strong>A message that changes often:</strong> insert A-frame.</li>
           <li><strong>Events and markets on a budget:</strong> folding corflute A-frame.</li>
         </ul>
-        <p>See every option and price on our {L("/a-frames/", "A-frame signs")} page. Need something taller to catch eyes from the road? Our {L("/flags/", "feather and teardrop flags")} stand 2.7m to 3.0m tall.</p>
+        <p>See every option and price on our {L("/a-frames/", "A-frame signs")} page. Need something taller to catch eyes from the road? Our {L("/flags/", "feather and teardrop flags")} stand 2.3m to 4.0m tall.</p>
       </> },
     ],
   },

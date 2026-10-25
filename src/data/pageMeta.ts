@@ -10,7 +10,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "corflute-signs": "Custom printed corflute signs in 3 standard sizes, 5mm or 3mm, single or double sided, optional eyelets. Bundle pricing from $180, delivered Australia-wide.",
   "a-frames": "Custom printed A-frame signs (sandwich boards) in aluminium, insert and folding corflute styles, printed both sides. Prices online, delivered Australia-wide.",
   "gazebos": "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional back walls. Prices online, delivered Australia-wide.",
-  "flags": "Custom printed feather flags and teardrop flags with pole set and 10kg heavy duty base, single or double sided. Prices online, delivered Australia-wide.",
+  "flags": "Custom printed feather and teardrop flags in three heights with pole set and 10kg heavy duty base, plus wall flags. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
   "banners": "Custom printed PVC vinyl, mesh vinyl and fabric mesh banners in popular sizes, hemmed with eyelets and ready to hang. Prices online, delivered Australia-wide.",
   "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free pricing sheet. Excel and Google Sheets, instant download.",

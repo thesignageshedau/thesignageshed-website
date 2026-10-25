@@ -39,6 +39,9 @@ const SCENES = [
   ["32 Table-Top Banner - Lifestyle", "v4-table-top-banner", false],
   ["33 ACM Sign - Lifestyle", "v4-acm-sign", true],
   ["34 Rectangle Flags - Lifestyle", "v4-rectangle-flags", true],
+  ["35 Teardrop Flag Sizes - Lifestyle", "v4-teardrop-sizes", false],
+  ["36 Feather Flag Sizes - Lifestyle", "v4-feather-sizes", false],
+  ["37 Wall Flags - Lifestyle", "v4-wall-flags", false],
 ];
 const ONLY = process.env.ONLY?.split(",");
 for (const [f, slug, sq] of SCENES.filter(([, s]) => !ONLY || ONLY.includes(s))) {
