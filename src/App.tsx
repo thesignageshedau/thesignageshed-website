@@ -139,7 +139,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "table-covers": "Printed Table Covers & Throws Australia | The Signage Shed",
   "pull-up-banners": "Pull Up Banners Australia: Printed | The Signage Shed",
   "corflute-signs": "Corflute Signs Australia: Custom Printed | The Signage Shed",
-  "a-frames": "A-Frame Signs Australia: Printed Sandwich Boards",
+  "a-frames": "A Frame Signs Australia: Custom Printed | The Signage Shed",
   gazebos: GAZEBOS.pageTitle,
   flags: FLAGS.pageTitle,
   "market-umbrellas": UMBRELLAS.pageTitle,

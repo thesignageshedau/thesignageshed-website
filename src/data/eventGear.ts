@@ -209,7 +209,7 @@ export const BANNERS: GearProduct = {
   eventName: "banner",
   subject: "Vinyl or mesh banner quote",
   noun: "banner",
-  pageTitle: "Vinyl and Mesh Banners Australia | The Signage Shed",
+  pageTitle: "Mesh Banners & Printed Banner Mesh Australia | The Signage Shed",
   description: "Printed PVC vinyl banners, mesh vinyl banners and fabric mesh banners in popular sizes, finished with hemmed edges and eyelets. Prices online, delivered Australia-wide.",
   eyebrow: "Printed vinyl and mesh banners, delivered Australia-wide",
   heading: "Banners for fences, shopfronts and events",

@@ -42,6 +42,14 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+          <nav aria-label="Helpful links" className="mt-3 text-sm text-cream/85">
+            Helpful links:{" "}
+            <a href="/delivery/" className="underline underline-offset-4 hover:text-white">delivery across Australia</a>,{" "}
+            <a href="/check-artwork/" className="underline underline-offset-4 hover:text-white">check your artwork</a>,{" "}
+            <a href="/guides/print-ready-artwork/" className="underline underline-offset-4 hover:text-white">how to set up print-ready artwork</a>,{" "}
+            <a href="/guides/" className="underline underline-offset-4 hover:text-white">signage guides</a>,{" "}
+            <a href="/market-umbrellas/" className="underline underline-offset-4 hover:text-white">printed market umbrellas</a>.
+          </nav>
           <p className="mt-3 text-sm text-cream/70">
             © {new Date().getFullYear()} The Signage Shed.{" "}
             <a href="/for-sign-shops/" className="underline underline-offset-4 hover:text-white">Digital products for sign shops</a>.
