@@ -1,8 +1,9 @@
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, type GearProduct } from "../data/eventGear";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "../data/newProducts";
 
-export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags"] as const;
+export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "expandable-seg-a-frames", "barrier-covers", "selfie-frames", "car-magnets", "business-cards"] as const;
 type Slug = (typeof SEO_SLUGS)[number];
 const gearPrices = (g: GearProduct) => g.items.flatMap((i) => [i.price[0]!, ...(i.priceWithAddon ? [i.priceWithAddon[0]!] : [])]);
 const SITE = "https://thesignageshed.au";
@@ -15,6 +16,13 @@ const prices: Record<Slug, number[]> = {
   "table-top-banners": gearPrices(TABLE_TOP_BANNERS),
   "acm-signs": gearPrices(ACM_SIGNS),
   "rectangle-flags": gearPrices(RECTANGLE_FLAGS),
+  "lightbox-displays": gearPrices(LIGHTBOX),
+  "big-head-cutouts": gearPrices(BIG_HEADS),
+  "expandable-seg-a-frames": gearPrices(SEG_AFRAMES),
+  "barrier-covers": gearPrices(BARRIERS),
+  "selfie-frames": gearPrices(SELFIE_FRAMES),
+  "car-magnets": gearPrices(CAR_MAGNETS),
+  "business-cards": gearPrices(BUSINESS_CARDS),
 };
 
 const INFO: Record<Slug, { name: string; description: string }> = {
@@ -34,6 +42,13 @@ const INFO: Record<Slug, { name: string; description: string }> = {
   "table-top-banners": { name: "Printed table-top banner kits", description: TABLE_TOP_BANNERS.description },
   "acm-signs": { name: "Printed ACM (aluminium composite) signs", description: ACM_SIGNS.description },
   "rectangle-flags": { name: "Custom printed rectangle flags", description: RECTANGLE_FLAGS.description },
+  "lightbox-displays": { name: "Modular backlit SEG lightbox displays", description: LIGHTBOX.description },
+  "big-head-cutouts": { name: "Custom printed big head cutouts", description: BIG_HEADS.description },
+  "expandable-seg-a-frames": { name: "Expandable SEG fabric A-frames", description: SEG_AFRAMES.description },
+  "barrier-covers": { name: "Printed barrier frames and crowd control barrier covers", description: BARRIERS.description },
+  "selfie-frames": { name: "Custom printed selfie frames", description: SELFIE_FRAMES.description },
+  "car-magnets": { name: "Custom printed car magnets", description: CAR_MAGNETS.description },
+  "business-cards": { name: "Premium and luxury business cards", description: BUSINESS_CARDS.description },
 };
 
 const RELATED: Record<Slug, { href: string; text: string }[]> = {
@@ -74,6 +89,42 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
   "rectangle-flags": [
     { href: "/flags/", text: "Feather and teardrop flags" },
     { href: "/corflute-signs/", text: "Corflute signs" },
+    { href: "/a-frames/", text: "A-frame signs" },
+  ],
+  "lightbox-displays": [
+    { href: "/media-walls/", text: "Media walls" },
+    { href: "/stretch-fabric-displays/", text: "Stretch fabric displays" },
+    { href: "/pull-up-banners/", text: "Pull up banners" },
+  ],
+  "big-head-cutouts": [
+    { href: "/selfie-frames/", text: "Selfie frames" },
+    { href: "/corflute-event-signs/", text: "Corflute event signs" },
+    { href: "/flags/", text: "Feather and teardrop flags" },
+  ],
+  "expandable-seg-a-frames": [
+    { href: "/barrier-covers/", text: "Barrier frames and covers" },
+    { href: "/corflute-event-signs/", text: "Corflute event signs" },
+    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/banners/", text: "Vinyl and mesh banners" },
+  ],
+  "barrier-covers": [
+    { href: "/expandable-seg-a-frames/", text: "Expandable SEG A-frames" },
+    { href: "/banners/", text: "Vinyl and mesh banners" },
+    { href: "/corflute-event-signs/", text: "Corflute event signs" },
+  ],
+  "selfie-frames": [
+    { href: "/big-head-cutouts/", text: "Big head cutouts" },
+    { href: "/corflute-signs/", text: "Corflute signs" },
+    { href: "/media-walls/", text: "Media walls" },
+  ],
+  "car-magnets": [
+    { href: "/corflute-signs/", text: "Corflute signs" },
+    { href: "/business-cards/", text: "Business cards" },
+    { href: "/a-frames/", text: "A-frame signs" },
+  ],
+  "business-cards": [
+    { href: "/car-magnets/", text: "Car magnets" },
+    { href: "/pull-up-banners/", text: "Pull up banners" },
     { href: "/a-frames/", text: "A-frame signs" },
   ],
 };

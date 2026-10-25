@@ -6,6 +6,7 @@ import * as PB from "../data/pullUpBanners";
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, fromPrice } from "../data/eventGear";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "../data/newProducts";
 
 const items: { href: string; name: string; from: number; img: Mockup }[] = [
   { href: "/media-walls/", name: "Media walls", from: MW.FROM_PRICE, img: MOCKUPS.v4MediaWall },
@@ -21,6 +22,13 @@ const items: { href: string; name: string; from: number; img: Mockup }[] = [
   { href: "/table-top-banners/", name: "Table-top banners", from: fromPrice(TABLE_TOP_BANNERS), img: TABLE_TOP_BANNERS.hero },
   { href: "/acm-signs/", name: "ACM signs", from: fromPrice(ACM_SIGNS), img: ACM_SIGNS.hero },
   { href: "/rectangle-flags/", name: "Rectangle flags", from: fromPrice(RECTANGLE_FLAGS), img: RECTANGLE_FLAGS.hero },
+  { href: "/lightbox-displays/", name: "Lightbox displays", from: fromPrice(LIGHTBOX), img: LIGHTBOX.hero },
+  { href: "/big-head-cutouts/", name: "Big head cutouts", from: fromPrice(BIG_HEADS), img: BIG_HEADS.hero },
+  { href: "/expandable-seg-a-frames/", name: "Expandable SEG A-frames", from: fromPrice(SEG_AFRAMES), img: SEG_AFRAMES.hero },
+  { href: "/barrier-covers/", name: "Barrier frames and covers", from: fromPrice(BARRIERS), img: BARRIERS.hero },
+  { href: "/selfie-frames/", name: "Selfie frames", from: fromPrice(SELFIE_FRAMES), img: SELFIE_FRAMES.hero },
+  { href: "/car-magnets/", name: "Car magnets", from: fromPrice(CAR_MAGNETS), img: CAR_MAGNETS.hero },
+  { href: "/business-cards/", name: "Business cards", from: fromPrice(BUSINESS_CARDS), img: BUSINESS_CARDS.hero },
 ];
 const money = (n: number) => `$${n.toLocaleString("en-AU", { maximumFractionDigits: 2 })}`;
 

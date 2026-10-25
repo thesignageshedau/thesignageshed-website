@@ -45,6 +45,13 @@ const products: { href: string; label: string }[] = [
   { href: "/table-top-banners/", label: "Table-top banners" },
   { href: "/acm-signs/", label: "ACM signs" },
   { href: "/rectangle-flags/", label: "Rectangle flags" },
+  { href: "/lightbox-displays/", label: "Lightbox displays" },
+  { href: "/big-head-cutouts/", label: "Big head cutouts" },
+  { href: "/expandable-seg-a-frames/", label: "Expandable SEG A-frames" },
+  { href: "/barrier-covers/", label: "Barrier frames and covers" },
+  { href: "/selfie-frames/", label: "Selfie frames" },
+  { href: "/car-magnets/", label: "Car magnets" },
+  { href: "/business-cards/", label: "Business cards" },
 ];
 const signShops = { href: "/for-sign-shops/", label: "For sign shops: pricing spreadsheets" };
 const howItWorks = [

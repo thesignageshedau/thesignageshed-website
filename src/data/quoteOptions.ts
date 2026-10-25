@@ -7,6 +7,7 @@ import * as PB from "./pullUpBanners";
 import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./newProducts";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -191,6 +192,13 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   "table-top-banners": gear(TABLE_TOP_BANNERS, "Size"),
   "acm-signs": gear(ACM_SIGNS, "Size and sides"),
   "rectangle-flags": gear(RECTANGLE_FLAGS, "Flag size"),
+  "lightbox-displays": gear(LIGHTBOX, "Size and sides"),
+  "big-head-cutouts": gear(BIG_HEADS, "Size and material"),
+  "expandable-seg-a-frames": gear(SEG_AFRAMES, "Length"),
+  "barrier-covers": gear(BARRIERS, "Frame or cover"),
+  "selfie-frames": gear(SELFIE_FRAMES, "Size"),
+  "car-magnets": gear(CAR_MAGNETS, "Size"),
+  "business-cards": gear(BUSINESS_CARDS, "Card and quantity"),
 };
 
 export const money = (n: number) =>

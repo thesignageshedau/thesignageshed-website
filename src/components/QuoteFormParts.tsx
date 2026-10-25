@@ -482,6 +482,13 @@ const PRODUCT_LABELS: Record<string, string> = {
   "table-top-banners": "Table-top banners",
   "acm-signs": "ACM signs",
   "rectangle-flags": "Rectangle flags",
+  "lightbox-displays": "Lightbox displays",
+  "big-head-cutouts": "Big head cutouts",
+  "expandable-seg-a-frames": "Expandable SEG A-frames",
+  "barrier-covers": "Barrier frames and covers",
+  "selfie-frames": "Selfie frames",
+  "car-magnets": "Car magnets",
+  "business-cards": "Business cards",
   other: "Something else or a mix",
 };
 

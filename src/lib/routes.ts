@@ -17,6 +17,13 @@ export const GEAR_HREFS = {
   "table-top-banners": "/table-top-banners/",
   "acm-signs": "/acm-signs/",
   "rectangle-flags": "/rectangle-flags/",
+  "lightbox-displays": "/lightbox-displays/",
+  "big-head-cutouts": "/big-head-cutouts/",
+  "expandable-seg-a-frames": "/expandable-seg-a-frames/",
+  "barrier-covers": "/barrier-covers/",
+  "selfie-frames": "/selfie-frames/",
+  "car-magnets": "/car-magnets/",
+  "business-cards": "/business-cards/",
 } as const;
 export const CHECK_ARTWORK_HREF = "/check-artwork/";
 export const QUOTE_THANKS_HREF = "/quote-thanks/";
