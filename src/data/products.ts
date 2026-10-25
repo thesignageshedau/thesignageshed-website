@@ -125,7 +125,7 @@ export const featured: Product[] = [
     name: "Vehicle Wrap Quote Calculator",
     price: "A$39",
     summary:
-      "Quote any vehicle wrap in minutes: vinyl m², linear metres off the roll, laminate, labour, margin and GST.",
+      "Quote any vehicle wrap in minutes: vinyl m², linear metres off the roll, laminate, labour and margin.",
     points: [
       "38 common Australian vehicles built in, with room to add your own",
       "Full, half, quarter or custom panel coverage",

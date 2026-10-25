@@ -1,6 +1,6 @@
 const reasons = [
   { title: "Built by people in the sign trade", body: "Every sheet is based on how sign jobs are actually quoted and made: materials by the m², machine time, design, install and travel." },
-  { title: "Australian GST built in", body: "Prices ex and inc GST, metric units throughout, and common Australian vehicles in the wrap calculator." },
+  { title: "Made for Australian shops", body: "Prices in Australian dollars, metric units throughout, and common Australian vehicles in the wrap calculator." },
   { title: "Works in Excel and Google Sheets", body: "Standard .xlsx files that open in Microsoft Excel or Google Sheets. No subscription, no app and no login." },
   { title: "Instant download", body: "Pay and download straight away from Gumroad or Etsy. Nothing is posted, so there's no waiting." },
 ];
