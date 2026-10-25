@@ -67,8 +67,8 @@ type Route =
   | "rectangle-flags"
   | "lightbox-displays"
   | "big-head-cutouts"
-  | "expandable-seg-a-frames"
-  | "barrier-covers"
+  | "seg-fabric-frames"
+  | "crowd-barriers"
   | "selfie-frames"
   | "car-magnets"
   | "business-cards"
@@ -102,8 +102,8 @@ const slugs = [
   "rectangle-flags",
   "lightbox-displays",
   "big-head-cutouts",
-  "expandable-seg-a-frames",
-  "barrier-covers",
+  "seg-fabric-frames",
+  "crowd-barriers",
   "selfie-frames",
   "car-magnets",
   "business-cards",
@@ -126,7 +126,11 @@ function isUnknownRoute(): boolean {
 }
 /** Old home page anchors for the sign shop content now live on #/for-sign-shops. */
 export const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
+/** Renamed pages: old path -> new path (kept so old links still land on the right page). */
+const RENAMED: Record<string, string> = { "expandable-seg-a-frames": "seg-fabric-frames", "barrier-covers": "crowd-barriers" };
 function routeFromHash(): Route | null {
+  const old = window.location.pathname.match(/^\/([a-z-]+)\/?$/)?.[1];
+  if (old && RENAMED[old]) history.replaceState(null, "", `/${RENAMED[old]}/${window.location.search}${window.location.hash}`);
   const m = window.location.pathname.match(/^\/([a-z-]+(?:\/[a-z-]+)?)\/?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
@@ -146,8 +150,8 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "rectangle-flags": RECTANGLE_FLAGS.pageTitle,
   "lightbox-displays": LIGHTBOX.pageTitle,
   "big-head-cutouts": BIG_HEADS.pageTitle,
-  "expandable-seg-a-frames": SEG_AFRAMES.pageTitle,
-  "barrier-covers": BARRIERS.pageTitle,
+  "seg-fabric-frames": SEG_AFRAMES.pageTitle,
+  "crowd-barriers": BARRIERS.pageTitle,
   "selfie-frames": SELFIE_FRAMES.pageTitle,
   "car-magnets": CAR_MAGNETS.pageTitle,
   "business-cards": BUSINESS_CARDS.pageTitle,
@@ -278,10 +282,10 @@ export default function App() {
           <GearPage key="lightbox-displays" product={LIGHTBOX} />
         ) : route === "big-head-cutouts" ? (
           <GearPage key="big-head-cutouts" product={BIG_HEADS} />
-        ) : route === "expandable-seg-a-frames" ? (
-          <GearPage key="expandable-seg-a-frames" product={SEG_AFRAMES} />
-        ) : route === "barrier-covers" ? (
-          <GearPage key="barrier-covers" product={BARRIERS} />
+        ) : route === "seg-fabric-frames" ? (
+          <GearPage key="seg-fabric-frames" product={SEG_AFRAMES} />
+        ) : route === "crowd-barriers" ? (
+          <GearPage key="crowd-barriers" product={BARRIERS} />
         ) : route === "selfie-frames" ? (
           <GearPage key="selfie-frames" product={SELFIE_FRAMES} />
         ) : route === "car-magnets" ? (
