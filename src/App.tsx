@@ -20,6 +20,7 @@ import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS } from "./data/eventGear";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./data/newProducts";
 import ProductGrid from "./components/ProductGrid";
 import HowItWorks from "./components/HowItWorks";
 import QuoteBar from "./components/QuoteBar";
@@ -64,6 +65,13 @@ type Route =
   | "table-top-banners"
   | "acm-signs"
   | "rectangle-flags"
+  | "lightbox-displays"
+  | "big-head-cutouts"
+  | "seg-fabric-frames"
+  | "crowd-barriers"
+  | "selfie-frames"
+  | "car-magnets"
+  | "business-cards"
   | "banners"
   | "quote-thanks"
   | "quote"
@@ -92,6 +100,13 @@ const slugs = [
   "table-top-banners",
   "acm-signs",
   "rectangle-flags",
+  "lightbox-displays",
+  "big-head-cutouts",
+  "seg-fabric-frames",
+  "crowd-barriers",
+  "selfie-frames",
+  "car-magnets",
+  "business-cards",
   "banners",
   "quote-thanks",
   "quote",
@@ -111,7 +126,11 @@ function isUnknownRoute(): boolean {
 }
 /** Old home page anchors for the sign shop content now live on #/for-sign-shops. */
 export const SIGN_SHOP_SECTIONS = ["products", "free", "etsy", "why"];
+/** Renamed pages: old path -> new path (kept so old links still land on the right page). */
+const RENAMED: Record<string, string> = { "expandable-seg-a-frames": "seg-fabric-frames", "barrier-covers": "crowd-barriers" };
 function routeFromHash(): Route | null {
+  const old = window.location.pathname.match(/^\/([a-z-]+)\/?$/)?.[1];
+  if (old && RENAMED[old]) history.replaceState(null, "", `/${RENAMED[old]}/${window.location.search}${window.location.hash}`);
   const m = window.location.pathname.match(/^\/([a-z-]+(?:\/[a-z-]+)?)\/?$/);
   return m?.[1] && slugs.includes(m[1]) ? (m[1] as Route) : null;
 }
@@ -129,6 +148,13 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "table-top-banners": TABLE_TOP_BANNERS.pageTitle,
   "acm-signs": ACM_SIGNS.pageTitle,
   "rectangle-flags": RECTANGLE_FLAGS.pageTitle,
+  "lightbox-displays": LIGHTBOX.pageTitle,
+  "big-head-cutouts": BIG_HEADS.pageTitle,
+  "seg-fabric-frames": SEG_AFRAMES.pageTitle,
+  "crowd-barriers": BARRIERS.pageTitle,
+  "selfie-frames": SELFIE_FRAMES.pageTitle,
+  "car-magnets": CAR_MAGNETS.pageTitle,
+  "business-cards": BUSINESS_CARDS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
   "check-artwork": "Free Print File Checker | The Signage Shed",
@@ -252,6 +278,20 @@ export default function App() {
           <GearPage key="acm-signs" product={ACM_SIGNS} />
         ) : route === "rectangle-flags" ? (
           <GearPage key="rectangle-flags" product={RECTANGLE_FLAGS} />
+        ) : route === "lightbox-displays" ? (
+          <GearPage key="lightbox-displays" product={LIGHTBOX} />
+        ) : route === "big-head-cutouts" ? (
+          <GearPage key="big-head-cutouts" product={BIG_HEADS} />
+        ) : route === "seg-fabric-frames" ? (
+          <GearPage key="seg-fabric-frames" product={SEG_AFRAMES} />
+        ) : route === "crowd-barriers" ? (
+          <GearPage key="crowd-barriers" product={BARRIERS} />
+        ) : route === "selfie-frames" ? (
+          <GearPage key="selfie-frames" product={SELFIE_FRAMES} />
+        ) : route === "car-magnets" ? (
+          <GearPage key="car-magnets" product={CAR_MAGNETS} />
+        ) : route === "business-cards" ? (
+          <GearPage key="business-cards" product={BUSINESS_CARDS} />
         ) : route && SEO_PAGES.some((p) => p.slug === route) ? (
           <SeoProductPage key={route} slug={route} />
         ) : route === "about" ? (

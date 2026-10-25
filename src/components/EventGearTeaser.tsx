@@ -1,4 +1,6 @@
-import { GEAR_PRODUCTS, fromPrice, money } from "../data/eventGear";
+import { GEAR_PRODUCTS as BASE_GEAR, fromPrice, money } from "../data/eventGear";
+import { NEW_PRODUCTS } from "../data/newProducts";
+const GEAR_PRODUCTS = [...BASE_GEAR, ...NEW_PRODUCTS];
 import { GEAR_HREFS } from "../lib/routes";
 import MockupImage from "./MockupImage";
 

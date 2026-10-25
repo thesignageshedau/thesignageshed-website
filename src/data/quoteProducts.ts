@@ -14,6 +14,13 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "table-top-banners", label: "Table-top banners", optionHint: "e.g. 600mm tall × 6ft" },
   { slug: "acm-signs", label: "ACM signs", optionHint: "e.g. 1200 × 900mm" },
   { slug: "rectangle-flags", label: "Rectangle flags", optionHint: "e.g. medium, cross base" },
+  { slug: "lightbox-displays", label: "Lightbox displays", optionHint: "e.g. 2000 × 2000mm, double sided" },
+  { slug: "big-head-cutouts", label: "Big head cutouts", optionHint: "e.g. large, corrugated plastic, 10 heads" },
+  { slug: "seg-fabric-frames", label: "SEG fabric frames", optionHint: "e.g. 3 sections" },
+  { slug: "crowd-barriers", label: "Crowd barrier frames and covers", optionHint: "e.g. 2000mm frame, double sided" },
+  { slug: "selfie-frames", label: "Selfie frames", optionHint: "e.g. large, wedding names and date" },
+  { slug: "car-magnets", label: "Car magnets", optionHint: "e.g. 600 × 300mm, pair" },
+  { slug: "business-cards", label: "Business cards", optionHint: "e.g. luxury velvet, 500 cards" },
   { slug: "other", label: "Something else or a mix", optionHint: "Tell us the size or option you're after" },
 ];
 /** Quote form link, pre-filling product and size, plus extras like option, sides and qty. */
