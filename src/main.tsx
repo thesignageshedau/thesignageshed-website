@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 // Fonts: woff2 only, font-display: swap.
 import "./fonts.css";
 import "./index.css";
@@ -27,8 +27,16 @@ document.addEventListener("click", (e) => {
 });
 window.addEventListener("popstate", () => window.dispatchEvent(new Event("hashchange")));
 
-createRoot(document.getElementById("root")!).render(
+// Prerendered pages: reuse the HTML that's already on screen (hydrate) instead of rebuilding it,
+// so the first paint is the final paint. Pages without prerendered markup render from scratch.
+const rootEl = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+// Render fresh instead where the first client render can't match the saved HTML: the artwork checker
+// is code-split (lazy), and a quote link with ?product=… prefills the form from the address.
+const fresh = location.pathname.startsWith("/check-artwork") || (location.pathname.startsWith("/quote") && location.search !== "");
+if (rootEl.firstElementChild && !fresh) hydrateRoot(rootEl, app);
+else createRoot(rootEl).render(app);

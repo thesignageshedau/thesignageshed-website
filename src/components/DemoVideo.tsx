@@ -16,13 +16,18 @@ export default function DemoVideo({ name, label, className = "" }: Props) {
   const userPaused = useRef(false);
   const [near, setNear] = useState(false); // poster
   const [active, setActive] = useState(false); // video sources
-  const [reduced, setReduced] = useState(false);
+  // Starts as the still poster (matches the prerendered HTML so hydration lines up), then switches
+  // to the video after mount unless the visitor prefers reduced motion.
+  const [reduced, setReduced] = useState(true);
   const [paused, setPaused] = useState(false);
   const poster = asset(`videos/${name}.jpg`);
 
   useEffect(() => {
     const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-    if (!mq) return;
+    if (!mq) {
+      setReduced(false);
+      return;
+    }
     const update = () => setReduced(mq.matches);
     update();
     mq.addEventListener?.("change", update);

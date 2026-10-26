@@ -43,6 +43,13 @@ async function snapshot(path) {
   await page.waitForTimeout(150); // FAQ JSON-LD is added on the next tick
   const html = "<!doctype html>\n" + (await page.evaluate(() => {
     document.querySelectorAll(".rv").forEach((el) => el.classList.remove("rv", "in"));
+    // React's hydrateRoot reuses this HTML. Adjacent text nodes would merge when the HTML is parsed,
+    // so separate them with empty comments (as React's own server renderer does).
+    const root = document.getElementById("root");
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const texts = [];
+    while (walker.nextNode()) texts.push(walker.currentNode);
+    for (const t of texts) if (t.nextSibling && t.nextSibling.nodeType === 3) t.after(document.createComment(""));
     return document.documentElement.outerHTML;
   }));
   return html.replaceAll(origin, "https://thesignageshed.au"); // e.g. the form's _next address
