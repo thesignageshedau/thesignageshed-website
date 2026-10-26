@@ -45,6 +45,17 @@ async function snapshot(path) {
     document.querySelectorAll(".rv").forEach((el) => el.classList.remove("rv", "in"));
     // React's hydrateRoot reuses this HTML. Adjacent text nodes would merge when the HTML is parsed,
     // so separate them with empty comments (as React's own server renderer does).
+    // Preload the main (fetchpriority=high) photo so it starts downloading with the HTML.
+    const hero = document.querySelector('#root picture img[fetchpriority="high"]');
+    const src = hero?.parentElement?.querySelector("source[srcset]");
+    if (src && !document.querySelector('link[rel="preload"][as="image"]')) {
+      const l = document.createElement("link");
+      l.rel = "preload"; l.as = "image"; l.type = "image/webp";
+      l.setAttribute("imagesrcset", src.getAttribute("srcset"));
+      l.setAttribute("imagesizes", src.getAttribute("sizes") || "100vw");
+      l.setAttribute("fetchpriority", "high");
+      document.head.querySelector('link[rel="preload"]')?.before(l) ?? document.head.append(l);
+    }
     const root = document.getElementById("root");
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const texts = [];
