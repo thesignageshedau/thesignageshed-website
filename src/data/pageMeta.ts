@@ -5,6 +5,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "seg-fabric-frames": "Free-standing SEG fabric frame displays that link together, 717mm tall and 559mm to 2794mm long. Sponsor signage for pool decks, sidelines and fun runs, delivered Australia-wide.",
   "crowd-barriers": "Printed fabric barrier frames (1000, 1500 or 2000mm wide) and covers for standard 2100 × 1100mm steel crowd control barriers. For events, fun runs and sports clubs.",
   "selfie-frames": "Custom printed selfie frames (photo props) in 600 × 900mm and 850 × 1200mm, printed on waterproof 5mm corrugated plastic and cut out ready to use. Delivered Australia-wide.",
+  packs: "Ready-made signage packs: sponsor banner packs for sports clubs, site safety corflute and fence mesh packs for building sites, school packs, event and expo packs, and teardrop flag 3-packs. Delivered Australia-wide.",
   "car-magnets": "Printed car magnets on 0.8mm magnet with white vinyl and gloss laminate, rounded corners, from 290 × 220mm to 600 × 400mm. Delivered Australia-wide.",
   "business-cards": "Premium 350gsm and luxury 420gsm business cards, 90 × 55mm, double sided full colour, with matte, gloss or velvet soft-touch laminate. Delivered Australia-wide.",
   "stretch-fabric-displays": "Stretch fabric display stands, 850 or 1200mm wide and 2000mm tall, single or double sided, with a carry case. Prices online, delivered Australia-wide.",

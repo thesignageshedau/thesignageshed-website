@@ -23,6 +23,7 @@ export const GEAR_HREFS = {
   "crowd-barriers": "/crowd-barriers/",
   "selfie-frames": "/selfie-frames/",
   "car-magnets": "/car-magnets/",
+  packs: "/packs/",
   "business-cards": "/business-cards/",
 } as const;
 export const CHECK_ARTWORK_HREF = "/check-artwork/";
