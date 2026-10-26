@@ -70,7 +70,7 @@ const SCENES = [
 const ONLY = process.env.ONLY?.split(",");
 for (const [f, slug, sq] of SCENES.filter(([, s]) => !ONLY || ONLY.includes(s))) {
   const land = `${SRC}/${f} - 1600x1200.jpg`;
-  for (const w of [320, 480, 640, 800, 1200, 1600]) await sharp(land).resize({ width: w }).webp({ quality: 68, effort: 6, smartSubsample: true }).toFile(`${M}/${slug}-${w}.webp`);
+  for (const w of [320, 400, 480, 640, 800, 1200, 1600]) await sharp(land).resize({ width: w }).webp({ quality: 68, effort: 6, smartSubsample: true }).toFile(`${M}/${slug}-${w}.webp`);
   await sharp(land).resize({ width: 800 }).jpeg({ quality: 78, mozjpeg: true }).toFile(`${M}/${slug}-800.jpg`);
   if (sq) {
     const s = `${SRC}/${f} - 1200x1200.jpg`;
