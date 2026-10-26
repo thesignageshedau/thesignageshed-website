@@ -489,6 +489,7 @@ const PRODUCT_LABELS: Record<string, string> = {
   "selfie-frames": "Selfie frames",
   "car-magnets": "Car magnets",
   "business-cards": "Business cards",
+  packs: "Signage packs",
   other: "Something else or a mix",
 };
 

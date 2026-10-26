@@ -20,6 +20,7 @@ import AFramesTeaser from "./components/AFramesTeaser";
 import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS } from "./data/eventGear";
+import { PACKS } from "./data/packs";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./data/newProducts";
 import ProductGrid from "./components/ProductGrid";
 import HowItWorks from "./components/HowItWorks";
@@ -71,6 +72,7 @@ type Route =
   | "crowd-barriers"
   | "selfie-frames"
   | "car-magnets"
+  | "packs"
   | "business-cards"
   | "banners"
   | "quote-thanks"
@@ -106,6 +108,7 @@ const slugs = [
   "crowd-barriers",
   "selfie-frames",
   "car-magnets",
+  "packs",
   "business-cards",
   "banners",
   "quote-thanks",
@@ -154,6 +157,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "crowd-barriers": BARRIERS.pageTitle,
   "selfie-frames": SELFIE_FRAMES.pageTitle,
   "car-magnets": CAR_MAGNETS.pageTitle,
+  packs: PACKS.pageTitle,
   "business-cards": BUSINESS_CARDS.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
@@ -288,6 +292,8 @@ export default function App() {
           <GearPage key="crowd-barriers" product={BARRIERS} />
         ) : route === "selfie-frames" ? (
           <GearPage key="selfie-frames" product={SELFIE_FRAMES} />
+        ) : route === "packs" ? (
+          <GearPage key="packs" product={PACKS} />
         ) : route === "car-magnets" ? (
           <GearPage key="car-magnets" product={CAR_MAGNETS} />
         ) : route === "business-cards" ? (

@@ -10,7 +10,7 @@ import { chromium } from "playwright";
 const DIST = new URL("../dist/", import.meta.url).pathname;
 export const ROUTES = [
   "", "media-walls", "table-covers", "pull-up-banners", "corflute-signs", "a-frames", "gazebos", "flags",
-  "market-umbrellas", "banners", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
+  "market-umbrellas", "banners", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "packs", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
   "guides", "guides/pull-up-banner-size", "guides/corflute-vs-rigid-signs", "guides/print-ready-artwork",
   "cafe-a-frame-signs", "corflute-event-signs", "shop-window-wall-signs",
   "refund-policy", "privacy-policy", "terms", "quote-thanks",
