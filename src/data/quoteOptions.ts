@@ -7,6 +7,7 @@ import * as PB from "./pullUpBanners";
 import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
+import { PACKS } from "./packs";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./newProducts";
 
 export const OTHER = "other";
@@ -199,6 +200,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   "selfie-frames": gear(SELFIE_FRAMES, "Size"),
   "car-magnets": gear(CAR_MAGNETS, "Size"),
   "business-cards": gear(BUSINESS_CARDS, "Card and quantity"),
+  packs: gear(PACKS, "Pack"),
 };
 
 export const money = (n: number) =>

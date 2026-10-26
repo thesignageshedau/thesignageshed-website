@@ -52,6 +52,7 @@ const products: { href: string; label: string }[] = [
   { href: "/selfie-frames/", label: "Selfie frames" },
   { href: "/car-magnets/", label: "Car magnets" },
   { href: "/business-cards/", label: "Business cards" },
+  { href: "/packs/", label: "Signage packs: clubs, schools, sites, events" },
 ];
 const signShops = { href: "/for-sign-shops/", label: "For sign shops: pricing spreadsheets" };
 const howItWorks = [
