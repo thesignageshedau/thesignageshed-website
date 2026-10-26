@@ -49,6 +49,7 @@ export default function MediaWallsTeaser() {
               mockup={MOCKUPS.v4MediaWall}
               square
               eager
+              priority={false}
               sizes="(min-width: 768px) 384px, 320px"
               className="mx-auto w-full max-w-xs md:max-w-sm rounded-xl ring-2 ring-rust/70"
             />
