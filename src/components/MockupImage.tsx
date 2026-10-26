@@ -10,12 +10,15 @@ export default function MockupImage({
   sizes,
   className = "",
   eager = false,
+  priority = eager,
 }: {
   mockup: Mockup;
   square?: boolean;
   sizes: string;
   className?: string;
   eager?: boolean;
+  /** fetchpriority=high; defaults to eager. */
+  priority?: boolean;
 }) {
   const s = mockup.slug;
   // Some photos have no usable square crop: show the landscape image (4:3) in square slots.
@@ -23,7 +26,7 @@ export default function MockupImage({
     square = false;
     className = className.replace("aspect-square", "aspect-[4/3]");
   }
-  const widths = square ? [320, 480, 640, 800, 1200] : [320, 480, 640, 800, 1200, 1600];
+  const widths = square ? [320, 480, 640, 800, 1200] : [320, 400, 480, 640, 800, 1200, 1600];
   const small = square ? 600 : 800;
   const base = square ? `${s}-sq` : s;
   return (
@@ -38,7 +41,7 @@ export default function MockupImage({
         width={small}
         height={square ? small : (small * 3) / 4}
         loading={eager ? "eager" : "lazy"}
-        fetchPriority={eager ? "high" : "auto"}
+        fetchPriority={priority ? "high" : "auto"}
         decoding="async"
         alt={mockup.alt}
         className={className}
