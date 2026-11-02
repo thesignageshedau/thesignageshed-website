@@ -14,6 +14,14 @@ import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
 
+// Natural next items for some event gear pages, shown under the hero buttons.
+const PAIRS: Record<string, { lead: string; links: { href: string; text: string }[] }> = {
+  gazebos: { lead: "Setting up a stall? Add", links: [{ href: "/market-umbrellas/", text: "printed market umbrellas" }, { href: "/rectangle-flags/", text: "rectangle flags" }] },
+  flags: { lead: "Want a classic flag shape? See our", links: [{ href: "/rectangle-flags/", text: "rectangle flags" }] },
+  "rectangle-flags": { lead: "Shade for your stall:", links: [{ href: "/market-umbrellas/", text: "printed market umbrellas" }] },
+  "market-umbrellas": { lead: "Bigger setup? See our", links: [{ href: "/gazebos/", text: "printed gazebos" }] },
+};
+
 // One page layout for the event gear products (gazebos, flags, market umbrellas).
 export default function GearPage({ product: p }: { product: GearProduct }) {
   const mailSubject = encodeURIComponent(`Artwork template: ${p.teaserTitle}`);
@@ -51,7 +59,22 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
             <p className="mt-4 text-sm text-cream/85">
               No artwork? Send your logo and wording and we'll set it up.{" "}
               <a href="/artwork-help/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Artwork help</a>
+            {" "}
+              Have a file ready? <a href="/check-artwork/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Check your artwork free</a> or read our{" "}
+              <a href="/guides/print-ready-artwork/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">print-ready artwork guide</a>.
             </p>
+            {PAIRS[p.slug] && (
+              <p className="mt-3 text-sm text-cream/85">
+                {PAIRS[p.slug]!.lead}{" "}
+                {PAIRS[p.slug]!.links.map((l, n) => (
+                  <span key={l.href}>
+                    {n > 0 && " and "}
+                    <a href={l.href} className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">{l.text}</a>
+                  </span>
+                ))}
+                .
+              </p>
+            )}
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {money(fromPrice(p))}
             </p>

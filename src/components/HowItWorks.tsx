@@ -39,6 +39,11 @@ export default function HowItWorks() {
           className="mx-auto block h-auto w-full max-w-[1600px]"
         />
       </picture>
+      <p className="mx-auto max-w-site px-4 pb-8 pt-2 text-center sm:px-6">
+        Ready to start? <a href="/quote/" className="font-semibold underline underline-offset-4 hover:text-rust">Get a quote</a>, see{" "}
+        <a href="/delivery/" className="font-semibold underline underline-offset-4 hover:text-rust">how delivery works</a> or browse our{" "}
+        <a href="/guides/" className="font-semibold underline underline-offset-4 hover:text-rust">signage guides</a>.
+      </p>
     </section>
   );
 }
