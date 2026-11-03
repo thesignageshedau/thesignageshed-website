@@ -11,6 +11,7 @@ import {
 } from "../data/eventGear";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
+import MeshBannerInfo from "./MeshBannerInfo";
 import MockupGallery from "./MockupGallery";
 import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
 
@@ -185,6 +186,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
       </section>
 
       <TrustStrip tone="dark" />
+      {p.slug === "banners" && <MeshBannerInfo />}
 
       <MockupGallery id={`${p.slug}-mockups`} heading={p.galleryHeading} items={p.gallery} exclude={p.hero.slug} />
       {p.sizeFinish && (
