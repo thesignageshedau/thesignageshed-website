@@ -13,7 +13,7 @@ export { MAX_QUOTE_ITEMS as MAX_ITEMS } from "./QuoteFormParts";
 const UNITS = ["mm", "cm", "m"] as const;
 type Unit = (typeof UNITS)[number];
 const UNIT_MM: Record<Unit, number> = { mm: 1, cm: 10, m: 1000 };
-const BANNER_MATERIALS = ["PVC vinyl", "Mesh vinyl", "Fabric mesh"];
+const BANNER_MATERIALS = ["PVC vinyl", "Mesh vinyl", "Fabric"];
 const THICKNESS_CHOICES: CF.Thickness[] = ["5mm", "3mm"];
 
 /** Sizes where we ask for a custom width and height: "Custom size" on banners and corflute, and custom table runners. */

@@ -2,7 +2,7 @@ import { BANNERS, money } from "../data/eventGear";
 import { quoteHref } from "../data/quoteProducts";
 
 // /banners/ only: plain-English guide to mesh banners, with prices read from the BANNERS price table.
-const mesh = BANNERS.items.filter((i) => i.group === "mesh" || i.group === "fabric-mesh");
+const mesh = BANNERS.items.filter((i) => i.group === "mesh");
 // First quantity band where the item reaches its lowest price each.
 const low = (p: number[]) => p.indexOf(Math.min(...p));
 const from = (n: number) => `${BANNERS.bands[n]!.min}+`;
@@ -24,9 +24,9 @@ export default function MeshBannerInfo() {
               few metres away the print reads as a solid image.
             </p>
             <p>
-              We print <strong>mesh vinyl</strong> with welded edges and eyelets, and lighter <strong>fabric mesh</strong>{" "}
-              with hemmed edges and stainless steel eyelets every 1m. Fabric mesh folds without creasing, so it's
-              easy to store and reuse.
+              We print mesh vinyl with welded edges and eyelets. Want something lighter that folds away for reuse? Our{" "}
+              <strong>fabric banners</strong> are printed polyester fabric with hemmed edges and stainless steel eyelets,
+              priced in the table above.
             </p>
           </div>
           <div>
@@ -34,7 +34,7 @@ export default function MeshBannerInfo() {
             <ul className="mt-3 divide-y divide-charcoal/10 rounded-xl border-2 border-charcoal/15 bg-white">
               {mesh.map((i) => (
                 <li key={i.id} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 py-3">
-                  <span className="font-semibold">{i.group === "mesh" ? "Mesh vinyl" : "Fabric mesh"} {i.short}</span>
+                  <span className="font-semibold">Mesh vinyl {i.short}</span>
                   <span className="text-sm">
                     {money(i.price[0]!)} for 1, down to {money(i.price[low(i.price)]!)} each for {from(low(i.price))}
                   </span>

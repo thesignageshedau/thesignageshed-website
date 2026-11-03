@@ -20,7 +20,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "gazebos": "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional back walls. Prices online, delivered Australia-wide.",
   "flags": "Custom printed feather and teardrop flags in three heights with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
-  "banners": "Printed mesh banners for fences and building sites, plus PVC vinyl and fabric banner mesh. We hem them and add eyelets, ready to hang. Prices online, delivered Australia-wide.",
+  "banners": "Printed mesh banners for fences and building sites, plus PVC vinyl and fabric banners. We hem them and add eyelets, ready to hang. Prices online, delivered Australia-wide.",
   "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free pricing sheet. Excel and Google Sheets, instant download.",
   "check-artwork": "Check your print file before ordering: pick a product, size and PDF, JPG or PNG to see size, bleed, resolution and colour checks. The file stays on your device.",
   "faq": "Common questions about ordering from us: quotes, the $180 minimum order, dispatch times, freight, payment, artwork help, file types and samples.",
