@@ -50,6 +50,8 @@ export type GearProduct = {
   hero: Mockup;
   gallery: Mockup[];
   galleryHeading?: string;
+  /** Show the hero image in the gallery too (e.g. when the gallery lists every size). */
+  galleryIncludesHero?: boolean;
   /** Smaller "Size and finish" photos (scale and close-ups). */
   sizeFinish?: Mockup[];
   notesHint: string;

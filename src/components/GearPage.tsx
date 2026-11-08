@@ -188,7 +188,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
       <TrustStrip tone="dark" />
       {p.slug === "banners" && <MeshBannerInfo />}
 
-      <MockupGallery id={`${p.slug}-mockups`} heading={p.galleryHeading} items={p.gallery} exclude={p.hero.slug} />
+      <MockupGallery id={`${p.slug}-mockups`} heading={p.galleryHeading} items={p.gallery} exclude={p.galleryIncludesHero ? undefined : p.hero.slug} />
       {p.sizeFinish && (
         <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={p.sizeFinish} />
       )}

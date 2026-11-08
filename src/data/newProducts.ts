@@ -257,7 +257,7 @@ items: [
   ],
   hero: MOCKUPS.v4CarMagnet600x400,
   gallery: [MOCKUPS.v4CarMagnet290, MOCKUPS.v4CarMagnet440, MOCKUPS.v4CarMagnet600x300, MOCKUPS.v4CarMagnet600x400],
-  galleryHeading: "Four sizes",
+  galleryHeading: "Four sizes", galleryIncludesHero: true,
   notesHint: "Your vehicle, the size of the flat door panel, wording",
 };
 
