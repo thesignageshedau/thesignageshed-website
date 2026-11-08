@@ -6,6 +6,7 @@ import { quoteHref } from "../data/quoteProducts";
 import { useState, type ReactNode } from "react";
 import {
   DOWNLOADS,
+  FROM_PRICE,
   LED_PACK,
   PRICE_NOTES,
   QUOTE_EMAIL,
@@ -160,7 +161,7 @@ export default function MediaWallsPage() {
               <a href="/artwork-help/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Artwork help</a>
             </p>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {aud(SIZES[0]!.kit.single)}
+              From {aud(FROM_PRICE)}
             </p>
           </div>
           <MockupImage
@@ -281,7 +282,13 @@ export default function MediaWallsPage() {
               </tbody>
             </table>
           </div>
-          <TierTable title="Quantity prices" rows={SIZES.flatMap((s) => (s.kitSingleTiers ? [{ label: `${s.label} complete kit, single sided`, tiers: s.kitSingleTiers }] : []))} />
+          <TierTable
+            title="Quantity prices"
+            rows={SIZES.flatMap((s) => [
+              ...(s.kitSingleTiers ? [{ label: `${s.label} complete kit, single sided`, tiers: s.kitSingleTiers }] : []),
+              ...(s.kitDoubleTiers ? [{ label: `${s.label} complete kit, double sided`, tiers: s.kitDoubleTiers }] : []),
+            ])}
+          />
           <div className="mt-4 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
             <p>
               <strong>Add-on:</strong> clamp-on LED lights, pack of 2,{" "}
