@@ -66,5 +66,5 @@ export const MOCKUPS = {
   v4CardsLuxuryVelvet: { slug: "v4-cards-luxury-velvet", title: "Luxury velvet", alt: "Mockup of thick charcoal luxury velvet business cards with cream Your Brand lettering on sage linen", noSquare: true },
   v4CardsLuxurySpot: { slug: "v4-cards-luxury-spot", title: "Luxury velvet with spot gloss", alt: "Mockup of sage luxury velvet business cards with a spot gloss leaf and Your Brand lettering on cream linen", noSquare: true },
   v4SavVinylSheet: { slug: "v4-sav-vinyl-sheet", title: "Printed vinyl sheet", alt: "Mockup of a printed self-adhesive vinyl sticker sheet reading Your Brand on a timber workbench, with one corner peeled back from the white backing liner", noSquare: true },
-  v4SavShopfront: { slug: "v4-sav-shopfront", title: "On a glass window", alt: "Mockup of a printed self-adhesive vinyl decal reading Your Brand, applied flat to a clean glass studio window", noSquare: true },
+  v4SavShopfront: { slug: "v4-sav-shopfront", title: "On a glass window", alt: "Mockup of a printed self-adhesive vinyl decal reading Your Brand, applied flat to a clean glass shop window", noSquare: true },
 } satisfies Record<string, Mockup>;
