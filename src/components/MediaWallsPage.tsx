@@ -423,6 +423,9 @@ export default function MediaWallsPage() {
             ))}
           </div>
           <p className="mt-6">
+            <a className="font-semibold text-rust-dark underline underline-offset-2" href="/media-walls-australia/">Media walls and step and repeat backdrops</a>
+          </p>
+          <p className="mt-3">
             Something else? Email{" "}
             <a
               className="font-semibold text-rust-dark underline underline-offset-2"
