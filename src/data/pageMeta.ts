@@ -8,6 +8,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   packs: "Ready-made signage packs: sponsor banner packs for sports clubs, site safety corflute and fence mesh packs for building sites, school packs, event and expo packs, and teardrop flag 3-packs. Delivered Australia-wide.",
   "car-magnets": "Printed car magnets on 0.8mm magnet with white vinyl and gloss laminate, rounded corners, from 290 × 220mm to 600 × 400mm. Delivered Australia-wide.",
   "business-cards": "Premium 350gsm and luxury 420gsm business cards, 90 × 55mm, double sided full colour, with matte, gloss or velvet soft-touch laminate. Delivered Australia-wide.",
+  "printed-vinyl": "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. Delivered Australia-wide.",
   "stretch-fabric-displays": "Stretch fabric display stands, 850 or 1200mm wide and 2000mm tall, single or double sided, with a carry case. Prices online, delivered Australia-wide.",
   "table-top-banners": "Printed table-top banner kits for 4ft and 6ft tables, 600mm or 800mm tall, single sided on a light frame. Prices online, delivered Australia-wide.",
   "acm-signs": "Printed ACM (aluminium composite) signs from 900 × 600mm to 2400 × 1200mm, white vinyl with gloss laminate. Prices online, delivered Australia-wide.",

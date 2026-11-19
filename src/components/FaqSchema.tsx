@@ -11,7 +11,9 @@ export default function FaqSchema({ page }: { page: string }) {
       const blocks = [...document.querySelectorAll<HTMLElement>("[data-faq] details")];
       const entities = blocks
         .map((d) => {
-          const q = d.querySelector("summary")?.textContent?.trim() ?? "";
+          const summary = d.querySelector("summary")?.cloneNode(true) as HTMLElement | undefined;
+          summary?.querySelectorAll("[aria-hidden]").forEach((el) => el.remove());
+          const q = summary?.textContent?.replace(/\s+/g, " ").trim() ?? "";
           const clone = d.cloneNode(true) as HTMLElement;
           clone.querySelector("summary")?.remove();
           const a = clone.textContent?.replace(/\s+/g, " ").trim() ?? "";

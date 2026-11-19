@@ -8,7 +8,7 @@ import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
 import { PACKS } from "./packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "./newProducts";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -179,6 +179,34 @@ function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec 
   };
 }
 
+/** Fixed sizes and materials. Qty 1 uses the published single-sheet price. Qty above 1 is quoted, so a run is never the single price multiplied out. */
+function printedVinyl(p: GearProduct): QuoteSpec {
+  const sizes: SizeChoice[] = [];
+  for (const item of p.items) {
+    const prefix = `${item.group}-`;
+    const id = item.id.startsWith(prefix) ? item.id.slice(prefix.length) : item.id;
+    const from = item.price[0] ?? null;
+    const existing = sizes.find((s) => s.id === id);
+    if (!existing) sizes.push({ id, label: item.short, from });
+    else if (from != null && (existing.from == null || from < existing.from)) existing.from = from;
+  }
+  return {
+    sizeLabel: "Size",
+    optionLabel: "Material",
+    priceNote: "for 1 sheet",
+    sizes,
+    options: (size) =>
+      p.groups.map((g) => {
+        const item = p.items.find((i) => i.id === `${g.id}-${size}`);
+        return { id: g.id, label: g.title, price: item?.price[0] ?? null };
+      }),
+    unitPrice: (size, option, qty) => {
+      if (qty !== 1) return null;
+      return p.items.find((i) => i.id === `${option}-${size}`)?.price[0] ?? null;
+    },
+  };
+}
+
 export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   "media-walls": mediaWalls,
   "table-covers": tableCovers,
@@ -200,6 +228,7 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   "selfie-frames": gear(SELFIE_FRAMES, "Size"),
   "car-magnets": gear(CAR_MAGNETS, "Size"),
   "business-cards": gear(BUSINESS_CARDS, "Card and quantity"),
+  "printed-vinyl": printedVinyl(PRINTED_VINYL),
   packs: gear(PACKS, "Pack"),
 };
 

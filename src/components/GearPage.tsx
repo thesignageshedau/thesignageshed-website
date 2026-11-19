@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProductSeo, { SEO_SLUGS } from "./ProductSeo";
 import QuoteCta from "./QuoteCta";
 import TrustStrip from "./TrustStrip";
@@ -7,6 +8,7 @@ import {
   PRICE_NOTES,
   fromPrice,
   money,
+  type GearItem,
   type GearProduct,
 } from "../data/eventGear";
 import { homeSection } from "../lib/routes";
@@ -24,8 +26,15 @@ const PAIRS: Record<string, { lead: string; links: { href: string; text: string 
 };
 
 // One page layout for the event gear products (gazebos, flags, market umbrellas).
+const quoteSizeId = (i: GearItem) => {
+  const prefix = `${i.group}-`;
+  return i.id.startsWith(prefix) ? i.id.slice(prefix.length) : i.id;
+};
+
 export default function GearPage({ product: p }: { product: GearProduct }) {
   const mailSubject = encodeURIComponent(`Artwork template: ${p.teaserTitle}`);
+  const [material, setMaterial] = useState(p.groups[0]?.id ?? "");
+  const activeGroup = p.groups.find((g) => g.id === material) ?? p.groups[0];
 
   return (
     <>
@@ -104,6 +113,31 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               ? "Price each, in Australian dollars, by how many of the same item you order."
               : "Price each, in Australian dollars."}
           </p>
+          {p.singlePriceNote && <p className="mt-3 max-w-3xl">{p.singlePriceNote}</p>}
+          {p.materialTabs && activeGroup && (
+            <>
+              <div role="tablist" aria-label="Material" className="mt-6 flex flex-wrap gap-2">
+                {p.groups.map((g) => {
+                  const on = g.id === activeGroup.id;
+                  return (
+                    <button
+                      key={g.id}
+                      type="button"
+                      role="tab"
+                      id={`${p.slug}-tab-${g.id}`}
+                      aria-selected={on}
+                      aria-controls={`${p.slug}-prices-${g.id}`}
+                      onClick={() => setMaterial(g.id)}
+                      className={`min-h-11 rounded-full border-2 px-4 text-sm font-bold ${on ? "border-charcoal bg-charcoal text-cream" : "border-charcoal/20 bg-white hover:border-charcoal"}`}
+                    >
+                      {g.title}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="mt-4 max-w-3xl leading-relaxed">{activeGroup.text}</p>
+            </>
+          )}
           <p className="mt-4 text-sm font-semibold text-charcoal/70 sm:hidden" aria-hidden="true">Swipe sideways to see all prices →</p>
           <div className="relative mt-8 overflow-x-auto rounded-xl border-2 border-charcoal/15 bg-white">
             <table className="w-full text-left">
@@ -126,8 +160,18 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                   </th>
                 </tr>
               </thead>
-              {p.groups.map((g) => (
-                <tbody key={g.id} className="divide-y divide-charcoal/10">
+              {p.groups.map((g) => {
+                const on = !p.materialTabs || g.id === activeGroup?.id;
+                return (
+                <tbody
+                  key={g.id}
+                  id={`${p.slug}-prices-${g.id}`}
+                  role={p.materialTabs ? "tabpanel" : undefined}
+                  aria-labelledby={p.materialTabs ? `${p.slug}-tab-${g.id}` : undefined}
+                  hidden={p.materialTabs ? !on : undefined}
+                  className={`${on ? "" : "hidden "}divide-y divide-charcoal/10`}
+                >
+                  {!p.materialTabs && (
                   <tr className="bg-cream">
                     <th
                       scope="colgroup"
@@ -137,6 +181,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                       {g.title}
                     </th>
                   </tr>
+                  )}
                   {p.items
                     .filter((i) => i.group === g.id)
                     .map((i) => (
@@ -158,13 +203,14 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                         <td className={td}>
                           <QuoteButton
                             label={i.label}
-                            href={quoteHref(p.slug, i.id)}
+                            href={quoteHref(p.slug, p.materialTabs ? quoteSizeId(i) : i.id, p.materialTabs ? { option: i.group } : {})}
                           />
                         </td>
                       </tr>
                     ))}
                 </tbody>
-              ))}
+                );
+              })}
             </table>
           </div>
           <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">

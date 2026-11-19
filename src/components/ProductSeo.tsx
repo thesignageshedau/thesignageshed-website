@@ -1,9 +1,9 @@
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, type GearProduct } from "../data/eventGear";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "../data/newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
 
-export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards"] as const;
+export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl"] as const;
 type Slug = (typeof SEO_SLUGS)[number];
 const gearPrices = (g: GearProduct) => g.items.flatMap((i) => [i.price[0]!, ...(i.priceWithAddon ? [i.priceWithAddon[0]!] : [])]);
 const SITE = "https://thesignageshed.au";
@@ -23,6 +23,7 @@ const prices: Record<Slug, number[]> = {
   "selfie-frames": gearPrices(SELFIE_FRAMES),
   "car-magnets": gearPrices(CAR_MAGNETS),
   "business-cards": gearPrices(BUSINESS_CARDS),
+  "printed-vinyl": gearPrices(PRINTED_VINYL),
 };
 
 const INFO: Record<Slug, { name: string; description: string }> = {
@@ -49,6 +50,7 @@ const INFO: Record<Slug, { name: string; description: string }> = {
   "selfie-frames": { name: "Custom printed selfie frames", description: SELFIE_FRAMES.description },
   "car-magnets": { name: "Custom printed car magnets", description: CAR_MAGNETS.description },
   "business-cards": { name: "Premium and luxury business cards", description: BUSINESS_CARDS.description },
+  "printed-vinyl": { name: "Printed self-adhesive vinyl stickers and decals", description: PRINTED_VINYL.description },
 };
 
 const RELATED: Record<Slug, { href: string; text: string }[]> = {
@@ -126,6 +128,11 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/car-magnets/", text: "Car magnets" },
     { href: "/pull-up-banners/", text: "Pull up banners" },
     { href: "/a-frames/", text: "A-frame signs" },
+  ],
+  "printed-vinyl": [
+    { href: "/banners/", text: "Vinyl and mesh banners" },
+    { href: "/acm-signs/", text: "ACM signs" },
+    { href: "/car-magnets/", text: "Car magnets" },
   ],
 };
 
