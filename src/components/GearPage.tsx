@@ -31,6 +31,43 @@ const quoteSizeId = (i: GearItem) => {
   return i.id.startsWith(prefix) ? i.id.slice(prefix.length) : i.id;
 };
 
+/** Sizes and materials with one from-price. No per-size prices. */
+function QuoteOnlyPanel({ p }: { p: GearProduct }) {
+  const sizes = p.items.filter((i) => i.group === p.groups[0]?.id);
+  return (
+    <section id="sizes" aria-labelledby={`${p.slug}-sizes`} className="scroll-mt-20 py-14 sm:py-16">
+      <div className="mx-auto max-w-site px-4 sm:px-6">
+        <div className="rule mb-4" />
+        <h2 id={`${p.slug}-sizes`} className="text-3xl sm:text-4xl">
+          Sizes and materials
+        </h2>
+        <p className="mt-2 max-w-3xl text-lg">Fixed sizes, from A4 to 1200 × 2400mm.</p>
+        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Available sizes">
+          {sizes.map((i) => (
+            <li key={i.id} className="rounded-full border-2 border-charcoal/15 bg-white px-3 py-1.5 text-sm font-semibold">
+              {i.short}
+            </li>
+          ))}
+        </ul>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {p.groups.map((g) => (
+            <li key={g.id} className="rounded-xl border-2 border-charcoal/15 bg-white p-5">
+              <h3 className="font-slab text-lg font-bold">{g.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed">{g.text}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-8 max-w-3xl text-lg leading-relaxed">
+          <span className="font-bold">From {money(fromPrice(p))}.</span> Every vinyl job is priced on quote, so send us your sizes and quantities and we'll email you a quote with freight included.
+        </p>
+        <a href={quoteHref(p.slug)} className="btn-rust mt-6 inline-block">
+          Get a quote
+        </a>
+      </div>
+    </section>
+  );
+}
+
 export default function GearPage({ product: p }: { product: GearProduct }) {
   const mailSubject = encodeURIComponent(`Artwork template: ${p.teaserTitle}`);
   const [material, setMaterial] = useState(p.groups[0]?.id ?? "");
@@ -58,9 +95,9 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               <button
                 type="button"
                 className="btn-rust"
-                onClick={() => scrollToId("prices")}
+                onClick={() => scrollToId(p.quoteOnly ? "sizes" : "prices")}
               >
-                See prices
+                {p.quoteOnly ? "See sizes" : "See prices"}
               </button>
               <a href={quoteHref(p.slug)} className="btn-ghost-light">
                 Get a quote
@@ -98,6 +135,9 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           />
         </div>
       </section>
+      {p.quoteOnly ? (
+        <QuoteOnlyPanel p={p} />
+      ) : (
       <section
         id="prices"
         aria-labelledby={`${p.slug}-prices`}
@@ -230,6 +270,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           </div>
         </div>
       </section>
+      )}
 
       <TrustStrip tone="dark" />
       {p.slug === "banners" && <MeshBannerInfo />}
@@ -239,6 +280,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
         <MockupGallery id="size-finish" heading="Size and finish" compact note="Example images. Your print uses your artwork." items={p.sizeFinish} />
       )}
 
+      {!p.quoteOnly && (
       <section
         aria-labelledby={`${p.slug}-types`}
         className="bg-sage-light py-14 sm:py-16"
@@ -261,6 +303,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
           </div>
         </div>
       </section>
+      )}
 
       <section
         id="artwork"

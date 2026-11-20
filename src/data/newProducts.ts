@@ -313,8 +313,9 @@ export const BUSINESS_CARDS: GearProduct = {
   notesHint: "Names on the cards, how many people, finish",
 };
 
-// Printed self-adhesive vinyl, checked 20 Nov 2026. Single-piece prices only.
-// Multiples and specialty films are quoted, because a run is priced as a batch.
+// Printed self-adhesive vinyl. From $215 on the hero and product cards.
+// Every size and quantity is priced on quote, so the page does not list a price per size.
+const SAV_FROM = 215;
 const SAV_SIZES = [
   ["a4", "A4 (210 × 297mm)"],
   ["a3", "A3 (297 × 420mm)"],
@@ -331,10 +332,8 @@ const SAV_SIZES = [
 const SAV_MATERIALS: { id: string; title: string; text: string; includes: string }[] = [
   { id: "economy", title: "Economy white", text: "Gloss white vinyl with no laminate, for short-term indoor or outdoor use.", includes: "Gloss white vinyl, no laminate" },
   { id: "premium", title: "Premium white", text: "Gloss or matte white vinyl with no laminate, for a longer outdoor life.", includes: "Gloss or matte white vinyl, no laminate" },
-  { id: "laminate", title: "Premium + laminate", text: "Gloss or matte white vinyl with a matching gloss or matte protective laminate.", includes: "Gloss or matte white vinyl, with matching laminate" },
+  { id: "laminate", title: "Premium with laminate", text: "Premium white vinyl with a gloss or matte protective laminate.", includes: "Premium white vinyl, with gloss or matte laminate" },
 ];
-
-const savPrice = (material: string, size: string) => (material === "laminate" && size === "1200x2400" ? 225 : 215);
 
 export const PRINTED_VINYL: GearProduct = {
   slug: "printed-vinyl",
@@ -342,10 +341,10 @@ export const PRINTED_VINYL: GearProduct = {
   subject: "Printed self-adhesive vinyl quote",
   noun: "vinyl",
   pageTitle: "Printed Self-Adhesive Vinyl (SAV) | The Signage Shed",
-  description: "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. Delivered Australia-wide.",
+  description: "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. From $215, priced on quote. Delivered Australia-wide.",
   eyebrow: "Printed vinyl stickers and decals, delivered Australia-wide",
   heading: "Printed self-adhesive vinyl (SAV)",
-  intro: "Full colour stickers and decals on white self-adhesive vinyl. We print the sheet and deliver it ready for you to peel and apply. Choose economy white for short-term use, premium white for longer outdoor life, or premium with a protective laminate.",
+  intro: "Full colour stickers and decals on white self-adhesive vinyl. We print the sheet and deliver it ready for you to peel and apply. Choose economy white for short-term use, premium white for longer outdoor life, or premium with a gloss or matte laminate.",
   teaserTitle: "Printed vinyl stickers",
   teaserText: "Self-adhesive vinyl (SAV) in fixed sizes, from A4 to 1200 × 2400mm.",
   groups: SAV_MATERIALS.map((m) => ({ id: m.id, title: m.title, text: m.text })),
@@ -357,21 +356,20 @@ export const PRINTED_VINYL: GearProduct = {
       label: `Printed self-adhesive vinyl, ${m.title}, ${short}`,
       short,
       includes: m.includes,
-      price: [savPrice(m.id, id)],
+      price: [SAV_FROM],
     })),
   ),
-  materialTabs: true,
-  singlePriceNote: "Single-piece prices are shown; for multiples, sticker runs, or specialty films (clear vinyl, one-way window film, wall vinyl, cling, or oversize sheets), request a quote and we'll price the batch together.",
+  quoteOnly: true,
   notes: [
-    "We print the sheet and deliver it ready for you to apply. We don't visit or install.",
-    "Fixed sizes only.",
+    "We print the sheet and deliver it ready for you to apply.",
+    "Fixed sizes only. Every size and quantity is priced on quote.",
   ],
   artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve.",
   faqs: [
     { q: "Do you apply the vinyl?", a: "No. We print it and deliver it ready for you to apply. We don't visit or install." },
-    { q: "Can I order more than one?", a: "The prices on this page are for a single sheet. For multiples or a sticker run, tell us the quantity and we'll quote the batch together." },
+    { q: "Can I order more than one?", a: "Yes. Send us the sizes and quantities and we'll price the whole job in your quote." },
     { q: "What about clear vinyl, window film or another size?", a: "Clear vinyl, one-way window film, wall vinyl, cling and oversize sheets are quoted with the job. This page lists fixed sizes only. Add the details in the notes on the quote form." },
-    { q: "Which material should I choose?", a: "Economy white is gloss vinyl with no laminate, for short-term indoor or outdoor use. Premium white is gloss or matte vinyl with no laminate, for a longer outdoor life. Premium with laminate adds a matching gloss or matte protective film. The 1200 × 2400mm laminated sheet is $225. Every other listed size is $215 for one sheet." },
+    { q: "Which material should I choose?", a: "Economy white is gloss vinyl with no laminate, for short-term indoor or outdoor use. Premium white is gloss or matte vinyl with no laminate, for a longer outdoor life. Premium with laminate adds a gloss or matte protective film. Every vinyl job is priced on quote, from $215." },
     { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
     { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
     { q: "How much is delivery?", a: "We'll email you a quote with freight included. Freight depends on the size and weight, and we quote it to your postcode." },

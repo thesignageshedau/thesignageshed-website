@@ -1,6 +1,6 @@
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
-import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, type GearProduct } from "../data/eventGear";
+import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, fromPrice, type GearProduct } from "../data/eventGear";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
 
 export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl"] as const;
@@ -23,7 +23,7 @@ const prices: Record<Slug, number[]> = {
   "selfie-frames": gearPrices(SELFIE_FRAMES),
   "car-magnets": gearPrices(CAR_MAGNETS),
   "business-cards": gearPrices(BUSINESS_CARDS),
-  "printed-vinyl": gearPrices(PRINTED_VINYL),
+  "printed-vinyl": [fromPrice(PRINTED_VINYL)],
 };
 
 const INFO: Record<Slug, { name: string; description: string }> = {
@@ -154,16 +154,26 @@ export default function ProductSeo({ slug }: { slug: Slug }) {
     image: `${SITE}/og/${slug}.jpg`,
     url: `${SITE}/${slug}/`,
     brand: { "@type": "Brand", name: "The Signage Shed" },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "AUD",
-      lowPrice: Math.min(...p),
-      highPrice: Math.max(...p),
-      offerCount: p.length,
-      availability: "https://schema.org/InStock",
-      url: `${SITE}/${slug}/`,
-      seller: { "@type": "Organization", name: "The Signage Shed" },
-    },
+    offers:
+      slug === "printed-vinyl"
+        ? {
+            "@type": "AggregateOffer",
+            priceCurrency: "AUD",
+            lowPrice: Math.min(...p),
+            availability: "https://schema.org/InStock",
+            url: `${SITE}/${slug}/`,
+            seller: { "@type": "Organization", name: "The Signage Shed" },
+          }
+        : {
+            "@type": "AggregateOffer",
+            priceCurrency: "AUD",
+            lowPrice: Math.min(...p),
+            highPrice: Math.max(...p),
+            offerCount: p.length,
+            availability: "https://schema.org/InStock",
+            url: `${SITE}/${slug}/`,
+            seller: { "@type": "Organization", name: "The Signage Shed" },
+          },
   };
   return (
     <section className="bg-cream" aria-labelledby={`${slug}-related`}>

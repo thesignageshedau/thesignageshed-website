@@ -179,31 +179,21 @@ function gear(p: GearProduct, sizeLabel: string, allowOther = false): QuoteSpec 
   };
 }
 
-/** Fixed sizes and materials. Qty 1 uses the published single-sheet price. Qty above 1 is quoted, so a run is never the single price multiplied out. */
+/** Fixed sizes and materials. No per-item price at any quantity: the form asks us to price the job. */
 function printedVinyl(p: GearProduct): QuoteSpec {
   const sizes: SizeChoice[] = [];
   for (const item of p.items) {
     const prefix = `${item.group}-`;
     const id = item.id.startsWith(prefix) ? item.id.slice(prefix.length) : item.id;
-    const from = item.price[0] ?? null;
-    const existing = sizes.find((s) => s.id === id);
-    if (!existing) sizes.push({ id, label: item.short, from });
-    else if (from != null && (existing.from == null || from < existing.from)) existing.from = from;
+    if (!sizes.some((s) => s.id === id)) sizes.push({ id, label: item.short, from: null });
   }
   return {
     sizeLabel: "Size",
     optionLabel: "Material",
-    priceNote: "for 1 sheet",
+    priceNote: "on quote",
     sizes,
-    options: (size) =>
-      p.groups.map((g) => {
-        const item = p.items.find((i) => i.id === `${g.id}-${size}`);
-        return { id: g.id, label: g.title, price: item?.price[0] ?? null };
-      }),
-    unitPrice: (size, option, qty) => {
-      if (qty !== 1) return null;
-      return p.items.find((i) => i.id === `${option}-${size}`)?.price[0] ?? null;
-    },
+    options: () => p.groups.map((g) => ({ id: g.id, label: g.title, price: null })),
+    unitPrice: () => null,
   };
 }
 
