@@ -313,4 +313,75 @@ export const BUSINESS_CARDS: GearProduct = {
   notesHint: "Names on the cards, how many people, finish",
 };
 
-export const NEW_PRODUCTS = [LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS] as const;
+// Printed self-adhesive vinyl, checked 20 Nov 2026. Single-piece prices only.
+// Multiples and specialty films are quoted, because a run is priced as a batch.
+const SAV_SIZES = [
+  ["a4", "A4 (210 × 297mm)"],
+  ["a3", "A3 (297 × 420mm)"],
+  ["a2", "A2 (420 × 594mm)"],
+  ["a1", "A1 (594 × 841mm)"],
+  ["a0", "A0 (841 × 1189mm)"],
+  ["600x900", "600 × 900mm"],
+  ["900x1200", "900 × 1200mm"],
+  ["1000x1000", "1000 × 1000mm"],
+  ["1200x1200", "1200 × 1200mm"],
+  ["1200x2400", "1200 × 2400mm"],
+] as const;
+
+const SAV_MATERIALS: { id: string; title: string; text: string; includes: string }[] = [
+  { id: "economy", title: "Economy white", text: "Gloss white vinyl with no laminate, for short-term indoor or outdoor use.", includes: "Gloss white vinyl, no laminate" },
+  { id: "premium", title: "Premium white", text: "Gloss or matte white vinyl with no laminate, for a longer outdoor life.", includes: "Gloss or matte white vinyl, no laminate" },
+  { id: "laminate", title: "Premium + laminate", text: "Gloss or matte white vinyl with a matching gloss or matte protective laminate.", includes: "Gloss or matte white vinyl, with matching laminate" },
+];
+
+const savPrice = (material: string, size: string) => (material === "laminate" && size === "1200x2400" ? 225 : 215);
+
+export const PRINTED_VINYL: GearProduct = {
+  slug: "printed-vinyl",
+  eventName: "printed_vinyl",
+  subject: "Printed self-adhesive vinyl quote",
+  noun: "vinyl",
+  pageTitle: "Printed Self-Adhesive Vinyl (SAV) | The Signage Shed",
+  description: "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. Delivered Australia-wide.",
+  eyebrow: "Printed vinyl stickers and decals, delivered Australia-wide",
+  heading: "Printed self-adhesive vinyl (SAV)",
+  intro: "Full colour stickers and decals on white self-adhesive vinyl. We print the sheet and deliver it ready for you to peel and apply. Choose economy white for short-term use, premium white for longer outdoor life, or premium with a protective laminate.",
+  teaserTitle: "Printed vinyl stickers",
+  teaserText: "Self-adhesive vinyl (SAV) in fixed sizes, from A4 to 1200 × 2400mm.",
+  groups: SAV_MATERIALS.map((m) => ({ id: m.id, title: m.title, text: m.text })),
+  bands: [{ label: "1", min: 1 }],
+  items: SAV_MATERIALS.flatMap((m) =>
+    SAV_SIZES.map(([id, short]) => ({
+      id: `${m.id}-${id}`,
+      group: m.id,
+      label: `Printed self-adhesive vinyl, ${m.title}, ${short}`,
+      short,
+      includes: m.includes,
+      price: [savPrice(m.id, id)],
+    })),
+  ),
+  materialTabs: true,
+  singlePriceNote: "Single-piece prices are shown; for multiples, sticker runs, or specialty films (clear vinyl, one-way window film, wall vinyl, cling, or oversize sheets), request a quote and we'll price the batch together.",
+  notes: [
+    "We print the sheet and deliver it ready for you to apply. We don't visit or install.",
+    "Fixed sizes only.",
+  ],
+  artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "Do you apply the vinyl?", a: "No. We print it and deliver it ready for you to apply. We don't visit or install." },
+    { q: "Can I order more than one?", a: "The prices on this page are for a single sheet. For multiples or a sticker run, tell us the quantity and we'll quote the batch together." },
+    { q: "What about clear vinyl, window film or another size?", a: "Clear vinyl, one-way window film, wall vinyl, cling and oversize sheets are quoted with the job. This page lists fixed sizes only. Add the details in the notes on the quote form." },
+    { q: "Which material should I choose?", a: "Economy white is gloss vinyl with no laminate, for short-term indoor or outdoor use. Premium white is gloss or matte vinyl with no laminate, for a longer outdoor life. Premium with laminate adds a matching gloss or matte protective film. The 1200 × 2400mm laminated sheet is $225. Every other listed size is $215 for one sheet." },
+    { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
+    { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
+    { q: "How much is delivery?", a: "We'll email you a quote with freight included. Freight depends on the size and weight, and we quote it to your postcode." },
+    { q: "Is there a minimum order?", a: "Yes. Our minimum order is $180 (excl. freight) for the whole order, not per product." },
+    { q: "How do I pay?", a: "Request a quote and approve it, then pay by invoice once your artwork is approved. There's no checkout on the site." },
+  ],
+  hero: MOCKUPS.v4SavVinylSheet,
+  gallery: [MOCKUPS.v4SavShopfront],
+  galleryHeading: "Applied to glass",
+  notesHint: "Where it will go, gloss or matte, wording or design ideas",
+};
+
+export const NEW_PRODUCTS = [LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL] as const;

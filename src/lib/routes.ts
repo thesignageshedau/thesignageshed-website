@@ -25,6 +25,7 @@ export const GEAR_HREFS = {
   "car-magnets": "/car-magnets/",
   packs: "/packs/",
   "business-cards": "/business-cards/",
+  "printed-vinyl": "/printed-vinyl/",
 } as const;
 export const CHECK_ARTWORK_HREF = "/check-artwork/";
 export const QUOTE_THANKS_HREF = "/quote-thanks/";

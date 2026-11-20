@@ -21,7 +21,7 @@ import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS } from "./data/eventGear";
 import { PACKS } from "./data/packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS } from "./data/newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "./data/newProducts";
 import ProductGrid from "./components/ProductGrid";
 import HowItWorks from "./components/HowItWorks";
 import QuoteBar from "./components/QuoteBar";
@@ -74,6 +74,7 @@ type Route =
   | "car-magnets"
   | "packs"
   | "business-cards"
+  | "printed-vinyl"
   | "banners"
   | "quote-thanks"
   | "quote"
@@ -115,6 +116,7 @@ const slugs = [
   "car-magnets",
   "packs",
   "business-cards",
+  "printed-vinyl",
   "banners",
   "quote-thanks",
   "quote",
@@ -164,6 +166,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   "car-magnets": CAR_MAGNETS.pageTitle,
   packs: PACKS.pageTitle,
   "business-cards": BUSINESS_CARDS.pageTitle,
+  "printed-vinyl": PRINTED_VINYL.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
   "check-artwork": "Free Print File Checker | The Signage Shed",
@@ -303,6 +306,8 @@ export default function App() {
           <GearPage key="car-magnets" product={CAR_MAGNETS} />
         ) : route === "business-cards" ? (
           <GearPage key="business-cards" product={BUSINESS_CARDS} />
+        ) : route === "printed-vinyl" ? (
+          <GearPage key="printed-vinyl" product={PRINTED_VINYL} />
         ) : route && SEO_PAGES.some((p) => p.slug === route) ? (
           <SeoProductPage key={route} slug={route} />
         ) : route === "about" ? (

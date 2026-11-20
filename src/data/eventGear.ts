@@ -55,6 +55,10 @@ export type GearProduct = {
   /** Smaller "Size and finish" photos (scale and close-ups). */
   sizeFinish?: Mockup[];
   notesHint: string;
+  /** Price table shows one material group at a time, and each Quote link passes that group as the quote option. */
+  materialTabs?: boolean;
+  /** One line under the price intro, for products that publish a single-piece price only. */
+  singlePriceNote?: string;
 };
 
 const BANDS_3 = [

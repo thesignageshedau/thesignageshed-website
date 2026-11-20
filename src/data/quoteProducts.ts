@@ -21,6 +21,7 @@ export const QUOTE_PRODUCTS: { slug: string; label: string; optionHint: string }
   { slug: "selfie-frames", label: "Selfie frames", optionHint: "e.g. large, wedding names and date" },
   { slug: "car-magnets", label: "Car magnets", optionHint: "e.g. 600 × 300mm, pair" },
   { slug: "business-cards", label: "Business cards", optionHint: "e.g. luxury velvet, 500 cards" },
+  { slug: "printed-vinyl", label: "Printed self-adhesive vinyl", optionHint: "e.g. A3, premium white" },
   { slug: "packs", label: "Signage packs", optionHint: "e.g. sponsor banner 10-pack" },
   { slug: "other", label: "Something else or a mix", optionHint: "Tell us the size or option you're after" },
 ];
