@@ -53,6 +53,7 @@ const INFO: Record<Slug, { name: string; description: string }> = {
 
 const RELATED: Record<Slug, { href: string; text: string }[]> = {
   "corflute-signs": [
+    { href: "/corflute-signs-australia/", text: "Custom corflute signs" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },
     { href: "/a-frames/", text: "A-frame signs" },
     { href: "/flags/", text: "Feather and teardrop flags" },
@@ -65,6 +66,8 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
   ],
   flags: [
+    { href: "/school-and-sports-club-signs/", text: "School and sports club signs" },
+    { href: "/event-signage-australia/", text: "Event signage" },
     { href: "/corflute-signs/", text: "Corflute signs" },
     { href: "/a-frames/", text: "A-frame signs" },
     { href: "/pull-up-banners/", text: "Pull up banners" },
@@ -102,12 +105,15 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/flags/", text: "Feather and teardrop flags" },
   ],
   "seg-fabric-frames": [
+    { href: "/school-and-sports-club-signs/", text: "School and sports club signs" },
     { href: "/crowd-barriers/", text: "Crowd barrier frames and covers" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },
     { href: "/flags/", text: "Feather and teardrop flags" },
     { href: "/banners/", text: "Vinyl and mesh banners" },
   ],
   "crowd-barriers": [
+    { href: "/school-and-sports-club-signs/", text: "School and sports club signs" },
+    { href: "/event-signage-australia/", text: "Event signage" },
     { href: "/seg-fabric-frames/", text: "SEG fabric frames" },
     { href: "/banners/", text: "Vinyl and mesh banners" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },

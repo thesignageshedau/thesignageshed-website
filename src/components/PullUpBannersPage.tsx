@@ -404,6 +404,9 @@ export default function PullUpBannersPage() {
             ))}
           </div>
           <p className="mt-6">
+            <a className="font-semibold text-rust-dark underline underline-offset-2" href="/pull-up-banners-australia/">Pull up and retractable banners: how to choose and order</a>
+          </p>
+          <p className="mt-3">
             Something else? Email{" "}
             <a
               className="font-semibold text-rust-dark underline underline-offset-2"

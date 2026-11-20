@@ -9,12 +9,19 @@ export default function FaqSchema({ page }: { page: string }) {
     const t = window.setTimeout(() => {
       document.getElementById("faq-ld")?.remove();
       const blocks = [...document.querySelectorAll<HTMLElement>("[data-faq] details")];
+      const plain = (el: HTMLElement) => {
+        const clone = el.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll("[aria-hidden]").forEach((n) => n.remove());
+        return (clone.textContent ?? "").replace(/\s+/g, " ").trim();
+      };
       const entities = blocks
         .map((d) => {
-          const q = d.querySelector("summary")?.textContent?.trim() ?? "";
+          const summary = d.querySelector("summary");
+          const q = summary ? plain(summary) : "";
           const clone = d.cloneNode(true) as HTMLElement;
+          clone.querySelectorAll("[aria-hidden]").forEach((n) => n.remove());
           clone.querySelector("summary")?.remove();
-          const a = clone.textContent?.replace(/\s+/g, " ").trim() ?? "";
+          const a = (clone.textContent ?? "").replace(/\s+/g, " ").trim();
           return q && a ? { "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } } : null;
         })
         .filter(Boolean);

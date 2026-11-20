@@ -1,4 +1,5 @@
-import { HelpCta, HelpHero, HelpSection } from "./HelpParts";
+import { HelpCta, HelpFaq, HelpHero, HelpSection } from "./HelpParts";
+import MockupGallery from "./MockupGallery";
 import MockupImage from "./MockupImage";
 import { SEO_PAGES } from "../data/seoPages";
 import { quoteHref } from "../data/quoteProducts";
@@ -25,7 +26,7 @@ export default function SeoProductPage({ slug }: { slug: string }) {
         <p className="mt-5 text-2xl font-bold text-cream">
           {p.from !== null ? <>From ${p.from} <span className="text-base font-normal text-cream/85">{p.fromNote}</span></> : "Price on quote"}
         </p>
-        <p className="mt-1 text-base text-cream/85">Minimum order $180 (excl. freight). Delivered Australia-wide.</p>
+        <p className="mt-1 text-base text-cream/85">{p.terms ?? "Minimum order $180 (excl. freight). Delivered Australia-wide."}</p>
         <a href={href} className="btn-rust mt-6 inline-block" data-track={`${p.slug}-hero-quote`}>Get a quote</a>
       </HelpHero>
       {p.image && (
@@ -38,6 +39,10 @@ export default function SeoProductPage({ slug }: { slug: string }) {
       {p.sections.map((s) => (
         <HelpSection key={s.id} id={s.id} title={s.title}>{s.body}</HelpSection>
       ))}
+      {p.gallery && p.gallery.length > 0 && (
+        <MockupGallery id={`${p.slug}-gallery`} items={p.gallery} exclude={p.image?.slug} />
+      )}
+      {p.faqs && p.faqs.length > 0 && <HelpFaq faqs={p.faqs} />}
       <section className="bg-cream" aria-labelledby={`${p.slug}-related`}>
         <div className="mx-auto max-w-site px-4 py-8 sm:px-6">
           <h2 id={`${p.slug}-related`} className="text-xl">Related</h2>
