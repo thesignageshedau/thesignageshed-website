@@ -59,6 +59,8 @@ export type GearProduct = {
   materialTabs?: boolean;
   /** One line under the price intro, for products that publish a single-piece price only. */
   singlePriceNote?: string;
+  /** No per-size price table. The page lists sizes and materials, and every quantity is priced on quote. Item prices are only the "From" figure. */
+  quoteOnly?: boolean;
 };
 
 const BANDS_3 = [
