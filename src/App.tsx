@@ -88,7 +88,12 @@ type Route =
   | `guides/${string}`
   | "cafe-a-frame-signs"
   | "corflute-event-signs"
-  | "shop-window-wall-signs";
+  | "shop-window-wall-signs"
+  | "pull-up-banners-australia"
+  | "corflute-signs-australia"
+  | "media-walls-australia"
+  | "event-signage-australia"
+  | "school-and-sports-club-signs";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
