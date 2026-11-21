@@ -1,6 +1,6 @@
 import RecentWork from "./components/RecentWork";
 import Reviews from "./components/Reviews";
-import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 // The artwork checker (and pdf.js) only loads when someone opens it.
 const ArtworkCheckPage = lazy(() => import("./components/ArtworkCheckPage"));
 import Header from "./components/Header";
@@ -47,6 +47,7 @@ import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
 import { useReveal } from "./lib/reveal";
+import { trackPageView } from "./lib/gads";
 
 // GitHub Pages only serves files, so pages other than home use hash routes: /#/refund-policy,
 // /#/media-walls, /#/table-covers, /#/pull-up-banners, /#/corflute-signs, /#/a-frames, /#/gazebos, /#/flags, /#/market-umbrellas, /#/banners, /#/quote-thanks.
@@ -230,6 +231,16 @@ export default function App() {
       robots.setAttribute("content", "noindex");
     } else robots?.remove();
   }, [doc, route, missing]);
+
+  // The head snippet already sends the first page_view; only send again on in-app navigations.
+  const firstPageView = useRef(true);
+  useEffect(() => {
+    if (firstPageView.current) {
+      firstPageView.current = false;
+      return;
+    }
+    trackPageView();
+  }, [route, missing]);
 
   // After switching page: other pages start at the top; on the home page, scroll to the
   // section in the hash (e.g. #products) once it has rendered.

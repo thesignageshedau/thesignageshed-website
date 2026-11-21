@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
+import { trackQuoteConversion } from "../lib/gads";
 import {
   MEDIA_WALLS_HREF,
   TABLE_COVERS_HREF,
@@ -13,6 +15,9 @@ import {
 } from "../lib/routes";
 
 export default function QuoteThanks() {
+  useEffect(() => {
+    trackQuoteConversion();
+  }, []);
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
