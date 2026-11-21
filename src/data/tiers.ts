@@ -17,8 +17,9 @@ export function tierTotal(tiers: Tier[], qty: number): number {
   return round2(v);
 }
 
-/** Price each at this quantity (the line total divided by the quantity). */
-export const tierEach = (tiers: Tier[], qty: number) => tierTotal(tiers, qty) / qty;
+/** Price each at this quantity: the line total divided by the quantity, rounded up to a whole dollar.
+ * Estimates multiply this by the quantity, so every total follows from a whole-dollar unit price. */
+export const tierEach = (tiers: Tier[], qty: number) => Math.ceil(round2(tierTotal(tiers, qty) / qty) - 1e-9);
 
 /** Price each at each band's smallest quantity, for price tables. */
 export const tierBands = (tiers: Tier[], mins: number[]) => mins.map((m) => round2(tierEach(tiers, m)));

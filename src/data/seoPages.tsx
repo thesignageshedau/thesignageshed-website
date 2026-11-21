@@ -50,6 +50,7 @@ const eventDeal = deal([
 const schoolDeal = deal([
   { price: bannerPrice, note: `for a ${cheapestBanner.label}` },
   { price: flagPrice, note: `for a ${asPhrase(cheapestFlag.label)}` },
+  { price: fromPrice(RECTANGLE_FLAGS), note: `for a ${asPhrase(cheapest(published(RECTANGLE_FLAGS.items)).label).replace(/^Rectangle/, "rectangle")}` },
   { price: CF.FROM_PRICE, note: "for a corflute sign bundle of 1 to 5 signs" },
 ]);
 

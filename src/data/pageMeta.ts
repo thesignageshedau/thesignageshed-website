@@ -16,7 +16,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "media-walls": "Custom printed fabric media walls from 2.4m to 4m wide, single or double sided, with optional LED lights. Frame and bag included. Delivered Australia-wide.",
   "table-covers": "Custom printed fitted and loose table throws for 6ft and 8ft tables, round throws and table runners. Machine-washable. Prices online, delivered Australia-wide.",
   "pull-up-banners": "Custom printed luxury and double-sided pull up banners, 850mm or 1200mm wide, fitted and supplied with a carry bag. Prices online, delivered Australia-wide.",
-  "corflute-signs": "Custom printed corflute signs in 3 standard sizes, 5mm or 3mm, single or double sided, optional eyelets. Bundle pricing from $180, delivered Australia-wide.",
+  "corflute-signs": "Custom printed corflute signs in 3 standard sizes, 5mm or 3mm, single or double sided, optional eyelets. Bundle pricing from $215, delivered Australia-wide.",
   "a-frames": "Custom printed A frame signs for cafés, shops and events. We print aluminium, insert and folding corflute sandwich boards on both sides. Prices online, delivered Australia-wide.",
   "gazebos": "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional back walls. Prices online, delivered Australia-wide.",
   "flags": "Custom printed feather and teardrop flags in three heights with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
