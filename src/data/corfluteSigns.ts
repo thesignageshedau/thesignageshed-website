@@ -1,7 +1,8 @@
 // Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
-// Prices come from the customer Price List tab of the Corflute Sign spreadsheet (+30%). Bundle prices (up to 5 signs,
-// 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are rounded up per sign
-// (under $20 to the next 50c, then to the next $1). Prices include everything except delivery (not registered for GST).
+// Prices are the Easy Signs regular price inc GST ÷ 0.65 (checked 21 Nov 2026). Bundle prices (up to 5 signs,
+// 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are that band's smallest
+// order total (rounded up to the next $5) divided by its quantity, rounded up to the next cent.
+// Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
@@ -54,12 +55,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Landscape",
     price: {
       "5mm": {
-        single: p(180, 180, 18, 12, 8.5, 7.5),
-        double: p(180, 220, 22, 17, 13, 11.5),
+        single: p(215, 215, 19.55, 13.75, 10, 8.3),
+        double: p(215, 260, 25.46, 19.75, 15.3, 13.2),
       },
       "3mm": {
-        single: p(180, 180, 18, 10, 7.5, 6.5),
-        double: p(180, 190, 19, 14.5, 11.5, 10),
+        single: p(215, 215, 19.55, 11.75, 8.5, 7.15),
+        double: p(215, 220, 21.37, 17, 13.1, 11.3),
       },
     },
   },
@@ -69,12 +70,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(215, 280, 28, 21, 16.7, 14.3), // 23 Oct 2026 quantity tiers
-        double: p(230, 340, 34, 27, 23, 20),
+        single: p(215, 280, 25.91, 21, 16.7, 14.3), // 23 Oct 2026 quantity tiers
+        double: p(270, 400, 37.73, 32, 26.4, 23.2),
       },
       "3mm": {
-        single: p(180, 200, 20, 15.5, 12, 10.5),
-        double: p(195, 290, 29, 24, 19.5, 17),
+        single: p(215, 240, 22.28, 18, 14.2, 12.3),
+        double: p(230, 340, 32.73, 27.5, 22.6, 19.95),
       },
     },
   },
@@ -84,12 +85,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(235, 355, 36, 30, 25, 22),
-        double: p(340, 540, 54, 47, 40, 36),
+        single: p(280, 420, 41.82, 34.75, 28.6, 25.45),
+        double: p(400, 640, 63.19, 54.75, 46.4, 41.8),
       },
       "3mm": {
-        single: p(200, 305, 31, 26, 21, 18.5),
-        double: p(290, 465, 47, 40, 34, 31),
+        single: p(240, 360, 35.46, 29.75, 24.6, 21.8),
+        double: p(340, 550, 54.1, 47, 39.9, 35.9),
       },
     },
   },

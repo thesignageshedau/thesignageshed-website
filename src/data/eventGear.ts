@@ -1,7 +1,7 @@
 // Event gear: pop-up gazebos, teardrop and feather flags, and printed market umbrellas.
 // Prices come from the Price List tab of each product's spreadsheet in Google Drive (01 Products):
-// supplier cost inc GST x 1.3, rounded UP to the next $5 (quantity bands use the supplier price at the
-// smallest quantity in the band). Generated from /workspace/es/np/wb/prices.json by /workspace/es/np/gen_ts.py.
+// Easy Signs regular price inc GST ÷ 0.65, rounded UP to the next $5 (quantity tiers use the supplier total at the
+// smallest quantity in the band). Re-checked 21 Nov 2026: /workspace/pricing/price-audit-2026-11-21.csv.
 // Prices include everything except delivery (not registered for GST).
 import type { Mockup } from "./mockups";
 import { MOCKUPS } from "./mockups";
@@ -94,12 +94,12 @@ export const GAZEBOS: GearProduct = {
   ],
   bands: [{ label: "1", min: 1 }, { label: "2", min: 2 }, { label: "3 to 4", min: 3 }, { label: "5+", min: 5 }],
   items: [
-    { id: "standard-3x3-none", group: "standard", label: "Standard 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1015], [2, 2030], [3, 3015], [5, 4835]], price: [1015, 1015, 1005, 967], priceWithAddon: [1080, 1080, 1070, 1027] },
-    { id: "standard-3x3-single", group: "standard", label: "Standard 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", price: [1090, 1090, 1090, 1035], priceWithAddon: [1150, 1150, 1150, 1100] },
-    { id: "standard-6x3-none", group: "standard", label: "Standard 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [1500, 1500, 1500, 1430], priceWithAddon: [1600, 1600, 1600, 1525] },
-    { id: "luxury-3x3-none", group: "luxury", label: "Luxury 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", price: [1270, 1270, 1270, 1210], priceWithAddon: [1335, 1335, 1335, 1270] },
+    { id: "standard-3x3-none", group: "standard", label: "Standard 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1015], [2, 2030], [3, 3015], [5, 4835]], price: [1015, 1015, 1005, 967], priceWithAddon: [1090, 1090, 1080, 1040] },
+    { id: "standard-3x3-single", group: "standard", label: "Standard 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", tiers: [[1, 1285], [2, 2570], [3, 3820], [5, 6125]], price: [1285, 1285, 1273.33, 1225], priceWithAddon: [1365, 1362.5, 1348.33, 1298] },
+    { id: "standard-6x3-none", group: "standard", label: "Standard 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1775], [2, 3550], [3, 5275], [5, 8460]], price: [1775, 1775, 1758.33, 1692], priceWithAddon: [1895, 1892.5, 1873.33, 1803] },
+    { id: "luxury-3x3-none", group: "luxury", label: "Luxury 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1500], [2, 3000], [3, 4460], [5, 7150]], price: [1500, 1500, 1486.67, 1430], priceWithAddon: [1580, 1577.5, 1561.67, 1503] },
   ],
-  addon: { label: "Heavy duty wheeled carry bag", note: "Heavy duty wheeled carry bag: $60 to $65 extra on a 3 × 3m, $95 to $100 extra on a 6 × 3m. Tick it in the quote form to see the price." },
+  addon: { label: "Heavy duty wheeled carry bag", note: "Heavy duty wheeled carry bag: $73 to $80 extra on a 3 × 3m, $111 to $120 extra on a 6 × 3m. Tick it in the quote form to see the price." },
   notes: [
     "Black frame (silver available, same price).",
     "Back wall: printed single sided, on one face.",
@@ -136,20 +136,20 @@ export const FLAGS: GearProduct = {
   ],
   bands: [{ label: "1", min: 1 }, { label: "2", min: 2 }, { label: "3 to 4", min: 3 }, { label: "5 to 9", min: 5 }, { label: "10 to 19", min: 10 }, { label: "20+", min: 20 }],
   items: [
-    { id: "teardrop-small-double", group: "teardrop", label: "Teardrop flag 2.3m, double sided", short: "2.3m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 285], [2, 570], [3, 840], [5, 1300], [10, 2425], [20, 4610]], price: [285, 285, 280, 260, 242.5, 230.5], priceWithAddon: [305, 305, 300, 280, 262.5, 250.5] },
-    { id: "teardrop-small-single", group: "teardrop", label: "Teardrop flag 2.3m, single sided", short: "2.3m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 240], [2, 475], [3, 700], [5, 1090], [10, 2035], [20, 3875]], price: [240, 237.5, 233.33, 218, 203.5, 193.75], priceWithAddon: [260, 257.5, 253.33, 238, 223.5, 213.75] },
-    { id: "teardrop-double", group: "teardrop", label: "Teardrop flag 2.7m, double sided", short: "2.7m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 320], [2, 640], [3, 945], [5, 1465], [10, 2735], [20, 5200]], price: [320, 320, 315, 293, 273.5, 260], priceWithAddon: [345, 345, 340, 318, 298.5, 285] },
-    { id: "teardrop-single", group: "teardrop", label: "Teardrop flag 2.7m, single sided", short: "2.7m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 255], [2, 510], [3, 750], [5, 1165], [10, 2185], [20, 4160]], price: [255, 255, 250, 233, 218.5, 208], priceWithAddon: [275, 275, 270, 253, 238.5, 228] },
-    { id: "teardrop-large-double", group: "teardrop", label: "Teardrop flag 3.7m, double sided", short: "3.7m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 355], [2, 710], [3, 1045], [5, 1620], [10, 3030], [20, 5770]], price: [355, 355, 348.33, 324, 303, 288.5], priceWithAddon: [375, 375, 368.33, 344, 323, 308.5] },
-    { id: "teardrop-large-single", group: "teardrop", label: "Teardrop flag 3.7m, single sided", short: "3.7m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 290], [2, 575], [3, 845], [5, 1315], [10, 2465], [20, 4695]], price: [290, 287.5, 281.67, 263, 246.5, 234.75], priceWithAddon: [310, 307.5, 301.67, 283, 266.5, 254.75] },
-    { id: "feather-small-double", group: "feather", label: "Feather flag 2.4m, double sided", short: "2.4m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 300], [2, 600], [3, 885], [5, 1370], [10, 2550], [20, 4850]], price: [300, 300, 295, 274, 255, 242.5], priceWithAddon: [320, 320, 315, 294, 275, 262.5] },
-    { id: "feather-small-single", group: "feather", label: "Feather flag 2.4m, single sided", short: "2.4m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 250], [2, 495], [3, 725], [5, 1125], [10, 2105], [20, 4005]], price: [250, 247.5, 241.67, 225, 210.5, 200.25], priceWithAddon: [270, 267.5, 261.67, 245, 230.5, 220.25] },
-    { id: "feather-double", group: "feather", label: "Feather flag 3.0m, double sided", short: "3.0m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 350], [2, 695], [3, 1025], [5, 1585], [10, 2960], [20, 5625]], price: [350, 347.5, 341.67, 317, 296, 281.25], priceWithAddon: [370, 367.5, 361.67, 337, 316, 301.25] },
-    { id: "feather-single", group: "feather", label: "Feather flag 3.0m, single sided", short: "3.0m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 270], [2, 540], [3, 795], [5, 1235], [10, 2310], [20, 4400]], price: [270, 270, 265, 247, 231, 220], priceWithAddon: [290, 290, 285, 267, 251, 240] },
-    { id: "feather-large-double", group: "feather", label: "Feather flag 4.0m, double sided", short: "4.0m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 390], [2, 780], [3, 1145], [5, 1775], [10, 3315], [20, 6310]], price: [390, 390, 381.67, 355, 331.5, 315.5], priceWithAddon: [410, 410, 401.67, 375, 351.5, 335.5] },
-    { id: "feather-large-single", group: "feather", label: "Feather flag 4.0m, single sided", short: "4.0m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 305], [2, 610], [3, 895], [5, 1390], [10, 2605], [20, 4965]], price: [305, 305, 298.33, 278, 260.5, 248.25], priceWithAddon: [325, 325, 318.33, 298, 280.5, 268.25] },
+    { id: "teardrop-small-double", group: "teardrop", label: "Teardrop flag 2.3m, double sided", short: "2.3m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 285], [2, 570], [3, 840], [5, 1300], [10, 2425], [20, 4610]], price: [285, 285, 280, 260, 242.5, 230.5], priceWithAddon: [305, 305, 300, 279, 260.5, 248] },
+    { id: "teardrop-small-single", group: "teardrop", label: "Teardrop flag 2.3m, single sided", short: "2.3m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 240], [2, 475], [3, 700], [5, 1090], [10, 2035], [20, 3875]], price: [240, 237.5, 233.33, 218, 203.5, 193.75], priceWithAddon: [260, 257.5, 253.33, 237, 221.5, 211.25] },
+    { id: "teardrop-double", group: "teardrop", label: "Teardrop flag 2.7m, double sided", short: "2.7m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 320], [2, 640], [3, 945], [5, 1465], [10, 2735], [20, 5200]], price: [320, 320, 315, 293, 273.5, 260], priceWithAddon: [345, 342.5, 335, 312, 291.5, 277.25] },
+    { id: "teardrop-single", group: "teardrop", label: "Teardrop flag 2.7m, single sided", short: "2.7m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 255], [2, 510], [3, 750], [5, 1165], [10, 2185], [20, 4160]], price: [255, 255, 250, 233, 218.5, 208], priceWithAddon: [275, 275, 270, 252, 236.5, 225.5] },
+    { id: "teardrop-large-double", group: "teardrop", label: "Teardrop flag 3.7m, double sided", short: "3.7m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 355], [2, 710], [3, 1045], [5, 1620], [10, 3030], [20, 5770]], price: [355, 355, 348.33, 324, 303, 288.5], priceWithAddon: [375, 375, 368.33, 343, 321, 306] },
+    { id: "teardrop-large-single", group: "teardrop", label: "Teardrop flag 3.7m, single sided", short: "3.7m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 290], [2, 575], [3, 845], [5, 1315], [10, 2465], [20, 4695]], price: [290, 287.5, 281.67, 263, 246.5, 234.75], priceWithAddon: [310, 307.5, 301.67, 282, 264.5, 252.25] },
+    { id: "feather-small-double", group: "feather", label: "Feather flag 2.4m, double sided", short: "2.4m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 300], [2, 600], [3, 885], [5, 1370], [10, 2550], [20, 4850]], price: [300, 300, 295, 274, 255, 242.5], priceWithAddon: [320, 320, 315, 293, 273, 259.75] },
+    { id: "feather-small-single", group: "feather", label: "Feather flag 2.4m, single sided", short: "2.4m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 250], [2, 495], [3, 725], [5, 1125], [10, 2105], [20, 4005]], price: [250, 247.5, 241.67, 225, 210.5, 200.25], priceWithAddon: [270, 267.5, 261.67, 244, 228.5, 217.75] },
+    { id: "feather-double", group: "feather", label: "Feather flag 3.0m, double sided", short: "3.0m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 350], [2, 695], [3, 1025], [5, 1585], [10, 2960], [20, 5625]], price: [350, 347.5, 341.67, 317, 296, 281.25], priceWithAddon: [370, 367.5, 361.67, 336, 314, 298.5] },
+    { id: "feather-single", group: "feather", label: "Feather flag 3.0m, single sided", short: "3.0m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 270], [2, 540], [3, 795], [5, 1235], [10, 2310], [20, 4400]], price: [270, 270, 265, 247, 231, 220], priceWithAddon: [290, 290, 285, 266, 249, 237.5] },
+    { id: "feather-large-double", group: "feather", label: "Feather flag 4.0m, double sided", short: "4.0m · Double sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 390], [2, 780], [3, 1145], [5, 1775], [10, 3315], [20, 6310]], price: [390, 390, 381.67, 355, 331.5, 315.5], priceWithAddon: [410, 410, 401.67, 374, 349.5, 332.75] },
+    { id: "feather-large-single", group: "feather", label: "Feather flag 4.0m, single sided", short: "4.0m · Single sided", includes: "Printed flag, pole set and 10kg square base", tiers: [[1, 305], [2, 610], [3, 895], [5, 1390], [10, 2605], [20, 4965]], price: [305, 305, 298.33, 278, 260.5, 248.25], priceWithAddon: [325, 325, 318.33, 297, 278.5, 265.75] },
   ],
-  addon: { label: "Carry bag", note: "Carry bag: $20 to $25 extra per teardrop or feather flag. Tick it in the quote form to see the price." },
+  addon: { label: "Carry bag", note: "Carry bag: $17.25 to $25 extra per teardrop or feather flag. Tick it in the quote form to see the price." },
   notes: [
     "Double sided: two printed fabrics sewn back to back, so it reads correctly from both sides.",
     "Single sided: printed once, and your artwork shows mirrored on the back.",
@@ -188,15 +188,15 @@ export const UMBRELLAS: GearProduct = {
   ],
   bands: BANDS_3,
   items: [
-    { id: "umbrella-10kg", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base", short: "With 10kg base", includes: "Umbrella, printed canopy and 10kg heavy duty base", price: [490, 465, 450], priceWithAddon: [535, 505, 485] },
-    { id: "canopy-only", group: "canopy", label: "Replacement printed canopy (2m × 2m)", short: "Replacement canopy", includes: "Printed canopy only, fits our umbrella frame", price: [245, 235, 225] },
-    { id: "base-10kg", group: "weights", label: "Extra 10kg heavy duty umbrella base", short: "10kg heavy duty base", includes: "Base only, fits our umbrella pole", price: [135, 125, 120], accessory: true },
-    { id: "water-bag", group: "weights", label: "20L umbrella water bag", short: "20L water bag", includes: "Water bag only, 20kg when filled", price: [45, 45, 40], accessory: true },
+    { id: "umbrella-10kg", group: "umbrella", label: "Printed market umbrella 2m × 2m, with 10kg base", short: "With 10kg base", includes: "Umbrella, printed canopy and 10kg heavy duty base", tiers: [[1, 580], [5, 2750], [10, 5280]], price: [580, 550, 528], priceWithAddon: [630, 597, 573] },
+    { id: "canopy-only", group: "canopy", label: "Replacement printed canopy (2m × 2m)", short: "Replacement canopy", includes: "Printed canopy only, fits our umbrella frame", tiers: [[1, 290], [5, 1375], [10, 2650]], price: [290, 275, 265] },
+    { id: "base-10kg", group: "weights", label: "Extra 10kg heavy duty umbrella base", short: "10kg heavy duty base", includes: "Base only, fits our umbrella pole", tiers: [[1, 160], [5, 730], [10, 1390]], price: [160, 146, 139], accessory: true },
+    { id: "water-bag", group: "weights", label: "20L umbrella water bag", short: "20L water bag", includes: "Water bag only, 20kg when filled", tiers: [[1, 55], [5, 240], [10, 455]], price: [55, 48, 45.5], accessory: true },
   ],
   notes: [
     "Printed on all four canopy panels and the valance.",
   ],
-  addon: { label: "Water bag", note: "Add a 20L water bag to an umbrella for $35 to $45 extra each. Tick it in the quote form to see the price." },
+  addon: { label: "Water bag", note: "Add a 20L water bag to an umbrella for $45 to $50 extra each. Tick it in the quote form to see the price." },
   artwork: "Umbrella canopies are printed from a full-size template for the panels and valance. Ask for the template with your quote, or send us your logo and we'll set the artwork up for you to approve.",
   faqs: [
     { q: "What size is it?", a: "2m × 2m square, with a 220mm valance around the edge. The pole has four height settings." },
@@ -212,7 +212,7 @@ export const UMBRELLAS: GearProduct = {
 
 // PVC vinyl, mesh vinyl and fabric banners. Quantity tiers: Easy Signs regular pick-up price inc GST ÷ 0.65, each tier
 // total rounded UP to the next $5 (PVC and mesh 3000 × 1000 checked 23 Oct 2026; mesh 2400 × 1800 and fabric checked 3 Nov 2026,
-// record /workspace/pricing/banners-fix-2026-11-03.csv). PVC 3000 × 1500 is still on the 13 Oct price. The $180 minimum applies to the whole order.
+// record /workspace/pricing/banners-fix-2026-11-03.csv). PVC 3000 × 1500 and the rope add-on re-checked 21 Nov 2026. The $180 minimum applies to the whole order.
 export const BANNERS: GearProduct = {
   slug: "banners",
   eventName: "banner",
@@ -232,9 +232,9 @@ export const BANNERS: GearProduct = {
   ],
   bands: [{ label: "1", min: 1 }, { label: "2", min: 2 }, { label: "3 to 4", min: 3 }, { label: "5 to 9", min: 5 }, { label: "10 to 19", min: 10 }, { label: "20 to 49", min: 20 }, { label: "50+", min: 50 }],
   items: [
-    { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 215], [2, 215], [3, 255], [5, 395], [10, 730], [20, 1370], [50, 3195]], price: [215, 107.5, 85, 79, 73, 68.5, 63.9], priceWithAddon: [215, 107.5, 85, 84, 78, 73.5, 68.9] },
-    { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 215], [2, 250], [3, 350], [5, 540], [10, 1010], [20, 1905], [50, 4470]], price: [215, 125, 116.67, 108, 101, 95.25, 89.4], priceWithAddon: [225, 135, 126.67, 113, 106, 100.25, 94.4] },
-    { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", price: [145, 145, 145, 130, 130, 130, 130], priceWithAddon: [155, 155, 155, 140, 140, 140, 140] },
+    { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 215], [2, 215], [3, 255], [5, 395], [10, 730], [20, 1370], [50, 3195]], price: [215, 107.5, 85, 79, 73, 68.5, 63.9], priceWithAddon: [215, 107.5, 93.33, 86, 79.5, 75, 70.3] },
+    { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 215], [2, 250], [3, 350], [5, 540], [10, 1010], [20, 1905], [50, 4470]], price: [215, 125, 116.67, 108, 101, 95.25, 89.4], priceWithAddon: [215, 132.5, 125, 118, 109.5, 103.75, 97.8] },
+    { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", tiers: [[1, 215], [2, 340], [3, 485], [5, 760], [10, 1420], [20, 2700], [50, 6360]], price: [215, 170, 161.67, 152, 142, 135, 127.2], priceWithAddon: [215, 185, 175, 165, 155, 147.5, 139.6] },
     { id: "mesh-3000x1000", group: "mesh", label: "Mesh vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Welded edges and eyelets", tiers: [[1, 215], [2, 260], [3, 365], [5, 565], [10, 1040], [20, 1955], [50, 4560]], price: [215, 130, 121.67, 113, 104, 97.75, 91.2] },
     { id: "mesh-2400x1800", group: "mesh", label: "Mesh vinyl banner 2400 × 1800mm", short: "2400 × 1800mm", includes: "Welded edges and eyelets", tiers: [[1, 215], [2, 325], [3, 460], [5, 715], [10, 1330], [20, 2505], [50, 5865]], price: [215, 162.5, 153.33, 143, 133, 125.25, 117.3] },
     { id: "fabric-2000x1000", group: "fabric", label: "Fabric banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", tiers: [[1, 215], [2, 215], [3, 260], [5, 405], [10, 750], [20, 1415], [50, 3325]], price: [215, 107.5, 86.67, 81, 75, 70.75, 66.5] },
@@ -263,7 +263,7 @@ export const BANNERS: GearProduct = {
 
 const BANDS_EACH = [{ label: "Price each", min: 1 }];
 
-// New products (checked 20 Oct 2026): supplier regular price inc GST x 1.3, rounded UP to the next $5.
+// New products (re-checked 21 Nov 2026): Easy Signs regular price inc GST ÷ 0.65, rounded UP to the next $5.
 // Pricing record: /workspace/pricing/new-products-2026-10-20.csv. No custom sizes on these.
 export const STRETCH_FABRIC: GearProduct = {
   slug: "stretch-fabric-displays",
@@ -283,10 +283,10 @@ export const STRETCH_FABRIC: GearProduct = {
   ],
   bands: BANDS_EACH,
   items: [
-    { id: "850-single", group: "850", label: "Stretch fabric display 850 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [260] },
-    { id: "850-double", group: "850", label: "Stretch fabric display 850 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [305] },
-    { id: "1200-single", group: "1200", label: "Stretch fabric display 1200 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [315] },
-    { id: "1200-double", group: "1200", label: "Stretch fabric display 1200 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [375] },
+    { id: "850-single", group: "850", label: "Stretch fabric display 850 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [305] },
+    { id: "850-double", group: "850", label: "Stretch fabric display 850 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [360] },
+    { id: "1200-single", group: "1200", label: "Stretch fabric display 1200 × 2000mm, single sided", short: "Single sided", includes: "Curved frame, printed fabric and carry case", price: [370] },
+    { id: "1200-double", group: "1200", label: "Stretch fabric display 1200 × 2000mm, double sided", short: "Double sided", includes: "Curved frame, printed fabric and carry case", price: [440] },
   ],
   notes: [
     "Every display includes the curved frame, the printed fabric and a carry case.",
@@ -321,9 +321,9 @@ export const TABLE_TOP_BANNERS: GearProduct = {
   ],
   bands: BANDS_EACH,
   items: [
-    { id: "600x4ft", group: "kit", label: "Table-top banner kit 600mm tall × 4ft, single sided", short: "600mm tall × 4ft table", includes: "Printed banner and frame", price: [200] },
-    { id: "600x6ft", group: "kit", label: "Table-top banner kit 600mm tall × 6ft, single sided", short: "600mm tall × 6ft table", includes: "Printed banner and frame", price: [240] },
-    { id: "800x6ft", group: "kit", label: "Table-top banner kit 800mm tall × 6ft, single sided", short: "800mm tall × 6ft table", includes: "Printed banner and frame", price: [265] },
+    { id: "600x4ft", group: "kit", label: "Table-top banner kit 600mm tall × 4ft, single sided", short: "600mm tall × 4ft table", includes: "Printed banner and frame", price: [235] },
+    { id: "600x6ft", group: "kit", label: "Table-top banner kit 600mm tall × 6ft, single sided", short: "600mm tall × 6ft table", includes: "Printed banner and frame", price: [285] },
+    { id: "800x6ft", group: "kit", label: "Table-top banner kit 800mm tall × 6ft, single sided", short: "800mm tall × 6ft table", includes: "Printed banner and frame", price: [315] },
   ],
   notes: [
     "Printed single sided.",
@@ -358,11 +358,11 @@ export const ACM_SIGNS: GearProduct = {
   ],
   bands: BANDS_EACH,
   items: [
-    { id: "900x600-single", group: "900x600", label: "ACM sign 900 × 600mm, single sided", short: "Single sided", includes: "White vinyl, gloss laminate", price: [180] },
-    { id: "900x600-double", group: "900x600", label: "ACM sign 900 × 600mm, double sided", short: "Double sided", includes: "White vinyl, gloss laminate", price: [210] },
-    { id: "1200x900-single", group: "large", label: "ACM sign 1200 × 900mm, single sided", short: "1200 × 900mm", includes: "White vinyl, gloss laminate", price: [215] },
-    { id: "1800x1200-single", group: "large", label: "ACM sign 1800 × 1200mm, single sided", short: "1800 × 1200mm", includes: "White vinyl, gloss laminate", price: [390] },
-    { id: "2400x1200-single", group: "large", label: "ACM sign 2400 × 1200mm, single sided", short: "2400 × 1200mm", includes: "White vinyl, gloss laminate", price: [510] },
+    { id: "900x600-single", group: "900x600", label: "ACM sign 900 × 600mm, single sided", short: "Single sided", includes: "White vinyl, gloss laminate", price: [215] },
+    { id: "900x600-double", group: "900x600", label: "ACM sign 900 × 600mm, double sided", short: "Double sided", includes: "White vinyl, gloss laminate", price: [250] },
+    { id: "1200x900-single", group: "large", label: "ACM sign 1200 × 900mm, single sided", short: "1200 × 900mm", includes: "White vinyl, gloss laminate", price: [255] },
+    { id: "1800x1200-single", group: "large", label: "ACM sign 1800 × 1200mm, single sided", short: "1800 × 1200mm", includes: "White vinyl, gloss laminate", price: [465] },
+    { id: "2400x1200-single", group: "large", label: "ACM sign 2400 × 1200mm, single sided", short: "2400 × 1200mm", includes: "White vinyl, gloss laminate", price: [605] },
   ],
   notes: [
     "Printed on white vinyl with a gloss laminate. Supplied with no holes.",
@@ -397,11 +397,11 @@ export const RECTANGLE_FLAGS: GearProduct = {
   ],
   bands: BANDS_EACH,
   items: [
-    { id: "small", group: "rect", label: "Rectangle flag small 1.5m, double sided", short: "Small 1.5m", includes: "Printed flag, pole and ground spike", price: [170], priceWithAddon: [220] },
-    { id: "medium", group: "rect", label: "Rectangle flag medium 2.2m, double sided", short: "Medium 2.2m", includes: "Printed flag, pole and ground spike", price: [210], priceWithAddon: [260] },
-    { id: "large", group: "rect", label: "Rectangle flag large 3.2m, double sided", short: "Large 3.2m", includes: "Printed flag, pole and ground spike", price: [260], priceWithAddon: [305] },
+    { id: "small", group: "rect", label: "Rectangle flag small 1.5m, double sided", short: "Small 1.5m", includes: "Printed flag, pole and ground spike", price: [200], priceWithAddon: [260] },
+    { id: "medium", group: "rect", label: "Rectangle flag medium 2.2m, double sided", short: "Medium 2.2m", includes: "Printed flag, pole and ground spike", price: [250], priceWithAddon: [305] },
+    { id: "large", group: "rect", label: "Rectangle flag large 3.2m, double sided", short: "Large 3.2m", includes: "Printed flag, pole and ground spike", price: [305], priceWithAddon: [365] },
   ],
-  addon: { label: "Cross base and water bag", note: "Cross base and water bag instead of the ground spike: Small $220, Medium $260, Large $305 each." },
+  addon: { label: "Cross base and water bag", note: "Cross base and water bag instead of the ground spike: Small $260, Medium $305, Large $365 each." },
   notes: [
     "Double sided, so it reads correctly from both sides.",
     "Ground spike for grass, or a cross base and water bag for paving and indoors.",

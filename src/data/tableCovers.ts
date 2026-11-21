@@ -1,7 +1,6 @@
 import { type Tier, tierEach } from "./tiers";
 // Table cover prices, sizes, downloads and the quote estimate.
-// Prices come from the customer Price List tab of the Table Covers spreadsheet (+30%, rounded up to the
-// next $5). Prices include everything except delivery (not registered for GST).
+// Prices are the Easy Signs regular price inc GST ÷ 0.65, rounded up to the next $5 (re-checked 21 Nov 2026). Prices include everything except delivery (not registered for GST).
 // Generated price data: /workspace/es/tc/build/tc_site_data.py (re-run if the spreadsheet changes).
 
 export const PRICE_NOTES = [
@@ -26,15 +25,15 @@ export const THROWS: ThrowSize[] = [
     id: "6ft",
     label: "6ft (1.8m) table",
     fits: "1840 × 760mm",
-    fitted: { four: 270, three: 220 },
+    fitted: { four: 270, three: 260 },
     fittedFourTiers: [[1, 270], [2, 540], [3, 790], [5, 1190], [10, 2170], [20, 4050]],
-    loose: { four: 225, three: 215 },
+    loose: { four: 265, three: 255 },
   },
   {
     id: "8ft",
     label: "8ft (2.4m) table",
     fits: "2450 × 760mm",
-    fitted: { four: 260, three: 245 },
+    fitted: { four: 310, three: 290 },
   },
 ];
 
@@ -45,7 +44,7 @@ export type RoundSize = {
   half: number;
 };
 export const ROUNDS: RoundSize[] = [
-  { id: "1520", label: "1520mm round table", full: 240, half: 165 },
+  { id: "1520", label: "1520mm round table", full: 280, half: 195 },
 ];
 
 export type RunnerSize = { id: string; label: string; price: number };
@@ -56,12 +55,12 @@ export const RUNNERS: {
   sideCustom: number;
 } = {
   front: [
-    { id: "610x2006", label: "610 × 2006mm", price: 180 },
-    { id: "914x2006", label: "914 × 2006mm", price: 180 },
+    { id: "610x2006", label: "610 × 2006mm", price: 215 },
+    { id: "914x2006", label: "914 × 2006mm", price: 215 },
   ],
   side: [],
-  frontCustom: 180,
-  sideCustom: 180,
+  frontCustom: 215,
+  sideCustom: 215,
 };
 export const RUNNER_CUSTOM = {
   front: "300 to 1830mm wide, 914 to 2160mm long",

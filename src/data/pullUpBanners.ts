@@ -1,7 +1,7 @@
 import { type Tier, tierEach } from "./tiers";
 // Pull up banner prices, sizes, downloads and the quote estimate. Luxury and Double Sided stands only.
-// Prices come from the customer Price List tab of the Pull Up Banners spreadsheet (+30%, rounded up to
-// the next $5). Prices include everything except delivery (not registered for GST).
+// Prices are the Easy Signs regular price inc GST ÷ 0.65, rounded up to the next $5 (double sided re-checked
+// 21 Nov 2026). Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
@@ -36,7 +36,7 @@ export const SIZES: BannerSize[] = [
     width: 850,
     visible: { luxury: "850 × 2000mm", double: "850 × 2000mm" },
     shoppingCentre: false,
-    price: { luxury: 230, double: 285 },
+    price: { luxury: 230, double: 340 },
     tiers: { luxury: [[1, 230], [2, 460], [3, 675], [5, 1045], [10, 1950], [20, 3710]] },
   },
   {
@@ -45,7 +45,7 @@ export const SIZES: BannerSize[] = [
     width: 1200,
     visible: { luxury: "1200 × 2000mm", double: "1200 × 2000mm" },
     shoppingCentre: false,
-    price: { luxury: 305, double: 385 },
+    price: { luxury: 305, double: 460 },
     tiers: { luxury: [[1, 305], [2, 610], [3, 905], [5, 1415], [10, 2670]] },
   },
 ];

@@ -1,8 +1,8 @@
 import { type Tier, tierEach } from "./tiers";
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
-// A-Frame spreadsheet (+30% on the regular supplier price). Single prices are rounded up to the next $5; quantity
-// prices are rounded up per item. Prices include everything except delivery (not registered for GST).
+// A-Frame spreadsheet, re-checked 21 Nov 2026: Easy Signs regular price inc GST ÷ 0.65, with each quantity tier's
+// total rounded up to the next $5. Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
@@ -61,7 +61,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Printed aluminium A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame with 2 printed faces, gloss laminated",
-    price: [255, 255, 255, 235, 220, 220, 220],
+    tiers: [[1, 300], [2, 595], [3, 875], [5, 1370], [10, 2580], [20, 5155], [50, 12885]],
+    price: [300, 297.5, 291.67, 274, 258, 257.75, 257.7],
   },
   {
     id: "insert-600x900",
@@ -79,7 +80,8 @@ export const ITEMS: AFrameItem[] = [
     size: "600 × 900mm",
     includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
     replacement: true,
-    price: [115, 60, 60, 30, 20, 15, 15],
+    tiers: [[1, 140], [2, 140], [3, 140], [5, 175], [10, 230], [20, 345], [50, 685]],
+    price: [140, 70, 46.67, 35, 23, 17.25, 13.7],
   },
   {
     id: "folding-600x950",
