@@ -37,7 +37,7 @@ export const SIZES: BannerSize[] = [
     visible: { luxury: "850 × 2000mm", double: "850 × 2000mm" },
     shoppingCentre: false,
     price: { luxury: 230, double: 340 },
-    tiers: { luxury: [[1, 230], [2, 460], [3, 675], [5, 1045], [10, 1950], [20, 3710]] },
+    tiers: { luxury: [[1, 230], [2, 460], [3, 675], [5, 1045], [10, 1950], [20, 3720]] },
   },
   {
     id: "1200x2000",
@@ -46,7 +46,7 @@ export const SIZES: BannerSize[] = [
     visible: { luxury: "1200 × 2000mm", double: "1200 × 2000mm" },
     shoppingCentre: false,
     price: { luxury: 305, double: 460 },
-    tiers: { luxury: [[1, 305], [2, 610], [3, 905], [5, 1415], [10, 2670]] },
+    tiers: { luxury: [[1, 305], [2, 610], [3, 906], [5, 1415], [10, 2670]] },
   },
 ];
 
