@@ -5,7 +5,7 @@
 // Prices include everything except delivery (not registered for GST).
 import type { Mockup } from "./mockups";
 import { MOCKUPS } from "./mockups";
-import { type Tier, tierEach } from "./tiers";
+import { type Tier, cappedTotal, tierUnit } from "./tiers";
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
@@ -435,12 +435,24 @@ export function bandIndex(p: GearProduct, qty: number): number {
 
 /** Price each for an item at a quantity: exact quantity tiers when the item has them, otherwise its band price.
  * The add-on adds the same amount it adds in the price table. */
-export function gearEach(p: GearProduct, it: GearItem, addon: boolean, qty: number): number | undefined {
+function gearUnit(p: GearProduct, it: GearItem, addon: boolean, qty: number): number | undefined {
   const b = bandIndex(p, qty);
   const extra = addon && it.priceWithAddon ? (it.priceWithAddon[b] ?? 0) - (it.price[b] ?? 0) : 0;
-  if (it.tiers) return tierEach(it.tiers, qty) + extra;
+  if (it.tiers) return tierUnit(it.tiers, qty) + extra;
   const prices = addon && it.priceWithAddon ? it.priceWithAddon : it.price;
   return prices[b];
+}
+
+/** Price each: the line total (band unit price × qty, capped so it never exceeds a larger order's total)
+ * divided by the quantity. */
+export function gearEach(p: GearProduct, it: GearItem, addon: boolean, qty: number): number | undefined {
+  if (gearUnit(p, it, addon, qty) === undefined) return undefined;
+  const horizon = Math.max(p.bands[p.bands.length - 1]!.min, ...(it.tiers ?? []).map(([q]) => q));
+  const raw = (q: number) => {
+    const u = gearUnit(p, it, addon, q);
+    return u === undefined ? Infinity : u * q;
+  };
+  return cappedTotal(raw, qty, horizon) / qty;
 }
 
 export type Estimate =

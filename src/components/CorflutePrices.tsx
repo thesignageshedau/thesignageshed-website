@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { SIDES, SIZES, bandFor, money, type Sides, type Thickness } from "../data/corfluteSigns";
+import { SIDES, SIZES, money, signsTotal, type Sides, type Thickness } from "../data/corfluteSigns";
+import { eachText } from "../data/tiers";
 import { quoteHref } from "../data/quoteProducts";
 
 const EXAMPLES = [1, 5, 10, 20, 50, 100];
 
 /** Price for qty signs: one consistent "each" and "total", whichever band applies. */
 export function corflutePrice(sizeId: string, thick: Thickness, sides: Sides, qty: number) {
-  const s = SIZES.find((x) => x.id === sizeId)!;
-  const col = bandFor(qty);
-  const price = s.price[thick][sides][col.key];
-  const total = col.flat ? price : price * qty;
-  return { each: Math.round((total / qty) * 100) / 100, total: Math.round(total * 100) / 100 };
+  const total = signsTotal(sizeId, thick, sides, qty);
+  return { each: total / qty, total };
 }
 
 const pill = (on: boolean) =>
@@ -60,7 +58,7 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
       </div>
       <p className="mt-5 rounded-lg bg-cream px-4 py-3" aria-live="polite">
         <span className="block text-sm">{qty} × {label}, {sides === "single" ? "single" : "double"} sided</span>
-        <span className="font-slab text-2xl font-bold text-rust-dark">{money(now.each)} each</span>
+        <span className="font-slab text-2xl font-bold text-rust-dark">{eachText(now.total, qty)}</span>
         <span className="font-semibold"> · {money(now.total)} total</span>
       </p>
       <table className="mt-5 w-full text-left text-sm sm:text-base">
@@ -78,7 +76,7 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
             return (
               <tr key={n}>
                 <th scope="row" className="py-2 font-semibold">{n}</th>
-                <td className="py-2 font-bold text-rust-dark">{money(r.each)}</td>
+                <td className="py-2 font-bold text-rust-dark">{eachText(r.total, n).replace(/ each$/, "")}</td>
                 <td className="py-2 text-right">{money(r.total)}</td>
               </tr>
             );

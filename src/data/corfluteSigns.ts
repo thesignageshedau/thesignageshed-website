@@ -1,3 +1,4 @@
+import { cappedTotal } from "./tiers";
 // Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
 // Prices are the Easy Signs regular price inc GST ÷ 0.65 (checked 21 Nov 2026). Bundle prices (up to 5 signs,
 // 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are that band's smallest
@@ -157,6 +158,18 @@ export function bandFor(qty: number): (typeof COLUMNS)[number] {
   return COLUMNS[5];
 }
 
+/** Price of qty signs (no extras): the bundle or per-sign band price, capped so it never exceeds the price of a
+ * larger order (e.g. 19 signs never cost more than 20). */
+export function signsTotal(sizeId: string, thick: Thickness, sides: Sides, qty: number): number {
+  const s = SIZES.find((x) => x.id === sizeId)!;
+  const raw = (q: number) => {
+    const col = bandFor(q);
+    const price = s.price[thick][sides][col.key];
+    return col.flat ? price : price * q;
+  };
+  return cappedTotal(raw, qty, 100);
+}
+
 export type Estimate =
   | {
       ok: true;
@@ -183,7 +196,7 @@ export function estimate(c: QuoteChoice): Estimate {
     };
   const col = bandFor(qty);
   const price = s.price[c.thickness][c.sides][col.key];
-  const signs = col.flat ? price : price * qty;
+  const signs = signsTotal(s.id, c.thickness, c.sides, qty);
   const count = EYELETS.find((e) => e.id === c.eyelets)?.count ?? 0;
   const eyelets = round2(count * EYELET_EACH * qty);
   const extra = (designs - 1) * EXTRA_DESIGN;
@@ -195,7 +208,7 @@ export function estimate(c: QuoteChoice): Estimate {
     eyelets,
     designs: extra,
     total: round2(signs + eyelets + extra),
-    perSign: col.flat ? undefined : price,
+    perSign: col.flat || signs !== price * qty ? undefined : price,
   };
 }
 const round2 = (n: number) => Math.round(n * 100) / 100;

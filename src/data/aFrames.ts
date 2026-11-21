@@ -1,4 +1,4 @@
-import { type Tier, tierEach } from "./tiers";
+import { type Tier, cappedTotal, tierEach } from "./tiers";
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
 // A-Frame spreadsheet, re-checked 21 Nov 2026: Easy Signs regular price inc GST ÷ 0.65, with each quantity tier's
@@ -119,7 +119,8 @@ export function tierIndex(qty: number): number {
   return i;
 }
 /** Price each at a quantity: exact tiers when the item has them, otherwise its column price. */
-export const eachFor = (it: AFrameItem, qty: number) => (it.tiers ? tierEach(it.tiers, qty) : it.price[tierIndex(qty)]!);
+export const eachFor = (it: AFrameItem, qty: number) =>
+  it.tiers ? tierEach(it.tiers, qty) : cappedTotal((q) => it.price[tierIndex(q)]! * q, qty, COLUMN_MINS[COLUMN_MINS.length - 1]!) / qty;
 export type Estimate =
   | { ok: true; each: number; qty: number; total: number }
   | { ok: false; reason: string };

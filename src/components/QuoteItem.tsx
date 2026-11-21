@@ -1,3 +1,4 @@
+import { eachText } from "../data/tiers";
 import { useEffect, useState } from "react";
 import { QUOTE_PRODUCTS } from "../data/quoteProducts";
 import { OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
@@ -162,7 +163,7 @@ export default function QuoteItem({
   const shown = lineTotal;
   const lineText =
     lineTotal != null && each != null
-      ? `Estimate ${money(lineTotal)} for ${qty} (${money(each)} each), excl. freight`
+      ? `Estimate ${money(lineTotal)} for ${qty} (${eachText(lineTotal, qty)}), excl. freight`
       : custom
         ? "Custom size: we'll quote this size"
         : "";
@@ -423,7 +424,7 @@ export default function QuoteItem({
                         <span className="font-slab text-2xl font-bold text-rust-dark">{money(shown)}</span>
                       </p>
                       <p className="mt-1 text-sm">
-                        {qty} × {money(each)} each.
+                        {eachText(shown, qty).startsWith("about") ? `${money(shown)} for ${qty}, ${eachText(shown, qty)}.` : `${qty} × ${eachText(shown, qty)}.`}
                       </p>
                     </>
                   ) : custom ? (
