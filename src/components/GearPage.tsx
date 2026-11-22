@@ -16,6 +16,8 @@ import MockupImage from "./MockupImage";
 import MeshBannerInfo from "./MeshBannerInfo";
 import MockupGallery from "./MockupGallery";
 import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
+import CustomSizeQuote from "./CustomSizeQuote";
+import { MIN_NOTE } from "../data/customSize";
 
 // Natural next items for some event gear pages, shown under the hero buttons.
 const PAIRS: Record<string, { lead: string; links: { href: string; text: string }[] }> = {
@@ -29,6 +31,13 @@ const PAIRS: Record<string, { lead: string; links: { href: string; text: string 
 const quoteSizeId = (i: GearItem) => {
   const prefix = `${i.group}-`;
   return i.id.startsWith(prefix) ? i.id.slice(prefix.length) : i.id;
+};
+
+/** Notes already on the product shouldn't be repeated from the shared PRICE_NOTES list. */
+const normNote = (s: string) => s.replace(/\.+$/, "").trim().toLowerCase();
+const extraPriceNotes = (notes: readonly string[]) => {
+  const seen = new Set(notes.map(normNote));
+  return PRICE_NOTES.filter((n) => !seen.has(normNote(n)));
 };
 
 /** Sizes and materials with one from-price. No per-size prices. */
@@ -58,11 +67,30 @@ function QuoteOnlyPanel({ p }: { p: GearProduct }) {
           ))}
         </ul>
         <p className="mt-8 max-w-3xl text-lg leading-relaxed">
-          <span className="font-bold">From {money(fromPrice(p))}.</span> Every vinyl job is priced on quote, so send us your sizes and quantities and we'll email you a quote with freight included.
+          {p.fromPerM2 ? (
+            <>
+              <span className="font-bold">{p.fromPerM2Lead ?? `From $${p.fromPerM2} per m².`}</span>{" "}
+              {MIN_NOTE} Enter a size below for an instant price on economy white vinyl, or tell us if you need premium or laminate and we'll confirm it in your quote.
+            </>
+          ) : (
+            <>
+              <span className="font-bold">From {money(fromPrice(p))}.</span> Every vinyl job is priced on quote, so send us your sizes and quantities and we'll email you a quote with freight included.
+            </>
+          )}
         </p>
-        <a href={quoteHref(p.slug)} className="btn-rust mt-6 inline-block">
-          Get a quote
-        </a>
+        {p.customKinds ? (
+          <CustomSizeQuote
+            kinds={p.customKinds}
+            defaultKind={p.customKinds[0]?.kind}
+            intro={p.customIntro}
+            finishing={p.customFinishing}
+            quoteSlug={p.slug}
+          />
+        ) : (
+          <a href={quoteHref(p.slug)} className="btn-rust mt-6 inline-block">
+            Get a quote
+          </a>
+        )}
       </div>
     </section>
   );
@@ -122,9 +150,18 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                 .
               </p>
             )}
-            <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {money(fromPrice(p))}
-            </p>
+            {p.fromPerM2 ? (
+              <>
+                <p className="mt-5 text-sm font-semibold text-cream/80">
+                  {p.fromPerM2Lead ?? `From $${p.fromPerM2} per m²`}
+                </p>
+                <p className="mt-1 text-sm text-cream/80">{MIN_NOTE}</p>
+              </>
+            ) : (
+              <p className="mt-5 text-sm font-semibold text-cream/80">
+                From {money(fromPrice(p))}
+              </p>
+            )}
           </div>
           <MockupImage
             mockup={p.hero}
@@ -253,7 +290,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               })}
             </table>
           </div>
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             {p.addon && (
               <p>
                 <strong>{p.addon.note}</strong>
@@ -262,12 +299,21 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
             {p.notes.map((n) => (
               <p key={n}>{n}</p>
             ))}
-            {PRICE_NOTES.map((n) => (
+            {extraPriceNotes(p.notes).map((n) => (
               <p key={n} className="font-semibold">
                 {n.replace(/\.$/, "")}.
               </p>
             ))}
           </div>
+          {p.customKinds && (
+            <CustomSizeQuote
+              kinds={p.customKinds}
+              defaultKind={p.customKinds[0]?.kind}
+              intro={p.customIntro}
+              finishing={p.customFinishing}
+              quoteSlug={p.slug}
+            />
+          )}
         </div>
       </section>
       )}

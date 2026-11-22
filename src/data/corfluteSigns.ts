@@ -11,11 +11,12 @@ export const PRICE_NOTES = [
   "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
-  "Printed in full colour on premium Australian-made 5mm corflute, built for outdoor use.";
+  "Printed in full colour on premium Australian-made 5mm or 3mm corflute, built for outdoor use.";
 
 export type Thickness = "5mm" | "3mm";
 export const THICKNESSES: { id: Thickness; label: string; short: string }[] = [
   { id: "5mm", label: "5mm", short: "5mm" },
+  { id: "3mm", label: "3mm", short: "3mm" },
 ];
 
 export type Sides = "single" | "double";

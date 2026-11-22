@@ -8,7 +8,8 @@ import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
 import { PACKS } from "./packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "./newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, SAV_SIZE_MM } from "./newProducts";
+import { priceCustom } from "./customSize";
 
 export const OTHER = "other";
 export const OTHER_LABEL = "Other / not sure";
@@ -124,7 +125,7 @@ const corfluteSigns: QuoteSpec = {
     return CF.ORIENTATIONS.flatMap((o) =>
       CF.SIDES.map((sd) => ({
         id: `${o.toLowerCase()}-${sd.id}`,
-        label: `${o}, 5mm, ${sd.label.toLowerCase()}`,
+        label: `${o}, ${sd.label.toLowerCase()}`,
         price: s?.price["5mm"][sd.id].upTo5 ?? null,
       })),
     );
@@ -188,12 +189,19 @@ function printedVinyl(p: GearProduct): QuoteSpec {
     if (!sizes.some((s) => s.id === id)) sizes.push({ id, label: item.short, from: null });
   }
   return {
+    allowOther: true,
     sizeLabel: "Size",
     optionLabel: "Material",
-    priceNote: "on quote",
+    priceNote: "each",
     sizes,
     options: () => p.groups.map((g) => ({ id: g.id, label: g.title, price: null })),
-    unitPrice: () => null,
+    unitPrice: (size, option, qty) => {
+      if (option !== "economy") return null;
+      const mm = SAV_SIZE_MM[size];
+      if (!mm) return null;
+      const r = priceCustom("sav", mm[0], mm[1], qty);
+      return r.ok ? r.each : null;
+    },
   };
 }
 
@@ -209,7 +217,21 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   banners: gear(BANNERS, "Banner type and size", true),
   "stretch-fabric-displays": gear(STRETCH_FABRIC, "Size and sides"),
   "table-top-banners": gear(TABLE_TOP_BANNERS, "Size"),
-  "acm-signs": gear(ACM_SIGNS, "Size and sides"),
+  "acm-signs": (() => {
+    const base = gear(ACM_SIGNS, "Size and sides", true);
+    return {
+      ...base,
+      options: (size: string) => {
+        if (size === OTHER) {
+          return [
+            { id: "single", label: "Single sided", price: null },
+            { id: "double", label: "Double sided", price: null },
+          ];
+        }
+        return base.options(size);
+      },
+    };
+  })(),
   "rectangle-flags": gear(RECTANGLE_FLAGS, "Flag size"),
   "lightbox-displays": gear(LIGHTBOX, "Size and sides"),
   "big-head-cutouts": gear(BIG_HEADS, "Size and material"),

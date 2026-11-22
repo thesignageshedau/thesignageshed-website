@@ -3,6 +3,8 @@ import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
+import CustomSizeQuote from "./CustomSizeQuote";
+import { FROM_PER_M2, MIN_NOTE } from "../data/customSize";
 import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
 import {
@@ -12,7 +14,6 @@ import {
   PRICE_NOTES,
   ROUNDS,
   RUNNERS,
-  RUNNER_CUSTOM,
   THROWS,
 } from "../data/tableCovers";
 import { asset } from "../lib/asset";
@@ -281,6 +282,9 @@ export default function TableCoversPage() {
             <p className="mt-5 text-sm font-semibold text-cream/80">
               From {aud(FROM_PRICE)}
             </p>
+            <p className="mt-1 text-sm text-cream/80">
+              Table runners from ${FROM_PER_M2["runner-front"]} per m². {MIN_NOTE}
+            </p>
           </div>
           <MockupImage
             mockup={MOCKUPS.v4TableCover}
@@ -358,7 +362,7 @@ export default function TableCoversPage() {
             <PriceTable
               id="runner-prices"
               title="Table runners"
-              intro="Every runner size is the same price, including custom sizes."
+              intro="Standard sizes, plus a custom size box for any width and drop in range."
               head={
                 <tr>
                   <th scope="col" className={th}>
@@ -376,7 +380,7 @@ export default function TableCoversPage() {
                 </tr>
               }
             >
-              {(["front"] as const).flatMap((k) => [
+              {(["front", "side"] as const).flatMap((k) => [
                 ...RUNNERS[k].map((r) => (
                   <tr key={`${k}-${r.id}`} className="odd:bg-cream-light/60">
                     <th
@@ -397,33 +401,21 @@ export default function TableCoversPage() {
                     </td>
                   </tr>
                 )),
-                <tr key={`${k}-custom`} className="odd:bg-cream-light/60">
-                  <th
-                    scope="row"
-                    className={`${td} whitespace-nowrap font-bold`}
-                  >
-                    {k === "front" ? "Front drop" : "Side drop"}
-                  </th>
-                  <td className={`${td} text-sm`}>
-                    Custom: {RUNNER_CUSTOM[k]}
-                  </td>
-                  <td className={priceTd}>
-                    {aud(
-                      k === "front" ? RUNNERS.frontCustom : RUNNERS.sideCustom,
-                    )}
-                  </td>
-                  <td className={quoteTd}>
-                    <QuoteButton
-                      label={`custom ${k} drop runner`}
-                      href={quoteHref("table-covers", `${k === "front" ? "runner-front" : "runner-side"}:${"custom"}`)}
-                    />
-                  </td>
-                </tr>,
               ])}
             </PriceTable>
+            <CustomSizeQuote
+              kinds={[
+                { kind: "runner-front", label: "Front drop" },
+                { kind: "runner-side", label: "Side drop" },
+              ]}
+              heading="Custom table runner"
+              intro="Front drop: 300–1830mm wide, 914–2160mm long. Side drop: 1525–3250mm long, 250–400mm high."
+              quoteSlug="table-covers"
+              finishing="Printed polyester runner, machine washable."
+            />
           </div>
           <TierTable title="Quantity prices" rows={THROWS.flatMap((t) => (t.fittedFourTiers ? [{ label: `Fitted throw, ${t.label}, 4 sided`, tiers: t.fittedFourTiers }] : []))} />
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
                 {n.replace(/\.$/, "")}.

@@ -61,6 +61,13 @@ export type GearProduct = {
   singlePriceNote?: string;
   /** No per-size price table. The page lists sizes and materials, and every quantity is priced on quote. Item prices are only the "From" figure. */
   quoteOnly?: boolean;
+  /** Show a "from $X per m²" headline (custom-size products only). */
+  fromPerM2?: number;
+  fromPerM2Lead?: string;
+  /** Kinds offered in the on-page custom-size calculator. */
+  customKinds?: { kind: import("./customSize").AreaKind; label: string }[];
+  customIntro?: string;
+  customFinishing?: string;
 };
 
 const BANDS_3 = [
@@ -235,17 +242,20 @@ export const BANNERS: GearProduct = {
     { id: "pvc-2000x1000", group: "pvc", label: "PVC vinyl banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 185], [2, 186], [3, 225], [5, 345], [10, 630], [20, 1200], [50, 2800]], price: [185, 93, 75, 69, 63, 60, 56], priceWithAddon: [185, 93, 80, 75, 69, 65, 61] },
     { id: "pvc-3000x1000", group: "pvc", label: "PVC vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 185], [2, 216], [3, 300], [5, 470], [10, 880], [20, 1660], [50, 3900]], price: [185, 108, 100, 94, 88, 83, 78], priceWithAddon: [185, 115, 109, 102, 95, 90, 85] },
     { id: "pvc-3000x1500", group: "pvc", label: "PVC vinyl banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and eyelets", tiers: [[1, 185], [2, 296], [3, 420], [5, 660], [10, 1240], [20, 2340], [50, 5550]], price: [185, 148, 140, 132, 124, 117, 111], priceWithAddon: [185, 160, 152, 143, 135, 128, 121] },
+    { id: "pvc-4000x1000", group: "pvc", label: "PVC vinyl banner 4000 × 1000mm", short: "4000 × 1000mm", includes: "Hemmed edges and eyelets", tiers: [[1, 185], [2, 286], [3, 405], [5, 640], [10, 1200], [20, 2280], [50, 5400]], price: [185, 143, 135, 128, 120, 114, 108], priceWithAddon: [185, 158, 149, 140, 132, 126, 119] },
+    { id: "mesh-2400x1600", group: "mesh", label: "Mesh vinyl banner 2400 × 1600mm", short: "2400 × 1600mm", includes: "Welded edges and eyelets", tiers: [[1, 185], [2, 260], [3, 366], [4, 468], [5, 570], [10, 1060], [20, 1980], [50, 4650]], price: [185, 130, 122, 114, 106, 99, 93] },
     { id: "mesh-3000x1000", group: "mesh", label: "Mesh vinyl banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Welded edges and eyelets", tiers: [[1, 185], [2, 226], [3, 315], [5, 490], [10, 900], [20, 1700], [50, 4000]], price: [185, 113, 105, 98, 90, 85, 80] },
     { id: "mesh-2400x1800", group: "mesh", label: "Mesh vinyl banner 2400 × 1800mm", short: "2400 × 1800mm", includes: "Welded edges and eyelets", tiers: [[1, 185], [2, 280], [3, 402], [5, 620], [10, 1160], [20, 2180], [50, 5100]], price: [185, 140, 134, 124, 116, 109, 102] },
+    { id: "mesh-3000x1600", group: "mesh", label: "Mesh vinyl banner 3000 × 1600mm", short: "3000 × 1600mm", includes: "Welded edges and eyelets", tiers: [[1, 185], [2, 306], [3, 435], [5, 680], [10, 1270], [20, 2400], [50, 5600]], price: [185, 153, 145, 136, 127, 120, 112] },
     { id: "fabric-2000x1000", group: "fabric", label: "Fabric banner 2000 × 1000mm", short: "2000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", tiers: [[1, 185], [2, 186], [3, 225], [5, 350], [10, 650], [20, 1240], [50, 2900]], price: [185, 93, 75, 70, 65, 62, 58] },
     { id: "fabric-3000x1000", group: "fabric", label: "Fabric banner 3000 × 1000mm", short: "3000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", tiers: [[1, 185], [2, 216], [3, 306], [5, 475], [10, 900], [20, 1700], [50, 4000]], price: [185, 108, 102, 95, 90, 85, 80] },
+    { id: "fabric-3000x1500", group: "fabric", label: "Fabric banner 3000 × 1500mm", short: "3000 × 1500mm", includes: "Hemmed edges and stainless steel eyelets", tiers: [[1, 185], [2, 276], [3, 390], [5, 615], [10, 1160], [20, 2200], [50, 5200]], price: [185, 138, 130, 123, 116, 110, 104] },
+    { id: "fabric-4000x1000", group: "fabric", label: "Fabric banner 4000 × 1000mm", short: "4000 × 1000mm", includes: "Hemmed edges and stainless steel eyelets", tiers: [[1, 185], [2, 270], [3, 381], [5, 600], [10, 1130], [20, 2160], [50, 5100]], price: [185, 135, 127, 120, 113, 108, 102] },
   ],
   addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for $5 to $12 more each, depending on size. The quote form shows the exact price." },
   notes: [
-    "Minimum order $180 (excl. freight).",
-    "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
     "All banners are printed single sided in full colour.",
-    "Need a different size? Choose \"Other\" in the quote form and tell us the width and height.",
+    "Need a different size? Use the custom size box to get an instant price, or choose Custom size in the quote form.",
   ],
   artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve. Keep text and logos at least 50mm in from the edges so the eyelets stay clear of them.",
   faqs: [
@@ -259,6 +269,15 @@ export const BANNERS: GearProduct = {
   galleryHeading: "PVC vinyl, mesh vinyl or fabric",
   sizeFinish: [MOCKUPS.v4BannerEyelet],
   notesHint: "Where it will hang (fence, wall, scaffold), colours or design ideas, anything we should know",
+  fromPerM2: 22,
+  fromPerM2Lead: "Printed vinyl banners from $22 per m². Mesh from $22, fabric from $20.",
+  customKinds: [
+    { kind: "pvc", label: "PVC vinyl" },
+    { kind: "mesh", label: "Mesh vinyl" },
+    { kind: "fabric", label: "Fabric" },
+  ],
+  customIntro: "Type any width and height within the limits and we'll price it straight away, with hemmed (or welded) edges and eyelets included.",
+  customFinishing: "PVC and fabric: hemmed edges and eyelets every 1m. Mesh: welded edges and eyelets.",
 };
 
 const BANDS_EACH = [{ label: "Price each", min: 1 }];
@@ -378,6 +397,14 @@ export const ACM_SIGNS: GearProduct = {
   hero: MOCKUPS.v4AcmSign,
   gallery: [],
   notesHint: "Where it will go, whether you need holes, colours or design ideas",
+  fromPerM2: 131,
+  fromPerM2Lead: "ACM signs from $131 per m².",
+  customKinds: [
+    { kind: "acm-single", label: "Single sided" },
+    { kind: "acm-double", label: "Double sided" },
+  ],
+  customIntro: "Type any width and height up to 2400 × 1200mm and we'll price it straight away. Printed on white vinyl with a gloss laminate, no holes.",
+  customFinishing: "White vinyl with a gloss laminate, supplied with no holes.",
 };
 
 export const RECTANGLE_FLAGS: GearProduct = {

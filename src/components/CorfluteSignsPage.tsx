@@ -4,7 +4,7 @@ import QuoteCta from "./QuoteCta";
 import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { QUOTE_EMAIL, TURNAROUND } from "../data/mediaWalls";
 import {
   DOWNLOADS,
@@ -14,9 +14,11 @@ import {
   MATERIAL,
   PRICE_NOTES,
   SIZES,
+  THICKNESSES,
   money,
   type Thickness,
 } from "../data/corfluteSigns";
+import { FROM_PER_M2, MIN_NOTE } from "../data/customSize";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
@@ -152,8 +154,7 @@ const faqs: { q: string; a: ReactNode }[] = [
 
 export default function CorfluteSignsPage() {
 
-  const thick: Thickness = "5mm";
-
+  const [thick, setThick] = useState<Thickness>("5mm");
 
   return (
     <>
@@ -172,8 +173,8 @@ export default function CorfluteSignsPage() {
               Custom corflute signs for events, sites and sales
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
-              Tough, light, weatherproof signs in 3 standard sizes, printed on
-              one side or both. Bundle pricing makes small runs simple: up to 5
+              Tough, light, weatherproof signs in standard or custom sizes, printed on
+              one side or both, in 5mm or 3mm. Bundle pricing makes small runs simple: up to 5
               signs is one flat price. {MATERIAL}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -193,8 +194,9 @@ export default function CorfluteSignsPage() {
               <a href="/artwork-help/" className="font-semibold text-rust-light underline underline-offset-4 hover:text-white">Artwork help</a>
             </p>
             <p className="mt-5 text-sm font-semibold text-cream/80">
-              From {money(FROM_PRICE)} for up to 5 signs ·
+              Custom sizes from ${FROM_PER_M2["corflute-5mm-single"]} per m². Standard sizes start at {money(FROM_PRICE)} for up to 5 signs.
             </p>
+            <p className="mt-1 text-sm text-cream/80">{MIN_NOTE}</p>
           </div>
           <MockupImage
             mockup={MOCKUPS.v4Corflute}
@@ -218,10 +220,27 @@ export default function CorfluteSignsPage() {
           </h2>
           <p className="mt-2 max-w-3xl text-lg">
             Per sign and in total, in Australian dollars. Choose your size,
-            sides and how many you need.
+            thickness, sides and how many you need.
           </p>
+          <div role="tablist" aria-label="Thickness" className="mt-6 flex flex-wrap gap-2">
+            {THICKNESSES.map((thk) => {
+              const on = thk.id === thick;
+              return (
+                <button
+                  key={thk.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setThick(thk.id)}
+                  className={`min-h-11 rounded-full border-2 px-4 text-sm font-bold ${on ? "border-charcoal bg-charcoal text-cream" : "border-charcoal/20 bg-white hover:border-charcoal"}`}
+                >
+                  {thk.label}
+                </button>
+              );
+            })}
+          </div>
           <CorflutePrices thick={thick} />
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             <p>
               <strong>Eyelets:</strong> {money(EYELET_EACH)} per eyelet, per
               sign ({money(EYELET_EACH * 4)} a sign for 4 corners).
