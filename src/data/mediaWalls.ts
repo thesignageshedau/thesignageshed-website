@@ -1,7 +1,7 @@
 import { type Tier, tierEach } from "./tiers";
 // Media wall prices, sizes, downloads and the quote estimate. Fabric sock and frame walls only.
 // Checked 8 Nov 2026. Straight premium 250gsm fabric, zipper, no lighting. Sell prices are the
-// regular pickup price ÷ 0.65, rounded UP to the next $5. An amount already a multiple of $5
+// regular pickup price ÷ 0.75, rounded UP to the next $5. An amount already a multiple of $5
 // stays as it is. Sale prices are ignored. Kit quantity breaks use that rule on each tier total,
 // not the qty-1 price multiplied out. Prices include everything except delivery.
 
@@ -35,32 +35,32 @@ export const SIZES: WallSize[] = [
   {
     id: "2.4x2.2",
     label: "2.4m × 2.2m",
-    kit: { single: 600, double: 720 },
-    kitSingleTiers: [[1, 600], [2, 1196], [3, 1776], [5, 2845]],
-    kitDoubleTiers: [[1, 720], [2, 1436], [3, 2130], [5, 3415]],
-    fabric: { single: 335, double: 445 },
-    frameOnly: 290,
+    kit: { single: 520, double: 625 },
+    kitSingleTiers: [[1, 520], [2, 1036], [3, 1536], [5, 2465]],
+    kitDoubleTiers: [[1, 625], [2, 1246], [3, 1845], [5, 2960]],
+    fabric: { single: 290, double: 385 },
+    frameOnly: 250,
   },
   {
     id: "3x2.2",
     label: "3m × 2.2m",
-    kit: { single: 750, double: 895 },
-    kitSingleTiers: [[1, 750], [2, 1496], [3, 2220], [5, 3560]],
-    kitDoubleTiers: [[1, 895], [2, 1790], [3, 2661], [5, 4265]],
-    fabric: { single: 440, double: 575 },
-    frameOnly: 340,
+    kit: { single: 650, double: 775 },
+    kitSingleTiers: [[1, 650], [2, 1296], [3, 1926], [5, 3085]],
+    kitDoubleTiers: [[1, 775], [2, 1550], [3, 2307], [5, 3695]],
+    fabric: { single: 380, double: 500 },
+    frameOnly: 295,
   },
   {
     id: "4x2.2",
     label: "4m × 2.2m",
-    kit: { single: 945, double: 1130 },
-    kitSingleTiers: [[1, 945], [2, 1890], [5, 4505]],
-    kitDoubleTiers: [[1, 1130], [2, 2256], [5, 5375]],
-    fabric: { single: 565, double: 735 },
-    frameOnly: 410,
+    kit: { single: 820, double: 980 },
+    kitSingleTiers: [[1, 820], [2, 1640], [5, 3905]],
+    kitDoubleTiers: [[1, 980], [2, 1956], [5, 4660]],
+    fabric: { single: 490, double: 635 },
+    frameOnly: 355,
   },
 ];
-export const LED_PACK = 110; // clamp-on LED lights, pack of 2, fits any size
+export const LED_PACK = 100; // clamp-on LED lights, pack of 2, fits any size
 export const FROM_PRICE = Math.min(...SIZES.map((s) => s.kit.single));
 /** Price each at a quantity: exact tiers where we have them. */
 export function eachFor(s: WallSize, item: "kit" | "fabric", sides: "single" | "double", qty: number): number {

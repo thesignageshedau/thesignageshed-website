@@ -1,7 +1,7 @@
 import { type Tier, cappedTotal, tierEach } from "./tiers";
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
-// A-Frame spreadsheet, re-checked 21 Nov 2026: Easy Signs regular price inc GST ÷ 0.65, with each quantity tier's
+// A-Frame spreadsheet, re-checked 21 Nov 2026: Easy Signs regular price inc GST ÷ 0.75, with each quantity tier's
 // total rounded up to the next $5. Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
@@ -61,8 +61,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Printed aluminium A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame with 2 printed faces, gloss laminated",
-    tiers: [[1, 300], [2, 596], [3, 876], [5, 1370], [10, 2580], [20, 5160], [50, 12900]],
-    price: [300, 298, 292, 274, 258, 258, 258],
+    tiers: [[1, 260], [2, 516], [3, 762], [5, 1185], [10, 2240], [20, 4480], [50, 11200]],
+    price: [260, 258, 254, 237, 224, 224, 224],
   },
   {
     id: "insert-600x900",
@@ -70,8 +70,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Insert A-frame 600 × 900mm",
     size: "600 × 900mm",
     includes: "Frame plus 2 printed corflute inserts (one each side)",
-    tiers: [[1, 205], [2, 410], [3, 600], [5, 925], [10, 1730], [20, 3300]],
-    price: [205, 205, 200, 185, 173, 165, 165],
+    tiers: [[1, 180], [2, 356], [3, 522], [5, 800], [10, 1500], [20, 2860]],
+    price: [180, 178, 174, 160, 150, 143, 143],
   },
   {
     id: "insert-600x900-inserts",
@@ -80,8 +80,8 @@ export const ITEMS: AFrameItem[] = [
     size: "600 × 900mm",
     includes: "Inserts only, no frame: 2 printed inserts to suit your frame",
     replacement: true,
-    tiers: [[1, 140], [2, 140], [3, 141], [5, 175], [10, 230], [20, 360], [50, 700]],
-    price: [140, 70, 47, 35, 23, 18, 14],
+    tiers: [[1, 120], [2, 120], [3, 120], [5, 155], [10, 200], [20, 300], [50, 600]],
+    price: [120, 60, 40, 31, 20, 15, 12],
   },
   {
     id: "folding-600x950",
@@ -89,8 +89,8 @@ export const ITEMS: AFrameItem[] = [
     label: "Folding corflute A-frame 600 × 950mm",
     size: "600 × 950mm",
     includes: "Printed front and back, with legs, no metal frame",
-    tiers: [[1, 120], [2, 240], [3, 327], [5, 360], [10, 500], [20, 760], [50, 1450]],
-    price: [120, 120, 109, 72, 50, 38, 29],
+    tiers: [[1, 105], [2, 210], [3, 282], [5, 315], [10, 430], [20, 660], [50, 1250]],
+    price: [105, 105, 94, 63, 43, 33, 25],
   },
 ];
 

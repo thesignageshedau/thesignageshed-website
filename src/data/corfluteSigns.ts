@@ -1,6 +1,6 @@
 import { cappedTotal } from "./tiers";
 // Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
-// Prices are the Easy Signs regular price inc GST ÷ 0.65 (checked 21 Nov 2026). Bundle prices (up to 5 signs,
+// Prices are the Easy Signs regular price inc GST ÷ 0.75 (checked 21 Nov 2026). Bundle prices (up to 5 signs,
 // 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are that band's smallest
 // order total (rounded up to the next $5) divided by its quantity, rounded up to the next whole dollar.
 // Prices include everything except delivery (not registered for GST).
@@ -56,12 +56,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Landscape",
     price: {
       "5mm": {
-        single: p(215, 215, 20, 14, 10, 9),
-        double: p(215, 260, 26, 20, 16, 14),
+        single: p(185, 185, 17, 12, 9, 8),
+        double: p(185, 225, 22, 17, 14, 12),
       },
       "3mm": {
-        single: p(215, 215, 20, 12, 9, 8),
-        double: p(215, 220, 22, 17, 14, 12),
+        single: p(185, 185, 17, 11, 8, 7),
+        double: p(185, 190, 19, 15, 12, 10),
       },
     },
   },
@@ -71,12 +71,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(215, 280, 26, 21, 17, 15), // 23 Oct 2026 quantity tiers
-        double: p(270, 400, 38, 32, 27, 24),
+        single: p(185, 245, 23, 19, 15, 13), // 23 Oct 2026 quantity tiers
+        double: p(235, 345, 33, 28, 23, 21),
       },
       "3mm": {
-        single: p(215, 240, 23, 18, 15, 13),
-        double: p(230, 340, 33, 28, 23, 20),
+        single: p(185, 205, 20, 16, 13, 11),
+        double: p(200, 295, 29, 24, 20, 18),
       },
     },
   },
@@ -86,12 +86,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(280, 420, 42, 35, 29, 26),
-        double: p(400, 640, 64, 55, 47, 42),
+        single: p(245, 365, 36, 31, 25, 23),
+        double: p(345, 555, 55, 48, 41, 37),
       },
       "3mm": {
-        single: p(240, 360, 36, 30, 25, 22),
-        double: p(340, 550, 55, 47, 40, 36),
+        single: p(205, 315, 31, 26, 22, 19),
+        double: p(295, 480, 47, 41, 35, 32),
       },
     },
   },
