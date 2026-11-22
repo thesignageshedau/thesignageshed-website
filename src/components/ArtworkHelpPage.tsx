@@ -142,9 +142,9 @@ export default function ArtworkHelpPage() {
       </HelpSection>
 
       <HelpSection id="send" title="How to send your files">
-        <p>Files can't be attached to our quote form, so either:</p>
+        <p>You can attach a file up to 10 MB on the <a className={helpLink} href="/quote/">quote form</a> (PDF, AI, EPS, SVG, PNG, JPG, TIFF or PSD). If the file is bigger, or you'd rather send it another way:</p>
         <ul>
-          <li>paste a <strong>link</strong> (Google Drive, WeTransfer or Dropbox) into the Artwork link field on the <a className={helpLink} href="/quote/">quote form</a>, or</li>
+          <li>paste a <strong>link</strong> (Google Drive, WeTransfer or Dropbox) into the Artwork link field, or</li>
           <li><strong>reply to our quote email</strong> with your files attached, or email <a className={helpLink} href={`mailto:${QUOTE_EMAIL}`}>{QUOTE_EMAIL}</a>.</li>
         </ul>
         <p>No artwork yet? Send your logo and wording and we'll set it up for you. You'll always see a digital proof before we print.</p>

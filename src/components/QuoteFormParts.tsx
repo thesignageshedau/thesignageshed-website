@@ -17,6 +17,43 @@ export const input =
 export type FieldError = { id: string; message: string };
 type Field = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
+// FormSubmit documents a 10MB total limit for all files in one submission, and
+// requires enctype="multipart/form-data". It does not document a per-file limit,
+// allowed types, or attachments on the AJAX/JSON endpoint.
+// https://formsubmit.co/documentation
+export const ARTWORK_MAX_BYTES = 10 * 1024 * 1024;
+export const ARTWORK_ACCEPT =
+  ".pdf,.ai,.eps,.svg,.png,.jpg,.jpeg,.tif,.tiff,.psd,application/pdf,application/postscript,image/svg+xml,image/png,image/jpeg,image/tiff,image/vnd.adobe.photoshop";
+const ARTWORK_EXT = /\.(pdf|ai|eps|svg|png|jpe?g|tiff?|psd)$/i;
+
+function formatMb(bytes: number): string {
+  const mb = bytes / (1024 * 1024);
+  const rounded = Math.round(mb * 10) / 10;
+  // Don't display "10 MB" for a file that's just over the 10 MB limit.
+  if (bytes > ARTWORK_MAX_BYTES && rounded <= 10) return mb.toFixed(2);
+  return rounded.toFixed(1).replace(/\.0$/, "");
+}
+
+/** Sets a friendly custom error on the artwork file input, or clears it. */
+export function applyArtworkFileValidity(el: HTMLInputElement) {
+  const file = el.files?.[0];
+  if (!file) {
+    el.setCustomValidity("");
+    return;
+  }
+  if (file.size > ARTWORK_MAX_BYTES) {
+    el.setCustomValidity(
+      `That file is ${formatMb(file.size)} MB. The most we can attach here is 10 MB. Add a link (Dropbox, Google Drive, WeTransfer) instead, or pick a smaller file.`,
+    );
+    return;
+  }
+  if (!ARTWORK_EXT.test(file.name)) {
+    el.setCustomValidity("Please choose a PDF, AI, EPS, SVG, PNG, JPG, TIFF or PSD file.");
+    return;
+  }
+  el.setCustomValidity("");
+}
+
 /** Plain-English name of a field: its label text (without "(optional)"/hints) or its group's aria-label. */
 function fieldName(el: Field): string {
   const group = el.type === "radio" ? el.closest("[role=radiogroup]") : null;
@@ -92,8 +129,18 @@ export function useQuoteSubmit() {
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
   function onInput(e: FormEvent<HTMLFormElement>) {
-    // Clear a field's error as soon as it's fixed.
     const el = e.target as Field;
+    if (el.type === "file") applyArtworkFileValidity(el as HTMLInputElement);
+    // Show a file error as soon as a too-big or unsupported file is chosen.
+    if (el.type === "file" && el.validity && !el.validity.valid) {
+      if (!el.id) el.id = "quote-artwork-file";
+      const message = messageFor(el);
+      el.closest("label")?.setAttribute("data-error", message);
+      el.setAttribute("aria-invalid", "true");
+      setFieldErrors((xs) => [...xs.filter((x) => x.id !== el.id), { id: el.id, message }]);
+      return;
+    }
+    // Clear a field's error as soon as it's fixed.
     if (!el.getAttribute?.("aria-invalid") || !el.validity?.valid) return;
     el.removeAttribute("aria-invalid");
     (el.type === "radio" ? el.closest("[role=radiogroup]") : el.closest("label"))?.removeAttribute("data-error");
@@ -102,6 +149,7 @@ export function useQuoteSubmit() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
+    form.querySelectorAll('input[type="file"]').forEach((n) => applyArtworkFileValidity(n as HTMLInputElement));
     const errs = validateForm(form);
     setFieldErrors(errs);
     if (errs.length) {
@@ -115,15 +163,27 @@ export function useQuoteSubmit() {
     setStatus("sending");
     setError("");
     const data = quotePayload(form);
+    const file = (form.querySelector('input[type="file"][name="attachment"]') as HTMLInputElement | null)?.files?.[0] ?? null;
     try {
-      const res = await fetch(FORMSUBMIT_AJAX, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // JSON AJAX cannot carry a file. FormSubmit's docs require multipart/form-data
+      // for attachments (https://formsubmit.co/documentation). We still post to the
+      // same AJAX endpoint so the thank-you page and error state stay as they are,
+      // and we send the remapped quote fields, not the raw form.
+      const res = await fetch(FORMSUBMIT_AJAX, file
+        ? {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: quoteFormData(data, file),
+          }
+        : {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(data),
+          },
+      );
       const body = (await res.json().catch(() => ({}))) as {
         success?: string | boolean;
         message?: string;
@@ -237,7 +297,27 @@ export function DeliveryFields() {
   );
 }
 
-/** Artwork status, link and notes (all forms). Files can't go through the form, so we ask for a link or a reply. */
+function ArtworkFileField() {
+  return (
+    <label className={label}>
+      Artwork file <span className="font-normal text-charcoal/70">(optional)</span>
+      <input
+        id="quote-artwork-file"
+        name="attachment"
+        type="file"
+        accept={ARTWORK_ACCEPT}
+        aria-describedby="quote-artwork-file-hint"
+        className={`${input} file:mr-3 file:rounded-md file:border-0 file:bg-cream file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-charcoal`}
+      />
+      <span id="quote-artwork-file-hint" className="mt-1 block text-xs font-normal text-charcoal/70">
+        PDF, AI, EPS, SVG, PNG, JPG, TIFF or PSD, up to 10 MB. Bigger files? Add a link (Dropbox, Google Drive,
+        WeTransfer) in your message.
+      </span>
+    </label>
+  );
+}
+
+/** Artwork status, optional file or link, and notes (all forms). */
 export function ArtworkFields({ notesHint, checkHref = "/check-artwork/" }: { notesHint: string; checkHref?: string }) {
   return (
     <fieldset className="grid gap-4">
@@ -260,16 +340,17 @@ export function ArtworkFields({ notesHint, checkHref = "/check-artwork/" }: { no
           Print-ready means a finished file at the right size, with bleed, that we can print as is. Not there yet? We can set it up for you.
         </span>
       </div>
+      <ArtworkFileField />
       <label className={label}>
         Artwork link <span className="font-normal text-charcoal/70">(optional)</span>
         <input name="Artwork link" type="url" placeholder="Google Drive, WeTransfer or Dropbox link" className={input} />
         <span className="mt-1 block text-xs font-normal text-charcoal/70">
-          Files can't be attached to this form. Paste a link, or reply to our quote email with your files attached (or
-          email{" "}
+          Prefer a link, or is the file over 10 MB? Paste it here. You can also reply to our quote email with your files,
+          or email{" "}
           <a className="font-semibold text-rust-dark underline" href={`mailto:${QUOTE_EMAIL}`}>
             {QUOTE_EMAIL}
           </a>
-          ).{" "}
+          .{" "}
           <a className="font-semibold text-rust-dark underline" href={checkHref}>
             Check your artwork first
           </a>
@@ -508,6 +589,15 @@ export function sizeToMm(text: string, fallbackUnit = "mm"): string {
   return `${Math.round(w)} x ${Math.round(h)}`;
 }
 
+/** Multipart body for a quote that includes an artwork file. Existing email fields stay in order; the filename is appended last. */
+export function quoteFormData(data: Record<string, string>, file: File): FormData {
+  const body = new FormData();
+  for (const [k, v] of Object.entries(data)) body.append(k, v);
+  body.append("Artwork file", file.name);
+  body.append("attachment", file, file.name);
+  return body;
+}
+
 /** Builds the FormSubmit payload: the fixed EMAIL_FIELDS in order (N/A when blank), subject with name and product, reply-to the customer. */
 export function quotePayload(form: HTMLFormElement): Record<string, string> {
   const raw: Record<string, string> = {};
@@ -563,7 +653,7 @@ export function quotePayload(form: HTMLFormElement): Record<string, string> {
   const design = take("Design help needed");
   // Anything product specific that's left (stand, frame colour, LED lights, add-ons…) goes into Options.
   const extras = Object.entries(raw)
-    .filter(([k, v]) => !k.startsWith("_") && v)
+    .filter(([k, v]) => !k.startsWith("_") && k !== "attachment" && v)
     .map(([k, v]) => (k === "Options" ? v : `${k}: ${v}`));
   if (design && design !== "No") extras.push(`Design help needed: ${design}`);
   f["Options"] = extras.join("; ");
