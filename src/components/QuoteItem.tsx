@@ -6,6 +6,7 @@ import * as CF from "../data/corfluteSigns";
 import * as PB from "../data/pullUpBanners";
 import { corflutePrice } from "./CorflutePrices";
 import { DesignsField, input, label } from "./QuoteFormParts";
+import { kindForAcm, kindForBanner, kindForCorflute, priceFromInputs, type AreaKind } from "../data/customSize";
 
 // One product line on the quote form. Item 1 uses the plain field names (the original 28-label email);
 // items 2 to 5 prefix every field name with "Item N – " (see quotePayload and docs/quote-email-format.md).
@@ -19,7 +20,20 @@ const THICKNESS_CHOICES: CF.Thickness[] = ["5mm", "3mm"];
 
 /** Sizes where we ask for a custom width and height: "Custom size" on banners and corflute, and custom table runners. */
 const isCustomSize = (product: string, size: string) =>
-  size === OTHER || (product === "table-covers" && size === "runner-front:custom");
+  size === OTHER || (product === "table-covers" && (size === "runner-front:custom" || size === "runner-side:custom"));
+
+function customKindFor(product: string, size: string, option: string, thickness: CF.Thickness, sides: CF.Sides | "", material: string): AreaKind | null {
+  if (product === "banners" && size === OTHER) return kindForBanner(material);
+  if (product === "corflute-signs" && size === OTHER && (sides === "single" || sides === "double")) return kindForCorflute(thickness, sides);
+  if (product === "table-covers" && size === "runner-front:custom") return "runner-front";
+  if (product === "table-covers" && size === "runner-side:custom") return "runner-side";
+  if (product === "acm-signs" && size === OTHER && (option === "single" || option === "double")) return kindForAcm(option);
+  if (product === "printed-vinyl" && (size === OTHER || size) && (!option || option === "economy")) {
+    // Listed SAV sizes are priced in unitPrice; custom uses the area engine.
+    return size === OTHER ? "sav" : null;
+  }
+  return null;
+}
 const tidy = (n: number) => String(Math.round(n * 100) / 100);
 
 
@@ -65,7 +79,10 @@ export function itemPrefix(n: number) {
 }
 
 function searchParams() {
-  return new URLSearchParams(window.location.search);
+  return new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
+}
+function urlParamSafe(k: string) {
+  return searchParams().get(k) ?? "";
 }
 export function productFromUrl() {
   const slug = searchParams().get("product") ?? "";
@@ -73,9 +90,10 @@ export function productFromUrl() {
 }
 export function sizeFromUrl(product: string) {
   const size = searchParams().get("size") ?? "";
-  return QUOTE_SPECS[product]?.sizes.some((s) => s.id === size) || (size === OTHER && QUOTE_SPECS[product]?.allowOther)
-    ? size
-    : "";
+  const spec = QUOTE_SPECS[product];
+  if (spec?.sizes.some((s) => s.id === size) || (size === OTHER && spec?.allowOther)) return size;
+  if (spec?.allowOther && searchParams().get("width") && searchParams().get("height")) return OTHER;
+  return "";
 }
 
 export default function QuoteItem({
@@ -99,14 +117,18 @@ export default function QuoteItem({
   const [size, setSize] = useState(() => (fromUrl ? sizeFromUrl(productFromUrl()) : ""));
   const urlParam = (k: string) => (fromUrl ? (searchParams().get(k) ?? "") : "");
   const [option, setOption] = useState(() => urlParam("option").replace(/[^a-z0-9-]/g, ""));
-  const [thickness, setThickness] = useState<CF.Thickness>("5mm");
+  const [thickness, setThickness] = useState<CF.Thickness>(() => (fromUrl && urlParamSafe("thickness") === "3mm" ? "3mm" : "5mm"));
   const [sides, setSides] = useState<CF.Sides | "">(() => {
     const v = urlParam("sides");
     return v === "double" ? "double" : "single";
   });
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
+  const [width, setWidth] = useState(() => (fromUrl ? urlParamSafe("width") : ""));
+  const [height, setHeight] = useState(() => (fromUrl ? urlParamSafe("height") : ""));
   const [unit, setUnit] = useState<Unit>("mm");
+  const [bannerMaterial, setBannerMaterial] = useState(() => {
+    const v = fromUrl ? urlParamSafe("material") : "";
+    return BANNER_MATERIALS.includes(v) ? v : "";
+  });
   const [qtyText, setQtyText] = useState(() => {
     const v = Math.floor(Number(urlParam("qty")));
     return v >= 1 && v <= 9999 ? String(v) : "1";
@@ -150,23 +172,29 @@ export default function QuoteItem({
   const hasWH = custom && w > 0 && h > 0;
   const customText = hasWH ? `${tidy(w)} x ${tidy(h)} ${unit}` : "";
   const sizeMm = hasWH ? `${Math.round(w * UNIT_MM[unit])} x ${Math.round(h * UNIT_MM[unit])}` : "";
-  // Estimate: only exact prices published on our product pages, at this quantity's band. null = we quote it.
   const qtyOk = Number.isFinite(qty) && qty >= 1 && qty <= 9999;
+  const areaKind = custom ? customKindFor(product, size, option, thickness, sides, bannerMaterial) : null;
+  const customPrice = areaKind && qtyOk ? priceFromInputs(areaKind, width, height, unit, qtyText) : null;
   const each =
-    cfPrice != null
-      ? cfPrice.each
-      : spec?.unitPrice && size && !custom && qtyOk && (options.length === 0 || option)
-        ? spec.unitPrice(size, option, qty)
-        : null;
-  const lineTotal = cfPrice != null ? cfPrice.total : each != null ? Math.round(each * qty * 100) / 100 : null;
+    customPrice?.ok
+      ? customPrice.each
+      : cfPrice != null
+        ? cfPrice.each
+        : spec?.unitPrice && size && !custom && qtyOk && (options.length === 0 || option)
+          ? spec.unitPrice(size, option, qty)
+          : null;
+  const lineTotal = customPrice?.ok ? customPrice.total : cfPrice != null ? cfPrice.total : each != null ? Math.round(each * qty * 100) / 100 : null;
   const estimateTotal = lineTotal;
   const shown = lineTotal;
+  const customReason = customPrice && !customPrice.ok ? customPrice.reason : "";
   const lineText =
     lineTotal != null && each != null
       ? `Estimate ${money(lineTotal)} for ${qty} (${eachText(lineTotal, qty)}), excl. freight`
-      : custom
-        ? "Custom size: we'll quote this size"
-        : "";
+      : customReason
+        ? customReason
+        : custom
+          ? "Enter a width and height to see a price"
+          : "";
   const priceText = [lineText, orderNote].filter(Boolean).join(". ");
   useEffect(() => onEstimate?.(product ? estimateTotal : null, product), [estimateTotal, product]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -310,7 +338,9 @@ export default function QuoteItem({
                     </label>
                   </div>
                   <p className="mt-1 text-xs text-charcoal/70">
-                    {sizeMm ? `That's ${sizeMm.replace(" x ", " × ")} mm. ` : ""}We'll confirm what's possible in your quote.
+                    {sizeMm ? `That's ${sizeMm.replace(" x ", " × ")} mm.` : "Enter the finished width and height."}
+                    {customPrice?.ok && customPrice.swapped ? " We've swapped the sides so this size fits what we can print." : ""}
+                    {customPrice?.ok && customPrice.rounded ? " Rounded to the nearest millimetre." : ""}
                   </p>
                 </div>
               )}
@@ -318,7 +348,7 @@ export default function QuoteItem({
               {product === "banners" && custom && (
                 <label className={label}>
                   Banner material
-                  <select name={`${p}Banner material`} required defaultValue="" className={input}>
+                  <select name={`${p}Banner material`} required value={bannerMaterial} onChange={(e) => setBannerMaterial(e.target.value)} className={input}>
                     <option value="" disabled>
                       Choose a material
                     </option>
@@ -427,8 +457,10 @@ export default function QuoteItem({
                         {eachText(shown, qty).startsWith("about") ? `${money(shown)} for ${qty}, ${eachText(shown, qty)}.` : `${qty} × ${eachText(shown, qty)}.`}
                       </p>
                     </>
+                  ) : customReason ? (
+                    <p className="font-bold">{customReason}</p>
                   ) : custom ? (
-                    <p className="font-bold">We'll quote this size.</p>
+                    <p className="font-bold">{product === "banners" && !bannerMaterial ? "Choose a material, then enter the size to see a price." : "Enter a width and height to see a price."}</p>
                   ) : (
                     <p className="text-sm">{options.length > 0 && !option ? "Choose an option to see an estimate." : qtyOk ? "We'll price this in your quote." : "Enter a quantity to see an estimate."}</p>
                   )}

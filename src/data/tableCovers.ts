@@ -22,6 +22,14 @@ export type ThrowSize = {
 };
 export const THROWS: ThrowSize[] = [
   {
+    id: "4ft",
+    label: "4ft (1.2m) table",
+    fits: "1220 × 760mm",
+    fitted: { four: 210, three: 190 },
+    fittedFourTiers: [[1, 210], [2, 416], [3, 606], [5, 910], [10, 1660], [20, 3100]],
+    loose: { four: 200, three: 185 },
+  },
+  {
     id: "6ft",
     label: "6ft (1.8m) table",
     fits: "1840 × 760mm",
@@ -44,7 +52,12 @@ export type RoundSize = {
   half: number;
 };
 export const ROUNDS: RoundSize[] = [
+  { id: "760", label: "760mm round table", full: 170, half: 135 },
+  { id: "910", label: "910mm round table", full: 185, half: 140 },
+  { id: "1370", label: "1370mm round table", full: 230, half: 155 },
   { id: "1520", label: "1520mm round table", full: 245, half: 170 },
+  { id: "2130", label: "2130mm round table", full: 265, half: 230 },
+  { id: "2430", label: "2430mm round table", full: 290, half: 260 },
 ];
 
 export type RunnerSize = { id: string; label: string; price: number };
@@ -57,8 +70,17 @@ export const RUNNERS: {
   front: [
     { id: "610x2006", label: "610 × 2006mm", price: 185 },
     { id: "914x2006", label: "914 × 2006mm", price: 185 },
+    { id: "1220x2006", label: "1220 × 2006mm", price: 185 },
+    { id: "1524x2006", label: "1524 × 2006mm", price: 185 },
+    { id: "1828x2006", label: "1828 × 2006mm", price: 185 },
   ],
-  side: [],
+  side: [
+    { id: "1830x250", label: "1830 × 250mm", price: 185 },
+    { id: "1625x300", label: "1625 × 300mm", price: 185 },
+    { id: "2740x300", label: "2740 × 300mm", price: 185 },
+    { id: "2440x400", label: "2440 × 400mm", price: 185 },
+    { id: "3250x400", label: "3250 × 400mm", price: 185 },
+  ],
   frontCustom: 185,
   sideCustom: 185,
 };
@@ -88,6 +110,7 @@ export const PRODUCTS: { id: Product; label: string }[] = [
   { id: "loose", label: "Loose table throw" },
   { id: "round", label: "Round table throw" },
   { id: "runner-front", label: "Table runner, front drop" },
+  { id: "runner-side", label: "Table runner, side drop" },
 ];
 export type Option = "four" | "three" | "full" | "half";
 export const OPTION_LABELS: Record<Option, string> = {
@@ -146,8 +169,8 @@ export function priceFor(c: QuoteChoice): number | null {
     return null;
   }
   const front = c.product === "runner-front";
-  if (c.size === "custom")
-    return front ? RUNNERS.frontCustom : RUNNERS.sideCustom;
+  // Custom sizes are priced by area in the quote form (priceCustom). Don't invent a flat total here.
+  if (c.size === "custom") return null;
   return (
     (front ? RUNNERS.front : RUNNERS.side).find((x) => x.id === c.size)
       ?.price ?? null
@@ -199,11 +222,24 @@ const pair = (slug: string, label: string, template = true): Download => ({
   guide: `${D}${slug}-artwork-guide.pdf`,
   template: template ? `${D}${slug}-artwork-template.pdf` : null,
 });
+const HAS_DOWNLOAD = new Set([
+  "fitted-throw-6ft-4-sided",
+  "fitted-throw-6ft-3-sided",
+  "fitted-throw-8ft-4-sided",
+  "fitted-throw-8ft-3-sided",
+  "loose-throw-6ft-4-sided",
+  "loose-throw-6ft-3-sided",
+  "round-throw-1520mm-full-drop",
+  "round-throw-1520mm-half-drop",
+  "runner-front-drop-610x2006mm",
+  "runner-front-drop-914x2006mm",
+  "runner-custom-size",
+]);
 const throwDownloads = (style: "fitted" | "loose") =>
   THROWS.filter((t) => t[style]).flatMap((t) => [
     pair(`${style}-throw-${t.id}-4-sided`, `${t.label}, 4 sided`),
     pair(`${style}-throw-${t.id}-3-sided`, `${t.label}, 3 sided`),
-  ]);
+  ]).filter((d) => HAS_DOWNLOAD.has(d.guide.slice(D.length, -"-artwork-guide.pdf".length)));
 export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
   { title: "Fitted table throws", items: throwDownloads("fitted") },
   { title: "Loose table throws", items: throwDownloads("loose") },
@@ -214,7 +250,7 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
         ? [pair(`round-throw-${r.id}mm-full-drop`, `${r.label}, full drop`)]
         : []),
       pair(`round-throw-${r.id}mm-half-drop`, `${r.label}, half drop`),
-    ]),
+    ]).filter((d) => HAS_DOWNLOAD.has(d.guide.slice(D.length, -"-artwork-guide.pdf".length))),
   },
   {
     title: "Table runners",
@@ -227,6 +263,6 @@ export const DOWNLOAD_GROUPS: { title: string; items: Download[] }[] = [
         "Custom size (template made to your size on request)",
         false,
       ),
-    ],
+    ].filter((d) => HAS_DOWNLOAD.has(d.guide.slice(D.length, -"-artwork-guide.pdf".length))),
   },
 ];
