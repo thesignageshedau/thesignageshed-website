@@ -124,12 +124,12 @@ const packExpect: Record<string, number> = {
   "site-cf-5": 230,
   "site-cf-10": 330,
   "mesh-2": 260,
-  "mesh-4": 468,
-  "school": 877,
+  "mesh-4": 470,
+  "school": 880,
   "event-starter": 720,
   "event-full": 950,
-  "flags-3-single": 627,
-  "flags-3-double": 747,
+  "flags-3-single": 630,
+  "flags-3-double": 750,
 };
 for (const it of PACKS.items) {
   ok(`pack ${it.id} = $${packExpect[it.id]}`, it.price[0] === packExpect[it.id], `got ${it.price[0]}`);
