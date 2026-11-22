@@ -254,8 +254,6 @@ export const BANNERS: GearProduct = {
   ],
   addon: { label: "Ropes", note: "PVC vinyl banners: add ropes for $5 to $12 more each, depending on size. The quote form shows the exact price." },
   notes: [
-    "Minimum order $180 (excl. freight).",
-    "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
     "All banners are printed single sided in full colour.",
     "Need a different size? Use the custom size box to get an instant price, or choose Custom size in the quote form.",
   ],

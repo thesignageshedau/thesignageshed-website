@@ -33,6 +33,13 @@ const quoteSizeId = (i: GearItem) => {
   return i.id.startsWith(prefix) ? i.id.slice(prefix.length) : i.id;
 };
 
+/** Notes already on the product shouldn't be repeated from the shared PRICE_NOTES list. */
+const normNote = (s: string) => s.replace(/\.+$/, "").trim().toLowerCase();
+const extraPriceNotes = (notes: readonly string[]) => {
+  const seen = new Set(notes.map(normNote));
+  return PRICE_NOTES.filter((n) => !seen.has(normNote(n)));
+};
+
 /** Sizes and materials with one from-price. No per-size prices. */
 function QuoteOnlyPanel({ p }: { p: GearProduct }) {
   const sizes = p.items.filter((i) => i.group === p.groups[0]?.id);
@@ -283,7 +290,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
               })}
             </table>
           </div>
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             {p.addon && (
               <p>
                 <strong>{p.addon.note}</strong>
@@ -292,7 +299,7 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
             {p.notes.map((n) => (
               <p key={n}>{n}</p>
             ))}
-            {PRICE_NOTES.map((n) => (
+            {extraPriceNotes(p.notes).map((n) => (
               <p key={n} className="font-semibold">
                 {n.replace(/\.$/, "")}.
               </p>

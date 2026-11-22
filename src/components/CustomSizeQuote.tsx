@@ -134,7 +134,7 @@ export default function CustomSizeQuote({
               <span className="font-semibold"> · {money(ok.total)} total</span>
             </p>
             {finishing && <p className="mt-1 text-xs text-charcoal/75">{finishing}</p>}
-            <p className="mt-1 text-xs text-charcoal/75">{MIN_NOTE} Freight is quoted separately.</p>
+            <p className="mt-1 text-xs text-charcoal/75">Freight is quoted separately.</p>
             <a
               href={quoteHref(quoteSlug, quoteSize?.(kind) ?? (kind.startsWith("runner-") ? `${kind}:custom` : "other"), { ...quoteExtra, width: String(ok.widthMm), height: String(ok.heightMm), qty: String(ok.qty), ...(kind === "pvc" ? { material: "PVC vinyl" } : kind === "mesh" ? { material: "Mesh vinyl" } : kind === "fabric" ? { material: "Fabric" } : kind === "acm-double" ? { option: "double" } : kind === "acm-single" ? { option: "single" } : {}) })}
               className="btn-rust mt-4 inline-block"

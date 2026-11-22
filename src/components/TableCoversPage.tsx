@@ -415,7 +415,7 @@ export default function TableCoversPage() {
             />
           </div>
           <TierTable title="Quantity prices" rows={THROWS.flatMap((t) => (t.fittedFourTiers ? [{ label: `Fitted throw, ${t.label}, 4 sided`, tiers: t.fittedFourTiers }] : []))} />
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             {PRICE_NOTES.map((n) => (
               <p key={n} className="font-semibold">
                 {n.replace(/\.$/, "")}.

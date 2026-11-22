@@ -133,7 +133,7 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
       )}
       <p className="mt-3 text-sm text-charcoal/80">
         {custom
-          ? `${MIN_NOTE} Freight is quoted separately. Eyelets and extra designs are added in your quote.`
+          ? "Freight is quoted separately. Eyelets and extra designs are added in your quote."
           : "Up to 5 signs is one price, and so is 6 to 10, so ordering 5 or 10 gets you the best price per sign. From 11 signs the price per sign drops as you order more."}
       </p>
       {(!custom || now) && (

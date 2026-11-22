@@ -240,7 +240,7 @@ export default function CorfluteSignsPage() {
             })}
           </div>
           <CorflutePrices thick={thick} />
-          <div className="mt-6 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <div className="mt-6 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             <p>
               <strong>Eyelets:</strong> {money(EYELET_EACH)} per eyelet, per
               sign ({money(EYELET_EACH * 4)} a sign for 4 corners).
