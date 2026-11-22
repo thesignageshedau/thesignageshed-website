@@ -26,7 +26,7 @@ export const GUIDES: Guide[] = [
         <p>A <strong>Luxury</strong> stand has one printed banner, so it suits a spot against a wall or at the back of your stand. A <strong>double sided</strong> stand has a banner rolling out of each side of the base, so people see your message from both directions. That suits the middle of a room, a walkway or a shopfront.</p>
       </> },
       { id: "price", title: "What it costs", body: <>
-        <p>Luxury banners are $230 for 850 × 2000mm and $305 for 1200 × 2000mm. Double sided banners are $340 and $460. Every banner is printed in full colour on tear-resistant, low-curl blockout PVC and comes with a carry bag. Prices include everything except delivery, the price each drops as your quantity grows, and the minimum order is $180 (excl. freight).</p>
+        <p>Luxury banners are $200 for 850 × 2000mm and $265 for 1200 × 2000mm. Double sided banners are $295 and $395. Every banner is printed in full colour on tear-resistant, low-curl blockout PVC and comes with a carry bag. Prices include everything except delivery, the price each drops as your quantity grows, and the minimum order is $180 (excl. freight).</p>
       </> },
       { id: "artwork", title: "Artwork tips", body: <>
         <p>Keep the bottom 100mm to background only, because it sits low near the base. Put your logo and key message in the top half, where people actually look. Our {L("/artwork-help/#guides", "artwork guides")} have the exact bleed and safe area for each size, and you can see the full range on our {L("/pull-up-banners/", "pull up banners page")}.</p>
@@ -41,7 +41,7 @@ export const GUIDES: Guide[] = [
       { id: "corflute", title: "Corflute: light, tough and great value", body: <>
         <p>Corflute is a fluted plastic board, like a plastic version of cardboard. It's light, waterproof and cheap to print in quantity, which is why it's the go-to for event signs, directional signs, site boards and short to medium term promotions.</p>
         <p>We print on premium Australian-made corflute, built for outdoor use, in 5mm or 3mm. Choose 5mm when the sign needs to stay flat and stiff, and 3mm for lighter, lower cost runs. Signs come in 600 × 450mm, 600 × 900mm and 900 × 1200mm, single or double sided, with optional eyelets for tying to fences and posts.</p>
-        <p>Corflute is priced in bundles: 1 to 5 signs from $215, with the price per sign dropping as your quantity grows. Our {L("/corflute-signs/", "custom corflute signs")} page has an instant price calculator.</p>
+        <p>Corflute is priced in bundles: 1 to 5 signs from $185, with the price per sign dropping as your quantity grows. Our {L("/corflute-signs/", "custom corflute signs")} page has an instant price calculator.</p>
       </> },
       { id: "acm", title: "Aluminium composite: our sturdiest option", body: <>
         <p>Aluminium composite panel (often called ACM) is two thin sheets of aluminium bonded to a solid core. It's rigid, flat and much heavier duty than corflute, so it's the choice for signs that need to look sharp for longer.</p>

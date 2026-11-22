@@ -1,4 +1,4 @@
-// New products (checked 25 Oct 2026). Supplier REGULAR price inc GST for each exact quantity ÷ 0.65,
+// New products (checked 25 Oct 2026). Supplier REGULAR price inc GST for each exact quantity ÷ 0.75,
 // rounded UP to the next $5. Pricing records: /workspace/pricing/*-2026-10-25.csv. Standard sizes only.
 import { MOCKUPS } from "./mockups";
 import type { GearFaq, GearProduct } from "./eventGear";
@@ -30,12 +30,12 @@ export const LIGHTBOX: GearProduct = {
   ],
   bands: [{label: "1", min: 1}, {label: "2", min: 2}, {label: "3 to 4", min: 3}, {label: "5+", min: 5}],
 items: [
-    { id: "1000x2000-single", group: "1000", label: "Modular lightbox 1000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 1540], [2, 3080], [3, 4545], [5, 7115]], price: [1540, 1540, 1515, 1423] },
-    { id: "1000x2000-double", group: "1000", label: "Modular lightbox 1000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 1770], [2, 3540], [3, 5226], [5, 8175]], price: [1770, 1770, 1742, 1635] },
-    { id: "2000x2000-single", group: "2000", label: "Modular lightbox 2000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 2440], [2, 4876], [3, 7197], [5, 11260]], price: [2440, 2438, 2399, 2252] },
-    { id: "2000x2000-double", group: "2000", label: "Modular lightbox 2000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 2805], [2, 5606], [3, 8277], [5, 12950]], price: [2805, 2803, 2759, 2590] },
-    { id: "3000x2000-single", group: "3000", label: "Modular lightbox 3000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 3015], [2, 6026], [3, 8895], [5, 13920]], price: [3015, 3013, 2965, 2784] },
-    { id: "3000x2000-double", group: "3000", label: "Modular lightbox 3000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 3465], [2, 6926], [3, 10230], [5, 16005]], price: [3465, 3463, 3410, 3201] },
+    { id: "1000x2000-single", group: "1000", label: "Modular lightbox 1000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 1335], [2, 2670], [3, 3942], [5, 6165]], price: [1335, 1335, 1314, 1233] },
+    { id: "1000x2000-double", group: "1000", label: "Modular lightbox 1000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 1535], [2, 3070], [3, 4530], [5, 7085]], price: [1535, 1535, 1510, 1417] },
+    { id: "2000x2000-single", group: "2000", label: "Modular lightbox 2000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 2115], [2, 4226], [3, 6237], [5, 9760]], price: [2115, 2113, 2079, 1952] },
+    { id: "2000x2000-double", group: "2000", label: "Modular lightbox 2000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 2430], [2, 4856], [3, 7170], [5, 11225]], price: [2430, 2428, 2390, 2245] },
+    { id: "3000x2000-single", group: "3000", label: "Modular lightbox 3000 × 2000mm, single sided", short: "Single sided", includes: "Backlit frame, printed fabric and carry bag, plus a blank back fabric", tiers: [[1, 2610], [2, 5220], [3, 7710], [5, 12065]], price: [2610, 2610, 2570, 2413] },
+    { id: "3000x2000-double", group: "3000", label: "Modular lightbox 3000 × 2000mm, double sided", short: "Double sided", includes: "Backlit frame, printed fabric and carry bag", tiers: [[1, 3005], [2, 6006], [3, 8865], [5, 13875]], price: [3005, 3003, 2955, 2775] },
 ],
   notes: [
     "Indoor use only.",
@@ -76,12 +76,12 @@ export const BIG_HEADS: GearProduct = {
   ],
   bands: [{label: "1 to 4", min: 1}, {label: "5 to 9", min: 5}, {label: "10 to 19", min: 10}, {label: "20 to 49", min: 20}, {label: "50+", min: 50}],
 items: [
-    { id: "small-cf", group: "small", label: "Big head cutout small 380mm with handle, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape, with handle", tiers: [[1, 215], [5, 215], [10, 220], [20, 220], [50, 300]], price: [215, 43, 22, 11, 6] },
-    { id: "small-pvc", group: "small", label: "Big head cutout small 380mm with handle, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape, with handle", tiers: [[1, 215], [5, 215], [10, 220], [20, 380], [50, 750]], price: [215, 43, 22, 19, 15] },
-    { id: "medium-cf", group: "medium", label: "Big head cutout medium 600mm, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape", tiers: [[1, 215], [5, 215], [10, 220], [20, 300], [50, 600]], price: [215, 43, 22, 15, 12] },
-    { id: "medium-pvc", group: "medium", label: "Big head cutout medium 600mm, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape", tiers: [[1, 215], [5, 230], [10, 430], [20, 740], [50, 1650]], price: [215, 46, 43, 37, 33] },
-    { id: "large-cf", group: "large", label: "Big head cutout large 900mm, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape", tiers: [[1, 215], [5, 225], [10, 330], [20, 540], [50, 1100]], price: [215, 45, 33, 27, 22] },
-    { id: "large-pvc", group: "large", label: "Big head cutout large 900mm, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape", tiers: [[1, 215], [5, 465], [10, 820], [20, 1480], [50, 3400]], price: [215, 93, 82, 74, 68] },
+    { id: "small-cf", group: "small", label: "Big head cutout small 380mm with handle, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape, with handle", tiers: [[1, 185], [5, 185], [10, 190], [20, 200], [50, 300]], price: [185, 37, 19, 10, 6] },
+    { id: "small-pvc", group: "small", label: "Big head cutout small 380mm with handle, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape, with handle", tiers: [[1, 185], [5, 185], [10, 190], [20, 320], [50, 650]], price: [185, 37, 19, 16, 13] },
+    { id: "medium-cf", group: "medium", label: "Big head cutout medium 600mm, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape", tiers: [[1, 185], [5, 185], [10, 190], [20, 260], [50, 500]], price: [185, 37, 19, 13, 10] },
+    { id: "medium-pvc", group: "medium", label: "Big head cutout medium 600mm, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape", tiers: [[1, 185], [5, 200], [10, 370], [20, 640], [50, 1450]], price: [185, 40, 37, 32, 29] },
+    { id: "large-cf", group: "large", label: "Big head cutout large 900mm, 3mm corrugated plastic", short: "3mm corrugated plastic (outdoor)", includes: "Printed and cut to shape", tiers: [[1, 185], [5, 195], [10, 290], [20, 480], [50, 1000]], price: [185, 39, 29, 24, 20] },
+    { id: "large-pvc", group: "large", label: "Big head cutout large 900mm, 3mm foam PVC", short: "3mm foam PVC (indoor)", includes: "Printed and cut to shape", tiers: [[1, 185], [5, 405], [10, 710], [20, 1280], [50, 2950]], price: [185, 81, 71, 64, 59] },
 ],
   notes: [
     "Printed single sided and cut to the outline of your image.",
@@ -118,11 +118,11 @@ export const SEG_AFRAMES: GearProduct = {
   ],
   bands: [{label: "1", min: 1}, {label: "2 to 4", min: 2}, {label: "5 to 9", min: 5}, {label: "10+", min: 10}],
 items: [
-    { id: "1-frame", group: "segaf", label: "SEG fabric frame 559 × 717mm (1 section)", short: "559 × 717mm · 1 section", includes: "Frame and printed fabric graphic", tiers: [[1, 325], [2, 636], [5, 1470], [10, 2780]], price: [325, 318, 294, 278] },
-    { id: "2-frames", group: "segaf", label: "SEG fabric frame 1118 × 717mm (2 sections)", short: "1118 × 717mm · 2 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 610], [2, 1146], [5, 2630], [10, 5050]], price: [610, 573, 526, 505] },
-    { id: "3-frames", group: "segaf", label: "SEG fabric frame 1676 × 717mm (3 sections)", short: "1676 × 717mm · 3 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 880], [2, 1616], [5, 3765], [10, 7420]], price: [880, 808, 753, 742] },
-    { id: "4-frames", group: "segaf", label: "SEG fabric frame 2235 × 717mm (4 sections)", short: "2235 × 717mm · 4 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 1120], [2, 2076], [5, 4895], [10, 9790]], price: [1120, 1038, 979, 979] },
-    { id: "5-frames", group: "segaf", label: "SEG fabric frame 2794 × 717mm (5 sections)", short: "2794 × 717mm · 5 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 1350], [2, 2536], [5, 6075], [10, 12150]], price: [1350, 1268, 1215, 1215] },
+    { id: "1-frame", group: "segaf", label: "SEG fabric frame 559 × 717mm (1 section)", short: "559 × 717mm · 1 section", includes: "Frame and printed fabric graphic", tiers: [[1, 285], [2, 550], [5, 1275], [10, 2410]], price: [285, 275, 255, 241] },
+    { id: "2-frames", group: "segaf", label: "SEG fabric frame 1118 × 717mm (2 sections)", short: "1118 × 717mm · 2 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 530], [2, 996], [5, 2280], [10, 4380]], price: [530, 498, 456, 438] },
+    { id: "3-frames", group: "segaf", label: "SEG fabric frame 1676 × 717mm (3 sections)", short: "1676 × 717mm · 3 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 765], [2, 1400], [5, 3260], [10, 6430]], price: [765, 700, 652, 643] },
+    { id: "4-frames", group: "segaf", label: "SEG fabric frame 2235 × 717mm (4 sections)", short: "2235 × 717mm · 4 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 970], [2, 1800], [5, 4240], [10, 8480]], price: [970, 900, 848, 848] },
+    { id: "5-frames", group: "segaf", label: "SEG fabric frame 2794 × 717mm (5 sections)", short: "2794 × 717mm · 5 sections", includes: "Frame and printed fabric graphic", tiers: [[1, 1170], [2, 2200], [5, 5265], [10, 10530]], price: [1170, 1100, 1053, 1053] },
 ],
   notes: [
     "The fabric has a silicone edge that fits into the frame without tools.",
@@ -159,14 +159,14 @@ export const BARRIERS: GearProduct = {
   ],
   bands: [{label: "1", min: 1}, {label: "2 to 4", min: 2}, {label: "5 to 9", min: 5}, {label: "10 to 19", min: 10}, {label: "20+", min: 20}],
 items: [
-    { id: "1000-single", group: "frame", label: "Barrier frame 1000 × 900mm, single sided", short: "1000 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 245], [2, 490], [5, 1075], [10, 1940], [20, 3600]], price: [245, 245, 215, 194, 180] },
-    { id: "1000-double", group: "frame", label: "Barrier frame 1000 × 900mm, double sided", short: "1000 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 270], [2, 540], [5, 1180], [10, 2140], [20, 3980]], price: [270, 270, 236, 214, 199] },
-    { id: "1500-single", group: "frame", label: "Barrier frame 1500 × 900mm, single sided", short: "1500 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 285], [2, 570], [5, 1250], [10, 2260], [20, 4200]], price: [285, 285, 250, 226, 210] },
-    { id: "1500-double", group: "frame", label: "Barrier frame 1500 × 900mm, double sided", short: "1500 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 310], [2, 620], [5, 1350], [10, 2440], [20, 4540]], price: [310, 310, 270, 244, 227] },
-    { id: "2000-single", group: "frame", label: "Barrier frame 2000 × 900mm, single sided", short: "2000 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 325], [2, 646], [5, 1425], [10, 2590], [20, 4840]], price: [325, 323, 285, 259, 242] },
-    { id: "2000-double", group: "frame", label: "Barrier frame 2000 × 900mm, double sided", short: "2000 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 350], [2, 696], [5, 1530], [10, 2790], [20, 5220]], price: [350, 348, 306, 279, 261] },
-    { id: "cover-single", group: "cover", label: "Crowd control barrier cover 2100 × 1100mm, single sided", short: "Cover · Single sided", includes: "Printed cover only, fits a standard 2100 × 1100mm steel barrier", tiers: [[1, 170], [2, 340], [5, 745], [10, 1340], [20, 2500]], price: [170, 170, 149, 134, 125] },
-    { id: "cover-double", group: "cover", label: "Crowd control barrier cover 2100 × 1100mm, double sided", short: "Cover · Double sided", includes: "Printed cover only, fits a standard 2100 × 1100mm steel barrier", tiers: [[1, 195], [2, 386], [5, 845], [10, 1530], [20, 2840]], price: [195, 193, 169, 153, 142] },
+    { id: "1000-single", group: "frame", label: "Barrier frame 1000 × 900mm, single sided", short: "1000 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 215], [2, 426], [5, 930], [10, 1680], [20, 3120]], price: [215, 213, 186, 168, 156] },
+    { id: "1000-double", group: "frame", label: "Barrier frame 1000 × 900mm, double sided", short: "1000 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 235], [2, 470], [5, 1025], [10, 1850], [20, 3440]], price: [235, 235, 205, 185, 172] },
+    { id: "1500-single", group: "frame", label: "Barrier frame 1500 × 900mm, single sided", short: "1500 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 250], [2, 496], [5, 1080], [10, 1960], [20, 3640]], price: [250, 248, 216, 196, 182] },
+    { id: "1500-double", group: "frame", label: "Barrier frame 1500 × 900mm, double sided", short: "1500 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 270], [2, 536], [5, 1170], [10, 2120], [20, 3940]], price: [270, 268, 234, 212, 197] },
+    { id: "2000-single", group: "frame", label: "Barrier frame 2000 × 900mm, single sided", short: "2000 × 900mm · Single sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 280], [2, 560], [5, 1235], [10, 2250], [20, 4200]], price: [280, 280, 247, 225, 210] },
+    { id: "2000-double", group: "frame", label: "Barrier frame 2000 × 900mm, double sided", short: "2000 × 900mm · Double sided", includes: "Aluminium frame, printed fabric and carry bag", tiers: [[1, 300], [2, 600], [5, 1330], [10, 2420], [20, 4520]], price: [300, 300, 266, 242, 226] },
+    { id: "cover-single", group: "cover", label: "Crowd control barrier cover 2100 × 1100mm, single sided", short: "Cover · Single sided", includes: "Printed cover only, fits a standard 2100 × 1100mm steel barrier", tiers: [[1, 150], [2, 296], [5, 645], [10, 1170], [20, 2160]], price: [150, 148, 129, 117, 108] },
+    { id: "cover-double", group: "cover", label: "Crowd control barrier cover 2100 × 1100mm, double sided", short: "Cover · Double sided", includes: "Printed cover only, fits a standard 2100 × 1100mm steel barrier", tiers: [[1, 170], [2, 336], [5, 730], [10, 1320], [20, 2460]], price: [170, 168, 146, 132, 123] },
 ],
   notes: [
     "Single sided frames: printed on one side and white on the other.",
@@ -202,8 +202,8 @@ export const SELFIE_FRAMES: GearProduct = {
   ],
   bands: [{label: "1", min: 1}, {label: "2 to 4", min: 2}, {label: "5 to 9", min: 5}, {label: "10+", min: 10}],
 items: [
-    { id: "small", group: "selfie", label: "Selfie frame small 600 × 900mm", short: "Small 600 × 900mm", includes: "Printed and cut out, ready to use", tiers: [[1, 155], [2, 306], [5, 550], [10, 850]], price: [155, 153, 110, 85] },
-    { id: "large", group: "selfie", label: "Selfie frame large 850 × 1200mm", short: "Large 850 × 1200mm", includes: "Printed and cut out, ready to use", tiers: [[1, 240], [2, 476], [5, 850], [10, 1330]], price: [240, 238, 170, 133] },
+    { id: "small", group: "selfie", label: "Selfie frame small 600 × 900mm", short: "Small 600 × 900mm", includes: "Printed and cut out, ready to use", tiers: [[1, 135], [2, 266], [5, 475], [10, 740]], price: [135, 133, 95, 74] },
+    { id: "large", group: "selfie", label: "Selfie frame large 850 × 1200mm", short: "Large 850 × 1200mm", includes: "Printed and cut out, ready to use", tiers: [[1, 210], [2, 416], [5, 740], [10, 1150]], price: [210, 208, 148, 115] },
 ],
   notes: [
     "Printed on waterproof 5mm corrugated plastic, so a spilt drink won't hurt it.",
@@ -239,10 +239,10 @@ export const CAR_MAGNETS: GearProduct = {
   ],
   bands: [{label: "1", min: 1}, {label: "2 to 3", min: 2}, {label: "4 to 9", min: 4}, {label: "10+", min: 10}],
 items: [
-    { id: "290x220", group: "mag", label: "Car magnet 290 × 220mm", short: "290 × 220mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 215], [2, 216], [4, 216], [10, 230]], price: [215, 108, 54, 23] },
-    { id: "440x290", group: "mag", label: "Car magnet 440 × 290mm", short: "440 × 290mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 215], [2, 216], [4, 216], [10, 460]], price: [215, 108, 54, 46] },
-    { id: "600x300", group: "mag", label: "Car magnet 600 × 300mm", short: "600 × 300mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 215], [2, 216], [4, 260], [10, 640]], price: [215, 108, 65, 64] },
-    { id: "600x400", group: "mag", label: "Car magnet 600 × 400mm", short: "600 × 400mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 215], [2, 216], [4, 348], [10, 860]], price: [215, 108, 87, 86] },
+    { id: "290x220", group: "mag", label: "Car magnet 290 × 220mm", short: "290 × 220mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 185], [2, 186], [4, 188], [10, 200]], price: [185, 93, 47, 20] },
+    { id: "440x290", group: "mag", label: "Car magnet 440 × 290mm", short: "440 × 290mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 185], [2, 186], [4, 188], [10, 400]], price: [185, 93, 47, 40] },
+    { id: "600x300", group: "mag", label: "Car magnet 600 × 300mm", short: "600 × 300mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 185], [2, 186], [4, 228], [10, 560]], price: [185, 93, 57, 56] },
+    { id: "600x400", group: "mag", label: "Car magnet 600 × 400mm", short: "600 × 400mm", includes: "0.8mm magnet, white vinyl, gloss laminate, rounded corners", tiers: [[1, 185], [2, 186], [4, 300], [10, 740]], price: [185, 93, 75, 74] },
 ],
   notes: [
     "Printed full colour on white vinyl, gloss laminated, on 0.8mm magnet, with rounded corners.",
@@ -279,22 +279,22 @@ export const BUSINESS_CARDS: GearProduct = {
   ],
   bands: BANDS_EACH,
   items: [
-    { id: "pc-matte-250", group: "premium", label: "Premium business cards, matte, 250 cards", short: "Matte · 250 cards", includes: "350gsm artboard, matte laminate both sides", price: [155] },
-    { id: "pc-matte-500", group: "premium", label: "Premium business cards, matte, 500 cards", short: "Matte · 500 cards", includes: "350gsm artboard, matte laminate both sides", price: [210] },
-    { id: "pc-matte-1000", group: "premium", label: "Premium business cards, matte, 1000 cards", short: "Matte · 1000 cards", includes: "350gsm artboard, matte laminate both sides", price: [320] },
-    { id: "pc-matte-2500", group: "premium", label: "Premium business cards, matte, 2500 cards", short: "Matte · 2500 cards", includes: "350gsm artboard, matte laminate both sides", price: [655] },
-    { id: "pc-gloss-250", group: "premium", label: "Premium business cards, gloss, 250 cards", short: "Gloss · 250 cards", includes: "350gsm artboard, gloss laminate both sides", price: [155] },
-    { id: "pc-gloss-500", group: "premium", label: "Premium business cards, gloss, 500 cards", short: "Gloss · 500 cards", includes: "350gsm artboard, gloss laminate both sides", price: [210] },
-    { id: "pc-gloss-1000", group: "premium", label: "Premium business cards, gloss, 1000 cards", short: "Gloss · 1000 cards", includes: "350gsm artboard, gloss laminate both sides", price: [320] },
-    { id: "pc-gloss-2500", group: "premium", label: "Premium business cards, gloss, 2500 cards", short: "Gloss · 2500 cards", includes: "350gsm artboard, gloss laminate both sides", price: [655] },
-    { id: "lc-velvet-250", group: "luxury", label: "Luxury business cards, velvet, 250 cards", short: "Velvet · 250 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [220] },
-    { id: "lc-velvet-500", group: "luxury", label: "Luxury business cards, velvet, 500 cards", short: "Velvet · 500 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [310] },
-    { id: "lc-velvet-1000", group: "luxury", label: "Luxury business cards, velvet, 1000 cards", short: "Velvet · 1000 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [485] },
-    { id: "lc-velvet-2500", group: "luxury", label: "Luxury business cards, velvet, 2500 cards", short: "Velvet · 2500 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [1005] },
-    { id: "lc-velvet-spot-250", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 250 cards", short: "Velvet with spot gloss · 250 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [270] },
-    { id: "lc-velvet-spot-500", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 500 cards", short: "Velvet with spot gloss · 500 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [375] },
-    { id: "lc-velvet-spot-1000", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 1000 cards", short: "Velvet with spot gloss · 1000 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [590] },
-    { id: "lc-velvet-spot-2500", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 2500 cards", short: "Velvet with spot gloss · 2500 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [1225] },
+    { id: "pc-matte-250", group: "premium", label: "Premium business cards, matte, 250 cards", short: "Matte · 250 cards", includes: "350gsm artboard, matte laminate both sides", price: [135] },
+    { id: "pc-matte-500", group: "premium", label: "Premium business cards, matte, 500 cards", short: "Matte · 500 cards", includes: "350gsm artboard, matte laminate both sides", price: [180] },
+    { id: "pc-matte-1000", group: "premium", label: "Premium business cards, matte, 1000 cards", short: "Matte · 1000 cards", includes: "350gsm artboard, matte laminate both sides", price: [280] },
+    { id: "pc-matte-2500", group: "premium", label: "Premium business cards, matte, 2500 cards", short: "Matte · 2500 cards", includes: "350gsm artboard, matte laminate both sides", price: [570] },
+    { id: "pc-gloss-250", group: "premium", label: "Premium business cards, gloss, 250 cards", short: "Gloss · 250 cards", includes: "350gsm artboard, gloss laminate both sides", price: [135] },
+    { id: "pc-gloss-500", group: "premium", label: "Premium business cards, gloss, 500 cards", short: "Gloss · 500 cards", includes: "350gsm artboard, gloss laminate both sides", price: [180] },
+    { id: "pc-gloss-1000", group: "premium", label: "Premium business cards, gloss, 1000 cards", short: "Gloss · 1000 cards", includes: "350gsm artboard, gloss laminate both sides", price: [280] },
+    { id: "pc-gloss-2500", group: "premium", label: "Premium business cards, gloss, 2500 cards", short: "Gloss · 2500 cards", includes: "350gsm artboard, gloss laminate both sides", price: [570] },
+    { id: "lc-velvet-250", group: "luxury", label: "Luxury business cards, velvet, 250 cards", short: "Velvet · 250 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [195] },
+    { id: "lc-velvet-500", group: "luxury", label: "Luxury business cards, velvet, 500 cards", short: "Velvet · 500 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [270] },
+    { id: "lc-velvet-1000", group: "luxury", label: "Luxury business cards, velvet, 1000 cards", short: "Velvet · 1000 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [420] },
+    { id: "lc-velvet-2500", group: "luxury", label: "Luxury business cards, velvet, 2500 cards", short: "Velvet · 2500 cards", includes: "420gsm coated artboard, velvet soft-touch laminate both sides", price: [870] },
+    { id: "lc-velvet-spot-250", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 250 cards", short: "Velvet with spot gloss · 250 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [235] },
+    { id: "lc-velvet-spot-500", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 500 cards", short: "Velvet with spot gloss · 500 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [325] },
+    { id: "lc-velvet-spot-1000", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 1000 cards", short: "Velvet with spot gloss · 1000 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [510] },
+    { id: "lc-velvet-spot-2500", group: "luxury", label: "Luxury business cards, velvet with spot gloss, 2500 cards", short: "Velvet with spot gloss · 2500 cards", includes: "420gsm, velvet soft-touch both sides, spot gloss both sides", price: [1060] },
   ],
   notes: [
     "Price is per pack of cards, 1 design.",
@@ -313,9 +313,9 @@ export const BUSINESS_CARDS: GearProduct = {
   notesHint: "Names on the cards, how many people, finish",
 };
 
-// Printed self-adhesive vinyl. From $215 on the hero and product cards.
+// Printed self-adhesive vinyl. From $185 on the hero and product cards.
 // Every size and quantity is priced on quote, so the page does not list a price per size.
-const SAV_FROM = 215;
+const SAV_FROM = 185;
 const SAV_SIZES = [
   ["a4", "A4 (210 × 297mm)"],
   ["a3", "A3 (297 × 420mm)"],
@@ -341,7 +341,7 @@ export const PRINTED_VINYL: GearProduct = {
   subject: "Printed self-adhesive vinyl quote",
   noun: "vinyl",
   pageTitle: "Printed Self-Adhesive Vinyl (SAV) | The Signage Shed",
-  description: "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. From $215, priced on quote. Delivered Australia-wide.",
+  description: "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. From $185, priced on quote. Delivered Australia-wide.",
   eyebrow: "Printed vinyl stickers and decals, delivered Australia-wide",
   heading: "Printed self-adhesive vinyl (SAV)",
   intro: "Full colour stickers and decals on white self-adhesive vinyl. We print the sheet and deliver it ready for you to peel and apply. Choose economy white for short-term use, premium white for longer outdoor life, or premium with a gloss or matte laminate.",
@@ -369,7 +369,7 @@ export const PRINTED_VINYL: GearProduct = {
     { q: "Do you apply the vinyl?", a: "No. We print it and deliver it ready for you to apply. We don't visit or install." },
     { q: "Can I order more than one?", a: "Yes. Send us the sizes and quantities and we'll price the whole job in your quote." },
     { q: "What about clear vinyl, window film or another size?", a: "Clear vinyl, one-way window film, wall vinyl, cling and oversize sheets are quoted with the job. This page lists fixed sizes only. Add the details in the notes on the quote form." },
-    { q: "Which material should I choose?", a: "Economy white is gloss vinyl with no laminate, for short-term indoor or outdoor use. Premium white is gloss or matte vinyl with no laminate, for a longer outdoor life. Premium with laminate adds a gloss or matte protective film. Every vinyl job is priced on quote, from $215." },
+    { q: "Which material should I choose?", a: "Economy white is gloss vinyl with no laminate, for short-term indoor or outdoor use. Premium white is gloss or matte vinyl with no laminate, for a longer outdoor life. Premium with laminate adds a gloss or matte protective film. Every vinyl job is priced on quote, from $185." },
     { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
     { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
     { q: "How much is delivery?", a: "We'll email you a quote with freight included. Freight depends on the size and weight, and we quote it to your postcode." },

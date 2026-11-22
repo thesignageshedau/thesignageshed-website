@@ -1,6 +1,6 @@
 // Sector packs (checked 26 Oct 2026), built only from products we already sell.
 // Price per pack = supplier REGULAR price inc GST for the exact pack contents (quantity and number of designs)
-// ÷ 0.65, rounded UP to the next $5. Pricing record: /workspace/pricing/sector-packs-2026-10-26.csv.
+// ÷ 0.75, rounded UP to the next $5. Pricing record: /workspace/pricing/sector-packs-2026-10-26.csv.
 import { MOCKUPS } from "./mockups";
 import type { GearFaq, GearProduct } from "./eventGear";
 
@@ -37,17 +37,17 @@ export const PACKS: GearProduct = {
   ],
   bands: [{ label: "Price per pack", min: 1 }],
   items: [
-    { id: "sponsor-5", group: "sport", label: "Sponsor banner 5-pack: 5 × PVC banner 2000 × 1000mm, 5 designs", short: "5 banners, 5 designs", includes: "5 printed PVC banners, hemmed with eyelets", ...tier(435) },
-    { id: "sponsor-10", group: "sport", label: "Sponsor banner 10-pack: 10 × PVC banner 2000 × 1000mm, 10 designs", short: "10 banners, 10 designs", includes: "10 printed PVC banners, hemmed with eyelets", ...tier(805) },
-    { id: "site-cf-5", group: "site", label: "Site safety corflute 5-pack: 5 × 600 × 900mm 5mm, corner eyelets, 5 designs", short: "5 signs, 5 designs", includes: "5 printed corflute signs with 4 corner eyelets each", ...tier(265) },
-    { id: "site-cf-10", group: "site", label: "Site safety corflute 10-pack: 10 × 600 × 900mm 5mm, corner eyelets, 10 designs", short: "10 signs, 10 designs", includes: "10 printed corflute signs with 4 corner eyelets each", ...tier(380) },
-    { id: "mesh-2", group: "mesh", label: "Site fence mesh 2-pack: 2 × mesh banner 2400 × 1600mm, 1 design", short: "2 mesh banners, 1 design", includes: "2 printed mesh banners, welded edges and eyelets", ...tier(300) },
-    { id: "mesh-4", group: "mesh", label: "Site fence mesh 4-pack: 4 × mesh banner 2400 × 1600mm, 1 design", short: "4 mesh banners, 1 design", includes: "4 printed mesh banners, welded edges and eyelets", ...tier(540) },
-    { id: "school", group: "school", label: "School pack: 2 × PVC banner 2000 × 1000mm, 2 × 2.3m teardrop flag (single sided), 10 × 600 × 900mm corflute", short: "2 banners, 2 flags, 10 corflutes", includes: "2 PVC banners (1 design), 2 single-sided teardrop flags with 10kg bases (1 design), 10 corflute signs (5 designs)", ...tier(1005) },
-    { id: "event-starter", group: "event", label: "Event starter pack: 2.4 × 2.2m media wall kit + 850 × 2000mm pull up banner", short: "Media wall + pull up banner", includes: "Media wall frame, print and bag, plus a pull up banner with stand", ...tier(845) },
-    { id: "event-full", group: "event", label: "Expo stand pack: 2.4 × 2.2m media wall kit + 850 × 2000mm pull up banner + 6ft fitted table cover", short: "Media wall + pull up + table cover", includes: "Media wall frame, print and bag, a pull up banner with stand, and a fitted 6ft table cover", ...tier(1115) },
-    { id: "flags-3-single", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, single sided, 3 designs", short: "Single sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(720) },
-    { id: "flags-3-double", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, double sided, 3 designs", short: "Double sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(860) },
+    { id: "sponsor-5", group: "sport", label: "Sponsor banner 5-pack: 5 × PVC banner 2000 × 1000mm, 5 designs", short: "5 banners, 5 designs", includes: "5 printed PVC banners, hemmed with eyelets", ...tier(375) },
+    { id: "sponsor-10", group: "sport", label: "Sponsor banner 10-pack: 10 × PVC banner 2000 × 1000mm, 10 designs", short: "10 banners, 10 designs", includes: "10 printed PVC banners, hemmed with eyelets", ...tier(700) },
+    { id: "site-cf-5", group: "site", label: "Site safety corflute 5-pack: 5 × 600 × 900mm 5mm, corner eyelets, 5 designs", short: "5 signs, 5 designs", includes: "5 printed corflute signs with 4 corner eyelets each", ...tier(230) },
+    { id: "site-cf-10", group: "site", label: "Site safety corflute 10-pack: 10 × 600 × 900mm 5mm, corner eyelets, 10 designs", short: "10 signs, 10 designs", includes: "10 printed corflute signs with 4 corner eyelets each", ...tier(330) },
+    { id: "mesh-2", group: "mesh", label: "Site fence mesh 2-pack: 2 × mesh banner 2400 × 1600mm, 1 design", short: "2 mesh banners, 1 design", includes: "2 printed mesh banners, welded edges and eyelets", ...tier(260) },
+    { id: "mesh-4", group: "mesh", label: "Site fence mesh 4-pack: 4 × mesh banner 2400 × 1600mm, 1 design", short: "4 mesh banners, 1 design", includes: "4 printed mesh banners, welded edges and eyelets", ...tier(465) },
+    { id: "school", group: "school", label: "School pack: 2 × PVC banner 2000 × 1000mm, 2 × 2.3m teardrop flag (single sided), 10 × 600 × 900mm corflute", short: "2 banners, 2 flags, 10 corflutes", includes: "2 PVC banners (1 design), 2 single-sided teardrop flags with 10kg bases (1 design), 10 corflute signs (5 designs)", ...tier(870) },
+    { id: "event-starter", group: "event", label: "Event starter pack: 2.4 × 2.2m media wall kit + 850 × 2000mm pull up banner", short: "Media wall + pull up banner", includes: "Media wall frame, print and bag, plus a pull up banner with stand", ...tier(730) },
+    { id: "event-full", group: "event", label: "Expo stand pack: 2.4 × 2.2m media wall kit + 850 × 2000mm pull up banner + 6ft fitted table cover", short: "Media wall + pull up + table cover", includes: "Media wall frame, print and bag, a pull up banner with stand, and a fitted 6ft table cover", ...tier(965) },
+    { id: "flags-3-single", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, single sided, 3 designs", short: "Single sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(625) },
+    { id: "flags-3-double", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, double sided, 3 designs", short: "Double sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(745) },
   ],
   notes: [
     "One price per pack, including everything except freight.",
