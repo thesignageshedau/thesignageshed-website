@@ -2,11 +2,61 @@ import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, fromPrice, type GearProduct } from "../data/eventGear";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
+import { FROM_PER_M2 } from "../data/customSize";
+import { OG_IMAGES } from "../data/ogImages";
 
 export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl"] as const;
 type Slug = (typeof SEO_SLUGS)[number];
 const gearPrices = (g: GearProduct) => g.items.flatMap((i) => [i.price[0]!, ...(i.priceWithAddon ? [i.priceWithAddon[0]!] : [])]);
 const SITE = "https://thesignageshed.au";
+
+/** Visible "From $X per m²" headlines, used in Product offers so markup matches the page. */
+const PER_M2_FROM: Partial<Record<Slug, number>> = {
+  "corflute-signs": FROM_PER_M2["corflute-5mm-single"],
+  "acm-signs": FROM_PER_M2["acm-single"],
+  "printed-vinyl": FROM_PER_M2.sav,
+};
+
+const HERO_FALLBACK: Partial<Record<Slug, { slug: string }>> = {
+  "lightbox-displays": LIGHTBOX.hero,
+  "big-head-cutouts": BIG_HEADS.hero,
+  "seg-fabric-frames": SEG_AFRAMES.hero,
+  "crowd-barriers": BARRIERS.hero,
+  "selfie-frames": SELFIE_FRAMES.hero,
+  "car-magnets": CAR_MAGNETS.hero,
+  "business-cards": BUSINESS_CARDS.hero,
+  "printed-vinyl": PRINTED_VINYL.hero,
+};
+
+function productImage(slug: Slug): string {
+  if (slug in OG_IMAGES) return `${SITE}/og/${slug}.jpg`;
+  const hero = HERO_FALLBACK[slug];
+  if (hero) return `${SITE}/images/mockups/${hero.slug}-800.jpg`;
+  return `${SITE}/og-image.jpg`;
+}
+
+/** Per-m² starting rate. Price lives only in priceSpecification so Google keeps the unit (1 m²). */
+function perM2Offer(pricePerM2: number, url: string) {
+  const qty = {
+    "@type": "QuantitativeValue",
+    value: 1,
+    unitCode: "MTK",
+    unitText: "sqm",
+  };
+  return {
+    "@type": "Offer",
+    priceCurrency: "AUD",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: pricePerM2,
+      priceCurrency: "AUD",
+      referenceQuantity: { ...qty, valueReference: { ...qty } },
+    },
+    availability: "https://schema.org/InStock",
+    url,
+    seller: { "@type": "Organization", name: "The Signage Shed" },
+  };
+}
 
 const prices: Record<Slug, number[]> = {
   "corflute-signs": CF.SIZES.flatMap((s) => CF.THICKNESSES.flatMap((t) => [s.price[t.id].single.upTo5, s.price[t.id].double.upTo5])),
@@ -146,24 +196,19 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
 export default function ProductSeo({ slug }: { slug: Slug }) {
   const p = prices[slug];
   const i = INFO[slug];
+  const url = `${SITE}/${slug}/`;
+  const perM2 = PER_M2_FROM[slug];
   const ld = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: i.name,
     description: i.description,
-    image: `${SITE}/og/${slug}.jpg`,
-    url: `${SITE}/${slug}/`,
+    image: productImage(slug),
+    url,
     brand: { "@type": "Brand", name: "The Signage Shed" },
     offers:
-      slug === "printed-vinyl"
-        ? {
-            "@type": "AggregateOffer",
-            priceCurrency: "AUD",
-            lowPrice: Math.min(...p),
-            availability: "https://schema.org/InStock",
-            url: `${SITE}/${slug}/`,
-            seller: { "@type": "Organization", name: "The Signage Shed" },
-          }
+      perM2 != null
+        ? perM2Offer(perM2, url)
         : {
             "@type": "AggregateOffer",
             priceCurrency: "AUD",
@@ -171,7 +216,7 @@ export default function ProductSeo({ slug }: { slug: Slug }) {
             highPrice: Math.max(...p),
             offerCount: p.length,
             availability: "https://schema.org/InStock",
-            url: `${SITE}/${slug}/`,
+            url,
             seller: { "@type": "Organization", name: "The Signage Shed" },
           },
   };
