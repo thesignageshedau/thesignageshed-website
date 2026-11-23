@@ -44,6 +44,9 @@ import { OG_IMAGES } from "./data/ogImages";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
 import ClothingPage from "./components/ClothingPage";
+import IndustryPage from "./components/IndustryPage";
+import IndustryTiles from "./components/IndustryTiles";
+import { INDUSTRY_HUBS } from "./data/industries";
 import { PAGE as CLOTHING } from "./data/clothing";
 import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
@@ -97,7 +100,11 @@ type Route =
   | "corflute-signs-australia"
   | "media-walls-australia"
   | "event-signage-australia"
-  | "school-and-sports-club-signs";
+  | "school-and-sports-club-signs"
+  | "shops-and-cafes"
+  | "tradies"
+  | "markets-and-stalls"
+  | "clubs-and-teams";
 const slugs = [
   ...LEGAL_PAGES.map((p) => p.slug),
   "media-walls",
@@ -134,6 +141,7 @@ const slugs = [
   "guides",
   ...GUIDES.map((g) => `guides/${g.slug}`),
   ...SEO_PAGES.map((p) => p.slug),
+  ...INDUSTRY_HUBS.map((p) => p.slug),
 ] as readonly string[];
 /** True for a #/ address that isn't one of our pages (section links like #faq don't count). */
 function isUnknownRoute(): boolean {
@@ -183,6 +191,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   guides: "Buying Guides: Signs, Banners and Artwork | The Signage Shed",
   ...Object.fromEntries(GUIDES.map((g) => [`guides/${g.slug}`, `${g.title} | The Signage Shed`.length <= 60 ? `${g.title} | The Signage Shed` : g.title])),
   quote: "Request a Quote: Printed Signage | The Signage Shed",
+  ...Object.fromEntries(INDUSTRY_HUBS.map((p) => [p.slug, p.title])),
   ...Object.fromEntries(SEO_PAGES.map((p) => [p.slug, p.title])),
 };
 
@@ -326,6 +335,8 @@ export default function App() {
           <GearPage key="printed-vinyl" product={PRINTED_VINYL} />
         ) : route === "clothing" ? (
           <ClothingPage />
+        ) : route && INDUSTRY_HUBS.some((p) => p.slug === route) ? (
+          <IndustryPage key={route} slug={route} />
         ) : route && SEO_PAGES.some((p) => p.slug === route) ? (
           <SeoProductPage key={route} slug={route} />
         ) : route === "about" ? (
@@ -356,6 +367,7 @@ export default function App() {
           <>
             <Hero />
             <TrustStrip tone="dark" />
+            <IndustryTiles />
             <div id="signage" className="scroll-mt-20" />
             <ProductGrid />
             <div className="hidden md:block">

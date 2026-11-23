@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { asset } from "../lib/asset";
 import { quoteHref, QUOTE_PRODUCTS } from "../data/quoteProducts";
+import { INDUSTRIES, SHOP_BY_LABEL } from "../data/industries";
 
 /** Product slug of the page we're on (#/pull-up-banners), so the quote button pre-selects it. */
 function useProductSlug() {
@@ -138,8 +139,25 @@ function ProductsMenu() {
       <ul
         id="products-menu"
         hidden={!open}
-        className="absolute right-0 top-full z-50 mt-2 max-h-[calc(100dvh-6rem)] w-56 overflow-y-auto overscroll-contain rounded-lg border-2 border-rust bg-charcoal py-1 shadow-xl"
+        className="fixed left-4 right-4 top-[4.5rem] z-50 max-h-[calc(100dvh-6rem)] w-auto overflow-y-auto overscroll-contain rounded-lg border-2 border-rust bg-charcoal py-1 shadow-xl md:absolute md:left-auto md:right-0 md:top-full md:mt-2 md:w-64"
       >
+        <li className="pt-1" role="presentation">
+          <span className="block px-4 pb-1 pt-2 text-xs font-bold uppercase tracking-widest text-rust-light">{SHOP_BY_LABEL}</span>
+        </li>
+        {INDUSTRIES.map((p) => (
+          <li key={p.href}>
+            <a
+              href={p.href}
+              onClick={() => setOpen(false)}
+              className="flex min-h-11 items-center px-4 py-2 text-base hover:bg-white/10 hover:text-white"
+            >
+              {p.label}
+            </a>
+          </li>
+        ))}
+        <li className="mt-1 border-t border-cream/20 pt-1" role="presentation">
+          <span className="block px-4 pb-1 pt-2 text-xs font-bold uppercase tracking-widest text-rust-light">Products</span>
+        </li>
         {products.map((p) => (
           <li key={p.href}>
             <a

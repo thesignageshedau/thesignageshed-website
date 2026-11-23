@@ -9,6 +9,10 @@ export const FLAGS_HREF = "/flags/";
 export const MARKET_UMBRELLAS_HREF = "/market-umbrellas/";
 export const BANNERS_HREF = "/banners/";
 export const CLOTHING_HREF = "/clothing/";
+export const SHOPS_AND_CAFES_HREF = "/shops-and-cafes/";
+export const TRADIES_HREF = "/tradies/";
+export const MARKETS_AND_STALLS_HREF = "/markets-and-stalls/";
+export const CLUBS_AND_TEAMS_HREF = "/clubs-and-teams/";
 export const GEAR_HREFS = {
   gazebos: GAZEBOS_HREF,
   flags: FLAGS_HREF,
