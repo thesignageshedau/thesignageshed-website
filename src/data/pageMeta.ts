@@ -1,4 +1,6 @@
-// Per-page meta descriptions (also used for the static share pages in public/<slug>/).
+// Per-page meta descriptions (also used for og:description and twitter:description).
+import { FROM_PER_M2 } from "./customSize";
+
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "lightbox-displays": "Freestanding backlit SEG fabric lightbox displays in 1000 × 2000mm, 2000 × 2000mm and 3000 × 2000mm, single or double sided, with a carry bag. Delivered Australia-wide.",
   "big-head-cutouts": "Custom big head cutouts in small (380mm, with handle), medium (600mm) and large (900mm), printed and cut to shape. Great for footy, birthdays, weddings and parties.",
@@ -8,20 +10,20 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   packs: "Ready-made signage packs: sponsor banner packs for sports clubs, site safety corflute and fence mesh packs for building sites, school packs, event and expo packs, and teardrop flag 3-packs. Delivered Australia-wide.",
   "car-magnets": "Printed car magnets on 0.8mm magnet with white vinyl and gloss laminate, rounded corners, from 290 × 220mm to 600 × 400mm. Delivered Australia-wide.",
   "business-cards": "Premium 350gsm and luxury 420gsm business cards, 90 × 55mm, double sided full colour, with matte, gloss or velvet soft-touch laminate. Delivered Australia-wide.",
-  "printed-vinyl": "Printed self-adhesive vinyl (SAV) stickers and decals in fixed sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. From $185, priced on quote. Delivered Australia-wide.",
+  "printed-vinyl": `Printed self-adhesive vinyl (SAV) stickers and decals in standard or custom sizes from A4 to 1200 × 2400mm. Economy or premium white, with optional laminate. From $${FROM_PER_M2.sav} per m², delivered Australia-wide.`,
   "stretch-fabric-displays": "Stretch fabric display stands, 850 or 1200mm wide and 2000mm tall, single or double sided, with a carry case. Prices online, delivered Australia-wide.",
   "table-top-banners": "Printed table-top banner kits for 4ft and 6ft tables, 600mm or 800mm tall, single sided on a light frame. Prices online, delivered Australia-wide.",
-  "acm-signs": "Printed ACM (aluminium composite) signs from 900 × 600mm to 2400 × 1200mm, white vinyl with gloss laminate. Prices online, delivered Australia-wide.",
+  "acm-signs": `Printed ACM (aluminium composite) signs from 900 × 600mm to 2400 × 1200mm, white vinyl with gloss laminate. From $${FROM_PER_M2["acm-single"]} per m², delivered Australia-wide.`,
   "rectangle-flags": "Custom printed double sided rectangle flags in small, medium and large, with pole and ground spike or a cross base and water bag. Delivered Australia-wide.",
   "media-walls": "Custom printed fabric media walls from 2.4m to 4m wide, single or double sided, with optional LED lights. Frame and bag included. Delivered Australia-wide.",
   "table-covers": "Custom printed fitted and loose table throws for 6ft and 8ft tables, round throws and table runners. Machine-washable. Prices online, delivered Australia-wide.",
   "pull-up-banners": "Custom printed luxury and double-sided pull up banners, 850mm or 1200mm wide, fitted and supplied with a carry bag. Prices online, delivered Australia-wide.",
-  "corflute-signs": "Custom printed corflute signs in 3 standard sizes, 5mm or 3mm, single or double sided, optional eyelets. Bundle pricing from $185, delivered Australia-wide.",
+  "corflute-signs": `Custom printed corflute signs in 3 standard sizes, 5mm or 3mm, single or double sided, optional eyelets. Custom sizes from $${FROM_PER_M2["corflute-5mm-single"]} per m², delivered Australia-wide.`,
   "a-frames": "Custom printed A frame signs for cafés, shops and events. We print aluminium, insert and folding corflute sandwich boards on both sides. Prices online, delivered Australia-wide.",
   "gazebos": "Custom printed 3 × 3m and 6 × 3m pop up gazebos with your logo on the canopy and valances, plus optional back walls. Prices online, delivered Australia-wide.",
   "flags": "Custom printed feather and teardrop flags in three heights with pole set and 10kg heavy duty base. Single or double sided. Prices online, delivered Australia-wide.",
   "market-umbrellas": "2m × 2m square market umbrellas printed on every panel, with a 10kg heavy duty base. Prices online, delivered Australia-wide.",
-  "banners": "Printed mesh banners for fences and building sites, plus PVC vinyl and fabric banners. We hem them and add eyelets, ready to hang. Prices online, delivered Australia-wide.",
+  "banners": `Printed mesh banners for fences and building sites, plus PVC vinyl and fabric banners. We hem them and add eyelets, ready to hang. Vinyl and mesh from $${FROM_PER_M2.pvc} per m², fabric from $${FROM_PER_M2.fabric}. Delivered Australia-wide.`,
   "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free pricing sheet. Excel and Google Sheets, instant download.",
   "check-artwork": "Check your print file before ordering: pick a product, size and PDF, JPG or PNG to see size, bleed, resolution and colour checks. The file stays on your device.",
   "faq": "Common questions about ordering from us: quotes, the $180 minimum order, dispatch times, freight, payment, artwork help, file types and samples.",
