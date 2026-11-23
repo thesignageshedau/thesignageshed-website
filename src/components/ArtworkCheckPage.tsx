@@ -297,9 +297,8 @@ export default function ArtworkCheckPage() {
                 <div className="rounded-xl border-2 border-charcoal bg-cream p-5">
                   <h2 className="font-display text-2xl tracking-wide">Ready for a quote?</h2>
                   <p className="mt-1">
-                    We'll open the quote form with your product and size filled in. Files can't
-                    be attached to the form, so once we email you your quote, just reply with your artwork attached (or paste a download
-                    link into the form).
+                    We'll open the quote form with your product and size filled in. You can attach a file up to 10 MB
+                    on the form, paste a download link, or reply to our quote email with your artwork attached.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-3">
                     <a href={quoteLink} className="btn-rust" data-track="artwork-check-quote">
