@@ -48,7 +48,8 @@ export default function Footer() {
             <a href="/check-artwork/" className="underline underline-offset-4 hover:text-white">check your artwork</a>,{" "}
             <a href="/guides/print-ready-artwork/" className="underline underline-offset-4 hover:text-white">how to set up print-ready artwork</a>,{" "}
             <a href="/guides/" className="underline underline-offset-4 hover:text-white">signage guides</a>,{" "}
-            <a href="/market-umbrellas/" className="underline underline-offset-4 hover:text-white">printed market umbrellas</a>.
+            <a href="/market-umbrellas/" className="underline underline-offset-4 hover:text-white">printed market umbrellas</a>,{" "}
+            <a href="/clothing/" className="underline underline-offset-4 hover:text-white">printed clothing</a>.
           </nav>
           <p className="mt-3 text-sm text-cream/70">
             © {new Date().getFullYear()} The Signage Shed.{" "}

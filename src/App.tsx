@@ -43,6 +43,8 @@ import { PAGE_DESCRIPTIONS } from "./data/pageMeta";
 import { OG_IMAGES } from "./data/ogImages";
 import QuoteThanks from "./components/QuoteThanks";
 import TableCoversPage from "./components/TableCoversPage";
+import ClothingPage from "./components/ClothingPage";
+import { PAGE as CLOTHING } from "./data/clothing";
 import TableCoversTeaser from "./components/TableCoversTeaser";
 import { legalDocs } from "./data/legal";
 import { LEGAL_PAGES, SITE_COPY, type LegalSlug } from "./data/products";
@@ -76,6 +78,7 @@ type Route =
   | "packs"
   | "business-cards"
   | "printed-vinyl"
+  | "clothing"
   | "banners"
   | "quote-thanks"
   | "quote"
@@ -118,6 +121,7 @@ const slugs = [
   "packs",
   "business-cards",
   "printed-vinyl",
+  "clothing",
   "banners",
   "quote-thanks",
   "quote",
@@ -168,6 +172,7 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   packs: PACKS.pageTitle,
   "business-cards": BUSINESS_CARDS.pageTitle,
   "printed-vinyl": PRINTED_VINYL.pageTitle,
+  clothing: CLOTHING.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
   "check-artwork": "Free Print File Checker | The Signage Shed",
@@ -319,6 +324,8 @@ export default function App() {
           <GearPage key="business-cards" product={BUSINESS_CARDS} />
         ) : route === "printed-vinyl" ? (
           <GearPage key="printed-vinyl" product={PRINTED_VINYL} />
+        ) : route === "clothing" ? (
+          <ClothingPage />
         ) : route && SEO_PAGES.some((p) => p.slug === route) ? (
           <SeoProductPage key={route} slug={route} />
         ) : route === "about" ? (

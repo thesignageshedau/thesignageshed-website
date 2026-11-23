@@ -8,6 +8,7 @@ export const GAZEBOS_HREF = "/gazebos/";
 export const FLAGS_HREF = "/flags/";
 export const MARKET_UMBRELLAS_HREF = "/market-umbrellas/";
 export const BANNERS_HREF = "/banners/";
+export const CLOTHING_HREF = "/clothing/";
 export const GEAR_HREFS = {
   gazebos: GAZEBOS_HREF,
   flags: FLAGS_HREF,

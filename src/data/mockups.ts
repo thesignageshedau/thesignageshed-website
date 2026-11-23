@@ -67,4 +67,8 @@ export const MOCKUPS = {
   v4CardsLuxurySpot: { slug: "v4-cards-luxury-spot", title: "Luxury velvet with spot gloss", alt: "Mockup of sage luxury velvet business cards with a spot gloss leaf and Your Brand lettering on cream linen", noSquare: true },
   v4SavVinylSheet: { slug: "v4-sav-vinyl-sheet", title: "Printed vinyl sheet", alt: "Mockup of a printed self-adhesive vinyl sticker sheet reading Your Brand on a timber workbench, with one corner peeled back from the white backing liner", noSquare: true },
   v4SavShopfront: { slug: "v4-sav-shopfront", title: "On a glass window", alt: "Mockup of a printed self-adhesive vinyl decal reading Your Brand, applied flat to a clean glass shop window", noSquare: true },
+  v4ClothingTee: { slug: "v4-clothing-tee", title: "T-shirt", alt: "Black cotton t-shirt on a timber table, with a cream Your Brand chest print and a sage dot motif" },
+  v4ClothingHoodie: { slug: "v4-clothing-hoodie", title: "Hoodie", alt: "Black pullover hoodie on a timber table, with a cream and sage Your Brand chest print" },
+  v4ClothingCap: { slug: "v4-clothing-cap", title: "Trucker cap", alt: "Black trucker cap on a timber table, with a cream and sage Your Brand print on the front panel" },
+  v4ClothingTote: { slug: "v4-clothing-tote", title: "Tote bag", alt: "Black canvas tote bag on a timber table, with a cream Your Brand print and a sage leaf motif" },
 } satisfies Record<string, Mockup>;
