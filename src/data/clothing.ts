@@ -135,7 +135,7 @@ export const PAGE = {
     { q: "Does colour or size change the price?", a: "No. The tables are for one design; a second design costs a little more, and your quote confirms it." },
     { q: "Can you print front and back?", a: "Yes on t-shirts, hoodies and tote bags. Caps are printed on the front panel only. The extras table at 10 shows those prices." },
     { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
-    { q: "How long does it take?", a: "We dispatch within 3 days of artwork approval, depending on order size. Need it by a date? Put it in the Notes box on the quote form and we'll let you know if it's tight." },
+    { q: "How long does it take?", a: "We'll confirm turnaround in your quote. Need it by a date? Put it in the Notes box on the quote form." },
     { q: "How much is delivery?", a: "Freight depends on the size and weight of the order. We quote it to your postcode and include it on your quote." },
     { q: "What artwork do you need?", a: "A vector PDF is best. We also accept AI, EPS, or a PNG or TIFF at 300 DPI with a transparent background. We can't print from JPG, WebP, Word or PowerPoint files. No artwork? Send your logo and wording and we'll set it up for you to approve." },
   ],
