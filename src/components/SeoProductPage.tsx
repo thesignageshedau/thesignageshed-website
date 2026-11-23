@@ -10,13 +10,17 @@ const SITE = "https://thesignageshed.au";
 export default function SeoProductPage({ slug }: { slug: string }) {
   const p = SEO_PAGES.find((x) => x.slug === slug)!;
   const href = quoteHref(p.quote.product, p.quote.size);
+  const pageUrl = `${SITE}/${p.slug}/`;
+  const image = p.image ? `${SITE}/images/mockups/${p.image.slug}-800.jpg` : `${SITE}/og-image.jpg`;
   const ld = p.from !== null && {
     "@context": "https://schema.org",
     "@type": "Product",
     name: p.h1,
     description: p.description,
+    image,
+    url: pageUrl,
     brand: { "@type": "Brand", name: "The Signage Shed" },
-    offers: { "@type": "Offer", priceCurrency: "AUD", price: p.from, availability: "https://schema.org/InStock", url: `${SITE}/${p.slug}/`, seller: { "@type": "Organization", name: "The Signage Shed" } },
+    offers: { "@type": "Offer", priceCurrency: "AUD", price: p.from, availability: "https://schema.org/InStock", url: pageUrl, seller: { "@type": "Organization", name: "The Signage Shed" } },
   };
   return (
     <>
