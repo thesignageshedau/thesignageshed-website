@@ -36,4 +36,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "about": "The Signage Shed is an online print studio for custom signs, banners and event gear, delivered Australia-wide. Quote first, a digital proof before we print.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
   clothing: "Custom printed t-shirts, hoodies, trucker caps and tote bags, full colour, delivered Australia-wide. T-shirts from $38 each in 10s, caps from $30 each in 10s.",
+  "shops-and-cafes": "A-frame signs, ACM wall signs, printed vinyl and business cards for shops and cafés. A-frames from $105, delivered Australia-wide.",
+  tradies: "Car magnets, corflute, ACM, banners and printed tees, hoodies and caps for tradies. Clothing from $30 each in 10s, delivered Australia-wide.",
+  "markets-and-stalls": "Market umbrellas, teardrop flags, table covers, A-frames and banners for market stalls. A-frames from $105, delivered Australia-wide.",
+  "clubs-and-teams": "Printed tees, hoodies, caps and totes, plus sponsor banners and flags for clubs and teams. Clothing from $30 each in 10s, delivered Australia-wide.",
 };
