@@ -18,5 +18,6 @@ export const OG_IMAGES: Record<string, string> = {
   delivery: "Printed gazebo over a market stall, with The Signage Shed logo and the words Delivery, Australia-wide",
   "artwork-help": "Pull up banner in an office foyer, with The Signage Shed logo and the words Artwork help",
   "check-artwork": "Corflute sign on a park fence, with The Signage Shed logo and the words Check your artwork",
+  clothing: "Black t-shirt on a timber table with a cream Your Brand print, and the words Printed clothing",
   "for-sign-shops": "Sign shop pricing spreadsheet preview, with The Signage Shed logo and the words For sign shops",
 };

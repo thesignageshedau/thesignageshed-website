@@ -35,4 +35,5 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "guides/print-ready-artwork": "How to set up print-ready artwork: size, bleed, safe area, 130 to 150 ppi resolution, CMYK, fonts and file types.",
   "about": "The Signage Shed is an online print studio for custom signs, banners and event gear, delivered Australia-wide. Quote first, a digital proof before we print.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
+  clothing: "Custom printed t-shirts, hoodies, trucker caps and tote bags, full colour, delivered Australia-wide. T-shirts from $38 each in 10s, caps from $30 each in 10s.",
 };

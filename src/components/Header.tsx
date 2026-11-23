@@ -19,6 +19,7 @@ function useProductSlug() {
 }
 import {
   A_FRAMES_HREF,
+  CLOTHING_HREF,
   CORFLUTE_SIGNS_HREF,
   FLAGS_HREF,
   GAZEBOS_HREF,
@@ -29,8 +30,19 @@ import {
   TABLE_COVERS_HREF,
 } from "../lib/routes";
 
-// Printed products sit in a Products dropdown so the bar fits from 320px up; the digital downloads
-// (#products section on the home page) are the last item in it.
+function usePathname() {
+  const read = () => window.location.pathname.replace(/\/$/, "") || "/";
+  const [path, setPath] = useState(read);
+  useEffect(() => {
+    const on = () => setPath(read());
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return path;
+}
+
+// Printed products sit in a Products dropdown so the bar fits from 320px up; Clothing is its own
+// top-level tab, on both desktop and the same compact bar used on a phone.
 const products: { href: string; label: string }[] = [
   { href: MEDIA_WALLS_HREF, label: "Media walls" },
   { href: TABLE_COVERS_HREF, label: "Table covers" },
@@ -62,9 +74,9 @@ const howItWorks = [
   { href: "/delivery/", label: "Delivery" },
 ];
 const links: { href: string; label: string; show: string }[] = [
-  { href: "/for-sign-shops/", label: "For sign shops", show: "hidden md:block" },
+  { href: "/for-sign-shops/", label: "For sign shops", show: "hidden lg:block" },
   { href: "/#faq", label: "FAQ", show: "hidden lg:block" },
-  { href: "/#contact", label: "Contact", show: "hidden sm:block" },
+  { href: "/#contact", label: "Contact", show: "hidden md:block" },
 ];
 const linkClass =
   "inline-flex min-h-11 items-center whitespace-nowrap rounded px-1.5 py-2 text-sm hover:text-white hover:underline decoration-rust decoration-2 underline-offset-4 md:px-3 md:text-base";
@@ -153,7 +165,7 @@ function ProductsMenu() {
             </a>
           </li>
         ))}
-        <li className="mt-1 border-t border-cream/20 pt-1 md:hidden">
+        <li className="mt-1 border-t border-cream/20 pt-1 lg:hidden">
           <a
             href={signShops.href}
             onClick={() => setOpen(false)}
@@ -169,6 +181,7 @@ function ProductsMenu() {
 
 export default function Header() {
   const slug = useProductSlug();
+  const onClothing = usePathname() === "/clothing";
   return (
     <header className="sticky top-0 z-40 border-b-4 border-rust bg-charcoal text-cream">
       <div className="mx-auto flex max-w-site items-center justify-between gap-2 px-4 py-3 min-[400px]:gap-4 sm:px-6">
@@ -192,6 +205,15 @@ export default function Header() {
         <nav aria-label="Main">
           <ul className="flex items-center gap-1 text-sm font-semibold md:gap-2 md:text-base">
             <ProductsMenu />
+            <li>
+              <a
+                href={CLOTHING_HREF}
+                aria-current={onClothing ? "page" : undefined}
+                className={`${linkClass} font-semibold${onClothing ? " text-white underline" : ""}`}
+              >
+                Clothing
+              </a>
+            </li>
             {links.map((l) => (
               <li key={l.href} className={l.show}>
                 <a href={l.href} className={linkClass}>

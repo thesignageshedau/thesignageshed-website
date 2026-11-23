@@ -9,7 +9,7 @@ import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TA
 import { PACKS } from "../data/packs";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
 
-const items: { href: string; name: string; from: number; img: Mockup }[] = [
+const items: { href: string; name: string; from: number; fromText?: string; img: Mockup }[] = [
   { href: "/media-walls/", name: "Media walls", from: MW.FROM_PRICE, img: MOCKUPS.v4MediaWall },
   { href: "/pull-up-banners/", name: "Pull up banners", from: PB.FROM_PRICE, img: MOCKUPS.v4PullUp },
   { href: "/corflute-signs/", name: "Corflute signs", from: CF.FROM_PRICE, img: MOCKUPS.v4Corflute },
@@ -32,6 +32,7 @@ const items: { href: string; name: string; from: number; img: Mockup }[] = [
   { href: "/business-cards/", name: "Business cards", from: fromPrice(BUSINESS_CARDS), img: BUSINESS_CARDS.hero },
   { href: "/printed-vinyl/", name: "Printed vinyl", from: fromPrice(PRINTED_VINYL), img: PRINTED_VINYL.hero },
   { href: "/packs/", name: "Signage packs", from: fromPrice(PACKS), img: PACKS.hero },
+  { href: "/clothing/", name: "Clothing", from: 30, fromText: "From $30 each in 10s", img: MOCKUPS.v4ClothingTee },
 ];
 const money = (n: number) => `$${n.toLocaleString("en-AU", { maximumFractionDigits: 2 })}`;
 
@@ -48,7 +49,7 @@ export default function ProductGrid() {
               <a href={it.href} className="block h-full overflow-hidden rounded-xl border-2 border-charcoal/15 bg-white hover:border-rust">
                 <MockupImage mockup={it.img} sizes="calc(50vw - 22px)" className="aspect-[4/3] w-full object-cover" />
                 <span className="block px-3 pt-2 font-slab text-base font-bold leading-tight">{it.name}</span>
-                <span className="mx-3 mb-3 mt-1.5 inline-block rounded-full bg-sage-light px-2.5 py-0.5 text-sm font-semibold text-sage-dark">From {money(it.from)}</span>
+                <span className="mx-3 mb-3 mt-1.5 inline-block rounded-full bg-sage-light px-2.5 py-0.5 text-sm font-semibold text-sage-dark">{it.fromText ?? `From ${money(it.from)}`}</span>
               </a>
             </li>
           ))}
