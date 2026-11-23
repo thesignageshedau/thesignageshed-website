@@ -1,7 +1,8 @@
 // Checks prerendered Product JSON-LD against Google's Product snippet and Merchant listing
 // required fields: name, image (crawlable local file), Offer or AggregateOffer with a numeric
 // AUD price (or unit price in priceSpecification), and no invented reviews or shipping claims.
-// Also checks that marked-up prices match the visible "From" figures on the page.
+// Also checks that marked-up prices and meta/OG/Twitter "From" figures match the
+// visible "From" prices on the page.
 import { readFile, access } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -118,6 +119,36 @@ for (const route of ROUTES) {
           .map((f) => `${f.amount}${f.perM2 ? "/m²" : ""}`)
           .join(", ")})`,
       );
+    }
+  }
+
+  const attrs = (name, key = "name") => {
+    const out = [];
+    const re = new RegExp(`<meta[^>]+${key}="${name}"[^>]+content="([^"]*)"`, "gi");
+    for (const m of html.matchAll(re)) out.push(m[1].replaceAll("&amp;", "&"));
+    return out;
+  };
+  const title = (html.match(/<title>(.*?)<\/title>/is) || ["", ""])[1].replace(/<[^>]+>/g, "");
+  const metaTexts = [
+    ["title", title],
+    ...["description", "twitter:title", "twitter:description"].flatMap((n) => attrs(n).map((v) => [n, v])),
+    ...["og:title", "og:description"].flatMap((n) => attrs(n, "property").map((v) => [n, v])),
+  ];
+  for (const [field, text] of metaTexts) {
+    if (!text) continue;
+    for (const m of text.matchAll(/from\s+\$\s*([\d,]+)(?:\s*per\s*m(?:²|2))?/gi)) {
+      const amount = Number(m[1].replace(/,/g, ""));
+      if (amount === 180) continue; // minimum-order note
+      const perM2 = /per\s*m/i.test(m[0]);
+      const match = froms.find((f) => f.amount === amount && f.perM2 === perM2);
+      if (froms.length && !match) {
+        fail(
+          route,
+          `${field} "From $${amount}${perM2 ? " per m²" : ""}" does not match visible From prices (${froms
+            .map((f) => `${f.amount}${f.perM2 ? "/m²" : ""}`)
+            .join(", ")})`,
+        );
+      }
     }
   }
 }
