@@ -136,12 +136,13 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
               If you use the quote form on our Media Walls, Table Covers, Pull Up Banners, Corflute Signs or A-Frames page, the details you enter are sent to us by email through
               FormSubmit (formsubmit.co), a form-to-email service. That's your name and email address, your phone
               number and business name if you give them, the product you're after (such as size, print or drop, stand type, base colour, LED lights, corflute thickness, single or double sided printing, eyelets, number of designs, frame colour, carry handle and quantity),
-              your delivery postcode, the date you need it by, whether you'd like design help, any artwork link and
-              your notes.
+              your delivery postcode, the date you need it by, whether you'd like design help, any artwork link or
+              artwork file you attach, and your notes.
             </p>
             <p>
               We use these details only to prepare your quote and follow it up, and if you go ahead, to make and
-              deliver your order. We don't add you to a mailing list. FormSubmit handles the form under its own{" "}
+              deliver your order. We don't add you to a mailing list. If you attach an artwork file, it's emailed to us
+              with your request. FormSubmit does not keep uploaded files after sending, and it handles the form under its own{" "}
               <Ext href="https://formsubmit.co/privacy.pdf">privacy policy</Ext>.
             </p>
           </>

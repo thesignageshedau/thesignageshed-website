@@ -44,3 +44,9 @@ For each N from 2 to Item count, these 14 rows, each label prefixed with `Item N
 
 They mean the same as item 1's labels. Contact, delivery, artwork and notes are shared by the whole request
 (item 1's rows). The subject reads `New quote request – <Name> – <Product> + N more` when there are extra items.
+
+## Optional artwork file
+If the customer attaches a file, the email also has that file as a FormSubmit attachment (field name `attachment`)
+and a final table row `Artwork file` with the filename. This row is omitted when no file is attached, so the
+labels above stay in the same order. FormSubmit's limit is 10 MB for all files in one submission
+(https://formsubmit.co/documentation).

@@ -51,6 +51,7 @@ export default function QuotePage() {
           <form
             action={FORMSUBMIT_ACTION}
             method="POST"
+            encType="multipart/form-data"
             onSubmit={onSubmit}
             onInput={onInput}
             onChange={onInput}
@@ -65,7 +66,7 @@ export default function QuotePage() {
             {artworkNote && (
               <p className="rounded-md border-2 border-charcoal/15 bg-cream px-4 py-3 text-sm">
                 <span className="font-bold">Artwork check:</span> {artworkNote}. We'll include this with your request.
-                Reply to our quote email with the file attached.
+                You can attach the file on this form, paste a link, or reply to our quote email with it attached.
               </p>
             )}
 
