@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { eachText } from "../data/tiers";
+import { eachIsExact, eachText } from "../data/tiers";
 import {
   FROM_PER_M2,
   LIMITS,
-  MIN_NOTE,
   priceFromInputs,
   sizeLabel,
   type AreaKind,
@@ -54,7 +53,7 @@ export default function CustomSizeQuote({
       <h3 className="font-slab text-xl font-bold">{heading}</h3>
       {intro && <p className="mt-2 text-sm leading-relaxed">{intro}</p>}
       <p className="mt-2 text-sm">
-        <span className="font-semibold">From ${from} per m².</span> {MIN_NOTE}
+        <span className="font-semibold">From ${from} per m².</span>
       </p>
       {kinds.length > 1 && (
         <div role="radiogroup" aria-label="Material" className="mt-4 flex flex-wrap gap-2">
@@ -130,8 +129,17 @@ export default function CustomSizeQuote({
               {ok.rounded ? ", rounded to the nearest millimetre" : ""}
             </p>
             <p>
-              <span className="font-slab text-2xl font-bold text-rust-dark">{eachText(ok.total, ok.qty)}</span>
-              <span className="font-semibold"> · {money(ok.total)} total</span>
+              {eachIsExact(ok.total, ok.qty) ? (
+              <>
+                <span className="font-slab text-2xl font-bold text-rust-dark">{eachText(ok.total, ok.qty)}</span>
+                <span className="font-semibold"> · {money(ok.total)} total</span>
+              </>
+            ) : (
+              <>
+                <span className="font-slab text-2xl font-bold text-rust-dark">{money(ok.total)}</span>
+                <span className="font-semibold"> for {ok.qty}</span>
+              </>
+            )}
             </p>
             {finishing && <p className="mt-1 text-xs text-charcoal/75">{finishing}</p>}
             <p className="mt-1 text-xs text-charcoal/75">Freight is quoted separately.</p>

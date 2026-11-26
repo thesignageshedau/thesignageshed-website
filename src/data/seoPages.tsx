@@ -38,7 +38,7 @@ const segOne = SEG_AFRAMES.items.find((i) => i.id === "1-frame")!;
 const barrierCover = BARRIERS.items.find((i) => i.id === "cover-single")!;
 const standName = (stand: "luxury" | "double") => (stand === "luxury" ? "luxury" : "double sided");
 const asPhrase = (label: string) => label.replace(/^(Teardrop|Feather)\b/, (word) => word.toLowerCase());
-const ORDER_TERMS = "Minimum order $180 per order. We'll email you a quote with freight included.";
+const ORDER_TERMS = "We'll email you a quote with freight included.";
 const deal = (rows: { price: number; note: string }[]) => rows.reduce((a, b) => (a.price <= b.price ? a : b));
 const eventDeal = deal([
   { price: bannerPrice, note: `for a ${cheapestBanner.label}` },
@@ -65,7 +65,7 @@ export type SeoPage = {
   fromNote: string;
   image?: Mockup;
   quote: { product: string; size?: string; label: string };
-  /** Replaces the default minimum-order line under the hero price. */
+  /** Replaces the default terms line under the hero price. */
   terms?: string;
   related: { href: string; text: string }[];
   sections: { id: string; title: string; body: ReactNode }[];
@@ -99,8 +99,8 @@ export const SEO_PAGES: SeoPage[] = [
         <p>People read a footpath sign in a couple of seconds, so keep it short: your name, one or two items or offers, and an arrow if you're tucked away. Big, high-contrast text reads best from across the street.</p>
         <p>Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve. Our {L("/artwork-help/", "artwork help")} covers bleed and safe areas.</p>
       </> },
-      { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery. Minimum order $180 (excl. freight). We send a digital proof before we print, and deliver Australia-wide.</p>
+      { id: "price", title: "Pricing", body: <>
+        <p>Prices include everything except delivery. We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },
@@ -126,7 +126,7 @@ export const SEO_PAGES: SeoPage[] = [
       </> },
       { id: "price", title: "Bundle pricing", body: <>
         <p>Corflute is priced in bundles: 1 to 5 signs from ${CF.FROM_PRICE}, and the price per sign drops as your quantity grows. See every price on our {L("/corflute-signs/", "corflute signs page")}.</p>
-        <p>Prices include everything except delivery. Minimum order $180 (excl. freight).</p>
+        <p>Prices include everything except delivery.</p>
       </> },
       { id: "artwork", title: "Artwork for event signs", body: <>
         <p>Use big arrows and short words so people can read the sign on the move. Our {L("/check-artwork/", "free print file checker")} checks size, bleed and resolution before you order.</p>
@@ -156,8 +156,8 @@ export const SEO_PAGES: SeoPage[] = [
       { id: "window", title: "Window signs", body: <>
         <p>Window graphics are priced on quote. Tell us your glass size and what you'd like on it, and we'll come back to you with options and a price.</p>
       </> },
-      { id: "price", title: "Pricing and minimum order", body: <>
-        <p>Prices include everything except delivery. Minimum order $180 (excl. freight). We send a digital proof before we print, and deliver Australia-wide.</p>
+      { id: "price", title: "Pricing", body: <>
+        <p>Prices include everything except delivery. We send a digital proof before we print, and deliver Australia-wide.</p>
       </> },
     ],
   },
@@ -198,7 +198,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>Bleed and safe area for each stand are on our {L("/artwork-help/", "artwork help")} page. You can check a PDF, JPG or PNG in the free {L("/check-artwork/", "print file checker")} before you send it.</p>
       </> },
       { id: "order", title: "How to order a pull up banner", body: <>
-        <p>There is no checkout on this website. Tell us the width, the stand and how many you need on the {L("/quote/", "quote form")}. We'll email you a quote with freight included, usually within one business day. The minimum order is $180 per order, not per banner. You can add {L("/corflute-signs/", "corflute")}, a {L("/flags/", "flag")} or a {L("/table-covers/", "table cover")} to the same quote.</p>
+        <p>There is no checkout on this website. Tell us the width, the stand and how many you need on the {L("/quote/", "quote form")}. We'll email you a quote with freight included, usually within one business day. You can add {L("/corflute-signs/", "corflute")}, a {L("/flags/", "flag")} or a {L("/table-covers/", "table cover")} to the same quote.</p>
         <p>Once you approve the quote, you pay by invoice. {MW.TURNAROUND} We print and deliver. We do not visit your premises and we do not install the banner. You stand it up yourself. If you are kitting out a whole booth, the {L("/event-signage-australia/", "event signage")} page links the backdrop, flags and table covers as well. {L("/delivery/", "Delivery")} is Australia-wide.</p>
       </> },
     ],
@@ -244,7 +244,7 @@ export const SEO_PAGES: SeoPage[] = [
         <p>People read a corflute sign while they are moving, so use a short line, a big arrow and strong contrast. Keep text away from the edges and away from the eyelets. Send artwork at the finished size, or send the logo and the words and we will set it up. We email a digital proof and we do not print until you approve it. Guides for each size are on the {L("/artwork-help/", "artwork help")} page, and our {L("/guides/corflute-vs-rigid-signs/", "corflute vs rigid signs guide")} compares this board with aluminium composite when you need something stiffer.</p>
       </> },
       { id: "order", title: "Ordering printed corflute in Australia", body: <>
-        <p>The prices above include the print. They do not include freight. Tell us the size, single or double sided, and how many signs on the {L("/quote/", "quote form")}. We'll email you a quote with freight included. The minimum is $180 per order, not per sign, and the smallest bundle already meets it. You can add banners or flags to the same order.</p>
+        <p>The prices above include the print. They do not include freight. Tell us the size, single or double sided, and how many signs on the {L("/quote/", "quote form")}. We'll email you a quote with freight included. You can add banners or flags to the same order.</p>
         <p>There is no checkout here. You request a quote, you approve that quote, and you pay by invoice. {MW.TURNAROUND} We do not install signs and we do not visit your site. The boards arrive ready for you to put up. See {L("/delivery/", "how delivery works")}.</p>
       </> },
     ],
@@ -252,7 +252,7 @@ export const SEO_PAGES: SeoPage[] = [
       { q: "What are corflute signs printed on?", a: "Corflute is fluted plastic sheet, light and waterproof, printed in full colour. Our signs are premium Australian-made 5mm board." },
       { q: "Which size should I pick?", a: "600 × 450mm suits a small notice. 600 × 900mm is the usual portrait sign. 900 × 1200mm reads from further away. Each size can be portrait or landscape, single sided or double sided." },
       { q: "Do you supply stakes?", a: `No. The price is for the printed sign. Add eyelets if you will fix it with cable ties or rope. Eyelets are ${money(CF.EYELET_EACH)} each. Stakes and frames are not included.` },
-      { q: "How does the bundle price work?", a: `One to five signs is a flat bundle price, and six to ten is another flat price. From 11 signs you pay per sign, and that price drops as the quantity rises. Freight is not in those prices. We'll email you a quote with freight included. The minimum order is $180 per order.` },
+      { q: "How does the bundle price work?", a: `One to five signs is a flat bundle price, and six to ten is another flat price. From 11 signs you pay per sign, and that price drops as the quantity rises. Freight is not in those prices. We'll email you a quote with freight included.` },
     ],
   },
   {
@@ -290,7 +290,7 @@ export const SEO_PAGES: SeoPage[] = [
       </> },
       { id: "order", title: "Using the wall, then ordering", body: <>
         <p>The wall packs into the carry bag, so you can use it at one event and store it for the next. You set the frame up yourself. We do not install it and we do not come to the venue. Pair it with a {L("/pull-up-banners/", "pull up banner")} at the front of the stand and a {L("/table-covers/", "table cover")} on the trestle if you want a small booth. Those pieces are linked from our {L("/event-signage-australia/", "event signage")} page.</p>
-        <p>Ask for a quote with the width, single or double sided, and whether you want the LED pack. Use the {L("/quote/", "quote form")}. We'll email you a quote with freight included. The minimum order is $180 per order. There is no checkout on the site: approve the quote, then pay by invoice. {MW.TURNAROUND} {L("/delivery/", "Freight")} is worked out for your address and shown on the quote before you pay.</p>
+        <p>Ask for a quote with the width, single or double sided, and whether you want the LED pack. Use the {L("/quote/", "quote form")}. We'll email you a quote with freight included. There is no checkout on the site: approve the quote, then pay by invoice. {MW.TURNAROUND} {L("/delivery/", "Freight")} is worked out for your address and shown on the quote before you pay.</p>
       </> },
     ],
     faqs: [
@@ -335,13 +335,13 @@ export const SEO_PAGES: SeoPage[] = [
       </> },
       { id: "corflute", title: "Corflute, packs and how an event order works", body: <>
         <p>{L("/corflute-signs/", "Corflute signs")}, bundles from {money(CF.FROM_PRICE)} for 1 to 5 signs, cover directions, parking, entry and sponsor boards. They are light enough to cable-tie to temporary fencing. Sizes run from 600 × 450mm to 900 × 1200mm, single or double sided, with optional eyelets. The {L("/corflute-signs-australia/", "custom corflute signs")} page explains the bundle pricing, and {L("/corflute-event-signs/", "corflute event signs")} is the short version for event jobs.</p>
-        <p>You can mix any of these on one {L("/quote/", "quote")}. The minimum is $180 per order, not per product. We'll email you a quote with freight included. There is no checkout: you approve the quote, then you pay by invoice. We send a digital proof before we print. {MW.TURNAROUND} We deliver the gear. We do not install it and we do not visit the venue.</p>
+        <p>You can mix any of these on one {L("/quote/", "quote")}. We'll email you a quote with freight included. There is no checkout: you approve the quote, then you pay by invoice. We send a digital proof before we print. {MW.TURNAROUND} We deliver the gear. We do not install it and we do not visit the venue.</p>
         <p>Ready-made mixes, including an expo stand pack, are on the {L("/packs/", "signage packs")} page. {L("/delivery/", "Delivery")} is to your address, anywhere in Australia.</p>
       </> },
     ],
     faqs: [
       { q: "What event signage should I order first?", a: "Start with a media wall or a pull up banner so the stand has a name. Add a table cover and a flag if people need to find you from further away. Use corflute for directions and sponsor boards." },
-      { q: "Can I mix banners, flags and corflute in one order?", a: "Yes. One quote can include banners, flags, a media wall, table covers and corflute. The $180 minimum applies to the whole order, not to each product." },
+      { q: "Can I mix banners, flags and corflute in one order?", a: "Yes. One quote can include banners, flags, a media wall, table covers and corflute. We'll email you one quote for everything." },
       { q: "Do you install the stand at the venue?", a: "No. We print and deliver. You set the gear up yourself. We do not visit the venue." },
       { q: "How do freight and payment work?", a: `We'll email you a quote with freight included. There is no checkout on this site. After you approve the quote, you pay by invoice. ${MW.TURNAROUND}` },
     ],
@@ -380,7 +380,7 @@ export const SEO_PAGES: SeoPage[] = [
       { id: "corflute", title: "Corflute, the school pack and how to order", body: <>
         <p>{L("/corflute-signs/", "Corflute sign")} bundles start from {money(CF.FROM_PRICE)} for 1 to 5 signs, in 600 × 450mm, 600 × 900mm and 900 × 1200mm, on Australian-made 5mm board. Use them for directions, the canteen, parking and team lists. Eyelets are {money(CF.EYELET_EACH)} each if you want to cable-tie the board to a gate. Our {L("/corflute-signs-australia/", "custom corflute signs")} page sets out the bundle prices.</p>
         <p>If you want a set in one price, the school pack on our {L("/packs/", "signage packs")} page is {money(schoolPack.price[0]!)}. It includes {schoolPack.includes}. Sports clubs can start from the sponsor banner packs above. Tell us a different mix in the notes and we will quote it.</p>
-        <p>The minimum order is $180 per order, not per product. Use the {L("/quote/", "quote form")}. We'll email you a quote with freight included. There is no checkout: approve the quote, then pay by invoice. We email a proof before we print. {MW.TURNAROUND} We do not come to the school or the ground, and we do not install. The gear arrives ready for your volunteers to put up. {L("/delivery/", "Delivery")} is Australia-wide. A carnival that also needs a backdrop is covered on the {L("/event-signage-australia/", "event signage")} page.</p>
+        <p>Use the {L("/quote/", "quote form")}. We'll email you a quote with freight included. There is no checkout: approve the quote, then pay by invoice. We email a proof before we print. {MW.TURNAROUND} We do not come to the school or the ground, and we do not install. The gear arrives ready for your volunteers to put up. {L("/delivery/", "Delivery")} is Australia-wide. A carnival that also needs a backdrop is covered on the {L("/event-signage-australia/", "event signage")} page.</p>
       </> },
     ],
     faqs: [

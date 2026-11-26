@@ -18,7 +18,7 @@ import {
   money,
   type Thickness,
 } from "../data/corfluteSigns";
-import { FROM_PER_M2, MIN_NOTE } from "../data/customSize";
+import { FROM_PER_M2 } from "../data/customSize";
 import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
@@ -196,7 +196,6 @@ export default function CorfluteSignsPage() {
             <p className="mt-5 text-sm font-semibold text-cream/80">
               Custom sizes from ${FROM_PER_M2["corflute-5mm-single"]} per m². Standard sizes start at {money(FROM_PRICE)} for up to 5 signs.
             </p>
-            <p className="mt-1 text-sm text-cream/80">{MIN_NOTE}</p>
           </div>
           <MockupImage
             mockup={MOCKUPS.v4Corflute}

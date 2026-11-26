@@ -5,6 +5,20 @@ import { PACKS } from "../src/data/packs";
 import { signsTotal } from "../src/data/corfluteSigns";
 import { ACM_SIGNS } from "../src/data/eventGear";
 
+
+// Pricing rule (26 Nov 2026): supplier regular price inc GST ÷ 0.7, rounded UP to the next $5 (exact multiples
+// stay). Multi-unit lines use the whole-dollar unit × qty; corflute 1–10 bundles and packs are flat totals.
+// Expected values below are worked from the recorded supplier prices, not read back from the site data.
+const up5 = (x: number) => {
+  const r = Math.round(x * 1e6) / 1e6;
+  return Math.abs(r / 5 - Math.round(r / 5)) < 1e-9 ? Math.round(r) : Math.ceil(r / 5) * 5;
+};
+const sell = (es: number, qty = 1, flat = false) => {
+  const base = up5(es / 0.7);
+  return flat || qty <= 1 ? base : Math.ceil(base / qty - 1e-9) * qty;
+};
+const FLOOR = sell(137.5); // the supplier's $137.50 product floor
+
 const fails: string[] = [];
 const ok = (name: string, cond: boolean, detail = "") => {
   if (cond) console.log(`ok  ${name}${detail ? " — " + detail : ""}`);
@@ -39,33 +53,34 @@ const ex = (kind: Parameters<typeof priceCustom>[0], w: number, h: number, qty: 
 };
 
 const pvc3 = ex("pvc", 3000, 1000, 1);
-ok("PVC 3000×1000 qty 1 is $185 (listed)", pvc3.ok && pvc3.ok && pvc3.total === 185 && pvc3.matchedListed === "pvc-3000x1000");
+ok(`PVC 3000×1000 qty 1 is $${FLOOR} (listed)`, pvc3.ok && pvc3.ok && pvc3.total === FLOOR && pvc3.matchedListed === "pvc-3000x1000");
 const pvc3q10 = ex("pvc", 3000, 1000, 10);
-ok("PVC 3000×1000 qty 10 is $880", pvc3q10.ok && pvc3q10.ok && pvc3q10.total === 880);
+ok(`PVC 3000×1000 qty 10 is $${sell(654.39, 10)}`, pvc3q10.ok && pvc3q10.ok && pvc3q10.total === sell(654.39, 10));
 const mesh2 = ex("mesh", 2000, 1000, 1);
-ok("Mesh 2000×1000 qty 1 prices instantly", mesh2.ok && mesh2.ok && mesh2.total >= 185);
+ok("Mesh 2000×1000 qty 1 prices instantly", mesh2.ok && mesh2.ok && mesh2.total >= FLOOR);
 console.log("  example mesh 2000×1000 q1", mesh2.ok ? `$${mesh2.total}` : mesh2.reason);
 const mesh2q10 = ex("mesh", 2000, 1000, 10);
 console.log("  example mesh 2000×1000 q10", mesh2q10.ok ? `$${mesh2q10.total}` : mesh2q10.reason);
 const cf = ex("corflute-5mm-single", 1200, 600, 1);
-ok("Corflute 1200×600 5mm SS qty 1 prices instantly", cf.ok && cf.ok && cf.total >= 185);
+ok("Corflute 1200×600 5mm SS qty 1 prices instantly", cf.ok && cf.ok && cf.total >= FLOOR);
 console.log("  example corflute 1200×600 5mm SS q1", cf.ok ? `$${cf.total}` : cf.reason);
 const cf5 = ex("corflute-5mm-single", 1200, 600, 5);
 const cf10 = ex("corflute-5mm-single", 1200, 600, 10);
 console.log("  example corflute 1200×600 q5", cf5.ok ? `$${cf5.total}` : "", "q10", cf10.ok ? `$${cf10.total}` : "");
 
 // Listed matches
-ok("PVC 2000×1000 custom = listed $185/$345/$630",
+const pvc2k: Record<number, number> = { 1: sell(137.5), 5: sell(255.2, 5), 10: sell(472.12, 10) };
+ok(`PVC 2000×1000 custom = listed $${pvc2k[1]}/$${pvc2k[5]}/$${pvc2k[10]}`,
   [1,5,10].every((q) => {
     const r = ex("pvc", 2000, 1000, q);
-    return r.ok && r.total === ({1:185,5:345,10:630} as Record<number, number>)[q];
+    return r.ok && r.total === pvc2k[q];
   }));
 ok("Corflute 600×900 5mm SS listed bundles",
-  ex("corflute-5mm-single", 600, 900, 1).ok && (ex("corflute-5mm-single", 600, 900, 1) as {total:number}).total === 185
-  && (ex("corflute-5mm-single", 600, 900, 5) as {total:number}).total === 185
-  && (ex("corflute-5mm-single", 900, 600, 10) as {total:number}).total === 245);
+  ex("corflute-5mm-single", 600, 900, 1).ok && (ex("corflute-5mm-single", 600, 900, 1) as {total:number}).total === sell(137.5, 5, true)
+  && (ex("corflute-5mm-single", 600, 900, 5) as {total:number}).total === sell(137.5, 5, true)
+  && (ex("corflute-5mm-single", 900, 600, 10) as {total:number}).total === sell(180.51, 10, true));
 
-ok("Mesh 2400×1600 qty 4 is $468 (pack component)", (ex("mesh", 2400, 1600, 4) as {total:number}).total === 468);
+ok(`Mesh 2400×1600 qty 4 is $${sell(348.73, 4)} (pack component)`, (ex("mesh", 2400, 1600, 4) as {total:number}).total === sell(348.73, 4));
 
 // Quantity monotonicity
 function qtyMono(kind: Parameters<typeof priceCustom>[0], w: number, h: number, maxQ: number) {
@@ -118,18 +133,20 @@ for (const [kind, h, widths, qty] of [
 }
 
 // Packs: expected new prices
+// Sum of each component's rounded price, then the pack total rounded up to the next $5.
+const pack = (...parts: number[]) => up5(parts.reduce((a, b) => a + b, 0));
 const packExpect: Record<string, number> = {
-  "sponsor-5": 375,
-  "sponsor-10": 700,
-  "site-cf-5": 230,
-  "site-cf-10": 330,
-  "mesh-2": 260,
-  "mesh-4": 470,
-  "school": 880,
-  "event-starter": 720,
-  "event-full": 950,
-  "flags-3-single": 630,
-  "flags-3-double": 750,
+  "sponsor-5": pack(sell(280.14, 5, true)),
+  "sponsor-10": pack(sell(523.09, 10, true)),
+  "site-cf-5": pack(sell(169.59, 5, true)),
+  "site-cf-10": pack(sell(246.88, 10, true)),
+  "mesh-2": pack(sell(192.96, 2)),
+  "mesh-4": pack(sell(348.73, 4)),
+  "school": pack(sell(137.5, 2), sell(308.0, 2), sell(205.45, 10, true)),
+  "event-starter": pack(sell(387.2), sell(148.5)),
+  "event-full": pack(sell(387.2), sell(148.5), sell(174.9)),
+  "flags-3-single": pack(sell(466.97, 3)),
+  "flags-3-double": pack(sell(557.39, 3)),
 };
 for (const it of PACKS.items) {
   ok(`pack ${it.id} = $${packExpect[it.id]}`, it.price[0] === packExpect[it.id], `got ${it.price[0]}`);
@@ -137,12 +154,12 @@ for (const it of PACKS.items) {
 
 // Listed gearEach still works
 const pvcItem = BANNERS.items.find((i) => i.id === "pvc-4000x1000")!;
-ok("new PVC 4000×1000 qty 1 each 185", gearEach(BANNERS, pvcItem, false, 1) === 185);
-ok("new PVC 4000×1000 qty 10 each 120", gearEach(BANNERS, pvcItem, false, 10) === 120);
+ok(`PVC 4000×1000 qty 1 each ${FLOOR}`, gearEach(BANNERS, pvcItem, false, 1) === FLOOR);
+ok(`PVC 4000×1000 qty 10 each ${sell(895.84, 10) / 10}`, gearEach(BANNERS, pvcItem, false, 10) === sell(895.84, 10) / 10);
 const mesh4 = BANNERS.items.find((i) => i.id === "mesh-2400x1600")!;
-ok("mesh 2400×1600 qty 4 total 468", Math.round((gearEach(BANNERS, mesh4, false, 4) ?? 0) * 4) === 468);
-ok("corflute listed 600x900 5mm ss 10 = 245", signsTotal("600x900", "5mm", "single", 10) === 245);
-ok("ACM still starts at 185", ACM_SIGNS.items[0]!.price[0] === 185);
+ok(`mesh 2400×1600 qty 4 total ${sell(348.73, 4)}`, Math.round((gearEach(BANNERS, mesh4, false, 4) ?? 0) * 4) === sell(348.73, 4));
+ok(`corflute listed 600x900 5mm ss 10 = ${sell(180.51, 10, true)}`, signsTotal("600x900", "5mm", "single", 10) === sell(180.51, 10, true));
+ok(`ACM starts at ${FLOOR}`, ACM_SIGNS.items[0]!.price[0] === FLOOR);
 
 console.log("\nFrom-rates:", FROM_PER_M2);
 console.log("kindForCorflute 3mm double", kindForCorflute("3mm", "double"));

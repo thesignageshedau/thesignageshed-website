@@ -43,7 +43,6 @@ function Hub({ industry: p }: { industry: Industry }) {
           <h1 className="mt-3 max-w-3xl text-4xl leading-tight sm:text-5xl">{p.heading}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream/90">{p.intro}</p>
           <p className="mt-4 text-lg font-semibold text-cream">{p.lead}</p>
-          <p className="mt-1 text-sm text-cream/80">Minimum order $180 (excl. freight).</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#products" className="btn-rust">
               See products
@@ -126,7 +125,7 @@ function Hub({ industry: p }: { industry: Industry }) {
         title="Questions"
         email={QUOTE_EMAIL}
         faqs={[
-          { q: "Can I mix products in one order?", a: "Yes. The $180 minimum applies to the whole order, not to each product. We'll email you a quote with freight included." },
+          { q: "Can I mix products in one order?", a: "Yes. We'll email you one quote for everything, with freight included." },
           { q: "Do you install the signs?", a: "No. We print and deliver. You put the gear up yourself. We do not visit." },
           { q: "How much is delivery?", a: "Freight depends on the size and weight of the order. We quote it to your postcode and include it on your quote." },
         ]}

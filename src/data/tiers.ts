@@ -33,12 +33,20 @@ export const tierEach = (tiers: Tier[], qty: number) => tierTotal(tiers, qty) / 
 /** Price each at each band's smallest quantity, for price tables. */
 export const tierBands = (tiers: Tier[], mins: number[]) => mins.map((m) => tierUnit(tiers, m));
 
-/** "$32 each" when the total divides evenly, otherwise "about $39 each" (rounded to a whole dollar). */
+/** True when the line total splits into an exact price each (to the cent). */
+export function eachIsExact(total: number, qty: number): boolean {
+  const cents = Math.round(total * 100);
+  return qty > 0 && cents % qty === 0;
+}
+
+/** Exact price each: "$32 each" or "$22.50 each". When the total doesn't split evenly to the cent, show the exact
+ * line instead ("$205 for 3") so we never print an approximate price. */
 export function eachText(total: number, qty: number): string {
-  const e = total / qty;
-  const whole = Math.abs(e - Math.round(e)) < 1e-6;
-  return `${whole ? "" : "about "}$${Math.round(e).toLocaleString("en-AU")} each`;
+  if (!eachIsExact(total, qty)) return `$${total.toLocaleString("en-AU")} for ${qty}`;
+  const cents = Math.round(total * 100) / qty;
+  const e = cents / 100;
+  const s = cents % 100 === 0 ? e.toLocaleString("en-AU") : e.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `$${s} each`;
 }
 
 export const DESIGN_NOTE = "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.";
-export const MIN_NOTE = "Minimum order $180 (excl. freight).";

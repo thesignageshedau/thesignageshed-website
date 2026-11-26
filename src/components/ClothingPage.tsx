@@ -11,6 +11,7 @@ import {
   PAGE,
   PRODUCTS,
   FROM_EACH_IN_TENS,
+  CLOTHING_FROM_LINE,
   money,
   type ClothingProduct,
 } from "../data/clothing";
@@ -72,9 +73,8 @@ export default function ClothingPage() {
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{PAGE.heading}</h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">{PAGE.intro}</p>
             <p className="mt-4 max-w-xl text-lg font-semibold text-cream">
-              T-shirts from $38 each in 10s, caps from $30 each in 10s.
+              {CLOTHING_FROM_LINE}
             </p>
-            <p className="mt-1 text-sm text-cream/80">Minimum order $180 (excl. freight).</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button type="button" className="btn-rust" onClick={() => scrollToId("prices")}>
                 See prices

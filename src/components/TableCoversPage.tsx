@@ -4,7 +4,7 @@ import ArtworkCheckLink from "./ArtworkCheckLink";
 import TrustStrip from "./TrustStrip";
 import { quoteHref } from "../data/quoteProducts";
 import CustomSizeQuote from "./CustomSizeQuote";
-import { FROM_PER_M2, MIN_NOTE } from "../data/customSize";
+import { FROM_PER_M2 } from "../data/customSize";
 import { type ReactNode } from "react";
 import { QUOTE_EMAIL, TURNAROUND, aud } from "../data/mediaWalls";
 import {
@@ -283,7 +283,7 @@ export default function TableCoversPage() {
               From {aud(FROM_PRICE)}
             </p>
             <p className="mt-1 text-sm text-cream/80">
-              Table runners from ${FROM_PER_M2["runner-front"]} per m². {MIN_NOTE}
+              Table runners from ${FROM_PER_M2["runner-front"]} per m².
             </p>
           </div>
           <MockupImage

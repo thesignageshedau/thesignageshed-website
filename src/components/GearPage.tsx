@@ -17,7 +17,6 @@ import MeshBannerInfo from "./MeshBannerInfo";
 import MockupGallery from "./MockupGallery";
 import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
 import CustomSizeQuote from "./CustomSizeQuote";
-import { MIN_NOTE } from "../data/customSize";
 
 // Natural next items for some event gear pages, shown under the hero buttons.
 const PAIRS: Record<string, { lead: string; links: { href: string; text: string }[] }> = {
@@ -70,7 +69,7 @@ function QuoteOnlyPanel({ p }: { p: GearProduct }) {
           {p.fromPerM2 ? (
             <>
               <span className="font-bold">{p.fromPerM2Lead ?? `From $${p.fromPerM2} per m².`}</span>{" "}
-              {MIN_NOTE} Enter a size below for an instant price on economy white vinyl, or tell us if you need premium or laminate and we'll confirm it in your quote.
+              Enter a size below for an instant price on economy white vinyl, or tell us if you need premium or laminate and we'll confirm it in your quote.
             </>
           ) : (
             <>
@@ -155,7 +154,6 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                 <p className="mt-5 text-sm font-semibold text-cream/80">
                   {p.fromPerM2Lead ?? `From $${p.fromPerM2} per m²`}
                 </p>
-                <p className="mt-1 text-sm text-cream/80">{MIN_NOTE}</p>
               </>
             ) : (
               <p className="mt-5 text-sm font-semibold text-cream/80">

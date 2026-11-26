@@ -2,7 +2,6 @@ import TrustStrip from "./TrustStrip";
 import { useState } from "react";
 import { FORMSUBMIT_ACTION } from "../data/mediaWalls";
 import QuoteItem, { MAX_ITEMS } from "./QuoteItem";
-import { MIN_ORDER } from "../data/quoteOptions";
 import {
   ArtworkFields,
   DeliveryFields,
@@ -26,10 +25,10 @@ export default function QuotePage() {
   const live = items.map((k) => estimates[k]);
   const priced = live.filter((x): x is { v: number; product: string } => typeof x?.v === "number");
   const unpriced = live.length - priced.length;
-  // The $180 minimum applies to the whole order. Estimates show the real items total; the minimum is stated, not added.
+  // Estimates show the real items total.
   const fmt = (n: number) => n.toLocaleString("en-AU", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
   const total = Math.round(priced.reduce((a, x) => a + x.v, 0) * 100) / 100;
-  const orderNote = priced.length > 0 ? `Order total: estimate $${fmt(total)}${unpriced > 0 ? " for priced items" : ""} (minimum order $${MIN_ORDER})` : "";
+  const orderNote = priced.length > 0 ? `Order total: estimate $${fmt(total)}${unpriced > 0 ? " for priced items" : ""}` : "";
   const product = first.product;
   const size = first.size;
   const { status, error, onSubmit, onInput, fieldErrors } = useQuoteSubmit();
@@ -103,14 +102,13 @@ export default function QuotePage() {
                     <span className="text-sm">excl. freight</span>
                   </p>
                   <p className="mt-1 text-xs text-charcoal/75">
-                    <span className="font-bold">Minimum order value ${MIN_ORDER} (excl. freight).</span>{" "}
                     From the prices on our product pages.
-                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote. Our $${MIN_ORDER} minimum applies to the whole order, including those.` : ""} This is an
+                    {unpriced > 0 ? ` Plus ${unpriced} ${unpriced === 1 ? "item" : "items"} we'll price in your quote.` : ""} This is an
                     estimate. Your final quote follows artwork review. Freight isn't included and is shown on your quote.
                   </p>
                 </div>
               )}
-              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything. Minimum order $180 (excl. freight).</p>
+              <p className="text-xs text-charcoal/70">Up to {MAX_ITEMS} products in one request. Same delivery address for everything.</p>
             </div>
 
             <DeliveryFields />

@@ -1,7 +1,7 @@
 // Instant custom-size pricing for products sold by area (banners, corflute, runners, ACM, SAV).
-// Totals follow the same rule as listed sizes: supplier regular inc GST ÷ 0.75, rounded up to the
+// Totals follow the same rule as listed sizes: supplier regular inc GST ÷ 0.7 (repriced 26 Nov 2026), rounded up to the
 // next $5, then a whole-dollar unit × quantity, with a cap so a bigger area or quantity is never
-// cheaper in total. The $180 minimum is a note only and is never added to a total.
+// cheaper in total. 
 import { cappedTotal } from "./tiers";
 import { AREA_RATES, type AreaKind, type AreaPoint, type RateCard } from "./areaRates";
 
@@ -40,7 +40,6 @@ export const FROM_PER_M2: Record<AreaKind, number> = Object.fromEntries(
   (Object.keys(AREA_RATES) as AreaKind[]).map((k) => [k, AREA_RATES[k].fromPerM2]),
 ) as Record<AreaKind, number>;
 
-export const MIN_NOTE = "Minimum order $180 (excl. freight).";
 
 export type ParseOk = { ok: true; mm: number; rounded: boolean };
 export type ParseErr = { ok: false; reason: string };

@@ -32,10 +32,6 @@ const allFaqs: { q: string; a: React.ReactNode }[] = [
     a: <>Payment is due once your artwork is approved.</>,
   },
   {
-    q: "Is there a minimum order?",
-    a: <>Yes. Our minimum order is $180 for the whole order, and you can mix different products to reach it.</>,
-  },
-  {
     q: "Do you install signs?",
     a: <>No. We print and deliver, and everything arrives ready to put up yourself, with the fittings listed on each product page.</>,
   },

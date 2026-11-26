@@ -1,5 +1,7 @@
 // Per-page meta descriptions (also used for og:description and twitter:description).
 import { FROM_PER_M2 } from "./customSize";
+import { FROM_PRICE as AFRAMES_FROM } from "./aFrames";
+import { CLOTHING_FROM_LINE, FROM_EACH_IN_TENS_TEXT } from "./clothing";
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "lightbox-displays": "Freestanding backlit SEG fabric lightbox displays in 1000 × 2000mm, 2000 × 2000mm and 3000 × 2000mm, single or double sided, with a carry bag. Delivered Australia-wide.",
@@ -26,7 +28,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "banners": `Printed mesh banners for fences and building sites, plus PVC vinyl and fabric banners. We hem them and add eyelets, ready to hang. Vinyl and mesh from $${FROM_PER_M2.pvc} per m², fabric from $${FROM_PER_M2.fabric}. Delivered Australia-wide.`,
   "for-sign-shops": "Quoting, pricing and job costing spreadsheets for Australian sign shops and signwriters, plus a free pricing sheet. Excel and Google Sheets, instant download.",
   "check-artwork": "Check your print file before ordering: pick a product, size and PDF, JPG or PNG to see size, bleed, resolution and colour checks. The file stays on your device.",
-  "faq": "Common questions about ordering from us: quotes, the $180 minimum order, dispatch times, freight, payment, artwork help, file types and samples.",
+  "faq": "Common questions about ordering from us: quotes, dispatch times, freight, payment, artwork help, file types and samples.",
   "delivery": "How delivery works: Australia-wide, freight by size and weight, quoted to your postcode before you pay. No pick up or installation: we deliver to your door.",
   "artwork-help": "Plain-English artwork help for print: bleed, safe area, resolution (130 ppi minimum), CMYK vs RGB, fonts, PDF files, vector vs raster and per-product guides.",
   "guides": "Short buying guides from The Signage Shed: choosing a pull up banner size, corflute vs rigid signs, and setting up print-ready artwork.",
@@ -35,9 +37,11 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "guides/print-ready-artwork": "How to set up print-ready artwork: size, bleed, safe area, 130 to 150 ppi resolution, CMYK, fonts and file types.",
   "about": "The Signage Shed is an online print studio for custom signs, banners and event gear, delivered Australia-wide. Quote first, a digital proof before we print.",
   "quote": "Request a quote for custom printed signs, banners, flags, gazebos and event gear, delivered Australia-wide. We reply by email, usually within one business day.",
-  clothing: "Custom printed t-shirts, hoodies, trucker caps and tote bags, full colour, delivered Australia-wide. T-shirts from $38 each in 10s, caps from $30 each in 10s.",
-  "shops-and-cafes": "A-frame signs, ACM wall signs, printed vinyl and business cards for shops and cafés. A-frames from $105, delivered Australia-wide.",
-  tradies: "Car magnets, corflute, ACM, banners and printed tees, hoodies and caps for tradies. Clothing from $30 each in 10s, delivered Australia-wide.",
-  "markets-and-stalls": "Market umbrellas, teardrop flags, table covers, A-frames and banners for market stalls. A-frames from $105, delivered Australia-wide.",
-  "clubs-and-teams": "Printed tees, hoodies, caps and totes, plus sponsor banners and flags for clubs and teams. Clothing from $30 each in 10s, delivered Australia-wide.",
+  clothing: `Custom printed t-shirts, hoodies, trucker caps and tote bags, full colour, delivered Australia-wide. ${CLOTHING_FROM_LINE}`,
+  "shops-and-cafes": `A-frame signs, ACM wall signs, printed vinyl and business cards for shops and cafés. A-frames from $${AFRAMES_FROM}, delivered Australia-wide.`,
+
+  tradies: `Car magnets, corflute, ACM, banners and printed tees, hoodies and caps for tradies. Clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s, delivered Australia-wide.`,
+  "markets-and-stalls": `Market umbrellas, teardrop flags, table covers, A-frames and banners for market stalls. A-frames from $${AFRAMES_FROM}, delivered Australia-wide.`,
+
+  "clubs-and-teams": `Printed tees, hoodies, caps and totes, plus sponsor banners and flags for clubs and teams. Clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s, delivered Australia-wide.`,
 };

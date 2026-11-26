@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { SIDES, SIZES, money, signsTotal, type Sides, type Thickness } from "../data/corfluteSigns";
-import { eachText } from "../data/tiers";
+import { eachIsExact, eachText } from "../data/tiers";
 import { quoteHref } from "../data/quoteProducts";
-import { FROM_PER_M2, MIN_NOTE, kindForCorflute, priceFromInputs, sizeLabel } from "../data/customSize";
+import { FROM_PER_M2, kindForCorflute, priceFromInputs, sizeLabel } from "../data/customSize";
 
 const EXAMPLES = [1, 5, 10, 20, 50, 100];
 const UNITS = ["mm", "cm", "m"] as const;
@@ -48,7 +48,7 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
       {custom && (
         <>
           <p className="mt-3 text-sm">
-            <span className="font-semibold">From ${FROM_PER_M2[kindForCorflute(thick, sides)]} per m².</span> {MIN_NOTE}
+            <span className="font-semibold">From ${FROM_PER_M2[kindForCorflute(thick, sides)]} per m².</span>
           </p>
           <div className="mt-3 grid grid-cols-[1fr_1fr_5.5rem] gap-3">
             <label className="block text-xs font-bold">
@@ -100,8 +100,17 @@ export default function CorflutePrices({ thick }: { thick: Thickness }) {
         ) : now ? (
           <>
             <span className="block text-sm">{qty} × {label}, {sides === "single" ? "single" : "double"} sided, {thick}</span>
-            <span className="font-slab text-2xl font-bold text-rust-dark">{eachText(now.total, qty)}</span>
-            <span className="font-semibold"> · {money(now.total)} total</span>
+            {eachIsExact(now.total, qty) ? (
+              <>
+                <span className="font-slab text-2xl font-bold text-rust-dark">{eachText(now.total, qty)}</span>
+                <span className="font-semibold"> · {money(now.total)} total</span>
+              </>
+            ) : (
+              <>
+                <span className="font-slab text-2xl font-bold text-rust-dark">{money(now.total)}</span>
+                <span className="font-semibold"> for {qty}</span>
+              </>
+            )}
           </>
         ) : (
           <span className="text-sm">Enter a width and height to see a price.</span>
