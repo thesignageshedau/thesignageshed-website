@@ -8,7 +8,7 @@ import * as AF from "./aFrames";
 import * as PB from "./pullUpBanners";
 import * as TC from "./tableCovers";
 import { ACM_SIGNS, BANNERS, FLAGS, UMBRELLAS, fromPrice } from "./eventGear";
-import { BUSINESS_CARDS, CAR_MAGNETS, PRINTED_VINYL } from "./newProducts";
+import { ARCH_BANNERS, BUSINESS_CARDS, CAR_MAGNETS, POSTERS, PRINTED_CHAIRS, PRINTED_VINYL, WINDOW_CLINGS } from "./newProducts";
 import { PACKS } from "./packs";
 import { FROM_PER_M2 } from "./customSize";
 import { FROM_EACH_IN_TENS, FROM_EACH_IN_TENS_TEXT } from "./clothing";
@@ -138,6 +138,17 @@ const pullUps: IndustryProduct = {
   fromText: fromAud(PB.FROM_PRICE),
   img: MOCKUPS.v4PullUp,
 };
+const gearTile = (href: string, name: string, g: typeof POSTERS): IndustryProduct => ({
+  href,
+  name,
+  from: fromPrice(g),
+  fromText: fromAud(fromPrice(g)),
+  img: g.hero,
+});
+const clings = gearTile("/window-clings/", "Window clings", WINDOW_CLINGS);
+const posters = gearTile("/posters/", "Posters", POSTERS);
+const chairs = gearTile("/printed-chairs/", "Printed chairs", PRINTED_CHAIRS);
+const arches = gearTile("/arch-banners/", "Arch banners", ARCH_BANNERS);
 const sponsor5 = PACKS.items.find((i) => i.id === "sponsor-5")!;
 const sponsorPacks: IndustryProduct = {
   href: "/packs/",
@@ -198,7 +209,7 @@ export const INDUSTRIES: Industry[] = [
     offerPrice: AF.FROM_PRICE,
     offerPerM2: false,
     image: MOCKUPS.v4AFramePrinted,
-    products: [aFrames, acm, vinyl, cards, pullUps],
+    products: [aFrames, acm, vinyl, clings, posters, cards, pullUps],
     related: [
       { href: "/cafe-a-frame-signs/", text: "Café A-frame signs" },
       { href: "/shop-window-wall-signs/", text: "Shop window and wall signs" },
@@ -241,7 +252,7 @@ export const INDUSTRIES: Industry[] = [
     offerPrice: AF.FROM_PRICE,
     offerPerM2: false,
     image: UMBRELLAS.hero,
-    products: [umbrellas, flags, covers, aFrames, banners],
+    products: [umbrellas, flags, covers, aFrames, banners, chairs],
     related: [
       { href: "/market-umbrellas/", text: "Market umbrellas" },
       { href: "/flags/", text: "Teardrop and feather flags" },
@@ -263,7 +274,7 @@ export const INDUSTRIES: Industry[] = [
     offerPrice: FROM_EACH_IN_TENS,
     offerPerM2: false,
     image: MOCKUPS.v4ClothingTee,
-    products: [clothing, sponsorPacks, banners, flags],
+    products: [clothing, sponsorPacks, banners, flags, chairs, arches],
     related: [
       { href: "/clothing/", text: "Printed clothing" },
       { href: "/packs/", text: "Sponsor banner packs" },

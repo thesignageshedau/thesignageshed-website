@@ -8,7 +8,7 @@ import * as CF from "./corfluteSigns";
 import * as AF from "./aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, type GearProduct, gearEach } from "./eventGear";
 import { PACKS } from "./packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, SAV_SIZE_MM } from "./newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, SAV_SIZE_MM, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS } from "./newProducts";
 import { priceCustom } from "./customSize";
 
 export const OTHER = "other";
@@ -241,6 +241,13 @@ export const QUOTE_SPECS: Record<string, QuoteSpec> = {
   "car-magnets": gear(CAR_MAGNETS, "Size"),
   "business-cards": gear(BUSINESS_CARDS, "Card and quantity"),
   "printed-vinyl": printedVinyl(PRINTED_VINYL),
+  "posters": gear(POSTERS, "Poster size"),
+  "foam-pvc-signs": gear(FOAM_PVC, "Sign or counter card"),
+  "window-clings": gear(WINDOW_CLINGS, "Size"),
+  "x-banner-stands": gear(X_BANNERS, "Size"),
+  "fabric-display-cubes": gear(FABRIC_CUBES, "Cube size"),
+  "printed-chairs": gear(PRINTED_CHAIRS, "Chair style"),
+  "arch-banners": gear(ARCH_BANNERS, "Size"),
   packs: gear(PACKS, "Pack"),
 };
 

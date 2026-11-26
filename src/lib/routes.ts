@@ -31,6 +31,13 @@ export const GEAR_HREFS = {
   packs: "/packs/",
   "business-cards": "/business-cards/",
   "printed-vinyl": "/printed-vinyl/",
+  "posters": "/posters/",
+  "foam-pvc-signs": "/foam-pvc-signs/",
+  "window-clings": "/window-clings/",
+  "x-banner-stands": "/x-banner-stands/",
+  "fabric-display-cubes": "/fabric-display-cubes/",
+  "printed-chairs": "/printed-chairs/",
+  "arch-banners": "/arch-banners/",
 } as const;
 export const CHECK_ARTWORK_HREF = "/check-artwork/";
 export const QUOTE_THANKS_HREF = "/quote-thanks/";

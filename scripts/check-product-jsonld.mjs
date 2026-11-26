@@ -11,7 +11,7 @@ const DIST = fileURLToPath(new URL("../dist/", import.meta.url));
 const SITE = "https://thesignageshed.au";
 const ROUTES = [
   "", "media-walls", "table-covers", "pull-up-banners", "corflute-signs", "a-frames", "gazebos", "flags",
-  "market-umbrellas", "banners", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl", "clothing", "packs", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
+  "market-umbrellas", "banners", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl", "posters", "foam-pvc-signs", "window-clings", "x-banner-stands", "fabric-display-cubes", "printed-chairs", "arch-banners", "clothing", "packs", "quote", "check-artwork", "for-sign-shops", "delivery", "faq", "artwork-help", "about",
   "guides", "guides/pull-up-banner-size", "guides/corflute-vs-rigid-signs", "guides/print-ready-artwork",
   "cafe-a-frame-signs", "corflute-event-signs", "shop-window-wall-signs",
   "pull-up-banners-australia", "corflute-signs-australia", "media-walls-australia", "event-signage-australia", "school-and-sports-club-signs", "shops-and-cafes", "tradies", "markets-and-stalls", "clubs-and-teams",

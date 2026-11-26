@@ -4,6 +4,13 @@ import { FROM_PRICE as AFRAMES_FROM } from "./aFrames";
 import { CLOTHING_FROM_LINE, FROM_EACH_IN_TENS_TEXT } from "./clothing";
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
+  posters: "Full colour posters printed on 200gsm poster paper in A3, A2, A1 and A0, for shop windows, noticeboards, menus and events. Delivered Australia-wide.",
+  "foam-pvc-signs": "Rigid 3mm foam PVC signs in A3, A1 and A0 for indoor walls, plus A5, A4 and A3 counter cards with a stand on the back. Delivered Australia-wide.",
+  "window-clings": "Removable static window clings printed full colour on white cling, in 450 × 600mm, 600 × 900mm and 900 × 1200mm. No glue, easy to move or reuse. Delivered Australia-wide.",
+  "x-banner-stands": "Low-cost X-banner stands with a printed 600 × 1600mm banner and carry bag. Light, quick to set up and easy to swap the banner. Delivered Australia-wide.",
+  "fabric-display-cubes": "Printed stretch fabric display cubes on an aluminium frame, in 510, 610, 765 and 915mm, with a carry bag. For expo stands, shop displays and events. Delivered Australia-wide.",
+  "printed-chairs": "Folding director's chairs and deck chairs with your logo printed on the fabric. For club sidelines, coaches' benches, markets and events. Delivered Australia-wide.",
+  "arch-banners": "Walk-through printed arch banners, 3390mm wide and 1860mm or 2180mm tall, with poles and ground spikes. For fun runs, start and finish lines, and event entrances. Delivered Australia-wide.",
   "lightbox-displays": "Freestanding backlit SEG fabric lightbox displays in 1000 × 2000mm, 2000 × 2000mm and 3000 × 2000mm, single or double sided, with a carry bag. Delivered Australia-wide.",
   "big-head-cutouts": "Custom big head cutouts in small (380mm, with handle), medium (600mm) and large (900mm), printed and cut to shape. Great for footy, birthdays, weddings and parties.",
   "seg-fabric-frames": "Free-standing SEG fabric frame displays that link together, 717mm tall and 559mm to 2794mm long. Sponsor signage for pool decks, sidelines and fun runs, delivered Australia-wide.",
