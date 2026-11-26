@@ -3,7 +3,8 @@ import { priceCustom, parseDims, parseMm, parseQty, FROM_PER_M2, kindForCorflute
 import { BANNERS, gearEach } from "../src/data/eventGear";
 import { PACKS } from "../src/data/packs";
 import { signsTotal } from "../src/data/corfluteSigns";
-import { ACM_SIGNS } from "../src/data/eventGear";
+import { ACM_SIGNS, GEAR_PRODUCTS } from "../src/data/eventGear";
+import { NEW_PRODUCTS } from "../src/data/newProducts";
 
 
 // Pricing rule (26 Nov 2026): supplier regular price inc GST ÷ 0.7, rounded UP to the next $5 (exact multiples
@@ -160,6 +161,15 @@ const mesh4 = BANNERS.items.find((i) => i.id === "mesh-2400x1600")!;
 ok(`mesh 2400×1600 qty 4 total ${sell(348.73, 4)}`, Math.round((gearEach(BANNERS, mesh4, false, 4) ?? 0) * 4) === sell(348.73, 4));
 ok(`corflute listed 600x900 5mm ss 10 = ${sell(180.51, 10, true)}`, signsTotal("600x900", "5mm", "single", 10) === sell(180.51, 10, true));
 ok(`ACM starts at ${FLOOR}`, ACM_SIGNS.items[0]!.price[0] === FLOOR);
+
+// Every price-table row needs exactly one price per quantity column, or the table shows the wrong
+// prices under each heading (a mismatch blanked /banners/ on 26 Nov 2026).
+for (const g of [...GEAR_PRODUCTS, ...NEW_PRODUCTS, PACKS]) {
+  for (const i of g.items) {
+    ok(`${g.slug} ${i.id}: ${i.price.length} prices for ${g.bands.length} columns`, i.price.length === g.bands.length);
+    if (i.priceWithAddon) ok(`${g.slug} ${i.id}: add-on row matches columns`, i.priceWithAddon.length === g.bands.length);
+  }
+}
 
 console.log("\nFrom-rates:", FROM_PER_M2);
 console.log("kindForCorflute 3mm double", kindForCorflute("3mm", "double"));

@@ -270,9 +270,10 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                             {i.includes}
                           </span>
                         </th>
-                        {i.price.map((v, n) => (
-                          <td key={p.bands[n]!.label} className={priceTd}>
-                            {money(v)}
+                        {/* Render by column, so a price row with too many or too few entries can't crash the page. */}
+                        {p.bands.map((b, n) => (
+                          <td key={b.label} className={priceTd}>
+                            {i.price[n] === undefined ? "Quote" : money(i.price[n]!)}
                           </td>
                         ))}
                         <td className={td}>
