@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { asset } from "../lib/asset";
 import { quoteHref, QUOTE_PRODUCTS } from "../data/quoteProducts";
 import { INDUSTRIES, SHOP_BY_LABEL } from "../data/industries";
+import { MUCH_MORE_NAV } from "./MuchMore";
 
 /** Product slug of the page we're on (#/pull-up-banners), so the quote button pre-selects it. */
 function useProductSlug() {
@@ -169,6 +170,15 @@ function ProductsMenu() {
             </a>
           </li>
         ))}
+        <li>
+          <a
+            href="/quote/"
+            onClick={() => setOpen(false)}
+            className="flex min-h-11 items-center px-4 py-2.5 text-base hover:bg-white/10 hover:text-white"
+          >
+            {MUCH_MORE_NAV}
+          </a>
+        </li>
         <li className="mt-1 border-t border-cream/20 pt-1" role="presentation">
           <span className="block px-4 pb-1 pt-2 text-xs font-bold uppercase tracking-widest text-rust-light">How it works</span>
         </li>
