@@ -7,7 +7,7 @@ import { AREA_RATES } from "./areaRates";
 const R = (k: keyof typeof AREA_RATES) => AREA_RATES[k].fromPerM2;
 import type { Mockup } from "./mockups";
 import { MOCKUPS } from "./mockups";
-import { type Tier, cappedTotal, tierUnit } from "./tiers";
+import { type Tier, bandCaps, cappedTotal, tierUnit } from "./tiers";
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
@@ -480,6 +480,16 @@ export function gearEach(p: GearProduct, it: GearItem, addon: boolean, qty: numb
     return u === undefined ? Infinity : u * q;
   };
   return cappedTotal(raw, qty, horizon) / qty;
+}
+
+/** Most each price-table band can cost in total, where its price each would otherwise read dearer than a later band. */
+export function gearBandCaps(p: GearProduct, it: GearItem): (number | undefined)[] {
+  const horizon = Math.max(p.bands[p.bands.length - 1]!.min, ...(it.tiers ?? []).map(([q]) => q));
+  const raw = (q: number) => {
+    const u = gearUnit(p, it, false, q);
+    return u === undefined ? Infinity : u * q;
+  };
+  return bandCaps(it.price, p.bands.map((b) => b.min), raw, horizon);
 }
 
 export type Estimate =

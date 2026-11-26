@@ -33,6 +33,25 @@ export const tierEach = (tiers: Tier[], qty: number) => tierTotal(tiers, qty) / 
 /** Price each at each band's smallest quantity, for price tables. */
 export const tierBands = (tiers: Tier[], mins: number[]) => mins.map((m) => tierUnit(tiers, m));
 
+/** Price-table caps. A band's price each times its last quantity can read dearer than a later band's starting total.
+ * The calculator never charges that (see cappedTotal), so the table shows the most the band can cost instead. One entry
+ * per band: the capped total at the band's last quantity, or undefined when the band doesn't read dearer. */
+export function bandCaps(
+  shown: (number | undefined)[],
+  mins: number[],
+  raw: (qty: number) => number,
+  horizon: number,
+): (number | undefined)[] {
+  return mins.map((_, n) => {
+    const each = shown[n];
+    const next = mins[n + 1];
+    if (each === undefined || next === undefined) return undefined;
+    const later = mins.slice(n + 1).map((k, j) => (shown[n + 1 + j] === undefined ? Infinity : shown[n + 1 + j]! * k));
+    if (each * (next - 1) <= Math.min(...later)) return undefined;
+    return cappedTotal(raw, next - 1, Math.max(horizon, next - 1));
+  });
+}
+
 /** True when the line total splits into an exact price each (to the cent). */
 export function eachIsExact(total: number, qty: number): boolean {
   const cents = Math.round(total * 100);

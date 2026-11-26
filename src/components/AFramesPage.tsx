@@ -12,6 +12,7 @@ import {
   PRICE_NOTES,
   QTY_COLUMNS,
   TYPES,
+  columnCaps,
   money,
 } from "../data/aFrames";
 import { homeSection } from "../lib/routes";
@@ -19,6 +20,7 @@ import MockupImage from "./MockupImage";
 import MockupGallery from "./MockupGallery";
 import { MOCKUPS } from "../data/mockups";
 import {
+  BandCap,
   DownloadGroup,
   FaqList,
   QuoteButton,
@@ -245,6 +247,7 @@ export default function AFramesPage() {
                       {i.price.map((p, n) => (
                         <td key={QTY_COLUMNS[n]} className={priceTd}>
                           {money(p)}
+                          <BandCap cap={columnCaps(i)[n]} />
                         </td>
                       ))}
                       <td className={td}>

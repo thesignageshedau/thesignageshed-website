@@ -1,4 +1,4 @@
-import { type Tier, cappedTotal, tierEach } from "./tiers";
+import { type Tier, bandCaps, cappedTotal, tierEach } from "./tiers";
 // A-frame prices, sizes, downloads and the quote estimate. Printed aluminium and Insert A-frames
 // (plus replacement inserts) and Folding corflute A-frames. Prices come from the customer Price List tab of the
 // A-Frame spreadsheet, re-checked 21 Nov 2026: supplier regular price inc GST ÷ 0.7 (repriced 26 Nov 2026), with each quantity tier's
@@ -156,6 +156,9 @@ export function tierIndex(qty: number): number {
 /** Price each at a quantity: exact tiers when the item has them, otherwise its column price. */
 export const eachFor = (it: AFrameItem, qty: number) =>
   it.tiers ? tierEach(it.tiers, qty) : cappedTotal((q) => it.price[tierIndex(q)]! * q, qty, COLUMN_MINS[COLUMN_MINS.length - 1]!) / qty;
+/** Most each price-table column can cost in total, where its price each would otherwise read dearer than a later column. */
+export const columnCaps = (it: AFrameItem) =>
+  bandCaps(it.price, COLUMN_MINS, (q) => eachFor(it, q) * q, COLUMN_MINS[COLUMN_MINS.length - 1]!);
 export type Estimate =
   | { ok: true; each: number; qty: number; total: number }
   | { ok: false; reason: string };
