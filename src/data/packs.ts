@@ -1,5 +1,5 @@
 // Sector packs, built only from products we already sell.
-// Price per pack = the sum of each component's rounded price (supplier regular inc GST ÷ 0.75,
+// Price per pack = the sum of each component's rounded price (supplier regular inc GST ÷ 0.7 (repriced 26 Nov 2026),
 // rounded UP to the next $5), then the pack total itself rounded UP to the next $5.
 // Event packs use the 2.4 × 2.2m stretch fabric media wall sold on /media-walls/.
 import { MOCKUPS } from "./mockups";
@@ -10,7 +10,6 @@ const FAQS: GearFaq[] = [
   { q: "Can each sign have a different design?", a: "Yes. Each pack lists how many designs are included. Need more? Ask and your quote confirms the price." },
   { q: "Will I see a proof before it's printed?", a: "Always. We send you a digital proof, and nothing is printed until you approve it in writing." },
   { q: "How much is delivery?", a: "Freight depends on the size and weight of your pack. We'll email you a quote with freight included. See our Delivery page for how it works." },
-  { q: "Is there a minimum order?", a: "Yes, $180 (excl. freight) for the whole order. Every pack is over that on its own." },
   { q: "How do I pay?", a: "Payment is due once your artwork is approved." },
 ];
 
@@ -25,7 +24,7 @@ export const PACKS: GearProduct = {
   description: "Ready-made signage packs: sponsor banner packs for sports clubs, site safety corflute and fence mesh packs for building sites, school packs, event and expo packs, and teardrop flag 3-packs. Delivered Australia-wide.",
   eyebrow: "Signage packs, delivered Australia-wide",
   heading: "Signage packs for clubs, schools, sites and events",
-  intro: "Popular combinations, bundled into one price per pack. Every pack is built from the same banners, corflutes, flags and displays we sell on their own, and each one is over our $180 minimum order.",
+  intro: "Popular combinations, bundled into one price per pack. Every pack is built from the same banners, corflutes, flags and displays we sell on their own.",
   teaserTitle: "Signage packs",
   teaserText: "Sponsor banner packs, site safety signs, fence mesh, school packs, expo packs and flag 3-packs.",
   groups: [
@@ -38,17 +37,17 @@ export const PACKS: GearProduct = {
   ],
   bands: [{ label: "Price per pack", min: 1 }],
   items: [
-    { id: "sponsor-5", group: "sport", label: "Sponsor banner 5-pack: 5 × PVC banner 2000 × 1000mm, 5 designs", short: "5 banners, 5 designs", includes: "5 printed PVC banners, hemmed with eyelets", ...tier(375) },
-    { id: "sponsor-10", group: "sport", label: "Sponsor banner 10-pack: 10 × PVC banner 2000 × 1000mm, 10 designs", short: "10 banners, 10 designs", includes: "10 printed PVC banners, hemmed with eyelets", ...tier(700) },
-    { id: "site-cf-5", group: "site", label: "Site safety corflute 5-pack: 5 × 600 × 900mm 5mm, corner eyelets, 5 designs", short: "5 signs, 5 designs", includes: "5 printed corflute signs with 4 corner eyelets each", ...tier(230) },
-    { id: "site-cf-10", group: "site", label: "Site safety corflute 10-pack: 10 × 600 × 900mm 5mm, corner eyelets, 10 designs", short: "10 signs, 10 designs", includes: "10 printed corflute signs with 4 corner eyelets each", ...tier(330) },
-    { id: "mesh-2", group: "mesh", label: "Site fence mesh 2-pack: 2 × mesh banner 2400 × 1600mm, 1 design", short: "2 mesh banners, 1 design", includes: "2 printed mesh banners, welded edges and eyelets", ...tier(260) },
-    { id: "mesh-4", group: "mesh", label: "Site fence mesh 4-pack: 4 × mesh banner 2400 × 1600mm, 1 design", short: "4 mesh banners, 1 design", includes: "4 printed mesh banners, welded edges and eyelets", ...tier(470) },
-    { id: "school", group: "school", label: "School pack: 2 × PVC banner 2000 × 1000mm, 2 × 2.3m teardrop flag (single sided), 10 × 600 × 900mm corflute", short: "2 banners, 2 flags, 10 corflutes", includes: "2 PVC banners (1 design), 2 single-sided teardrop flags with 10kg bases (1 design), 10 corflute signs (5 designs)", ...tier(880) },
-    { id: "event-starter", group: "event", label: "Event starter pack: 2.4 × 2.2m stretch fabric media wall kit + 850 × 2000mm pull up banner", short: "Media wall + pull up banner", includes: "2.4 × 2.2m stretch fabric media wall (frame, print and bag) plus a pull up banner with stand", ...tier(720) },
-    { id: "event-full", group: "event", label: "Expo stand pack: 2.4 × 2.2m stretch fabric media wall kit + 850 × 2000mm pull up banner + 6ft fitted table cover", short: "Media wall + pull up + table cover", includes: "2.4 × 2.2m stretch fabric media wall (frame, print and bag), a pull up banner with stand, and a fitted 6ft table cover", ...tier(950) },
-    { id: "flags-3-single", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, single sided, 3 designs", short: "Single sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(630) },
-    { id: "flags-3-double", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, double sided, 3 designs", short: "Double sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(750) },
+    { id: "sponsor-5", group: "sport", label: "Sponsor banner 5-pack: 5 × PVC banner 2000 × 1000mm, 5 designs", short: "5 banners, 5 designs", includes: "5 printed PVC banners, hemmed with eyelets", ...tier(405) },
+    { id: "sponsor-10", group: "sport", label: "Sponsor banner 10-pack: 10 × PVC banner 2000 × 1000mm, 10 designs", short: "10 banners, 10 designs", includes: "10 printed PVC banners, hemmed with eyelets", ...tier(750) },
+    { id: "site-cf-5", group: "site", label: "Site safety corflute 5-pack: 5 × 600 × 900mm 5mm, corner eyelets, 5 designs", short: "5 signs, 5 designs", includes: "5 printed corflute signs with 4 corner eyelets each", ...tier(245) },
+    { id: "site-cf-10", group: "site", label: "Site safety corflute 10-pack: 10 × 600 × 900mm 5mm, corner eyelets, 10 designs", short: "10 signs, 10 designs", includes: "10 printed corflute signs with 4 corner eyelets each", ...tier(355) },
+    { id: "mesh-2", group: "mesh", label: "Site fence mesh 2-pack: 2 × mesh banner 2400 × 1600mm, 1 design", short: "2 mesh banners, 1 design", includes: "2 printed mesh banners, welded edges and eyelets", ...tier(280) },
+    { id: "mesh-4", group: "mesh", label: "Site fence mesh 4-pack: 4 × mesh banner 2400 × 1600mm, 1 design", short: "4 mesh banners, 1 design", includes: "4 printed mesh banners, welded edges and eyelets", ...tier(500) },
+    { id: "school", group: "school", label: "School pack: 2 × PVC banner 2000 × 1000mm, 2 × 2.3m teardrop flag (single sided), 10 × 600 × 900mm corflute", short: "2 banners, 2 flags, 10 corflutes", includes: "2 PVC banners (1 design), 2 single-sided teardrop flags with 10kg bases (1 design), 10 corflute signs (5 designs)", ...tier(935) },
+    { id: "event-starter", group: "event", label: "Event starter pack: 2.4 × 2.2m stretch fabric media wall kit + 850 × 2000mm pull up banner", short: "Media wall + pull up banner", includes: "2.4 × 2.2m stretch fabric media wall (frame, print and bag) plus a pull up banner with stand", ...tier(770) },
+    { id: "event-full", group: "event", label: "Expo stand pack: 2.4 × 2.2m stretch fabric media wall kit + 850 × 2000mm pull up banner + 6ft fitted table cover", short: "Media wall + pull up + table cover", includes: "2.4 × 2.2m stretch fabric media wall (frame, print and bag), a pull up banner with stand, and a fitted 6ft table cover", ...tier(1020) },
+    { id: "flags-3-single", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, single sided, 3 designs", short: "Single sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(675) },
+    { id: "flags-3-double", group: "flags", label: "Teardrop flag 3-pack: 3 × 2.3m teardrop, double sided, 3 designs", short: "Double sided, 3 designs", includes: "3 printed flags, pole sets and 10kg square bases", ...tier(805) },
   ],
   notes: [
     "One price per pack, including everything except freight.",

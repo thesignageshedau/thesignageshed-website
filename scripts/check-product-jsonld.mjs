@@ -45,7 +45,7 @@ function visibleFrom(html) {
     .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ");
   const all = [];
-  for (const m of vis.matchAll(/from\s+\$\s*([\d,]+)(?:\s*per\s*m(?:²|2))?/gi)) {
+  for (const m of vis.matchAll(/from\s+\$\s*([\d,]+(?:\.\d{2})?)(?:\s*per\s*m(?:²|2))?/gi)) {
     all.push({ amount: Number(m[1].replace(/,/g, "")), perM2: /per\s*m/i.test(m[0]) });
   }
   return all;
@@ -136,9 +136,8 @@ for (const route of ROUTES) {
   ];
   for (const [field, text] of metaTexts) {
     if (!text) continue;
-    for (const m of text.matchAll(/from\s+\$\s*([\d,]+)(?:\s*per\s*m(?:²|2))?/gi)) {
+    for (const m of text.matchAll(/from\s+\$\s*([\d,]+(?:\.\d{2})?)(?:\s*per\s*m(?:²|2))?/gi)) {
       const amount = Number(m[1].replace(/,/g, ""));
-      if (amount === 180) continue; // minimum-order note
       const perM2 = /per\s*m/i.test(m[0]);
       const match = froms.find((f) => f.amount === amount && f.perM2 === perM2);
       if (froms.length && !match) {

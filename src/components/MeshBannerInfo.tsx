@@ -42,7 +42,7 @@ export default function MeshBannerInfo() {
               ))}
             </ul>
             <p className="mt-3 text-sm">
-              Minimum order $180 for the whole order, and you can mix products. Need another size? Tell us the width
+              You can mix products in one order. Need another size? Tell us the width
               and height in the{" "}
               <a href={quoteHref("banners")} className="font-semibold underline underline-offset-4 hover:text-rust">quote form</a>.
             </p>

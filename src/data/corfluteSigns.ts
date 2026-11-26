@@ -1,13 +1,12 @@
 import { cappedTotal } from "./tiers";
 // Corflute sign prices, sizes, extras, downloads and the quote estimate. Premium (Australian-made) corflute, 5mm or 3mm.
-// Prices are the Easy Signs regular price inc GST ÷ 0.75 (checked 21 Nov 2026). Bundle prices (up to 5 signs,
+// Prices are the supplier regular price inc GST ÷ 0.7 (repriced 26 Nov 2026) (checked 21 Nov 2026). Bundle prices (up to 5 signs,
 // 6 to 10 signs) are flat prices rounded up to the next $5. Per-sign prices from 11 signs are that band's smallest
 // order total (rounded up to the next $5) divided by its quantity, rounded up to the next whole dollar.
 // Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 (excl. freight).",
   "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
@@ -57,12 +56,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Landscape",
     price: {
       "5mm": {
-        single: p(185, 185, 17, 12, 9, 8),
-        double: p(185, 225, 22, 17, 14, 12),
+        single: p(200, 200, 19, 13, 10, 8),
+        double: p(200, 240, 24, 19, 15, 13),
       },
       "3mm": {
-        single: p(185, 185, 17, 11, 8, 7),
-        double: p(185, 190, 19, 15, 12, 10),
+        single: p(200, 200, 19, 11, 8, 7),
+        double: p(200, 205, 20, 16, 13, 11),
       },
     },
   },
@@ -72,12 +71,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(185, 245, 23, 19, 15, 13), // 23 Oct 2026 quantity tiers
-        double: p(235, 345, 33, 28, 23, 21),
+        single: p(200, 260, 25, 20, 16, 14), // 23 Oct 2026 quantity tiers
+        double: p(250, 370, 35, 30, 25, 22),
       },
       "3mm": {
-        single: p(185, 205, 20, 16, 13, 11),
-        double: p(200, 295, 29, 24, 20, 18),
+        single: p(200, 220, 21, 17, 14, 12),
+        double: p(210, 315, 31, 26, 21, 19),
       },
     },
   },
@@ -87,12 +86,12 @@ export const SIZES: CorfluteSize[] = [
     orientation: "Portrait",
     price: {
       "5mm": {
-        single: p(245, 365, 36, 31, 25, 23),
-        double: p(345, 555, 55, 48, 41, 37),
+        single: p(260, 390, 39, 33, 27, 24),
+        double: p(370, 595, 59, 51, 44, 39),
       },
       "3mm": {
-        single: p(205, 315, 31, 26, 22, 19),
-        double: p(295, 480, 47, 41, 35, 32),
+        single: p(220, 335, 34, 28, 23, 21),
+        double: p(315, 510, 51, 44, 37, 34),
       },
     },
   },
@@ -223,7 +222,7 @@ export const DOWNLOADS: Download[] = SIZES.map((s) => ({
   template: `${D}corflute-sign-${s.id}mm-artwork-template.pdf`,
 }));
 
-/** Dollars, with cents only when there are some: $180, $8.50, $1,234.50. */
+/** Dollars, with cents only when there are some: $200, $8.50, $1,234.50. */
 export const money = (n: number) =>
   `$${n.toLocaleString("en-AU", {
     minimumFractionDigits: Number.isInteger(n) ? 0 : 2,

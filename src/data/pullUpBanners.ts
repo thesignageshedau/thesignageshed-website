@@ -1,11 +1,10 @@
 import { type Tier, tierEach } from "./tiers";
 // Pull up banner prices, sizes, downloads and the quote estimate. Luxury and Double Sided stands only.
-// Prices are the Easy Signs regular price inc GST ÷ 0.75, rounded up to the next $5 (double sided re-checked
+// Prices are the supplier regular price inc GST ÷ 0.7 (repriced 26 Nov 2026), rounded up to the next $5 (double sided re-checked
 // 21 Nov 2026). Prices include everything except delivery (not registered for GST).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 (excl. freight).",
   "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
@@ -36,8 +35,8 @@ export const SIZES: BannerSize[] = [
     width: 850,
     visible: { luxury: "850 × 2000mm", double: "850 × 2000mm" },
     shoppingCentre: false,
-    price: { luxury: 200, double: 295 },
-    tiers: { luxury: [[1, 200], [2, 400], [3, 585], [5, 905], [10, 1690], [20, 3220]] },
+    price: { luxury: 215, double: 315 },
+    tiers: { luxury: [[1, 215], [2, 426], [3, 630], [5, 970], [10, 1820], [20, 3460]] },
   },
   {
     id: "1200x2000",
@@ -45,8 +44,8 @@ export const SIZES: BannerSize[] = [
     width: 1200,
     visible: { luxury: "1200 × 2000mm", double: "1200 × 2000mm" },
     shoppingCentre: false,
-    price: { luxury: 265, double: 395 },
-    tiers: { luxury: [[1, 265], [2, 530], [3, 786], [5, 1225], [10, 2320]] },
+    price: { luxury: 285, double: 425 },
+    tiers: { luxury: [[1, 285], [2, 570], [3, 840], [5, 1315], [10, 2480]] },
   },
 ];
 

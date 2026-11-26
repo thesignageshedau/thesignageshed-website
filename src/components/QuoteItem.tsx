@@ -1,4 +1,4 @@
-import { eachText } from "../data/tiers";
+import { eachIsExact, eachText } from "../data/tiers";
 import { useEffect, useState } from "react";
 import { QUOTE_PRODUCTS } from "../data/quoteProducts";
 import { OTHER, OTHER_LABEL, QUOTE_SPECS, money, type SizeChoice } from "../data/quoteOptions";
@@ -109,7 +109,7 @@ export default function QuoteItem({
   onRemove?: () => void;
   onChange?: (product: string, size: string) => void;
   onEstimate?: (total: number | null, product: string) => void;
-  /** Order-level minimum note, added to item 1's Price shown when it applies. */
+  /** Order-level total note, added to item 1's Price shown when it applies. */
   orderNote?: string;
 }) {
   const p = itemPrefix(n);
@@ -189,7 +189,9 @@ export default function QuoteItem({
   const customReason = customPrice && !customPrice.ok ? customPrice.reason : "";
   const lineText =
     lineTotal != null && each != null
-      ? `Estimate ${money(lineTotal)} for ${qty} (${eachText(lineTotal, qty)}), excl. freight`
+      ? eachIsExact(lineTotal, qty)
+        ? `Estimate ${money(lineTotal)} for ${qty} (${eachText(lineTotal, qty)}), excl. freight`
+        : `Estimate ${money(lineTotal)} for ${qty}, excl. freight`
       : customReason
         ? customReason
         : custom
@@ -454,7 +456,7 @@ export default function QuoteItem({
                         <span className="font-slab text-2xl font-bold text-rust-dark">{money(shown)}</span>
                       </p>
                       <p className="mt-1 text-sm">
-                        {eachText(shown, qty).startsWith("about") ? `${money(shown)} for ${qty}, ${eachText(shown, qty)}.` : `${qty} × ${eachText(shown, qty)}.`}
+                        {eachIsExact(shown, qty) ? `${qty} × ${eachText(shown, qty)}.` : `${money(shown)} for ${qty}.`}
                       </p>
                     </>
                   ) : customReason ? (

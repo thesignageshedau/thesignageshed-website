@@ -1,11 +1,10 @@
 import { type Tier, tierEach } from "./tiers";
 // Table cover prices, sizes, downloads and the quote estimate.
-// Prices are the Easy Signs regular price inc GST ÷ 0.75, rounded up to the next $5 (re-checked 21 Nov 2026). Prices include everything except delivery (not registered for GST).
+// Prices are the supplier regular price inc GST ÷ 0.7 (repriced 26 Nov 2026), rounded up to the next $5 (re-checked 21 Nov 2026). Prices include everything except delivery (not registered for GST).
 // Generated price data: /workspace/es/tc/build/tc_site_data.py (re-run if the spreadsheet changes).
 
 export const PRICE_NOTES = [
   "Prices include everything except delivery.",
-  "Minimum order $180 (excl. freight).",
   "Prices are for 1 design. More designs cost a little more, and your quote confirms the price.",
 ] as const;
 export const MATERIAL =
@@ -25,23 +24,23 @@ export const THROWS: ThrowSize[] = [
     id: "4ft",
     label: "4ft (1.2m) table",
     fits: "1220 × 760mm",
-    fitted: { four: 210, three: 190 },
-    fittedFourTiers: [[1, 210], [2, 416], [3, 606], [5, 910], [10, 1660], [20, 3100]],
-    loose: { four: 200, three: 185 },
+    fitted: { four: 220, three: 205 },
+    fittedFourTiers: [[1, 220], [2, 440], [3, 645], [5, 975], [10, 1780], [20, 3320]],
+    loose: { four: 215, three: 200 },
   },
   {
     id: "6ft",
     label: "6ft (1.8m) table",
     fits: "1840 × 760mm",
-    fitted: { four: 235, three: 225 },
-    fittedFourTiers: [[1, 235], [2, 470], [3, 687], [5, 1035], [10, 1880], [20, 3520]],
-    loose: { four: 230, three: 220 },
+    fitted: { four: 250, three: 245 },
+    fittedFourTiers: [[1, 250], [2, 500], [3, 735], [5, 1105], [10, 2020], [20, 3760]],
+    loose: { four: 245, three: 235 },
   },
   {
     id: "8ft",
     label: "8ft (2.4m) table",
     fits: "2450 × 760mm",
-    fitted: { four: 270, three: 250 },
+    fitted: { four: 285, three: 270 },
   },
 ];
 
@@ -52,12 +51,12 @@ export type RoundSize = {
   half: number;
 };
 export const ROUNDS: RoundSize[] = [
-  { id: "760", label: "760mm round table", full: 170, half: 135 },
-  { id: "910", label: "910mm round table", full: 185, half: 140 },
-  { id: "1370", label: "1370mm round table", full: 230, half: 155 },
-  { id: "1520", label: "1520mm round table", full: 245, half: 170 },
-  { id: "2130", label: "2130mm round table", full: 265, half: 230 },
-  { id: "2430", label: "2430mm round table", full: 290, half: 260 },
+  { id: "760", label: "760mm round table", full: 185, half: 145 },
+  { id: "910", label: "910mm round table", full: 200, half: 150 },
+  { id: "1370", label: "1370mm round table", full: 245, half: 165 },
+  { id: "1520", label: "1520mm round table", full: 260, half: 185 },
+  { id: "2130", label: "2130mm round table", full: 285, half: 245 },
+  { id: "2430", label: "2430mm round table", full: 310, half: 275 },
 ];
 
 export type RunnerSize = { id: string; label: string; price: number };
@@ -68,21 +67,21 @@ export const RUNNERS: {
   sideCustom: number;
 } = {
   front: [
-    { id: "610x2006", label: "610 × 2006mm", price: 185 },
-    { id: "914x2006", label: "914 × 2006mm", price: 185 },
-    { id: "1220x2006", label: "1220 × 2006mm", price: 185 },
-    { id: "1524x2006", label: "1524 × 2006mm", price: 185 },
-    { id: "1828x2006", label: "1828 × 2006mm", price: 185 },
+    { id: "610x2006", label: "610 × 2006mm", price: 200 },
+    { id: "914x2006", label: "914 × 2006mm", price: 200 },
+    { id: "1220x2006", label: "1220 × 2006mm", price: 200 },
+    { id: "1524x2006", label: "1524 × 2006mm", price: 200 },
+    { id: "1828x2006", label: "1828 × 2006mm", price: 200 },
   ],
   side: [
-    { id: "1830x250", label: "1830 × 250mm", price: 185 },
-    { id: "1625x300", label: "1625 × 300mm", price: 185 },
-    { id: "2740x300", label: "2740 × 300mm", price: 185 },
-    { id: "2440x400", label: "2440 × 400mm", price: 185 },
-    { id: "3250x400", label: "3250 × 400mm", price: 185 },
+    { id: "1830x250", label: "1830 × 250mm", price: 200 },
+    { id: "1625x300", label: "1625 × 300mm", price: 200 },
+    { id: "2740x300", label: "2740 × 300mm", price: 200 },
+    { id: "2440x400", label: "2440 × 400mm", price: 200 },
+    { id: "3250x400", label: "3250 × 400mm", price: 200 },
   ],
-  frontCustom: 185,
-  sideCustom: 185,
+  frontCustom: 200,
+  sideCustom: 200,
 };
 export const RUNNER_CUSTOM = {
   front: "300 to 1830mm wide, 914 to 2160mm long",

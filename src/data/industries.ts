@@ -11,9 +11,8 @@ import { ACM_SIGNS, BANNERS, FLAGS, UMBRELLAS, fromPrice } from "./eventGear";
 import { ARCH_BANNERS, BUSINESS_CARDS, CAR_MAGNETS, POSTERS, PRINTED_CHAIRS, PRINTED_VINYL, WINDOW_CLINGS } from "./newProducts";
 import { PACKS } from "./packs";
 import { FROM_PER_M2 } from "./customSize";
-import { FROM_EACH_IN_TENS } from "./clothing";
+import { FROM_EACH_IN_TENS, FROM_EACH_IN_TENS_TEXT } from "./clothing";
 import { MOCKUPS, type Mockup } from "./mockups";
-import { MIN_NOTE } from "./tiers";
 
 export type IndustryIconId =
   | "events"
@@ -53,7 +52,7 @@ export type Industry = {
 
 const fromAud = (n: number) => `From $${n.toLocaleString("en-AU")}`;
 const fromM2 = (n: number) => `From $${n} per m²`;
-const clothingFrom = `From $${FROM_EACH_IN_TENS} each in 10s`;
+const clothingFrom = `From ${FROM_EACH_IN_TENS_TEXT} each in 10s`;
 
 const clothing: IndustryProduct = {
   href: "/clothing/",
@@ -226,9 +225,9 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Signs and clothing for tradies",
     heading: "Car magnets, site signs and workwear with your name on them",
     title: "Signs and Clothing for Tradies | The Signage Shed",
-    description: `Car magnets, corflute, ACM, banners and printed tees, hoodies and caps for tradies. Clothing from $${FROM_EACH_IN_TENS} each in 10s, delivered Australia-wide.`,
+    description: `Car magnets, corflute, ACM, banners and printed tees, hoodies and caps for tradies. Clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s, delivered Australia-wide.`,
     intro: "Put your name on the vehicle, the site and the team. We print car magnets, corflute and ACM signs, banners, and tees, hoodies and caps, and we deliver Australia-wide.",
-    lead: `Printed clothing from $${FROM_EACH_IN_TENS} each in 10s.`,
+    lead: `Printed clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s.`,
     offerPrice: FROM_EACH_IN_TENS,
     offerPerM2: false,
     image: CAR_MAGNETS.hero,
@@ -269,9 +268,9 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Clothing and signs for clubs and teams",
     heading: "Team clothing, sponsor banners and flags",
     title: "Clothing and Signs for Clubs and Teams | The Signage Shed",
-    description: `Printed tees, hoodies, caps and totes, plus sponsor banners and flags for clubs and teams. Clothing from $${FROM_EACH_IN_TENS} each in 10s, delivered Australia-wide.`,
+    description: `Printed tees, hoodies, caps and totes, plus sponsor banners and flags for clubs and teams. Clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s, delivered Australia-wide.`,
     intro: "Kit the team and mark the ground. We print tees, hoodies, caps and totes, sponsor banners and flags, and we deliver Australia-wide.",
-    lead: `Printed clothing from $${FROM_EACH_IN_TENS} each in 10s.`,
+    lead: `Printed clothing from ${FROM_EACH_IN_TENS_TEXT} each in 10s.`,
     offerPrice: FROM_EACH_IN_TENS,
     offerPerM2: false,
     image: MOCKUPS.v4ClothingTee,
@@ -289,7 +288,6 @@ export const INDUSTRY_HUBS = INDUSTRIES.filter((i) => !i.existing);
 
 export const NOTES = [
   "Prices include everything except delivery.",
-  MIN_NOTE,
   "We'll email you a quote with freight included.",
   "We print and deliver. We do not install, and we do not visit.",
 ];

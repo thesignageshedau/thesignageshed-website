@@ -8,6 +8,7 @@ import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, fromPrice } from "../data/eventGear";
 import { PACKS } from "../data/packs";
+import { FROM_EACH_IN_TENS, FROM_EACH_IN_TENS_TEXT } from "../data/clothing";
 import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS } from "../data/newProducts";
 
 const items: { href: string; name: string; from: number; fromText?: string; img: Mockup }[] = [
@@ -40,7 +41,7 @@ const items: { href: string; name: string; from: number; fromText?: string; img:
   { href: "/printed-chairs/", name: "Director's and deck chairs", from: fromPrice(PRINTED_CHAIRS), img: PRINTED_CHAIRS.hero },
   { href: "/arch-banners/", name: "Arch banners", from: fromPrice(ARCH_BANNERS), img: ARCH_BANNERS.hero },
   { href: "/packs/", name: "Signage packs", from: fromPrice(PACKS), img: PACKS.hero },
-  { href: "/clothing/", name: "Clothing", from: 30, fromText: "From $30 each in 10s", img: MOCKUPS.v4ClothingTee },
+  { href: "/clothing/", name: "Clothing", from: FROM_EACH_IN_TENS, fromText: `From ${FROM_EACH_IN_TENS_TEXT} each in 10s`, img: MOCKUPS.v4ClothingTee },
 ];
 const money = (n: number) => `$${n.toLocaleString("en-AU", { maximumFractionDigits: 2 })}`;
 
