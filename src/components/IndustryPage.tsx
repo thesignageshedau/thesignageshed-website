@@ -1,4 +1,5 @@
 import MockupImage from "./MockupImage";
+import MuchMore from "./MuchMore";
 import TrustStrip from "./TrustStrip";
 import { FaqList } from "./PriceParts";
 import { QUOTE_EMAIL } from "../data/mediaWalls";
@@ -79,6 +80,7 @@ function Hub({ industry: p }: { industry: Industry }) {
               </li>
             ))}
           </ul>
+          <MuchMore />
           <div className="mt-8 flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed">
             {NOTES.map((n) => (
               <p key={n}>{n}</p>

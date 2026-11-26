@@ -1,4 +1,5 @@
 import MockupImage from "./MockupImage";
+import MuchMore from "./MuchMore";
 import { MOCKUPS, type Mockup } from "../data/mockups";
 import * as MW from "../data/mediaWalls";
 import * as TC from "../data/tableCovers";
@@ -55,6 +56,7 @@ export default function ProductGrid() {
             </li>
           ))}
         </ul>
+        <MuchMore />
       </div>
     </section>
   );
