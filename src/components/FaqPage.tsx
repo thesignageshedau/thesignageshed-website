@@ -4,7 +4,7 @@ import { CHECK_ARTWORK_HREF } from "../lib/routes";
 
 const faqs = [
   { q: "How do I get a quote?", a: <>Fill in our <a className={helpLink} href="/quote/">quote form</a> and we'll email you a quote that includes freight.</> },
-  { q: "Are your prices in Australian dollars?", a: <>Yes. All prices are in AUD, and the price shown is what you pay.</> },
+  { q: "Are your prices in Australian dollars?", a: <>Yes. All prices are in AUD and include everything except delivery, which we quote to your postcode.</> },
   { q: "How long until my order is dispatched?", a: <>We dispatch within 3 days of artwork approval, depending on the size of your order.</> },
   { q: "How much is freight?", a: <>Freight depends on the size and weight of the product, and it's included on your quote. See <a className={helpLink} href="/delivery/">how delivery works</a>.</> },
   { q: "When do I pay?", a: <>Payment is due once your artwork is approved.</> },

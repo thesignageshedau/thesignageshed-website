@@ -186,7 +186,7 @@ export const UMBRELLAS: GearProduct = {
   description: "2m × 2m square market umbrellas with your logo printed on all four panels and the valance. With a 10kg heavy duty base. Prices online, delivered Australia-wide.",
   eyebrow: "Printed market umbrellas, delivered Australia-wide",
   heading: "Printed market umbrellas with your logo on top",
-  intro: "A 2m × 2m square umbrella printed on all four panels and the valance, on a heavy duty 45mm aluminium pole with an easy slider (no ropes or pulleys). Great for cafes, markets and fetes.",
+  intro: "A 2m × 2m square umbrella printed on all four panels and the valance, on a heavy duty 45mm aluminium pole with an easy slider (no ropes or pulleys). Great for cafés, markets and fetes.",
   teaserTitle: "Printed market umbrellas",
   teaserText: "2m × 2m square umbrellas printed on every panel, with a 10kg heavy duty base.",
   groups: [

@@ -147,7 +147,7 @@ export default function AFramesPage() {
               A-frame signs that bring people through the door
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/90">
-              Double sided sandwich boards for shopfronts, cafes, markets and
+              Double sided sandwich boards for shopfronts, cafés, markets and
               events. Choose printed aluminium, a frame with swappable inserts
               or a light folding corflute A-frame.
             </p>

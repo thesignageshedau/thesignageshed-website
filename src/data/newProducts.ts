@@ -462,7 +462,7 @@ export const FOAM_PVC: GearProduct = {
   ],
   bands: BANDS_5,
   items: [
-    { id: "wall-a3", group: "wall", label: "Foam PVC sign A3 (420 × 297mm), 3mm, single sided", short: "A3 · 420 × 297mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },
+    { id: "wall-a3", group: "wall", label: "Foam PVC sign A3 (297 × 420mm), 3mm, single sided", short: "A3 · 297 × 420mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },
     { id: "wall-a1", group: "wall", label: "Foam PVC sign A1 (594 × 841mm), 3mm, single sided", short: "A1 · 594 × 841mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 225], [10, 400], [25, 875]], price: [180, 90, 45, 40, 35] },
     { id: "wall-a0", group: "wall", label: "Foam PVC sign A0 (841 × 1189mm), 3mm, single sided", short: "A0 · 841 × 1189mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 375], [10, 650], [25, 1500]], price: [180, 90, 75, 65, 60] },
     { id: "counter-a5", group: "counter", label: "Counter card A5 (148 × 210mm), 3mm foam PVC with stand", short: "A5 · 148 × 210mm", includes: "3mm foam PVC, printed single sided, with a stand on the back", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },

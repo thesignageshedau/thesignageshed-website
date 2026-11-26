@@ -129,13 +129,13 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/corflute-signs-australia/", text: "Custom corflute signs" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },
     { href: "/a-frames/", text: "A-frame signs" },
-    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
   ],
   "a-frames": [
     { href: "/cafe-a-frame-signs/", text: "Café A-frame signs" },
     { href: "/corflute-signs/", text: "Corflute signs" },
-    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
   ],
   flags: [
@@ -163,7 +163,7 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/guides/corflute-vs-rigid-signs/", text: "Corflute vs rigid signs guide" },
   ],
   "rectangle-flags": [
-    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
     { href: "/corflute-signs/", text: "Corflute signs" },
     { href: "/a-frames/", text: "A-frame signs" },
   ],
@@ -175,13 +175,13 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
   "big-head-cutouts": [
     { href: "/selfie-frames/", text: "Selfie frames" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },
-    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
   ],
   "seg-fabric-frames": [
     { href: "/school-and-sports-club-signs/", text: "School and sports club signs" },
     { href: "/crowd-barriers/", text: "Crowd barrier frames and covers" },
     { href: "/corflute-event-signs/", text: "Corflute event signs" },
-    { href: "/flags/", text: "Feather and teardrop flags" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
     { href: "/banners/", text: "Vinyl and mesh banners" },
   ],
   "crowd-barriers": [
