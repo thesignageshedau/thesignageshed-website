@@ -7,7 +7,6 @@ import { QUOTE_EMAIL } from "../data/mediaWalls";
 import {
   PRICE_NOTES,
   fromPrice,
-  gearBandCaps,
   money,
   type GearItem,
   type GearProduct,
@@ -16,7 +15,7 @@ import { homeSection } from "../lib/routes";
 import MockupImage from "./MockupImage";
 import MeshBannerInfo from "./MeshBannerInfo";
 import MockupGallery from "./MockupGallery";
-import { BandCap, FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
+import { FaqList, QuoteButton, priceTd, scrollToId, td, th } from "./PriceParts";
 import CustomSizeQuote from "./CustomSizeQuote";
 
 // Natural next items for some event gear pages, shown under the hero buttons.
@@ -275,7 +274,6 @@ export default function GearPage({ product: p }: { product: GearProduct }) {
                         {p.bands.map((b, n) => (
                           <td key={b.label} className={priceTd}>
                             {i.price[n] === undefined ? "Quote" : money(i.price[n]!)}
-                            <BandCap cap={gearBandCaps(p, i)[n]} />
                           </td>
                         ))}
                         <td className={td}>

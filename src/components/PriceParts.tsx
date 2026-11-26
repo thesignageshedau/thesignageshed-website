@@ -13,13 +13,6 @@ export const td = "px-2 py-3 sm:px-4";
 export const priceTd =
   "whitespace-nowrap px-2 py-3 font-bold text-rust-dark sm:px-4 sm:text-lg";
 
-/** Under a band price that would read dearer than a later band: the most that band can cost in total. */
-export function BandCap({ cap }: { cap: number | undefined }) {
-  if (cap === undefined) return null;
-  const v = cap.toLocaleString("en-AU", { minimumFractionDigits: Number.isInteger(cap) ? 0 : 2, maximumFractionDigits: 2 });
-  return <span className="block text-xs font-semibold text-charcoal/70 sm:text-sm">max ${v} total</span>;
-}
-
 export function QuoteButton({
   label,
   href,
