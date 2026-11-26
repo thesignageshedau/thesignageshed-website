@@ -71,4 +71,12 @@ export const MOCKUPS = {
   v4ClothingHoodie: { slug: "v4-clothing-hoodie", title: "Hoodie", alt: "Black pullover hoodie on a timber table, with a cream and sage Your Brand chest print" },
   v4ClothingCap: { slug: "v4-clothing-cap", title: "Trucker cap", alt: "Black trucker cap on a timber table, with a cream and sage Your Brand print on the front panel" },
   v4ClothingTote: { slug: "v4-clothing-tote", title: "Tote bag", alt: "Black canvas tote bag on a timber table, with a cream Your Brand print and a sage leaf motif" },
+  v4XBanner: { slug: "v4-xbanner", title: "X-banner stand", alt: "Mockup of an X-banner stand with a cream Your Brand banner and sage band, standing in a bright office foyer" },
+  v4FabricCubes: { slug: "v4-fabric-cubes", title: "Fabric display cubes", alt: "Mockup of two printed fabric display cubes in cream and sage reading Your Brand, on the carpet of a bright foyer" },
+  v4DirectorChairs: { slug: "v4-director-chairs", title: "Director's chairs", alt: "Mockup of two folding director's chairs with cream Your Brand backrests and sage seats, on the grass beside a sports oval", noSquare: true },
+  v4DeckChairs: { slug: "v4-deck-chairs", title: "Deck chairs", alt: "Mockup of two aluminium deck chairs with cream and sage Your Brand slings, on a lawn at an outdoor market", noSquare: true },
+  v4Poster: { slug: "v4-poster", title: "Poster", alt: "Mockup of a cream and sage Your Brand poster on a white brick café wall beside a potted plant" },
+  v4FoamPvc: { slug: "v4-foam-pvc", title: "Foam PVC sign and counter card", alt: "Mockup of a cream Your Brand foam PVC sign on an office wall, with a matching counter card standing on a timber desk", noSquare: true },
+  v4WindowCling: { slug: "v4-window-cling", title: "Window cling", alt: "Mockup of a cream and sage Your Brand window cling on a boutique shop window, one corner lifted to show it peels off" },
+  v4ArchBanner: { slug: "v4-arch-banner", title: "Arch banner", alt: "Mockup of a cream walk-through arch banner reading Your Brand over a park path, with gum trees behind", noSquare: true },
 } satisfies Record<string, Mockup>;

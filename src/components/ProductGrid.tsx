@@ -8,7 +8,7 @@ import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS, fromPrice } from "../data/eventGear";
 import { PACKS } from "../data/packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS } from "../data/newProducts";
 
 const items: { href: string; name: string; from: number; fromText?: string; img: Mockup }[] = [
   { href: "/media-walls/", name: "Media walls", from: MW.FROM_PRICE, img: MOCKUPS.v4MediaWall },
@@ -32,6 +32,13 @@ const items: { href: string; name: string; from: number; fromText?: string; img:
   { href: "/car-magnets/", name: "Car magnets", from: fromPrice(CAR_MAGNETS), img: CAR_MAGNETS.hero },
   { href: "/business-cards/", name: "Business cards", from: fromPrice(BUSINESS_CARDS), img: BUSINESS_CARDS.hero },
   { href: "/printed-vinyl/", name: "Printed vinyl", from: fromPrice(PRINTED_VINYL), img: PRINTED_VINYL.hero },
+  { href: "/posters/", name: "Posters", from: fromPrice(POSTERS), img: POSTERS.hero },
+  { href: "/foam-pvc-signs/", name: "Foam PVC signs and counter cards", from: fromPrice(FOAM_PVC), img: FOAM_PVC.hero },
+  { href: "/window-clings/", name: "Window clings", from: fromPrice(WINDOW_CLINGS), img: WINDOW_CLINGS.hero },
+  { href: "/x-banner-stands/", name: "X-banner stands", from: fromPrice(X_BANNERS), img: X_BANNERS.hero },
+  { href: "/fabric-display-cubes/", name: "Fabric display cubes", from: fromPrice(FABRIC_CUBES), img: FABRIC_CUBES.hero },
+  { href: "/printed-chairs/", name: "Director's and deck chairs", from: fromPrice(PRINTED_CHAIRS), img: PRINTED_CHAIRS.hero },
+  { href: "/arch-banners/", name: "Arch banners", from: fromPrice(ARCH_BANNERS), img: ARCH_BANNERS.hero },
   { href: "/packs/", name: "Signage packs", from: fromPrice(PACKS), img: PACKS.hero },
   { href: "/clothing/", name: "Clothing", from: 30, fromText: "From $30 each in 10s", img: MOCKUPS.v4ClothingTee },
 ];

@@ -399,4 +399,271 @@ export const PRINTED_VINYL: GearProduct = {
   notesHint: "Where it will go, gloss or matte, wording or design ideas",
 };
 
-export const NEW_PRODUCTS = [LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL] as const;
+
+// ---- More products (checked 26 Nov 2026) ----------------------------------------------------------
+// Supplier REGULAR calculator price inc GST for each exact quantity (sale prices ignored) ÷ quantity ÷ 0.7, rounded UP
+// to the next $5 for the price each; the tier total is that price each × quantity.
+// Pricing record: /workspace/pricing/es-expansion-2026-11-26.csv. Standard sizes only.
+const BANDS_5 = [{ label: "1", min: 1 }, { label: "2 to 4", min: 2 }, { label: "5 to 9", min: 5 }, { label: "10 to 24", min: 10 }, { label: "25+", min: 25 }];
+
+export const POSTERS: GearProduct = {
+  slug: "posters",
+  eventName: "posters",
+  subject: "Poster quote",
+  noun: "poster",
+  pageTitle: "Custom Printed Posters A3 to A0 | The Signage Shed",
+  description: "Full colour posters printed on 200gsm poster paper in A3, A2, A1 and A0, for shop windows, noticeboards, menus and events. Delivered Australia-wide.",
+  eyebrow: "Printed posters, delivered Australia-wide",
+  heading: "Posters for windows, walls and noticeboards",
+  intro: "Full colour posters on 200gsm poster paper for indoor use: a specials board in the window, a menu on the wall, or an event poster on the club noticeboard.",
+  teaserTitle: "Posters",
+  teaserText: "Full colour posters in A3, A2, A1 and A0 on 200gsm paper.",
+  groups: [
+    { id: "poster", title: "Poster, 200gsm paper", text: "Printed full colour, one side. Best for indoor use or behind glass." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "a3", group: "poster", label: "Poster A3 (297 × 420mm), 200gsm", short: "A3 · 297 × 420mm", includes: "Printed full colour on 200gsm poster paper", tiers: [[1, 130], [2, 130], [5, 150], [10, 150], [25, 250]], price: [130, 65, 30, 15, 10] },
+    { id: "a2", group: "poster", label: "Poster A2 (420 × 594mm), 200gsm", short: "A2 · 420 × 594mm", includes: "Printed full colour on 200gsm poster paper", tiers: [[1, 130], [2, 130], [5, 150], [10, 150], [25, 250]], price: [130, 65, 30, 15, 10] },
+    { id: "a1", group: "poster", label: "Poster A1 (594 × 841mm), 200gsm", short: "A1 · 594 × 841mm", includes: "Printed full colour on 200gsm poster paper", tiers: [[1, 130], [2, 130], [5, 150], [10, 150], [25, 250]], price: [130, 65, 30, 15, 10] },
+    { id: "a0", group: "poster", label: "Poster A0 (841 × 1189mm), 200gsm", short: "A0 · 841 × 1189mm", includes: "Printed full colour on 200gsm poster paper", tiers: [[1, 130], [2, 130], [5, 150], [10, 200], [25, 500]], price: [130, 65, 30, 20, 20] },
+  ],
+  notes: [
+    "Printed full colour on one side of 200gsm poster paper.",
+    "Need a tougher, water-resistant poster? Ask for synthetic paper in the Notes box and we'll quote it.",
+  ],
+  artwork: "Send your artwork at the finished size with 3mm bleed, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "Can I put them outside?", a: "Paper posters are made for indoor use or behind glass. For outdoors, look at our corflute signs or ask about synthetic paper." },
+    { q: "Do you frame or hang them?", a: "No. We print and deliver them, ready for you to put up." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4Poster,
+  gallery: [MOCKUPS.v4Poster, MOCKUPS.v4WindowCling],
+  galleryHeading: "On the wall or in the window",
+  notesHint: "Where it will go, how many of each size, wording or design ideas",
+};
+
+export const FOAM_PVC: GearProduct = {
+  slug: "foam-pvc-signs",
+  eventName: "foam_pvc",
+  subject: "Foam PVC sign quote",
+  noun: "sign",
+  pageTitle: "Foam PVC Signs and Counter Cards | The Signage Shed",
+  description: "Rigid 3mm foam PVC signs in A3, A1 and A0 for indoor walls, plus A5, A4 and A3 counter cards with a stand on the back. Delivered Australia-wide.",
+  eyebrow: "Foam PVC signs, delivered Australia-wide",
+  heading: "Foam PVC signs and counter cards",
+  intro: "Foam PVC is a light, smooth, rigid board that gives a crisp print, so it suits signs inside a shop, office, reception or showroom. Counter cards come with a stand on the back so they stand up on a counter or table.",
+  teaserTitle: "Foam PVC signs and counter cards",
+  teaserText: "Rigid 3mm indoor signs from A3 to A0, and counter cards with a stand.",
+  groups: [
+    { id: "wall", title: "Wall signs, 3mm foam PVC", text: "A smooth rigid board for indoor walls and displays. Printed single sided." },
+    { id: "counter", title: "Counter cards with a stand", text: "3mm foam PVC with a stand on the back, for counters, tables and shelves." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "wall-a3", group: "wall", label: "Foam PVC sign A3 (420 × 297mm), 3mm, single sided", short: "A3 · 420 × 297mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },
+    { id: "wall-a1", group: "wall", label: "Foam PVC sign A1 (594 × 841mm), 3mm, single sided", short: "A1 · 594 × 841mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 225], [10, 400], [25, 875]], price: [180, 90, 45, 40, 35] },
+    { id: "wall-a0", group: "wall", label: "Foam PVC sign A0 (841 × 1189mm), 3mm, single sided", short: "A0 · 841 × 1189mm", includes: "3mm foam PVC, printed single sided", tiers: [[1, 180], [2, 180], [5, 375], [10, 650], [25, 1500]], price: [180, 90, 75, 65, 60] },
+    { id: "counter-a5", group: "counter", label: "Counter card A5 (148 × 210mm), 3mm foam PVC with stand", short: "A5 · 148 × 210mm", includes: "3mm foam PVC, printed single sided, with a stand on the back", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },
+    { id: "counter-a4", group: "counter", label: "Counter card A4 (210 × 297mm), 3mm foam PVC with stand", short: "A4 · 210 × 297mm", includes: "3mm foam PVC, printed single sided, with a stand on the back", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 250]], price: [180, 90, 40, 20, 10] },
+    { id: "counter-a3", group: "counter", label: "Counter card A3 (297 × 420mm), 3mm foam PVC with stand", short: "A3 · 297 × 420mm", includes: "3mm foam PVC, printed single sided, with a stand on the back", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 375]], price: [180, 90, 40, 20, 15] },
+  ],
+  notes: [
+    "Made for indoor use.",
+    "Double sided, 5mm board or a shaped cut? Add it in the Notes box and we'll quote it.",
+  ],
+  artwork: "Send your artwork at the finished size with 3mm bleed, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "How do I put a wall sign up?", a: "Foam PVC is light, so double-sided mounting tape or velcro dots work on most smooth walls. We print and deliver; we don't install." },
+    { q: "Can foam PVC go outside?", a: "It's best indoors. For outdoor signs, see our corflute and ACM signs." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4FoamPvc,
+  gallery: [MOCKUPS.v4FoamPvc, MOCKUPS.v4Poster],
+  galleryHeading: "On the wall and on the counter",
+  notesHint: "Wall sign or counter card, sizes, how many, wording",
+};
+
+export const WINDOW_CLINGS: GearProduct = {
+  slug: "window-clings",
+  eventName: "window_clings",
+  subject: "Window cling quote",
+  noun: "cling",
+  pageTitle: "Printed Window Clings, Removable | The Signage Shed",
+  description: "Removable static window clings printed full colour on white cling, in 450 × 600mm, 600 × 900mm and 900 × 1200mm. No glue, easy to move or reuse. Delivered Australia-wide.",
+  eyebrow: "Removable window clings, delivered Australia-wide",
+  heading: "Window clings you can peel off and reuse",
+  intro: "A static cling holds onto clean glass without glue, so you can put up a promotion, peel it off when it ends and use it again. Good for specials, opening hours and seasonal displays.",
+  teaserTitle: "Window clings",
+  teaserText: "Removable static clings for glass, from 450 × 600mm to 900 × 1200mm.",
+  groups: [
+    { id: "cling", title: "White window cling", text: "Printed full colour on white static cling, applied to the inside of the glass." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "450x600", group: "cling", label: "Window cling 450 × 600mm, white", short: "450 × 600mm", includes: "White static cling, printed full colour", tiers: [[1, 180], [2, 180], [5, 200], [10, 200], [25, 375]], price: [180, 90, 40, 20, 15] },
+    { id: "600x900", group: "cling", label: "Window cling 600 × 900mm, white", short: "600 × 900mm", includes: "White static cling, printed full colour", tiers: [[1, 180], [2, 180], [5, 200], [10, 250], [25, 625]], price: [180, 90, 40, 25, 25] },
+    { id: "900x1200", group: "cling", label: "Window cling 900 × 1200mm, white", short: "900 × 1200mm", includes: "White static cling, printed full colour", tiers: [[1, 180], [2, 180], [5, 250], [10, 500], [25, 1125]], price: [180, 90, 50, 50, 45] },
+  ],
+  notes: [
+    "Sticks to smooth, clean glass without adhesive.",
+    "Clear cling or another size? Add it in the Notes box and we'll quote it. For long-term graphics, see our printed vinyl.",
+  ],
+  artwork: "Send your artwork at the finished size, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "Cling or vinyl?", a: "Cling has no glue, so it's easy to remove and reuse, which suits short promotions. Printed vinyl is adhesive and suits signs that stay up longer." },
+    { q: "Do you put them up?", a: "No. We print and deliver them. Clean the glass, smooth the cling on from the centre out, and you're done." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4WindowCling,
+  gallery: [MOCKUPS.v4WindowCling, MOCKUPS.v4SavShopfront],
+  galleryHeading: "On a shop window",
+  notesHint: "Window size, how many, wording or design ideas",
+};
+
+export const X_BANNERS: GearProduct = {
+  slug: "x-banner-stands",
+  eventName: "x_banner",
+  subject: "X-banner stand quote",
+  noun: "stand",
+  pageTitle: "X-Banner Stands 600 × 1600mm | The Signage Shed",
+  description: "Low-cost X-banner stands with a printed 600 × 1600mm banner and carry bag. Light, quick to set up and easy to swap the banner. Delivered Australia-wide.",
+  eyebrow: "X-banner stands, delivered Australia-wide",
+  heading: "X-banner stands: a light, low-cost display",
+  intro: "A folding X-shaped stand with your printed banner hooked on at the corners. It packs into a carry bag and sets up in a minute, so it suits markets, expos, receptions and in-store promotions.",
+  teaserTitle: "X-banner stands",
+  teaserText: "A light 600 × 1600mm stand with printed banner and carry bag.",
+  groups: [
+    { id: "xbanner", title: "X-banner stand, 600 × 1600mm", text: "Stand, printed banner and carry bag." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "600x1600", group: "xbanner", label: "X-banner stand 600 × 1600mm with printed banner", short: "600 × 1600mm", includes: "X stand, printed banner and carry bag", tiers: [[1, 85], [2, 170], [3, 255], [4, 320], [5, 375], [9, 630], [10, 700], [11, 770], [12, 840], [13, 910], [14, 910], [15, 975], [16, 1040], [17, 1105], [18, 1170], [19, 1235], [20, 1300], [21, 1365], [22, 1430], [23, 1495], [24, 1560], [25, 1625]], price: [85, 85, 75, 70, 65] },
+  ],
+  notes: [
+    "Best for indoor use. It is light, so it can blow over outside.",
+    "Need a replacement banner for your stand? Ask in the Notes box and we'll quote it.",
+    "For a stand that rolls the banner away, see our pull up banners.",
+  ],
+  artwork: "Send your artwork at 600 × 1600mm, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "X-banner or pull up banner?", a: "An X-banner is lighter and cheaper. A pull up banner has a base that the banner rolls into, so it looks neater and protects the print between events." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4XBanner,
+  gallery: [MOCKUPS.v4XBanner],
+  notesHint: "Where it will stand, how many, wording or design ideas",
+};
+
+export const FABRIC_CUBES: GearProduct = {
+  slug: "fabric-display-cubes",
+  eventName: "fabric_cubes",
+  subject: "Fabric display cube quote",
+  noun: "cube",
+  pageTitle: "Printed Fabric Display Cubes | The Signage Shed",
+  description: "Printed stretch fabric display cubes on an aluminium frame, in 510, 610, 765 and 915mm, with a carry bag. For expo stands, shop displays and events. Delivered Australia-wide.",
+  eyebrow: "Fabric display cubes, delivered Australia-wide",
+  heading: "Fabric display cubes that stack and pack flat",
+  intro: "A light aluminium cube frame with a printed stretch fabric cover that zips on. Stack them, line them up or use them as plinths on an expo stand, in a shop window or at an event.",
+  teaserTitle: "Fabric display cubes",
+  teaserText: "Printed fabric cubes from 510mm to 915mm, with a carry bag.",
+  groups: [
+    { id: "cube", title: "Fabric display cube", text: "Aluminium frame, printed stretch fabric cover and carry bag." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "510", group: "cube", label: "Fabric display cube 510mm", short: "510 × 510 × 510mm", includes: "Aluminium frame, printed stretch fabric cover and carry bag", tiers: [[1, 165], [2, 330], [3, 495], [4, 640], [5, 775], [9, 1350], [10, 1500], [11, 1650], [12, 1800], [13, 1950], [14, 2030], [15, 2175], [16, 2320], [17, 2465], [18, 2610], [19, 2755], [20, 2900], [21, 3045], [22, 3190], [23, 3335], [24, 3480], [25, 3625]], price: [165, 165, 155, 150, 145] },
+    { id: "610", group: "cube", label: "Fabric display cube 610mm", short: "610 × 610 × 610mm", includes: "Aluminium frame, printed stretch fabric cover and carry bag", tiers: [[1, 195], [2, 390], [3, 570], [4, 740], [5, 900], [9, 1575], [10, 1750], [11, 1870], [12, 2040], [13, 2210], [14, 2380], [15, 2550], [16, 2720], [17, 2890], [18, 3060], [19, 3230], [20, 3300], [21, 3465], [22, 3630], [23, 3795], [24, 3960], [25, 4125]], price: [195, 195, 180, 175, 165] },
+    { id: "765", group: "cube", label: "Fabric display cube 765mm", short: "765 × 765 × 765mm", includes: "Aluminium frame, printed stretch fabric cover and carry bag", tiers: [[1, 235], [2, 470], [3, 705], [4, 900], [5, 1100], [9, 1935], [10, 2100], [11, 2310], [12, 2520], [13, 2730], [14, 2940], [15, 3150], [16, 3280], [17, 3485], [18, 3690], [19, 3895], [20, 4100], [21, 4305], [22, 4510], [23, 4715], [24, 4920], [25, 5125]], price: [235, 235, 220, 210, 205] },
+    { id: "915", group: "cube", label: "Fabric display cube 915mm", short: "915 × 915 × 915mm", includes: "Aluminium frame, printed stretch fabric cover and carry bag", tiers: [[1, 290], [2, 580], [3, 855], [4, 1100], [5, 1350], [9, 2340], [10, 2600], [11, 2805], [12, 3060], [13, 3315], [14, 3570], [15, 3825], [16, 4000], [17, 4250], [18, 4500], [19, 4750], [20, 5000], [21, 5250], [22, 5500], [23, 5750], [24, 6000], [25, 6250]], price: [290, 290, 270, 260, 250] },
+  ],
+  notes: [
+    "Made for indoor use.",
+  ],
+  artwork: "Cube covers are printed from a template for your size. Ask for the template with your quote, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "How do they go together?", a: "The frame pieces connect into a cube, then the printed cover slides over and zips closed. It all packs back into the carry bag." },
+    { q: "Can I change the print later?", a: "Yes. Ask for a replacement cover for the same frame in the Notes box and we'll quote it." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4FabricCubes,
+  gallery: [MOCKUPS.v4FabricCubes],
+  notesHint: "Sizes, how many, and where they will be used",
+};
+
+export const PRINTED_CHAIRS: GearProduct = {
+  slug: "printed-chairs",
+  eventName: "printed_chairs",
+  subject: "Printed chair quote",
+  noun: "chair",
+  pageTitle: "Printed Director's Chairs and Deck Chairs | The Signage Shed",
+  description: "Folding director's chairs and deck chairs with your logo printed on the fabric. For club sidelines, coaches' benches, markets and events. Delivered Australia-wide.",
+  eyebrow: "Printed chairs, delivered Australia-wide",
+  heading: "Director's chairs and deck chairs with your logo",
+  intro: "Folding chairs with your branding printed on the fabric. Director's chairs suit the coaches' bench, the commentary box or a VIP area. Deck chairs suit markets, club days and relaxed event spaces.",
+  teaserTitle: "Printed chairs",
+  teaserText: "Director's chairs and deck chairs with your logo printed on the fabric.",
+  groups: [
+    { id: "director", title: "Director's chair", text: "Folding frame with printed backrest and seat fabric." },
+    { id: "deck", title: "Deck chair", text: "Folding deck chair with a printed fabric sling, in an aluminium or timber frame." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "director-single", group: "director", label: "Director's chair, printed single sided", short: "Printed single sided", includes: "Folding chair with printed backrest and seat fabric", tiers: [[1, 210], [2, 420], [3, 615], [4, 800], [5, 975], [9, 1710], [10, 1900], [11, 2035], [12, 2220], [13, 2405], [14, 2590], [15, 2775], [16, 2960], [17, 3145], [18, 3330], [19, 3515], [20, 3600], [21, 3780], [22, 3960], [23, 4140], [24, 4320], [25, 4500]], price: [210, 210, 195, 190, 180] },
+    { id: "director-double", group: "director", label: "Director's chair, printed double sided", short: "Printed double sided", includes: "Folding chair with printed backrest and seat fabric", tiers: [[1, 230], [2, 460], [3, 690], [4, 880], [5, 1075], [9, 1890], [10, 2100], [11, 2255], [12, 2460], [13, 2665], [14, 2870], [15, 3075], [16, 3280], [17, 3400], [18, 3600], [19, 3800], [20, 4000], [21, 4200], [22, 4400], [23, 4600], [24, 4800], [25, 5000]], price: [230, 230, 215, 210, 200] },
+    { id: "deck-aluminium", group: "deck", label: "Deck chair, aluminium frame, printed sling", short: "Aluminium frame", includes: "Folding aluminium deck chair with printed fabric sling", tiers: [[1, 210], [2, 420], [3, 615], [4, 800], [5, 975], [9, 1710], [10, 1900], [11, 2035], [12, 2220], [13, 2405], [14, 2590], [15, 2775], [16, 2960], [17, 3145], [18, 3330], [19, 3515], [20, 3600], [21, 3780], [22, 3960], [23, 4140], [24, 4320], [25, 4500]], price: [210, 210, 195, 190, 180] },
+    { id: "deck-wood", group: "deck", label: "Deck chair, timber frame, printed sling", short: "Timber frame", includes: "Folding timber deck chair with printed fabric sling", tiers: [[1, 150], [2, 300], [3, 450], [4, 580], [5, 725], [9, 1260], [10, 1350], [11, 1485], [12, 1620], [13, 1755], [14, 1890], [15, 2025], [16, 2160], [17, 2295], [18, 2430], [19, 2565], [20, 2700], [21, 2730], [22, 2860], [23, 2990], [24, 3120], [25, 3250]], price: [150, 150, 145, 135, 130] },
+  ],
+  notes: [
+    "Replacement fabrics for chairs you already have from us can be quoted. Ask in the Notes box.",
+  ],
+  artwork: "Chair fabrics are printed from a template. Ask for the template with your quote, or send us your logo and we'll set it up for you to approve.",
+  faqs: [
+    { q: "Do they fold?", a: "Yes, both styles fold flat to carry and store." },
+    { q: "Can they stay outside?", a: "Use them outdoors, then pack them away. Long periods in strong sun will fade the print over time." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4DirectorChairs,
+  gallery: [MOCKUPS.v4DirectorChairs, MOCKUPS.v4DeckChairs],
+  galleryHeading: "Director's chairs or deck chairs",
+  galleryIncludesHero: true,
+  notesHint: "Chair style, how many, logo and colours",
+};
+
+export const ARCH_BANNERS: GearProduct = {
+  slug: "arch-banners",
+  eventName: "arch_banners",
+  subject: "Arch banner quote",
+  noun: "arch",
+  pageTitle: "Printed Arch Banners for Events | The Signage Shed",
+  description: "Walk-through printed arch banners, 3390mm wide and 1860mm or 2180mm tall, with poles and ground spikes. For fun runs, start and finish lines, and event entrances. Delivered Australia-wide.",
+  eyebrow: "Arch banners, delivered Australia-wide",
+  heading: "Arch banners for start lines and entrances",
+  intro: "A printed fabric arch on flexible poles that people walk through. Mark the start and finish of a fun run, the entry to a market or club day, or the way into an event.",
+  teaserTitle: "Arch banners",
+  teaserText: "Walk-through printed arches, 3.39m wide, with poles and ground spikes.",
+  groups: [
+    { id: "arch", title: "Arch banner with ground spikes", text: "Printed fabric arch, poles and two ground spikes for grass." },
+  ],
+  bands: BANDS_5,
+  items: [
+    { id: "small", group: "arch", label: "Arch banner small (3390 × 1860mm) with ground spikes", short: "Small · 3390 × 1860mm", includes: "Printed arch fabric, poles, ground spikes", tiers: [[1, 400], [2, 790], [3, 1170], [4, 1520], [5, 1850], [9, 3195], [10, 3550], [11, 3905], [12, 4200], [13, 4550], [14, 4900], [15, 5250], [16, 5520], [17, 5865], [18, 6210], [19, 6555], [20, 6900], [21, 7245], [22, 7590], [23, 7935], [24, 8160], [25, 8500]], price: [400, 395, 370, 355, 340] },
+    { id: "large", group: "arch", label: "Arch banner large (3390 × 2180mm) with ground spikes", short: "Large · 3390 × 2180mm", includes: "Printed arch fabric, poles, ground spikes", tiers: [[1, 460], [2, 910], [3, 1335], [4, 1720], [5, 2125], [9, 3690], [10, 4050], [11, 4455], [12, 4800], [13, 5200], [14, 5600], [15, 6000], [16, 6320], [17, 6715], [18, 7110], [19, 7505], [20, 7900], [21, 8295], [22, 8580], [23, 8970], [24, 9360], [25, 9750]], price: [460, 455, 425, 405, 390] },
+  ],
+  notes: [
+    "Ground spikes are for grass and soft ground. For hard surfaces, ask about bases in the Notes box and we'll quote them.",
+    "Printed one side; the reverse shows a mirror image.",
+    "Take it down in strong wind.",
+  ],
+  artwork: "Arch fabrics are printed from a template. Ask for the template with your quote, or send us your logo and wording and we'll set it up for you to approve.",
+  faqs: [
+    { q: "Do you set it up?", a: "No. It comes with poles and ground spikes, and you put it together yourself." },
+    ...COMMON_FAQS
+  ],
+  hero: MOCKUPS.v4ArchBanner,
+  gallery: [MOCKUPS.v4ArchBanner],
+  notesHint: "Event date, ground surface, wording or design ideas",
+};
+
+export const NEW_PRODUCTS = [LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS] as const;
