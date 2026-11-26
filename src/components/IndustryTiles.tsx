@@ -1,4 +1,5 @@
 import IndustryIcon from "./IndustryIcons";
+import MuchMore from "./MuchMore";
 import { INDUSTRIES, SHOP_BY_LABEL } from "../data/industries";
 
 /** Compact homepage row of shop-by-use links, with simple line icons. */
@@ -28,6 +29,7 @@ export default function IndustryTiles() {
             </li>
           ))}
         </ul>
+        <MuchMore />
       </div>
     </section>
   );

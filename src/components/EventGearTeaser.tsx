@@ -3,6 +3,7 @@ import { NEW_PRODUCTS } from "../data/newProducts";
 const GEAR_PRODUCTS = [...BASE_GEAR, ...NEW_PRODUCTS];
 import { GEAR_HREFS } from "../lib/routes";
 import MockupImage from "./MockupImage";
+import MuchMore from "./MuchMore";
 
 // Home page card for the event gear pages: gazebos, flags and market umbrellas.
 export default function EventGearTeaser() {
@@ -52,6 +53,7 @@ export default function EventGearTeaser() {
                 </a>
               ))}
             </div>
+            <MuchMore />
           </div>
         </div>
       </div>
