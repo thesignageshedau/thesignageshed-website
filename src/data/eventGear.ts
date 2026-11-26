@@ -102,12 +102,12 @@ export const GAZEBOS: GearProduct = {
   ],
   bands: [{ label: "1", min: 1 }, { label: "2", min: 2 }, { label: "3 to 4", min: 3 }, { label: "5+", min: 5 }],
   items: [
-    { id: "standard-3x3-none", group: "standard", label: "Standard 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 945], [2, 1886], [3, 2802], [5, 4490]], price: [945, 943, 934, 898], priceWithAddon: [1015, 1013, 1004, 965] },
-    { id: "standard-3x3-single", group: "standard", label: "Standard 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", tiers: [[1, 1195], [2, 2390], [3, 3546], [5, 5690]], price: [1195, 1195, 1182, 1138], priceWithAddon: [1265, 1265, 1252, 1205] },
-    { id: "standard-6x3-none", group: "standard", label: "Standard 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1650], [2, 3296], [3, 4896], [5, 7855]], price: [1650, 1648, 1632, 1571], priceWithAddon: [1760, 1758, 1740, 1674] },
-    { id: "luxury-3x3-none", group: "luxury", label: "Luxury 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1395], [2, 2786], [3, 4140], [5, 6640]], price: [1395, 1393, 1380, 1328], priceWithAddon: [1465, 1465, 1450, 1396] },
+    { id: "standard-3x3-none", group: "standard", label: "Standard 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1180], [2, 2360], [3, 3507], [5, 5620]], price: [1180,  1180,  1169,  1124], priceWithAddon: [1250,  1250,  1239,  1192] },
+    { id: "standard-3x3-single", group: "standard", label: "Standard 3 × 3m gazebo, with single sided back wall", short: "3 × 3m · Single sided back wall", includes: "Frame, printed canopy and 4 valances, plus a printed back wall", tiers: [[1, 1430], [2, 2860], [3, 4251], [5, 6820]], price: [1430,  1430,  1417,  1364], priceWithAddon: [1505,  1503,  1487,  1431] },
+    { id: "standard-6x3-none", group: "standard", label: "Standard 6 × 3m gazebo, canopy only", short: "6 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1885], [2, 3770], [3, 5601], [5, 8985]], price: [1885,  1885,  1867,  1797], priceWithAddon: [1995,  1995,  1975,  1900] },
+    { id: "luxury-3x3-none", group: "luxury", label: "Luxury 3 × 3m gazebo, canopy only", short: "3 × 3m · Canopy only", includes: "Frame, printed canopy and 4 valances", tiers: [[1, 1630], [2, 3260], [3, 4845], [5, 7770]], price: [1630,  1630,  1615,  1554], priceWithAddon: [1705,  1703,  1685,  1622] },
   ],
-  addon: { label: "Heavy duty wheeled carry bag", note: "Heavy duty wheeled carry bag: $67 to $72 extra on a 3 × 3m, $103 to $110 extra on a 6 × 3m. Tick it in the quote form to see the price." },
+  addon: { label: "Heavy duty wheeled carry bag", note: "Heavy duty wheeled carry bag: $67 to $75 extra on a 3 × 3m, $103 to $110 extra on a 6 × 3m. Tick it in the quote form to see the price." },
   notes: [
     "Black frame (silver available, same price).",
     "Back wall: printed single sided, on one face.",
