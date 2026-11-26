@@ -21,7 +21,7 @@ import GearPage from "./components/GearPage";
 import EventGearTeaser from "./components/EventGearTeaser";
 import { ACM_SIGNS, BANNERS, FLAGS, GAZEBOS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, UMBRELLAS } from "./data/eventGear";
 import { PACKS } from "./data/packs";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "./data/newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS } from "./data/newProducts";
 import ProductGrid from "./components/ProductGrid";
 import HowItWorks from "./components/HowItWorks";
 import QuoteBar from "./components/QuoteBar";
@@ -81,6 +81,13 @@ type Route =
   | "packs"
   | "business-cards"
   | "printed-vinyl"
+  | "posters"
+  | "foam-pvc-signs"
+  | "window-clings"
+  | "x-banner-stands"
+  | "fabric-display-cubes"
+  | "printed-chairs"
+  | "arch-banners"
   | "clothing"
   | "banners"
   | "quote-thanks"
@@ -128,6 +135,13 @@ const slugs = [
   "packs",
   "business-cards",
   "printed-vinyl",
+  "posters",
+  "foam-pvc-signs",
+  "window-clings",
+  "x-banner-stands",
+  "fabric-display-cubes",
+  "printed-chairs",
+  "arch-banners",
   "clothing",
   "banners",
   "quote-thanks",
@@ -180,6 +194,13 @@ const PAGE_TITLES: Partial<Record<Route, string>> = {
   packs: PACKS.pageTitle,
   "business-cards": BUSINESS_CARDS.pageTitle,
   "printed-vinyl": PRINTED_VINYL.pageTitle,
+  "posters": POSTERS.pageTitle,
+  "foam-pvc-signs": FOAM_PVC.pageTitle,
+  "window-clings": WINDOW_CLINGS.pageTitle,
+  "x-banner-stands": X_BANNERS.pageTitle,
+  "fabric-display-cubes": FABRIC_CUBES.pageTitle,
+  "printed-chairs": PRINTED_CHAIRS.pageTitle,
+  "arch-banners": ARCH_BANNERS.pageTitle,
   clothing: CLOTHING.pageTitle,
   "quote-thanks": "Quote request sent | The Signage Shed",
   "for-sign-shops": "Pricing Spreadsheets for Sign Shops | The Signage Shed",
@@ -333,6 +354,20 @@ export default function App() {
           <GearPage key="business-cards" product={BUSINESS_CARDS} />
         ) : route === "printed-vinyl" ? (
           <GearPage key="printed-vinyl" product={PRINTED_VINYL} />
+        ) : route === "posters" ? (
+          <GearPage key="posters" product={POSTERS} />
+        ) : route === "foam-pvc-signs" ? (
+          <GearPage key="foam-pvc-signs" product={FOAM_PVC} />
+        ) : route === "window-clings" ? (
+          <GearPage key="window-clings" product={WINDOW_CLINGS} />
+        ) : route === "x-banner-stands" ? (
+          <GearPage key="x-banner-stands" product={X_BANNERS} />
+        ) : route === "fabric-display-cubes" ? (
+          <GearPage key="fabric-display-cubes" product={FABRIC_CUBES} />
+        ) : route === "printed-chairs" ? (
+          <GearPage key="printed-chairs" product={PRINTED_CHAIRS} />
+        ) : route === "arch-banners" ? (
+          <GearPage key="arch-banners" product={ARCH_BANNERS} />
         ) : route === "clothing" ? (
           <ClothingPage />
         ) : route && INDUSTRY_HUBS.some((p) => p.slug === route) ? (

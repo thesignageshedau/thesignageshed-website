@@ -1,11 +1,11 @@
 import * as CF from "../data/corfluteSigns";
 import * as AF from "../data/aFrames";
 import { ACM_SIGNS, FLAGS, RECTANGLE_FLAGS, STRETCH_FABRIC, TABLE_TOP_BANNERS, fromPrice, type GearProduct } from "../data/eventGear";
-import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL } from "../data/newProducts";
+import { LIGHTBOX, BIG_HEADS, SEG_AFRAMES, BARRIERS, SELFIE_FRAMES, CAR_MAGNETS, BUSINESS_CARDS, PRINTED_VINYL, POSTERS, FOAM_PVC, WINDOW_CLINGS, X_BANNERS, FABRIC_CUBES, PRINTED_CHAIRS, ARCH_BANNERS } from "../data/newProducts";
 import { FROM_PER_M2 } from "../data/customSize";
 import { OG_IMAGES } from "../data/ogImages";
 
-export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl"] as const;
+export const SEO_SLUGS = ["corflute-signs", "a-frames", "flags", "stretch-fabric-displays", "table-top-banners", "acm-signs", "rectangle-flags", "lightbox-displays", "big-head-cutouts", "seg-fabric-frames", "crowd-barriers", "selfie-frames", "car-magnets", "business-cards", "printed-vinyl", "posters", "foam-pvc-signs", "window-clings", "x-banner-stands", "fabric-display-cubes", "printed-chairs", "arch-banners"] as const;
 type Slug = (typeof SEO_SLUGS)[number];
 const gearPrices = (g: GearProduct) => g.items.flatMap((i) => [i.price[0]!, ...(i.priceWithAddon ? [i.priceWithAddon[0]!] : [])]);
 const SITE = "https://thesignageshed.au";
@@ -26,6 +26,13 @@ const HERO_FALLBACK: Partial<Record<Slug, { slug: string }>> = {
   "car-magnets": CAR_MAGNETS.hero,
   "business-cards": BUSINESS_CARDS.hero,
   "printed-vinyl": PRINTED_VINYL.hero,
+  "posters": POSTERS.hero,
+  "foam-pvc-signs": FOAM_PVC.hero,
+  "window-clings": WINDOW_CLINGS.hero,
+  "x-banner-stands": X_BANNERS.hero,
+  "fabric-display-cubes": FABRIC_CUBES.hero,
+  "printed-chairs": PRINTED_CHAIRS.hero,
+  "arch-banners": ARCH_BANNERS.hero,
 };
 
 function productImage(slug: Slug): string {
@@ -74,6 +81,13 @@ const prices: Record<Slug, number[]> = {
   "car-magnets": gearPrices(CAR_MAGNETS),
   "business-cards": gearPrices(BUSINESS_CARDS),
   "printed-vinyl": [fromPrice(PRINTED_VINYL)],
+  "posters": gearPrices(POSTERS),
+  "foam-pvc-signs": gearPrices(FOAM_PVC),
+  "window-clings": gearPrices(WINDOW_CLINGS),
+  "x-banner-stands": gearPrices(X_BANNERS),
+  "fabric-display-cubes": gearPrices(FABRIC_CUBES),
+  "printed-chairs": gearPrices(PRINTED_CHAIRS),
+  "arch-banners": gearPrices(ARCH_BANNERS),
 };
 
 const INFO: Record<Slug, { name: string; description: string }> = {
@@ -100,6 +114,13 @@ const INFO: Record<Slug, { name: string; description: string }> = {
   "selfie-frames": { name: "Custom printed selfie frames", description: SELFIE_FRAMES.description },
   "car-magnets": { name: "Custom printed car magnets", description: CAR_MAGNETS.description },
   "business-cards": { name: "Premium and luxury business cards", description: BUSINESS_CARDS.description },
+  "posters": { name: "Custom printed posters", description: POSTERS.description },
+  "foam-pvc-signs": { name: "Foam PVC signs and counter cards", description: FOAM_PVC.description },
+  "window-clings": { name: "Printed removable window clings", description: WINDOW_CLINGS.description },
+  "x-banner-stands": { name: "X-banner stands with printed banner", description: X_BANNERS.description },
+  "fabric-display-cubes": { name: "Printed fabric display cubes", description: FABRIC_CUBES.description },
+  "printed-chairs": { name: "Printed director's chairs and deck chairs", description: PRINTED_CHAIRS.description },
+  "arch-banners": { name: "Printed walk-through arch banners", description: ARCH_BANNERS.description },
   "printed-vinyl": { name: "Printed self-adhesive vinyl stickers and decals", description: PRINTED_VINYL.description },
 };
 
@@ -189,6 +210,41 @@ const RELATED: Record<Slug, { href: string; text: string }[]> = {
     { href: "/banners/", text: "Vinyl and mesh banners" },
     { href: "/acm-signs/", text: "ACM signs" },
     { href: "/car-magnets/", text: "Car magnets" },
+  ],
+  "posters": [
+    { href: "/foam-pvc-signs/", text: "Foam PVC signs and counter cards" },
+    { href: "/window-clings/", text: "Window clings" },
+    { href: "/a-frames/", text: "A-frame signs" },
+  ],
+  "foam-pvc-signs": [
+    { href: "/posters/", text: "Posters" },
+    { href: "/acm-signs/", text: "ACM signs" },
+    { href: "/window-clings/", text: "Window clings" },
+  ],
+  "window-clings": [
+    { href: "/printed-vinyl/", text: "Printed vinyl stickers" },
+    { href: "/posters/", text: "Posters" },
+    { href: "/a-frames/", text: "A-frame signs" },
+  ],
+  "x-banner-stands": [
+    { href: "/pull-up-banners/", text: "Pull up banners" },
+    { href: "/stretch-fabric-displays/", text: "Stretch fabric displays" },
+    { href: "/table-covers/", text: "Table covers" },
+  ],
+  "fabric-display-cubes": [
+    { href: "/media-walls/", text: "Media walls" },
+    { href: "/x-banner-stands/", text: "X-banner stands" },
+    { href: "/table-covers/", text: "Table covers" },
+  ],
+  "printed-chairs": [
+    { href: "/gazebos/", text: "Gazebos" },
+    { href: "/flags/", text: "Teardrop and feather flags" },
+    { href: "/clothing/", text: "Printed clothing" },
+  ],
+  "arch-banners": [
+    { href: "/flags/", text: "Teardrop and feather flags" },
+    { href: "/crowd-barriers/", text: "Crowd barrier frames and covers" },
+    { href: "/banners/", text: "Vinyl and mesh banners" },
   ],
 };
 

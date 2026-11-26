@@ -66,6 +66,13 @@ const products: { href: string; label: string }[] = [
   { href: "/car-magnets/", label: "Car magnets" },
   { href: "/business-cards/", label: "Business cards" },
   { href: "/printed-vinyl/", label: "Printed vinyl stickers" },
+  { href: "/posters/", label: "Posters" },
+  { href: "/foam-pvc-signs/", label: "Foam PVC signs and counter cards" },
+  { href: "/window-clings/", label: "Window clings" },
+  { href: "/x-banner-stands/", label: "X-banner stands" },
+  { href: "/fabric-display-cubes/", label: "Fabric display cubes" },
+  { href: "/printed-chairs/", label: "Director's and deck chairs" },
+  { href: "/arch-banners/", label: "Arch banners" },
   { href: "/packs/", label: "Signage packs: clubs, schools, sites, events" },
 ];
 const signShops = { href: "/for-sign-shops/", label: "For sign shops: pricing spreadsheets" };

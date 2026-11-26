@@ -571,6 +571,13 @@ const PRODUCT_LABELS: Record<string, string> = {
   "car-magnets": "Car magnets",
   "business-cards": "Business cards",
   "printed-vinyl": "Printed self-adhesive vinyl",
+  "posters": "Posters",
+  "foam-pvc-signs": "Foam PVC signs and counter cards",
+  "window-clings": "Window clings",
+  "x-banner-stands": "X-banner stands",
+  "fabric-display-cubes": "Fabric display cubes",
+  "printed-chairs": "Director's and deck chairs",
+  "arch-banners": "Arch banners",
   packs: "Signage packs",
   other: "Something else or a mix",
 };

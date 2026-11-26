@@ -66,6 +66,14 @@ const SCENES = [
   ["../v4-business-cards/58 Business Cards Premium Gloss - Lifestyle", "v4-cards-premium-gloss", false],
   ["../v4-business-cards/59 Business Cards Luxury Velvet - Lifestyle", "v4-cards-luxury-velvet", false],
   ["../v4-business-cards/60 Business Cards Luxury Spot Gloss - Lifestyle", "v4-cards-luxury-spot", false],
+  ["../v4-es-expansion/63 X-Banner Stand - Lifestyle", "v4-xbanner", true],
+  ["../v4-es-expansion/64 Fabric Display Cubes - Lifestyle", "v4-fabric-cubes", true],
+  ["../v4-es-expansion/65 Director Chairs - Lifestyle", "v4-director-chairs", false],
+  ["../v4-es-expansion/66 Deck Chairs - Lifestyle", "v4-deck-chairs", false],
+  ["../v4-es-expansion/67 Poster - Lifestyle", "v4-poster", true],
+  ["../v4-es-expansion/68 Foam PVC Sign and Counter Card - Lifestyle", "v4-foam-pvc", false],
+  ["../v4-es-expansion/69 Window Cling - Lifestyle", "v4-window-cling", true],
+  ["../v4-es-expansion/70 Arch Banner - Lifestyle", "v4-arch-banner", false],
 ];
 const ONLY = process.env.ONLY?.split(",");
 for (const [f, slug, sq] of SCENES.filter(([, s]) => !ONLY || ONLY.includes(s))) {
